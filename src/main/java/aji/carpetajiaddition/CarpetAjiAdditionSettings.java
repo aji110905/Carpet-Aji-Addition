@@ -26,7 +26,7 @@ public class CarpetAjiAdditionSettings {
     public static boolean lockAllHopperMinecart = false;
 
     @Rule(categories = {CAA, FEATURE})
-    public static boolean totemOfUndyingWrench = false;
+    public static boolean cactusWrench = false;
 
     @Rule(categories = {CAA, SURVIVAL, FEATURE})
     public static boolean tameHorse = false;
@@ -52,7 +52,6 @@ public class CarpetAjiAdditionSettings {
                     "nether",
                     "ore_and_deepslate",
                     "deepslate_and_nether",
-                    "ore_and_nether",
                     "ore_and_nether",
                     "all"
             }

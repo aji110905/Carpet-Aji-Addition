@@ -12,7 +12,7 @@
     "rules.lockAllHopper.HopperBlockEntityMixin",
     "rules.lockAllHopperMinecart.HopperMinecartMixin",
     "rules.sitOnTheGround.PlayerEntityMixin",
-    "rules.totemOfUndyingWrench.BlockRotatorMixin"
+    "rules.cactusWrench.BlockItemMixin"
   ],
   "client": [
   ],
