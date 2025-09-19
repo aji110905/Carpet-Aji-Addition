@@ -26,7 +26,7 @@ public class CarpetAjiAdditionSettings {
     public static boolean lockAllHopperMinecart = false;
 
     @Rule(categories = {CAA, FEATURE})
-    public static boolean totemOfUndyingWrench = false;
+    public static boolean cactusWrench = false;
 
     @Rule(categories = {CAA, SURVIVAL, FEATURE})
     public static boolean tameHorse = false;
