@@ -7,28 +7,26 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Comparator;
 
-public class RecipeRuleUtil {
-    public static void initializationRecipeRuleDate() {
-        cleanRecipeRuleDate();
+public class DataPackUtil {
+    public static void initializationDataPack() {
+        cleanDataPack();
         File file = new File(CarpetAjiAdditionMod.minecraftServer.getSavePath(WorldSavePath.DATAPACKS).toString() + "\\CarpetAjiAdditionData\\pack.mcmeta");
-        if (!file.exists()) {
-            file.getParentFile().mkdirs();
-            String packMetaContent = "{\n" +
-                    "  \"pack\": {\n" +
-                    "    \"pack_format\": 34,\n" +
-                    "  }\n" +
-                    "}";
-            try {
-                Files.write(file.toPath(), packMetaContent.getBytes());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+        file.getParentFile().mkdirs();
+        try {
+            Files.write(
+                    file.toPath(),
+                    DataPackUtil.class.getClassLoader().getResourceAsStream("assets/carpetajiaddition/pack.mcmeta.json").readAllBytes()
+            );
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
+
     }
 
-    public static void cleanRecipeRuleDate() {
+    public static void cleanDataPack() {
         File file = new File(CarpetAjiAdditionMod.minecraftServer.getSavePath(WorldSavePath.DATAPACKS).toString() + "\\CarpetAjiAdditionData");
         if (file.exists()) {
             try {

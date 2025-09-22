@@ -2,7 +2,7 @@ package aji.carpetajiaddition;
 
 import aji.carpetajiaddition.translations.CarpetAjiAdditionTranslations;
 import aji.carpetajiaddition.translations.getTranslationsMap;
-import aji.carpetajiaddition.utils.RecipeRuleUtil;
+import aji.carpetajiaddition.utils.DataPackUtil;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import net.minecraft.server.MinecraftServer;
@@ -18,18 +18,18 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
 
     @Override
     public void onServerLoaded(MinecraftServer server) {
-        RecipeRuleUtil.initializationRecipeRuleDate();
+        DataPackUtil.initializationDataPack();
     }
 
     @Override
     public void onServerLoadedWorlds(MinecraftServer server) {
         server.getDataPackManager().scanPacks();
-        server.getCommandManager().executeWithPrefix(server.getCommandSource(), "/datapack enable \"file/CarpetAjiAdditionData\"");
+        server.reloadResources(server.getDataPackManager().getEnabledIds());
     }
 
     @Override
     public void onServerClosed(MinecraftServer server) {
-        RecipeRuleUtil.cleanRecipeRuleDate();
+        DataPackUtil.cleanDataPack();
     }
 
     @Override
