@@ -5,7 +5,6 @@ import carpet.api.settings.CarpetRule;
 import carpet.api.settings.Validator;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.util.WorldSavePath;
 import org.jetbrains.annotations.Nullable;
@@ -49,7 +48,7 @@ public class OreRecipeRecipeRuleValidator<T> extends Validator<T> implements Rec
                 loadNetherRecipe();
                 loadOreRecipe();
             }
-            if (source != null) CarpetAjiAdditionMod.minecraftServer.reloadResources(CarpetAjiAdditionMod.minecraftServer.getDataPackManager().getEnabledIds());
+            if (source != null && source.getWorld() != null) CarpetAjiAdditionMod.minecraftServer.reloadResources(CarpetAjiAdditionMod.minecraftServer.getDataPackManager().getEnabledIds());
             return newValue;
         }else{
             return changingRule.value();

@@ -31,7 +31,7 @@ public class RecipeRuleValidator<T> extends Validator<T> implements RecipeRule{
             } else {
                 unloadRecipe(recipeFiles);
             }
-            if (source != null && source.getName() != "Server") CarpetAjiAdditionMod.minecraftServer.reloadResources(CarpetAjiAdditionMod.minecraftServer.getDataPackManager().getEnabledIds());
+            if (source != null && source.getWorld() != null) CarpetAjiAdditionMod.minecraftServer.reloadResources(CarpetAjiAdditionMod.minecraftServer.getDataPackManager().getEnabledIds());
             return newValue;
         }else{
             return changingRule.value();
