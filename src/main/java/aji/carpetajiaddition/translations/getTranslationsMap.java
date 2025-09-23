@@ -14,7 +14,7 @@ import static aji.carpetajiaddition.CarpetAjiAdditionMod.MOD_ID;
 public class getTranslationsMap {
     private static Map<String, String> getTranslationFromResourcePath(String lang) {
         Map<String, String> translations = Maps.newHashMap();
-        String resourcePath = "assets/" + MOD_ID + "/lang/" + lang + ".json";
+        String resourcePath = "assets/carpetajiaddition/lang/" + lang + ".json";
         InputStream inputStream = getTranslationsMap.class.getClassLoader().getResourceAsStream(resourcePath);
 
         if (inputStream == null) {
