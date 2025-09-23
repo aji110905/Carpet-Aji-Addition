@@ -1,4 +1,4 @@
-package aji.carpetajiaddition.validators.RecipeRule;
+package aji.carpetajiaddition.setting.validators.RecipeRule;
 
 import java.util.Map;
 

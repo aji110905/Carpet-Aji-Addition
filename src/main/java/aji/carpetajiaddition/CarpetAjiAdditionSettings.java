@@ -1,11 +1,10 @@
 package aji.carpetajiaddition;
 
-import aji.carpetajiaddition.validators.RecipeRule.OreRecipeRecipeRuleValidator;
-import aji.carpetajiaddition.validators.RecipeRule.RecipeRuleValidator;
+import aji.carpetajiaddition.setting.validators.RecipeRule.OreRecipeRecipeRuleValidator;
+import aji.carpetajiaddition.setting.validators.RecipeRule.RecipeRuleValidator;
 import carpet.api.settings.Rule;
 
-import static aji.carpetajiaddition.setting.RuleCategory.CAA;
-import static aji.carpetajiaddition.setting.RuleCategory.RECIPE;
+import static aji.carpetajiaddition.setting.RuleCategory.*;
 import static carpet.api.settings.RuleCategory.*;
 
 public class CarpetAjiAdditionSettings {
@@ -33,7 +32,7 @@ public class CarpetAjiAdditionSettings {
 
     /*
      * 配方规则
-     * validators为{aji.carpetajiaddition.validators.RecipeRule.RecipeRule}的实现类的规则为配方规则
+     * validators为{aji.carpetajiaddition.setting.validators.RecipeRule.RecipeRule}的实现类的规则为配方规则
      */
 
     @Rule(

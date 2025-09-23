@@ -1,4 +1,4 @@
-package aji.carpetajiaddition.validators.RecipeRule;
+package aji.carpetajiaddition.setting.validators.RecipeRule;
 
 import aji.carpetajiaddition.CarpetAjiAdditionMod;
 import carpet.api.settings.CarpetRule;
@@ -51,7 +51,7 @@ public class OreRecipeRecipeRuleValidator<T> extends Validator<T> implements Rec
             if (source != null && source.getWorld() != null) CarpetAjiAdditionMod.minecraftServer.reloadResources(CarpetAjiAdditionMod.minecraftServer.getDataPackManager().getEnabledIds());
             return newValue;
         }else{
-            return changingRule.value();
+            return null;
         }
     }
 
