@@ -1,10 +1,6 @@
 {
   "pack": {
     "description": "Carpet Aji Addition data pack",
-    "pack_format": 34,
-    "supported_formats": {
-      "min_inclusive": 34,
-      "max_inclusive": 64
-    }
+    "pack_format": 48
   }
 }
