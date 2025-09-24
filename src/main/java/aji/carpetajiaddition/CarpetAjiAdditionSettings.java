@@ -30,9 +30,8 @@ public class CarpetAjiAdditionSettings {
     @Rule(categories = {CAA, SURVIVAL, FEATURE})
     public static boolean tameHorse = false;
 
-    /*
-     * 配方规则
-     * validators为{aji.carpetajiaddition.setting.validators.RecipeRule.RecipeRule}的实现类的规则为配方规则
+    /**
+     * 下方规则为配方规则
      */
 
     @Rule(
