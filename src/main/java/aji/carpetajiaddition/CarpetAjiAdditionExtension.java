@@ -1,5 +1,6 @@
 package aji.carpetajiaddition;
 
+import aji.carpetajiaddition.setting.validators.RecipeRule.RecipeRule;
 import aji.carpetajiaddition.translations.CarpetAjiAdditionTranslations;
 import aji.carpetajiaddition.translations.getTranslationsMap;
 import carpet.CarpetExtension;
