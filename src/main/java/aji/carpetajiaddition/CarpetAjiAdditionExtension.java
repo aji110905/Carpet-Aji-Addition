@@ -29,7 +29,7 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
 
     @Override
     public void onServerClosed(MinecraftServer server) {
-        DataPackUtil.cleanDataPack();
+        RecipeRule.cleanDataPack();
     }
 
     @Override
