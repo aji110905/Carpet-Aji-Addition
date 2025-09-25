@@ -18,7 +18,7 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
 
     @Override
     public void onServerLoaded(MinecraftServer server) {
-        DataPackUtil.initializationDataPack();
+        RecipeRule.initializationDataPack();
     }
 
     @Override
