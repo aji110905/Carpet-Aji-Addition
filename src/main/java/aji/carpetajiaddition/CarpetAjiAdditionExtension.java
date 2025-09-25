@@ -2,7 +2,6 @@ package aji.carpetajiaddition;
 
 import aji.carpetajiaddition.translations.CarpetAjiAdditionTranslations;
 import aji.carpetajiaddition.translations.getTranslationsMap;
-import aji.carpetajiaddition.utils.DataPackUtil;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import net.minecraft.server.MinecraftServer;
