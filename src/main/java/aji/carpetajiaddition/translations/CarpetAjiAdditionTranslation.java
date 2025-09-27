@@ -66,7 +66,8 @@ public class CarpetAjiAdditionTranslation {
 
     public static class trColor {
         public static String tr (Formatting color){
-            return CarpetAjiAdditionTranslation.tr(TranslationsKey.COLOR + color.getName());
+            final String COLOR = TranslationsKey.SUFFIX + "color.";
+            return CarpetAjiAdditionTranslation.tr(COLOR + color.getName());
         }
 
         public static Text trText (Formatting color, boolean colorful){
