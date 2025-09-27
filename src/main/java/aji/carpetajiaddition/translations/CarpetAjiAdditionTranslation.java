@@ -1,10 +1,12 @@
 package aji.carpetajiaddition.translations;
 
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 
 import java.util.Map;
 
-public class CarpetAjiAdditionTranslations {
+public class CarpetAjiAdditionTranslation {
     private static Map<String, String> CarpetAjiAdditionTranslations;
 
     public static void readLanguageFiles(String lang){
@@ -52,7 +54,7 @@ public class CarpetAjiAdditionTranslations {
         String template = tr(path);
         if (template.isEmpty()) return Text.empty();
         Text result = Text.empty();
-        String[] parts = template.split("\\{\\d+\\}");
+        String[] parts = template.split("\\{\\d+}");
         for (int i = 0; i < parts.length; i++) {
             result = result.copy().append(parts[i]);
             if (i < args.length) {
@@ -60,5 +62,18 @@ public class CarpetAjiAdditionTranslations {
             }
         }
         return result;
+    }
+
+    public static class trColor {
+        public static String tr (Formatting color){
+            return CarpetAjiAdditionTranslation.tr(TranslationsKey.COLOR + color.getName());
+        }
+
+        public static Text trText (Formatting color, boolean colorful){
+            MutableText text = Text.literal(tr(color));
+            if (colorful) {
+                return text.withColor(color.getColorValue());
+            }else return text;
+        }
     }
 }
