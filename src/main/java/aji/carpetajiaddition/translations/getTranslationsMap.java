@@ -9,8 +9,6 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
-import static aji.carpetajiaddition.CarpetAjiAdditionMod.MOD_ID;
-
 public class getTranslationsMap {
     private static Map<String, String> getTranslationFromResourcePath(String lang) {
         Map<String, String> translations = Maps.newHashMap();
