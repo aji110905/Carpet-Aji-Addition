@@ -23,7 +23,8 @@ public abstract class BlockItemMixin extends Item {
     @Inject(
             method = "place(Lnet/minecraft/item/ItemPlacementContext;Lnet/minecraft/block/BlockState;)Z",
             at = @At(value = "HEAD"),
-            cancellable = true)
+            cancellable = true
+    )
     private static void place(ItemPlacementContext context, BlockState state, CallbackInfoReturnable<Boolean> cir){
         if (!CarpetAjiAdditionSettings.cactusWrench) return;
         PlayerEntity player = context.getPlayer();

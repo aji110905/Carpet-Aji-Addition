@@ -1,5 +1,6 @@
 package aji.carpetajiaddition.translations;
 
+import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import com.google.common.collect.Maps;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
@@ -12,7 +13,10 @@ import java.util.Map;
 public class getTranslationsMap {
     private static Map<String, String> getTranslationFromResourcePath(String lang) {
         Map<String, String> translations = Maps.newHashMap();
-        String resourcePath = "assets/carpetajiaddition/lang/" + lang + ".json";
+        String resourcePath = "assets/carpetajiaddition/lang/zh_cn.json";
+        if (CarpetAjiAdditionSettings.useMachineFlip){
+            resourcePath = "assets/carpetajiaddition/lang/"+ lang +".json";
+        }
         InputStream inputStream = getTranslationsMap.class.getClassLoader().getResourceAsStream(resourcePath);
 
         if (inputStream == null) {
@@ -21,6 +25,7 @@ public class getTranslationsMap {
 
         Gson gson = new Gson();
         translations = gson.fromJson(new InputStreamReader(inputStream, StandardCharsets.UTF_8), new TypeToken<Map<String, String>>(){}.getType());
+
 
         return translations;
     }
