@@ -7,6 +7,9 @@ carpetajiaddition:
       cactusWrench:
         desc: 仙人掌在副手時，放出來的方塊為反方向。
         name: 翻轉仙人掌
+      commandFollow:
+        desc: 可以使用/follow命令。
+        name: follow命令
       dragonBreathRecipe:
         desc: 為龍息添加了合理的配方。
         name: 可合成龍息
@@ -28,10 +31,50 @@ carpetajiaddition:
       oreRecipe:
         desc: 為所有原礦添加了合理的配方。
         name: 礦石逆合成
+      safeMagmaBlock:
+        desc: 當你站在岩漿塊時不會再掉血。
+        name: 不燙腳的岩漿塊
       sitOnTheGround:
         desc: 多次蹲下可以坐到地上。
         name: 席地而坐
       tameHorse:
         desc: 你可以100%馴服馬。
         name: 聽話的馬
+      useMachineFlip:
+        desc: 當此規則開啟時，除zh_cn外，其他語言全部使用谷歌翻譯進行翻譯，包括這句話；關閉此規則時，則只會使用zh_cn。
+        name: 使用機翻
+  color:
+    aqua: 青色
+    black: 黑色
+    blue: 藍色
+    dark_aqua: 深青色
+    dark_blue: 深藍色
+    dark_gray: 深灰色
+    dark_green: 深綠色
+    dark_purple: 深紫色
+    dark_red: 深紅色
+    gold: 金色
+    gray: 灰色
+    green: 綠色
+    light_purple: 淺紫色
+    red: 紅色
+    white: 白色
+    yellow: 黃色
+  command:
+    follow:
+      add:
+        error: '{0}已添加到跟隨列表中'
+        feedback: 已把{0}添加到跟隨列表中
+      color:
+        set:
+          error: 物品的發光顏色已經為{0}
+          feedback: 已將發光顏色為{0}
+        show:
+          feedback: 物品的發光顏色為{0}
+      list:
+        error: 你還沒有添加任何物品到跟隨列表中
+        feedback: '跟隨列表中的物品有:'
+      remove:
+        error: '{0}未添加到跟隨列表中'
+        feedback: 已把{0}從跟隨列表中移除
   version: '版本:'

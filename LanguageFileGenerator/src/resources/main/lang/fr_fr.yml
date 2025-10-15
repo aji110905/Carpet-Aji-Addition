@@ -8,6 +8,9 @@ carpetajiaddition:
         desc: Lorsque le cactus est en position gauche, les blocs libérés sont dans
           la direction opposée.
         name: retourner les cactus
+      commandFollow:
+        desc: Vous pouvez utiliser la commande /follow.
+        name: suivre la commande
       dragonBreathRecipe:
         desc: Ajout de recettes raisonnables pour Dragon's Breath.
         name: Peut être synthétisé en souffle de dragon
@@ -32,10 +35,53 @@ carpetajiaddition:
       oreRecipe:
         desc: Ajout de recettes raisonnables pour tous les minerais bruts.
         name: Rétrosynthèse de minerai
+      safeMagmaBlock:
+        desc: Vous ne perdrez plus de santé lorsque vous vous tiendrez sur un bloc
+          de magma.
+        name: Des blocs de magma qui ne brûlent pas les pieds
       sitOnTheGround:
         desc: Accroupissez-vous plusieurs fois pour vous asseoir par terre.
         name: s'asseoir par terre
       tameHorse:
         desc: Vous pouvez apprivoiser les chevaux à 100 %.
         name: cheval obéissant
+      useMachineFlip:
+        desc: Lorsque cette règle est activée, Google Translate sera utilisé pour
+          toutes les langues sauf zh_cn, y compris cette phrase ; lorsque cette règle
+          est désactivée, seul zh_cn sera utilisé.
+        name: Utiliser la traduction automatique
+  color:
+    aqua: bleu
+    black: noir
+    blue: bleu
+    dark_aqua: cyan foncé
+    dark_blue: bleu foncé
+    dark_gray: gris foncé
+    dark_green: vert foncé
+    dark_purple: violet foncé
+    dark_red: rouge profond
+    gold: or
+    gray: gris
+    green: vert
+    light_purple: violet clair
+    red: rouge
+    white: Blanc
+    yellow: jaune
+  command:
+    follow:
+      add:
+        error: '{0} a été ajouté à la liste de suivi'
+        feedback: '{0} a été ajouté à la liste de suivi'
+      color:
+        set:
+          error: La couleur de lueur de l'objet est déjà de {0}
+          feedback: La couleur de l'éclat a été définie sur {0}
+        show:
+          feedback: La couleur de lueur de l'objet est {0}
+      list:
+        error: Vous n'avez encore ajouté aucun élément à votre liste suivante
+        feedback: 'Les éléments de la liste suivante sont :'
+      remove:
+        error: '{0} n''a pas été ajouté à la liste de suivi'
+        feedback: '{0} a été supprimé de la liste suivante'
   version: 'Version:'
