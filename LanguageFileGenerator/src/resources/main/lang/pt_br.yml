@@ -1,0 +1,41 @@
+carpetajiaddition:
+  carpet:
+    category:
+      CAA: CAA
+      recipe: fórmula
+    rule:
+      cactusWrench:
+        desc: Quando o cacto está na posição improvisada, os blocos liberados estão
+          na direção oposta.
+        name: virar cacto
+      dragonBreathRecipe:
+        desc: Adicionadas receitas razoáveis ​​​​para Dragon's Breath.
+        name: Pode ser sintetizado em sopro de dragão
+      dragonEggRecipe:
+        desc: Adicionadas receitas razoáveis ​​para ovos de dragão.
+        name: Pode ser transformado em ovos de dragão
+      glowingHopperMinecart:
+        desc: O minecart funil brilhará em vermelho quando travado e em branco quando
+          travado.
+        name: minecart funil brilhante
+      keepOpeningVault:
+        desc: O mesmo jogador pode sempre abrir a mesma casa do tesouro.
+        name: Tesouro sem fim
+      lockAllHopper:
+        desc: Todos os funis estão bloqueados, independentemente de receberem um sinal
+          redstone ou não.
+        name: Funil incompetente
+      lockAllHopperMinecart:
+        desc: Todos os minecarts funis são bloqueados, independentemente de terem
+          trilhos ativos embaixo deles.
+        name: Minecart funil incompetente
+      oreRecipe:
+        desc: Adicionadas receitas razoáveis ​​para todos os minérios brutos.
+        name: Retrossíntese de minério
+      sitOnTheGround:
+        desc: Agache-se várias vezes para sentar no chão.
+        name: sente-se no chão
+      tameHorse:
+        desc: Você pode domar cavalos 100%.
+        name: cavalo obediente
+  version: 'Versão:'

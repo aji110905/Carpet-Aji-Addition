@@ -1,0 +1,41 @@
+carpetajiaddition:
+  carpet:
+    category:
+      CAA: CAA
+      recipe: formule
+    rule:
+      cactusWrench:
+        desc: Lorsque le cactus est en position gauche, les blocs libérés sont dans
+          la direction opposée.
+        name: retourner les cactus
+      dragonBreathRecipe:
+        desc: Ajout de recettes raisonnables pour Dragon's Breath.
+        name: Peut être synthétisé en souffle de dragon
+      dragonEggRecipe:
+        desc: Ajout de recettes raisonnables pour les œufs de dragon.
+        name: Peut être transformé en œufs de dragon
+      glowingHopperMinecart:
+        desc: Le wagonnet à trémie brillera en rouge lorsqu'il est verrouillé et en
+          blanc lorsqu'il est verrouillé.
+        name: wagonnet à trémie rougeoyant
+      keepOpeningVault:
+        desc: Le même joueur peut toujours ouvrir le même trésor.
+        name: Un trésor sans fin
+      lockAllHopper:
+        desc: Toutes les trémies sont verrouillées, qu'elles reçoivent ou non un signal
+          Redstone.
+        name: Entonnoir incompétent
+      lockAllHopperMinecart:
+        desc: Tous les wagonnets à trémie sont verrouillés, qu'ils soient ou non équipés
+          de rails actifs alimentés en dessous.
+        name: Minecart à trémie incompétent
+      oreRecipe:
+        desc: Ajout de recettes raisonnables pour tous les minerais bruts.
+        name: Rétrosynthèse de minerai
+      sitOnTheGround:
+        desc: Accroupissez-vous plusieurs fois pour vous asseoir par terre.
+        name: s'asseoir par terre
+      tameHorse:
+        desc: Vous pouvez apprivoiser les chevaux à 100 %.
+        name: cheval obéissant
+  version: 'Version:'

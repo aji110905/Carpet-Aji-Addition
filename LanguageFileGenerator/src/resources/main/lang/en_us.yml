@@ -1,0 +1,40 @@
+carpetajiaddition:
+  carpet:
+    category:
+      CAA: CAA
+      recipe: formula
+    rule:
+      cactusWrench:
+        desc: When the cactus is in the off-hand position, the blocks released are
+          in the opposite direction.
+        name: flip cactus
+      dragonBreathRecipe:
+        desc: Added reasonable recipes for Dragon's Breath.
+        name: Can be synthesized into dragon breath
+      dragonEggRecipe:
+        desc: Added reasonable recipes for dragon eggs.
+        name: Can be crafted into dragon eggs
+      glowingHopperMinecart:
+        desc: The hopper minecart will glow red when locked, and white when locked.
+        name: glowing hopper minecart
+      keepOpeningVault:
+        desc: The same player can always open the same treasure house.
+        name: Endless treasure trove
+      lockAllHopper:
+        desc: All hoppers are locked regardless of whether they receive a redstone
+          signal or not.
+        name: Incompetent funnel
+      lockAllHopperMinecart:
+        desc: All hopper minecarts are locked regardless of whether they have powered
+          active rails underneath them.
+        name: Incompetent hopper minecart
+      oreRecipe:
+        desc: Added reasonable recipes for all raw ores.
+        name: Ore retrosynthesis
+      sitOnTheGround:
+        desc: Squat down multiple times to sit on the ground.
+        name: sit on the floor
+      tameHorse:
+        desc: You can tame horses 100%.
+        name: obedient horse
+  version: 'Version:'

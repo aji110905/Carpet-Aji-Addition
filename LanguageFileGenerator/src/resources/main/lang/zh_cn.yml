@@ -1,0 +1,48 @@
+carpetajiaddition:
+  version: "版本: "
+
+  # ---------------------------------
+  # 传递给fabric-carpet的翻译
+  # 里面应该只出现category和rule两个字典
+  # ---------------------------------
+
+  carpet:
+    category:
+      CAA: "CAA"
+      recipe: "配方"
+    rule:
+      glowingHopperMinecart:
+        name: "发光的漏斗矿车"
+        desc: "漏斗矿车被锁定时会发出红光，反之白光。"
+      sitOnTheGround:
+        name: "席地而坐"
+        desc: "多次蹲下可以坐到地上。"
+      lockAllHopper:
+        name: "无能的漏斗"
+        desc: "所有漏斗都会被锁定，无论他有没有接受到红石信号。"
+      keepOpeningVault:
+        name: "无尽宝库"
+        desc: "同一个玩家可以一直开启同一个宝库。"
+      lockAllHopperMinecart:
+        name: "无能的漏斗矿车"
+        desc: "所有漏斗矿车都会被锁定，无论他下面是不是充能的激活铁轨。"
+      cactusWrench:
+        name: "翻转仙人掌"
+        desc: "仙人掌在副手时，放出来的方块为反方向。"
+      tameHorse:
+        name: "听话的马"
+        desc: "你可以100%驯服马。"
+
+    #-----------------
+    #下方的规则为配方规则
+    #-----------------
+
+      dragonEggRecipe:
+        name: "可合成龙蛋"
+        desc: "为龙蛋添加了合理的配方。"
+      oreRecipe:
+        name: "矿石逆合成"
+        desc: "为所有原矿添加了合理的配方。"
+      dragonBreathRecipe:
+        name: "可合成龙息"
+        desc: "为龙息添加了合理的配方。"

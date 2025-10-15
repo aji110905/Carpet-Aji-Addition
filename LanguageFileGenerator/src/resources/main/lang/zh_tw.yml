@@ -1,0 +1,37 @@
+carpetajiaddition:
+  carpet:
+    category:
+      CAA: CAA
+      recipe: 配方
+    rule:
+      cactusWrench:
+        desc: 仙人掌在副手時，放出來的方塊為反方向。
+        name: 翻轉仙人掌
+      dragonBreathRecipe:
+        desc: 為龍息添加了合理的配方。
+        name: 可合成龍息
+      dragonEggRecipe:
+        desc: 為龍蛋添加了合理的配方。
+        name: 可合成龍蛋
+      glowingHopperMinecart:
+        desc: 漏斗礦車被鎖定時會發出紅光，反之白光。
+        name: 發光的漏斗礦車
+      keepOpeningVault:
+        desc: 同一個玩家可以一直開啟同一個寶庫。
+        name: 無盡寶庫
+      lockAllHopper:
+        desc: 所有漏斗都會被鎖定，無論他有沒有接受到紅石信號。
+        name: 無能的漏斗
+      lockAllHopperMinecart:
+        desc: 所有漏斗礦車都會被鎖定，無論他下面是不是充能的激活鐵軌。
+        name: 無能的漏斗礦車
+      oreRecipe:
+        desc: 為所有原礦添加了合理的配方。
+        name: 礦石逆合成
+      sitOnTheGround:
+        desc: 多次蹲下可以坐到地上。
+        name: 席地而坐
+      tameHorse:
+        desc: 你可以100%馴服馬。
+        name: 聽話的馬
+  version: '版本:'
