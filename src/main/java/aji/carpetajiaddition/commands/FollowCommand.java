@@ -60,42 +60,6 @@ public class FollowCommand {
     }
 
     private static int add(CommandContext<ServerCommandSource> context){
-        try {
-            Method readSettingsFromConfMethod = SettingsManager.class.getDeclaredMethod("readSettingsFromConf", Path.class);
-            Method getFileMethod = SettingsManager.class.getDeclaredMethod("getFile");
-            readSettingsFromConfMethod.setAccessible(true);
-            getFileMethod.setAccessible(true);
-            Object o = readSettingsFromConfMethod.invoke(CarpetServer.settingsManager, getFileMethod.invoke(CarpetServer.settingsManager));
-            Method ruleMapMethod = o.getClass().getDeclaredMethod("ruleMap");
-            ruleMapMethod.setAccessible(true);
-            Map<String, String> ruleMap = (Map<String, String>) (ruleMapMethod.invoke(o));
-            if (CarpetAjiAdditionSettings.glowingHopperMinecart || !(ruleMap.get("glowingHopperMinecart") == null || !ruleMap.get("glowingHopperMinecart").equals("true"))) {
-                context.getSource().sendError(trText(TranslationsKey.CMD_FOLLOW + "add.conflict.0"));
-                MutableText text = CarpetAjiAdditionTranslation.trText(TranslationsKey.CMD_FOLLOW + "add.conflict.1.here").copy().setStyle(
-                        Style.EMPTY
-                                .withColor(Formatting.AQUA)
-                                .withHoverEvent(
-                                        new HoverEvent(
-                                                HoverEvent.Action.SHOW_TEXT,
-                                                trText(
-                                                        TranslationsKey.CMD_FOLLOW + "add.conflict.1.hoverEvent"
-                                                )
-                                        )
-                                )
-                                .withClickEvent(
-                                        new ClickEvent(
-                                                ClickEvent.Action.SUGGEST_COMMAND,
-                                                "/carpet setDefault glowingHopperMinecart false"
-                                        )
-                                )
-                );
-                context.getSource().sendFeedback(() -> trText(TranslationsKey.CMD_FOLLOW + "add.conflict.1.text", text), false);
-                return 0;
-            }
-        } catch (Exception e) {
-            //我不可能出错
-            throw new RuntimeException(e);
-        }
         Item item = ItemStackArgumentType.getItemStackArgument(context, "item").getItem();
         boolean bl = data.addToFollowItems(item);
         if (bl){
