@@ -1,7 +1,6 @@
 package aji.carpetajiaddition;
 
 import aji.carpetajiaddition.setting.RecipeRule;
-import aji.carpetajiaddition.setting.validators.GlowingHopperMinecartValidator;
 import carpet.api.settings.Rule;
 
 import static aji.carpetajiaddition.setting.RuleCategory.*;
