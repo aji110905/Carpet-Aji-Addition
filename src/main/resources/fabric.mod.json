@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "carpetajiaddition",
-	"version": "1.0.2",
+	"version": "1.1.0",
 	"name": "Carpet Aji Addition",
 	"description": "This is a carpet addition",
 	"authors": [
@@ -24,7 +24,7 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.14.18",
-		"minecraft": "=1.21",
+		"minecraft": ">=1.21",
 		"java": ">=21",
 		"carpet": "=1.4.147"
 	},
