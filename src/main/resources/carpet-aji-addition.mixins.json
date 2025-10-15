@@ -7,7 +7,6 @@
     "carpet.SettingsManagerMixin",
     "carpet.CarpetServerMixin",
 
-    "command.ArgumentTypesMixin",
     "command.follow.ItemEntityMixin",
 
     "rules.glowingHopperMinecart.HopperMinecartEntityMixin",

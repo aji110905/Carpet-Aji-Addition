@@ -5,31 +5,17 @@ import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import aji.carpetajiaddition.data.FollowCommandData;
 import aji.carpetajiaddition.translations.CarpetAjiAdditionTranslation;
 import aji.carpetajiaddition.translations.TranslationsKey;
-import carpet.CarpetServer;
-import carpet.api.settings.SettingsManager;
 import carpet.utils.CommandHelper;
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.StringReader;
-import com.mojang.brigadier.arguments.ArgumentType;
 import com.mojang.brigadier.context.CommandContext;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.mojang.brigadier.suggestion.Suggestions;
-import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.ColorArgumentType;
-import net.minecraft.command.argument.ItemStackArgument;
 import net.minecraft.command.argument.ItemStackArgumentType;
-import net.minecraft.command.argument.ItemStringReader;
 import net.minecraft.item.Item;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.*;
 import net.minecraft.util.Formatting;
-
-import java.lang.reflect.Method;
-import java.nio.file.Path;
-import java.util.Map;
-import java.util.concurrent.CompletableFuture;
 
 import static aji.carpetajiaddition.translations.CarpetAjiAdditionTranslation.trText;
 import static net.minecraft.server.command.CommandManager.argument;
@@ -46,8 +32,8 @@ public class FollowCommand {
                                 .then(argument("item", ItemStackArgumentType.itemStack(commandBuildContext))
                                         .executes(FollowCommand::add)))
                         .then(literal("remove")
-                                .then(argument("followItem", FollowItemStackArgumentType.itemStack(commandBuildContext))
-                                        .executes(FollowCommand::remove)))
+                                .then(argument("followItem", ItemStackArgumentType.itemStack(commandBuildContext)))
+                                        .executes(FollowCommand::remove))
                         .then(literal("list")
                                 .executes(FollowCommand::list))
                         .then(literal("color")
@@ -72,7 +58,7 @@ public class FollowCommand {
     }
 
     private static int remove(CommandContext<ServerCommandSource> context){
-        Item item = FollowItemStackArgumentType.getItemStackArgument(context, "followItem").getItem();
+        Item item = ItemStackArgumentType.getItemStackArgument(context, "followItem").getItem();
         boolean bl = data.removeFromFollowItems(item);
         if (bl){
             context.getSource().sendFeedback(() -> trText(TranslationsKey.CMD_FOLLOW + "remove.feedback", item.getDefaultStack().toHoverableText()), true);
@@ -80,40 +66,6 @@ public class FollowCommand {
         }else {
             context.getSource().sendError(trText(TranslationsKey.CMD_FOLLOW + "remove.error", item.getDefaultStack().toHoverableText().copy().setStyle(item.getDefaultStack().toHoverableText().getStyle().withColor(Formatting.RED))));
             return 0;
-        }
-    }
-
-    public static class FollowItemStackArgumentType implements ArgumentType<ItemStackArgument> {
-        private final ItemStringReader reader;
-
-        private FollowItemStackArgumentType(CommandRegistryAccess commandRegistryAccess){
-            this.reader = new ItemStringReader(commandRegistryAccess);
-        }
-
-        public static FollowItemStackArgumentType itemStack(CommandRegistryAccess commandRegistryAccess){
-            return new FollowItemStackArgumentType(commandRegistryAccess);
-        }
-
-        public static <S> ItemStackArgument getItemStackArgument(CommandContext<S> context, String name) {
-            return context.getArgument(name, ItemStackArgument.class);
-        }
-
-        @Override
-        public ItemStackArgument parse(StringReader stringReader) throws CommandSyntaxException {
-            ItemStringReader.ItemResult itemResult = this.reader.consume(stringReader);
-            return new ItemStackArgument(itemResult.item(), itemResult.components());
-        }
-
-        @Override
-        public <S> CompletableFuture<Suggestions> listSuggestions(CommandContext<S> context, SuggestionsBuilder builder) {
-            String remaining = builder.getRemaining().toLowerCase();
-            for (Item item : data.getFollowItems()) {
-                String itemId = item.toString();
-                if (itemId.contains(remaining)) {
-                    builder.suggest(itemId);
-                }
-            }
-            return builder.buildFuture();
         }
     }
 
