@@ -11,6 +11,8 @@ import org.jetbrains.annotations.Nullable;
 import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
@@ -67,7 +69,7 @@ public class RecipeRuleValidator<T> extends Validator<T>{
         try {
             URL url = RecipeRuleValidator.class.getClassLoader().getResource("assets/carpetajiaddition/RecipesTweak/" + folderName);
             if ("jar".equals(url.getProtocol())) {
-                String jarPath = url.getPath().split("!")[0].substring(5);
+                String jarPath = URLDecoder.decode(url.getPath().split("!")[0].substring(5), StandardCharsets.UTF_8);
                 JarFile jar = new JarFile(jarPath);
                 Enumeration<JarEntry> entries = jar.entries();
                 while (entries.hasMoreElements()) {
