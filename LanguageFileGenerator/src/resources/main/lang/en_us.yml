@@ -8,6 +8,9 @@ carpetajiaddition:
         desc: When the cactus is in the off-hand position, the blocks released are
           in the opposite direction.
         name: flip cactus
+      commandFollow:
+        desc: You can use the /follow command.
+        name: follow command
       dragonBreathRecipe:
         desc: Added reasonable recipes for Dragon's Breath.
         name: Can be synthesized into dragon breath
@@ -31,10 +34,52 @@ carpetajiaddition:
       oreRecipe:
         desc: Added reasonable recipes for all raw ores.
         name: Ore retrosynthesis
+      safeMagmaBlock:
+        desc: You will no longer lose health when standing on a magma block.
+        name: Magma blocks that don’t burn your feet
       sitOnTheGround:
         desc: Squat down multiple times to sit on the ground.
         name: sit on the floor
       tameHorse:
         desc: You can tame horses 100%.
         name: obedient horse
+      useMachineFlip:
+        desc: When this rule is turned on, Google Translate will be used for all languages
+          ​​except zh_cn, including this sentence; when this rule is turned off, only
+          zh_cn will be used.
+        name: Use machine translation
+  color:
+    aqua: blue
+    black: black
+    blue: blue
+    dark_aqua: dark cyan
+    dark_blue: dark blue
+    dark_gray: dark gray
+    dark_green: dark green
+    dark_purple: deep purple
+    dark_red: deep red
+    gold: gold
+    gray: grey
+    green: green
+    light_purple: light purple
+    red: red
+    white: White
+    yellow: yellow
+  command:
+    follow:
+      add:
+        error: '{0} has been added to the follow list'
+        feedback: '{0} has been added to the follow list'
+      color:
+        set:
+          error: The item's glow color is already {0}
+          feedback: Glow color has been set to {0}
+        show:
+          feedback: The item's glow color is {0}
+      list:
+        error: You haven't added any items to your following list yet
+        feedback: 'Items on the following list are:'
+      remove:
+        error: '{0} was not added to the follow list'
+        feedback: '{0} has been removed from the following list'
   version: 'Version:'

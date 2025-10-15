@@ -1,5 +1,39 @@
 carpetajiaddition:
   version: "版本: "
+  color:
+    black: "黑色"
+    dark_blue: "深蓝色"
+    dark_green: "深绿色"
+    dark_aqua: "深青色"
+    dark_red: "深红色"
+    dark_purple: "深紫色"
+    gold: "金色"
+    gray: "灰色"
+    dark_gray: "深灰色"
+    blue: "蓝色"
+    green: "绿色"
+    aqua: "青色"
+    red: "红色"
+    light_purple: "浅紫色"
+    yellow: "黄色"
+    white: "白色"
+  command:
+    follow:
+      add:
+        feedback: "已把{0}添加到跟随列表中"
+        error: "{0}已添加到跟随列表中"
+      remove:
+        feedback: "已把{0}从跟随列表中移除"
+        error: "{0}未添加到跟随列表中"
+      list:
+        error: "你还没有添加任何物品到跟随列表中"
+        feedback: "跟随列表中的物品有:"
+      color:
+        set:
+          feedback: "已将发光颜色为{0}"
+          error: "物品的发光颜色已经为{0}"
+        show:
+          feedback: "物品的发光颜色为{0}"
 
   # ---------------------------------
   # 传递给fabric-carpet的翻译
@@ -32,6 +66,15 @@ carpetajiaddition:
       tameHorse:
         name: "听话的马"
         desc: "你可以100%驯服马。"
+      commandFollow:
+        name: "follow命令"
+        desc: "可以使用/follow命令。"
+      safeMagmaBlock:
+        name: "不烫脚的岩浆块"
+        desc: "当你站在岩浆块时不会再掉血。"
+      useMachineFlip:
+        name: "使用机翻"
+        desc: "当此规则开启时，除zh_cn外，其他语言全部使用谷歌翻译进行翻译，包括这句话；关闭此规则时，则只会使用zh_cn。"
 
     #-----------------
     #下方的规则为配方规则

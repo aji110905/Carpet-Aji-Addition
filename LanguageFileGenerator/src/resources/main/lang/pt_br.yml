@@ -8,6 +8,9 @@ carpetajiaddition:
         desc: Quando o cacto está na posição improvisada, os blocos liberados estão
           na direção oposta.
         name: virar cacto
+      commandFollow:
+        desc: Você pode usar o comando /follow.
+        name: siga o comando
       dragonBreathRecipe:
         desc: Adicionadas receitas razoáveis ​​​​para Dragon's Breath.
         name: Pode ser sintetizado em sopro de dragão
@@ -32,10 +35,52 @@ carpetajiaddition:
       oreRecipe:
         desc: Adicionadas receitas razoáveis ​​para todos os minérios brutos.
         name: Retrossíntese de minério
+      safeMagmaBlock:
+        desc: Você não perderá mais saúde ao pisar em um bloco de magma.
+        name: Blocos de magma que não queimam os pés
       sitOnTheGround:
         desc: Agache-se várias vezes para sentar no chão.
         name: sente-se no chão
       tameHorse:
         desc: Você pode domar cavalos 100%.
         name: cavalo obediente
+      useMachineFlip:
+        desc: Quando esta regra estiver ativada, o Google Translate será usado para
+          todos os idiomas, exceto zh_cn, incluindo esta frase; quando esta regra
+          estiver desativada, apenas zh_cn será usado.
+        name: Use tradução automática
+  color:
+    aqua: azul
+    black: preto
+    blue: azul
+    dark_aqua: ciano escuro
+    dark_blue: azul escuro
+    dark_gray: cinza escuro
+    dark_green: verde escuro
+    dark_purple: roxo profundo
+    dark_red: vermelho escuro
+    gold: ouro
+    gray: cinza
+    green: verde
+    light_purple: roxo claro
+    red: vermelho
+    white: Branco
+    yellow: amarelo
+  command:
+    follow:
+      add:
+        error: '{0} foi adicionado à lista a seguir'
+        feedback: '{0} foi adicionado à lista a seguir'
+      color:
+        set:
+          error: A cor do brilho do item já é {0}
+          feedback: A cor do brilho foi definida como {0}
+        show:
+          feedback: A cor do brilho do item é {0}
+      list:
+        error: Você ainda não adicionou nenhum item à sua lista a seguir
+        feedback: 'Os itens da lista a seguir são:'
+      remove:
+        error: '{0} não foi adicionado à lista a seguir'
+        feedback: '{0} foi removido da lista a seguir'
   version: 'Versão:'
