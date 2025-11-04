@@ -1,7 +1,7 @@
 package aji.carpetajiaddition;
 
 import aji.carpetajiaddition.commands.FollowCommand;
-import aji.carpetajiaddition.data.CarpetAjiAdditionData;
+import aji.carpetajiaddition.data.DataManager;
 import aji.carpetajiaddition.setting.validators.RecipeRuleValidator;
 import aji.carpetajiaddition.translations.CarpetAjiAdditionTranslation;
 import aji.carpetajiaddition.translations.getTranslationsMap;
@@ -13,15 +13,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.util.WorldSavePath;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.Collection;
-import java.util.Enumeration;
-import java.util.List;
 import java.util.Map;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
 
 public class CarpetAjiAdditionExtension implements CarpetExtension {
     @Override
@@ -31,7 +23,7 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
 
     @Override
     public void onServerLoadedWorlds(MinecraftServer server) {
-        CarpetAjiAdditionMod.data = new CarpetAjiAdditionData(server.getSavePath(WorldSavePath.ROOT));
+        CarpetAjiAdditionMod.data = new DataManager(server.getSavePath(WorldSavePath.ROOT));
         FollowCommand.init();
         CarpetAjiAdditionMod.minecraftServer.getDataPackManager().scanPacks();
         CarpetAjiAdditionMod.minecraftServer.getDataPackManager().enable("file/CarpetAjiAdditionData");

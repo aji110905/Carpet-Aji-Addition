@@ -10,13 +10,13 @@ import java.io.*;
 import java.nio.file.Path;
 import java.util.Map;
 
-public class CarpetAjiAdditionData {
+public class DataManager {
     private Path path;
     private final Map<String, Data> All_DATA = Map.of(
             FollowCommandData.DATA_NAME, new FollowCommandData()
     );
 
-    public CarpetAjiAdditionData(Path path) {
+    public DataManager(Path path) {
         try {
             path.toFile().mkdirs();
             this.path = path.getParent().resolve("data/carpetajiaddition.dat.json");
