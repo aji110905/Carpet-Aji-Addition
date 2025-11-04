@@ -15,7 +15,7 @@ import net.minecraft.util.WorldSavePath;
 
 import java.util.Map;
 
-public class CarpetAjiAdditionExtension implements CarpetExtension {
+public class CarpetAjiAddition implements CarpetExtension {
     @Override
     public void onGameStarted() {
         CarpetServer.settingsManager.parseSettingsClass(CarpetAjiAdditionSettings.class);

@@ -17,6 +17,6 @@ public class CarpetAjiAdditionMod implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-        CarpetServer.manageExtension(new CarpetAjiAdditionExtension());
+        CarpetServer.manageExtension(new CarpetAjiAddition());
 	}
 }
