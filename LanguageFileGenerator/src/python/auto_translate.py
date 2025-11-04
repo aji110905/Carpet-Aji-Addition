@@ -46,28 +46,25 @@ async def translate_dict(data, target_lang):
         return data
 
 async def process_resource_directory(resources_dir):
-    for version_dir in os.listdir(resources_dir):
-        version_path = os.path.join(resources_dir, version_dir)
-        if not os.path.isdir(version_path):
-            continue
-            
-        lang_dir = os.path.join(version_path, "lang")
-        if not os.path.exists(lang_dir):
-            continue
+    lang_dir = os.path.join(resources_dir, "lang")
+    if not os.path.exists(lang_dir):
+        print(f"语言目录不存在: {lang_dir}")
+        return
 
-        zh_cn_file = os.path.join(lang_dir, "zh_cn.yml")
-        if not os.path.exists(zh_cn_file):
-            continue
+    zh_cn_file = os.path.join(lang_dir, "zh_cn.yml")
+    if not os.path.exists(zh_cn_file):
+        print(f"未找到源语言文件: {zh_cn_file}")
+        return
 
-        zh_cn_data = load_yaml(zh_cn_file)
+    zh_cn_data = load_yaml(zh_cn_file)
 
-        for lang_code, lang_short in LANGUAGES.items():
-            print(f"正在翻译 {version_dir} 版本到 {lang_code}...")
-            translated_data = await translate_dict(zh_cn_data, lang_short)
+    for lang_code, lang_short in LANGUAGES.items():
+        print(f"正在翻译到 {lang_code}...")
+        translated_data = await translate_dict(zh_cn_data, lang_short)
 
-            output_file = os.path.join(lang_dir, f"{lang_code}.yml")
-            save_yaml(translated_data, output_file)
-            print(f"已生成 {lang_code}.yml for {version_dir}")
+        output_file = os.path.join(lang_dir, f"{lang_code}.yml")
+        save_yaml(translated_data, output_file)
+        print(f"已生成 {lang_code}.yml")
 
 async def main():
     resources_dir = "../resources"
