@@ -1,6 +1,6 @@
 package aji.carpetajiaddition.commands;
 
-import aji.carpetajiaddition.CarpetAjiAdditionMod;
+import aji.carpetajiaddition.CarpetAjiAdditionModEntryPoint;
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import aji.carpetajiaddition.data.FollowCommandData;
 import aji.carpetajiaddition.translations.CarpetAjiAdditionTranslation;
@@ -14,7 +14,6 @@ import net.minecraft.command.argument.ItemStackArgumentType;
 import net.minecraft.item.Item;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.*;
 import net.minecraft.util.Formatting;
 
 import static aji.carpetajiaddition.translations.CarpetAjiAdditionTranslation.trText;
@@ -99,8 +98,8 @@ public class FollowCommand {
     }
 
     public static void init(){
-        Team followItems = CarpetAjiAdditionMod.minecraftServer.getScoreboard().addTeam("followItems");
-        data = (FollowCommandData) CarpetAjiAdditionMod.data.getData(FollowCommandData.DATA_NAME);
+        Team followItems = CarpetAjiAdditionModEntryPoint.minecraftServer.getScoreboard().addTeam("followItems");
+        data = (FollowCommandData) CarpetAjiAdditionModEntryPoint.data.getData(FollowCommandData.DATA_NAME);
         followItems.setColor(data.getColor());
     }
 }

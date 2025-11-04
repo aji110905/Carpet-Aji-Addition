@@ -16,7 +16,7 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-          "aji.carpetajiaddition.CarpetAjiAdditionMod"
+            "aji.carpetajiaddition.CarpetAjiAdditionModEntryPoint"
 		]
 	},
 	"mixins": [

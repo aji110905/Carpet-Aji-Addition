@@ -8,7 +8,7 @@ import net.minecraft.server.MinecraftServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class CarpetAjiAdditionMod implements ModInitializer {
+public class CarpetAjiAdditionModEntryPoint implements ModInitializer {
 	public static final String MOD_ID = "carpetajiaddition";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
     public static final String VERSION = FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow().getMetadata().getVersion().toString();

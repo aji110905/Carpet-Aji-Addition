@@ -1,9 +1,8 @@
 package aji.carpetajiaddition.setting.validators;
 
-import aji.carpetajiaddition.CarpetAjiAdditionMod;
+import aji.carpetajiaddition.CarpetAjiAdditionModEntryPoint;
 import carpet.api.settings.CarpetRule;
 import carpet.api.settings.Validator;
-import net.minecraft.resource.ResourcePackManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.util.WorldSavePath;
 import org.jetbrains.annotations.Nullable;
@@ -24,7 +23,7 @@ public class RecipeRuleValidator<T> extends Validator<T>{
 
     @Override
     public T validate(@Nullable ServerCommandSource source, CarpetRule<T> changingRule, T newValue, String string) {
-        targetPath = CarpetAjiAdditionMod.minecraftServer.getSavePath(WorldSavePath.DATAPACKS).toString() + "/CarpetAjiAdditionData/data/carpetajiaddition/recipe";
+        targetPath = CarpetAjiAdditionModEntryPoint.minecraftServer.getSavePath(WorldSavePath.DATAPACKS).toString() + "/CarpetAjiAdditionData/data/carpetajiaddition/recipe";
         Map<String, String> recipeFiles = readRecipeFiles(changingRule.name());
         if (newValue instanceof Boolean) {
             if ((Boolean) newValue) {
@@ -32,7 +31,7 @@ public class RecipeRuleValidator<T> extends Validator<T>{
             } else {
                 unloadRecipe(recipeFiles);
             }
-            if (source != null && source.getWorld() != null) CarpetAjiAdditionMod.minecraftServer.reloadResources(CarpetAjiAdditionMod.minecraftServer.getDataPackManager().getEnabledIds());
+            if (source != null && source.getWorld() != null) CarpetAjiAdditionModEntryPoint.minecraftServer.reloadResources(CarpetAjiAdditionModEntryPoint.minecraftServer.getDataPackManager().getEnabledIds());
             return newValue;
         }else{
             return null;
@@ -49,7 +48,7 @@ public class RecipeRuleValidator<T> extends Validator<T>{
                 writer.write(jsonFile);
                 writer.close();
             } catch (IOException e) {
-                CarpetAjiAdditionMod.LOGGER.error("Recipes cannot be loaded into data pack", e);
+                CarpetAjiAdditionModEntryPoint.LOGGER.error("Recipes cannot be loaded into data pack", e);
             }
         });
     }
@@ -92,26 +91,26 @@ public class RecipeRuleValidator<T> extends Validator<T>{
                 }
             }
         } catch (IOException | URISyntaxException e) {
-            CarpetAjiAdditionMod.LOGGER.error("Reading recipes from resource files failed", e);
+            CarpetAjiAdditionModEntryPoint.LOGGER.error("Reading recipes from resource files failed", e);
         }
         return fileMap;
     }
 
     public static void initializationDataPack() {
         cleanDataPack();
-        File file = new File(CarpetAjiAdditionMod.minecraftServer.getSavePath(WorldSavePath.DATAPACKS).toString() + "/CarpetAjiAdditionData/pack.mcmeta");
+        File file = new File(CarpetAjiAdditionModEntryPoint.minecraftServer.getSavePath(WorldSavePath.DATAPACKS).toString() + "/CarpetAjiAdditionData/pack.mcmeta");
         file.getParentFile().mkdirs();
         try {
             InputStream stream = RecipeRuleValidator.class.getClassLoader().getResourceAsStream("assets/carpetajiaddition/pack.mcmeta.json");
             Files.write(file.toPath(), stream.readAllBytes());
             stream.close();
         } catch (IOException e) {
-            CarpetAjiAdditionMod.LOGGER.error("Initializing data pack failed", e);
+            CarpetAjiAdditionModEntryPoint.LOGGER.error("Initializing data pack failed", e);
         }
     }
 
     public static void cleanDataPack() {
-        File file = new File(CarpetAjiAdditionMod.minecraftServer.getSavePath(WorldSavePath.DATAPACKS).toString() + "/CarpetAjiAdditionData");
+        File file = new File(CarpetAjiAdditionModEntryPoint.minecraftServer.getSavePath(WorldSavePath.DATAPACKS).toString() + "/CarpetAjiAdditionData");
         if (file.exists()) {
             try {
                 Files.walk(file.toPath())
@@ -119,7 +118,7 @@ public class RecipeRuleValidator<T> extends Validator<T>{
                         .map(Path::toFile)
                         .forEach(File::delete);
             } catch (IOException e) {
-                CarpetAjiAdditionMod.LOGGER.error("Failed to clean up data pack residual data", e);
+                CarpetAjiAdditionModEntryPoint.LOGGER.error("Failed to clean up data pack residual data", e);
             }
         }
     }

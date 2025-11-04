@@ -1,6 +1,6 @@
 package aji.carpetajiaddition.mixin.carpet;
 
-import aji.carpetajiaddition.CarpetAjiAdditionMod;
+import aji.carpetajiaddition.CarpetAjiAdditionModEntryPoint;
 import aji.carpetajiaddition.setting.validators.RecipeRuleValidator;
 import carpet.CarpetServer;
 import net.minecraft.server.MinecraftServer;
@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class CarpetServerMixin {
     @Inject(method = "onServerLoaded", at = @At("HEAD"), remap = false)
     private static void onServerLoaded(MinecraftServer server, CallbackInfo ci) {
-        CarpetAjiAdditionMod.minecraftServer = server;
+        CarpetAjiAdditionModEntryPoint.minecraftServer = server;
         RecipeRuleValidator.initializationDataPack();
     }
 }

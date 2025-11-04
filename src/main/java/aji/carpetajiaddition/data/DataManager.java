@@ -1,6 +1,6 @@
 package aji.carpetajiaddition.data;
 
-import aji.carpetajiaddition.CarpetAjiAdditionMod;
+import aji.carpetajiaddition.CarpetAjiAdditionModEntryPoint;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
@@ -25,7 +25,7 @@ public class DataManager {
             }
             loadData();
         } catch (IOException e) {
-            CarpetAjiAdditionMod.LOGGER.error("Failed to initialize the data file", e);
+            CarpetAjiAdditionModEntryPoint.LOGGER.error("Failed to initialize the data file", e);
         }
     }
 
@@ -40,7 +40,7 @@ public class DataManager {
             writer.endObject();
             writer.close();
         } catch (IOException e) {
-            CarpetAjiAdditionMod.LOGGER.error("Failed to save the data file", e);
+            CarpetAjiAdditionModEntryPoint.LOGGER.error("Failed to save the data file", e);
         }
     }
 
@@ -53,7 +53,7 @@ public class DataManager {
             }
             reader.close();
         }catch (IOException e){
-            CarpetAjiAdditionMod.LOGGER.error("Failed to load the data file", e);
+            CarpetAjiAdditionModEntryPoint.LOGGER.error("Failed to load the data file", e);
         }
     }
 

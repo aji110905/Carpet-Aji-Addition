@@ -1,6 +1,6 @@
 package aji.carpetajiaddition.data;
 
-import aji.carpetajiaddition.CarpetAjiAdditionMod;
+import aji.carpetajiaddition.CarpetAjiAdditionModEntryPoint;
 import aji.carpetajiaddition.commands.FollowCommand;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonWriter;
@@ -69,7 +69,7 @@ public class FollowCommandData implements Data {
 
     public void setColor(Formatting color) {
         this.color = color;
-        CarpetAjiAdditionMod.minecraftServer.getScoreboard().getTeam("followItems").setColor(color);
+        CarpetAjiAdditionModEntryPoint.minecraftServer.getScoreboard().getTeam("followItems").setColor(color);
         FollowCommand.data = this;
     }
 }
