@@ -41,7 +41,7 @@ public class DataManager {
             writer.endObject();
             writer.close();
         } catch (IOException e) {
-            CarpetAjiAdditionSettings.LOGGER.error("Failed to save the data file", e);
+            CarpetAjiAdditionSettings.LOGGER.error("Failed to saveConfig the data file", e);
         }
     }
 
@@ -54,7 +54,7 @@ public class DataManager {
             }
             reader.close();
         }catch (IOException e){
-            CarpetAjiAdditionSettings.LOGGER.error("Failed to load the data file", e);
+            CarpetAjiAdditionSettings.LOGGER.error("Failed to loadConfig the data file", e);
         }
     }
 

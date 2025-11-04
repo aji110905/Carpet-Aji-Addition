@@ -1,6 +1,5 @@
-package aji.carpetajiaddition.mixin.data;
+package aji.carpetajiaddition.mixin;
 
-import aji.carpetajiaddition.CarpetAjiAdditionModEntryPoint;
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.server.command.ReloadCommand;
@@ -19,5 +18,6 @@ public abstract class ReloadCommandMixin {
     )
     private static void onReloadDataPacks(CommandContext context, CallbackInfoReturnable<Integer> cir) {
         CarpetAjiAdditionSettings.data.loadData();
+        CarpetAjiAdditionSettings.config.loadConfig();
     }
 }

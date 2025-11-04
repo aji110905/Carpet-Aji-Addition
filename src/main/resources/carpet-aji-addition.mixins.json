@@ -17,9 +17,8 @@
     "rules.sitOnTheGround.PlayerEntityMixin",
     "rules.cactusWrench.BlockItemMixin",
     "rules.safeMagmaBlock.MagmaBlockMixin",
-
-    "data.MinecraftServerMixin",
-    "data.ReloadCommandMixin"
+      "MinecraftServerMixin",
+      "ReloadCommandMixin"
   ],
   "client": [
   ],
