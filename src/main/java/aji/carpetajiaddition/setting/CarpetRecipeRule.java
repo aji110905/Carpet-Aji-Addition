@@ -13,18 +13,18 @@ import java.util.List;
 
 public class CarpetRecipeRule implements CarpetRule<Boolean> {
     private static final RecipeRuleValidator<Boolean> VALIDATOR = new RecipeRuleValidator<>();
-    private final String NAME;
+    private final String name;
+    private final Boolean defaultValue;
     private Boolean value;
-    private Boolean defaultValue;
 
     public CarpetRecipeRule(String name) {
-        this.NAME = name;
+        this.name = name;
         this.defaultValue = false;
         this.value = false;
     }
     @Override
     public String name() {
-        return NAME;
+        return name;
     }
 
     @Override
@@ -76,22 +76,18 @@ public class CarpetRecipeRule implements CarpetRule<Boolean> {
     public void set(ServerCommandSource source, String value) throws InvalidRuleValueException {
         if (value.equals("true")) set(source, true);
         else if (value.equals("false")) set(source, false);
-        else {
-            throw new InvalidRuleValueException("Invalid boolean value");
-        }
+        else throw new InvalidRuleValueException("Invalid boolean value");
     }
 
     @Override
     public void set(ServerCommandSource source, Boolean value) throws InvalidRuleValueException {
         Boolean bl = VALIDATOR.validate(source, this, value, value.toString());
         if (bl != null) this.value = bl;
-        else {
-            throw new InvalidRuleValueException("Invalid boolean value");
-        }
+        else throw new InvalidRuleValueException("Invalid boolean value");
     }
 
     @Override
     public String toString() {
-        return NAME + ": " + value;
+        return name + ": " + value;
     }
 }
