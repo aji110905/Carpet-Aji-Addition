@@ -28,9 +28,6 @@ carpetajiaddition:
       lockAllHopperMinecart:
         desc: 所有漏斗礦車都會被鎖定，無論他下面是不是充能的激活鐵軌。
         name: 無能的漏斗礦車
-      oreRecipe:
-        desc: 為所有原礦添加了合理的配方。
-        name: 礦石逆合成
       safeMagmaBlock:
         desc: 當你站在岩漿塊時不會再掉血。
         name: 不燙腳的岩漿塊

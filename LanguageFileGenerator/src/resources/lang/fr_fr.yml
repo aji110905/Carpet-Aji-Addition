@@ -32,9 +32,6 @@ carpetajiaddition:
         desc: Tous les wagonnets à trémie sont verrouillés, qu'ils soient ou non équipés
           de rails actifs alimentés en dessous.
         name: Minecart à trémie incompétent
-      oreRecipe:
-        desc: Ajout de recettes raisonnables pour tous les minerais bruts.
-        name: Rétrosynthèse de minerai
       safeMagmaBlock:
         desc: Vous ne perdrez plus de santé lorsque vous vous tiendrez sur un bloc
           de magma.

@@ -31,9 +31,6 @@ carpetajiaddition:
         desc: All hopper minecarts are locked regardless of whether they have powered
           active rails underneath them.
         name: Incompetent hopper minecart
-      oreRecipe:
-        desc: Added reasonable recipes for all raw ores.
-        name: Ore retrosynthesis
       safeMagmaBlock:
         desc: You will no longer lose health when standing on a magma block.
         name: Magma blocks that don’t burn your feet

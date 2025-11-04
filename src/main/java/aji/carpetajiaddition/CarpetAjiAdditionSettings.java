@@ -41,8 +41,5 @@ public class CarpetAjiAdditionSettings {
     public static Object dragonEggRecipe;
 
     @RecipeRule
-    public static Object oreRecipe;
-
-    @RecipeRule
     public static Object dragonBreathRecipe;
 }

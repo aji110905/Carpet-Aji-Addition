@@ -17,8 +17,6 @@
   "carpetajiaddition.carpet.rule.lockAllHopper.name": "無能的漏斗",
   "carpetajiaddition.carpet.rule.lockAllHopperMinecart.desc": "所有漏斗礦車都會被鎖定，無論他下面是不是充能的激活鐵軌。",
   "carpetajiaddition.carpet.rule.lockAllHopperMinecart.name": "無能的漏斗礦車",
-  "carpetajiaddition.carpet.rule.oreRecipe.desc": "為所有原礦添加了合理的配方。",
-  "carpetajiaddition.carpet.rule.oreRecipe.name": "礦石逆合成",
   "carpetajiaddition.carpet.rule.safeMagmaBlock.desc": "當你站在岩漿塊時不會再掉血。",
   "carpetajiaddition.carpet.rule.safeMagmaBlock.name": "不燙腳的岩漿塊",
   "carpetajiaddition.carpet.rule.sitOnTheGround.desc": "多次蹲下可以坐到地上。",

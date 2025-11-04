@@ -17,8 +17,6 @@
   "carpetajiaddition.carpet.rule.lockAllHopper.name": "Incompetent funnel",
   "carpetajiaddition.carpet.rule.lockAllHopperMinecart.desc": "All hopper minecarts are locked regardless of whether they have powered active rails underneath them.",
   "carpetajiaddition.carpet.rule.lockAllHopperMinecart.name": "Incompetent hopper minecart",
-  "carpetajiaddition.carpet.rule.oreRecipe.desc": "Added reasonable recipes for all raw ores.",
-  "carpetajiaddition.carpet.rule.oreRecipe.name": "Ore retrosynthesis",
   "carpetajiaddition.carpet.rule.safeMagmaBlock.desc": "You will no longer lose health when standing on a magma block.",
   "carpetajiaddition.carpet.rule.safeMagmaBlock.name": "Magma blocks that don’t burn your feet",
   "carpetajiaddition.carpet.rule.sitOnTheGround.desc": "Squat down multiple times to sit on the ground.",

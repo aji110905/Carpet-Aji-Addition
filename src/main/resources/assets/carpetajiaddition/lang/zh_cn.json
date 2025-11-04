@@ -49,8 +49,6 @@
   "carpetajiaddition.carpet.rule.useMachineFlip.desc": "当此规则开启时，除zh_cn外，其他语言全部使用谷歌翻译进行翻译，包括这句话；关闭此规则时，则只会使用zh_cn。",
   "carpetajiaddition.carpet.rule.dragonEggRecipe.name": "可合成龙蛋",
   "carpetajiaddition.carpet.rule.dragonEggRecipe.desc": "为龙蛋添加了合理的配方。",
-  "carpetajiaddition.carpet.rule.oreRecipe.name": "矿石逆合成",
-  "carpetajiaddition.carpet.rule.oreRecipe.desc": "为所有原矿添加了合理的配方。",
   "carpetajiaddition.carpet.rule.dragonBreathRecipe.name": "可合成龙息",
   "carpetajiaddition.carpet.rule.dragonBreathRecipe.desc": "为龙息添加了合理的配方。"
 }

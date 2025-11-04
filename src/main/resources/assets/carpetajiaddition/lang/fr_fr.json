@@ -17,8 +17,6 @@
   "carpetajiaddition.carpet.rule.lockAllHopper.name": "Entonnoir incompétent",
   "carpetajiaddition.carpet.rule.lockAllHopperMinecart.desc": "Tous les wagonnets à trémie sont verrouillés, qu'ils soient ou non équipés de rails actifs alimentés en dessous.",
   "carpetajiaddition.carpet.rule.lockAllHopperMinecart.name": "Minecart à trémie incompétent",
-  "carpetajiaddition.carpet.rule.oreRecipe.desc": "Ajout de recettes raisonnables pour tous les minerais bruts.",
-  "carpetajiaddition.carpet.rule.oreRecipe.name": "Rétrosynthèse de minerai",
   "carpetajiaddition.carpet.rule.safeMagmaBlock.desc": "Vous ne perdrez plus de santé lorsque vous vous tiendrez sur un bloc de magma.",
   "carpetajiaddition.carpet.rule.safeMagmaBlock.name": "Des blocs de magma qui ne brûlent pas les pieds",
   "carpetajiaddition.carpet.rule.sitOnTheGround.desc": "Accroupissez-vous plusieurs fois pour vous asseoir par terre.",

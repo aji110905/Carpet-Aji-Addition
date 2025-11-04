@@ -32,9 +32,6 @@ carpetajiaddition:
         desc: Todos os minecarts funis são bloqueados, independentemente de terem
           trilhos ativos embaixo deles.
         name: Minecart funil incompetente
-      oreRecipe:
-        desc: Adicionadas receitas razoáveis ​​para todos os minérios brutos.
-        name: Retrossíntese de minério
       safeMagmaBlock:
         desc: Você não perderá mais saúde ao pisar em um bloco de magma.
         name: Blocos de magma que não queimam os pés
