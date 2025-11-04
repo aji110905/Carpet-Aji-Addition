@@ -33,7 +33,7 @@ public abstract class SettingsManagerMixin {
             )
     )
     public void listAllSettings(ServerCommandSource source, CallbackInfoReturnable<Integer> cir) {
-        Messenger.m(source, "g Carpet Aji Addition " + CarpetAjiAdditionTranslation.tr("carpetajiaddition.version") + CarpetAjiAdditionModEntryPoint.VERSION);
+        Messenger.m(source, "g Carpet Aji Addition " + CarpetAjiAdditionTranslation.tr("carpetajiaddition.version") + CarpetAjiAdditionSettings.VERSION);
     }
 
     @Inject(method = "parseSettingsClass", at = @At("HEAD"), remap = false)

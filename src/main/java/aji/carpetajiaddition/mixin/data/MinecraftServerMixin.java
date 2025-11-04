@@ -1,6 +1,7 @@
 package aji.carpetajiaddition.mixin.data;
 
 import aji.carpetajiaddition.CarpetAjiAdditionModEntryPoint;
+import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import net.minecraft.network.QueryableServer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.ServerTask;
@@ -20,6 +21,6 @@ public abstract class MinecraftServerMixin extends ReentrantThreadExecutor<Serve
 
     @Inject(method = "save", at = @At("HEAD"))
     private void save(boolean suppressLogs, boolean flush, boolean force, CallbackInfoReturnable<Boolean> cir) {
-        CarpetAjiAdditionModEntryPoint.data.saveData();
+        CarpetAjiAdditionSettings.data.saveData();
     }
 }

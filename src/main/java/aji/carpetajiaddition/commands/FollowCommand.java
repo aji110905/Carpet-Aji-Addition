@@ -98,8 +98,8 @@ public class FollowCommand {
     }
 
     public static void init(){
-        Team followItems = CarpetAjiAdditionModEntryPoint.minecraftServer.getScoreboard().addTeam("followItems");
-        data = (FollowCommandData) CarpetAjiAdditionModEntryPoint.data.getData(FollowCommandData.DATA_NAME);
+        Team followItems = CarpetAjiAdditionSettings.minecraftServer.getScoreboard().addTeam("followItems");
+        data = (FollowCommandData) CarpetAjiAdditionSettings.data.getData(FollowCommandData.DATA_NAME);
         followItems.setColor(data.getColor());
     }
 }

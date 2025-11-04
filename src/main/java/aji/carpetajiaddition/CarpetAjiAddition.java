@@ -16,8 +16,6 @@ import net.minecraft.util.WorldSavePath;
 import java.util.Map;
 
 public class CarpetAjiAddition implements CarpetExtension {
-    public
-
     @Override
     public void onGameStarted() {
         CarpetServer.settingsManager.parseSettingsClass(CarpetAjiAdditionSettings.class);
@@ -25,10 +23,10 @@ public class CarpetAjiAddition implements CarpetExtension {
 
     @Override
     public void onServerLoadedWorlds(MinecraftServer server) {
-        CarpetAjiAdditionModEntryPoint.data = new DataManager(server.getSavePath(WorldSavePath.ROOT));
+        CarpetAjiAdditionSettings.data = new DataManager(server.getSavePath(WorldSavePath.ROOT));
         FollowCommand.init();
-        CarpetAjiAdditionModEntryPoint.minecraftServer.getDataPackManager().scanPacks();
-        CarpetAjiAdditionModEntryPoint.minecraftServer.getDataPackManager().enable("file/CarpetAjiAdditionData");
+        CarpetAjiAdditionSettings.minecraftServer.getDataPackManager().scanPacks();
+        CarpetAjiAdditionSettings.minecraftServer.getDataPackManager().enable("file/CarpetAjiAdditionData");
     }
 
     @Override
@@ -39,12 +37,12 @@ public class CarpetAjiAddition implements CarpetExtension {
     @Override
     public void onServerClosed(MinecraftServer server) {
         RecipeRuleValidator.cleanDataPack();
-        CarpetAjiAdditionModEntryPoint.minecraftServer.getScoreboard().removeTeam(CarpetAjiAdditionModEntryPoint.minecraftServer.getScoreboard().getTeam("followItems"));
+        CarpetAjiAdditionSettings.minecraftServer.getScoreboard().removeTeam(CarpetAjiAdditionSettings.minecraftServer.getScoreboard().getTeam("followItems"));
     }
 
     @Override
     public String version() {
-        return CarpetAjiAdditionModEntryPoint.MOD_ID;
+        return CarpetAjiAdditionSettings.MOD_ID;
     }
 
     @Override

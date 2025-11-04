@@ -1,6 +1,7 @@
 package aji.carpetajiaddition.mixin.command.follow;
 
 import aji.carpetajiaddition.CarpetAjiAdditionModEntryPoint;
+import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import aji.carpetajiaddition.commands.FollowCommand;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -26,12 +27,12 @@ public abstract class ItemEntityMixin extends Entity implements Ownable {
     @Inject(method = "tick", at = @At("HEAD"))
     private void tick(CallbackInfo ci) {
         if (FollowCommand.data.getFollowItems().contains(getStack().getItem())) {
-            CarpetAjiAdditionModEntryPoint.minecraftServer.getScoreboard().addScoreHolderToTeam(getUuid().toString(), CarpetAjiAdditionModEntryPoint.minecraftServer.getScoreboard().getTeam("followItems"));
+            CarpetAjiAdditionSettings.minecraftServer.getScoreboard().addScoreHolderToTeam(getUuid().toString(), CarpetAjiAdditionSettings.minecraftServer.getScoreboard().getTeam("followItems"));
             setGlowing(true);
         } else {
-            CarpetAjiAdditionModEntryPoint.minecraftServer.getScoreboard().getTeam("followItems").getPlayerList().forEach(uuidString -> {
+            CarpetAjiAdditionSettings.minecraftServer.getScoreboard().getTeam("followItems").getPlayerList().forEach(uuidString -> {
                 if (uuidString.equals(getUuid().toString())) {
-                    CarpetAjiAdditionModEntryPoint.minecraftServer.getScoreboard().removeScoreHolderFromTeam(uuidString, CarpetAjiAdditionModEntryPoint.minecraftServer.getScoreboard().getTeam("followItems"));
+                    CarpetAjiAdditionSettings.minecraftServer.getScoreboard().removeScoreHolderFromTeam(uuidString, CarpetAjiAdditionSettings.minecraftServer.getScoreboard().getTeam("followItems"));
                 }
             });
             setGlowing(false);
