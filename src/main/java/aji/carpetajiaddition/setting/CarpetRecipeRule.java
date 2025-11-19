@@ -14,14 +14,12 @@ import java.util.List;
 public class CarpetRecipeRule implements CarpetRule<Boolean> {
     private static final RecipeRuleValidator<Boolean> VALIDATOR = new RecipeRuleValidator<>();
     private final String name;
-    private final Boolean defaultValue;
-    private Boolean value;
+    private Boolean value = false;
 
     public CarpetRecipeRule(String name) {
         this.name = name;
-        this.defaultValue = false;
-        this.value = false;
     }
+
     @Override
     public String name() {
         return name;
@@ -64,7 +62,7 @@ public class CarpetRecipeRule implements CarpetRule<Boolean> {
 
     @Override
     public Boolean defaultValue() {
-        return defaultValue;
+        return false;
     }
 
     @Override
