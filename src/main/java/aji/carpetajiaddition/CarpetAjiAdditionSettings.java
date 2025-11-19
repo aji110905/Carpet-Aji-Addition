@@ -1,6 +1,5 @@
 package aji.carpetajiaddition;
 
-import aji.carpetajiaddition.config.ConfigManager;
 import aji.carpetajiaddition.data.DataManager;
 import aji.carpetajiaddition.setting.RecipeRule;
 import carpet.api.settings.Rule;
@@ -18,7 +17,6 @@ public class CarpetAjiAdditionSettings {
     public static final String VERSION = FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow().getMetadata().getVersion().toString();
     public static MinecraftServer minecraftServer = null;
     public static DataManager data = null;
-    public static ConfigManager config = null;
 
     @Rule(categories = {CAA, FEATURE})
     public static boolean useMachineFlip = true;

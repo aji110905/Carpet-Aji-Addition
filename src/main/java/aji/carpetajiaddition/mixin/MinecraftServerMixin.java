@@ -21,6 +21,5 @@ public abstract class MinecraftServerMixin extends ReentrantThreadExecutor<Serve
     @Inject(method = "save", at = @At("HEAD"))
     private void save(boolean suppressLogs, boolean flush, boolean force, CallbackInfoReturnable<Boolean> cir) {
         CarpetAjiAdditionSettings.data.saveData();
-        CarpetAjiAdditionSettings.config.saveConfig();
     }
 }
