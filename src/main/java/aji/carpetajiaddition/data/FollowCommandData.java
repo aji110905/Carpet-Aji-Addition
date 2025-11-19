@@ -1,6 +1,5 @@
 package aji.carpetajiaddition.data;
 
-import aji.carpetajiaddition.CarpetAjiAdditionModEntryPoint;
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import aji.carpetajiaddition.commands.FollowCommand;
 import com.google.gson.JsonObject;

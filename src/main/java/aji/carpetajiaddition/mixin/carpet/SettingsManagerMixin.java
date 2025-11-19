@@ -1,6 +1,5 @@
 package aji.carpetajiaddition.mixin.carpet;
 
-import aji.carpetajiaddition.CarpetAjiAdditionModEntryPoint;
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import aji.carpetajiaddition.setting.CarpetRecipeRule;
 import aji.carpetajiaddition.setting.RecipeRule;

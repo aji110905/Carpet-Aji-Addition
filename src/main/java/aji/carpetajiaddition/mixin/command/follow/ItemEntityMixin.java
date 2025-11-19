@@ -1,6 +1,5 @@
 package aji.carpetajiaddition.mixin.command.follow;
 
-import aji.carpetajiaddition.CarpetAjiAdditionModEntryPoint;
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import aji.carpetajiaddition.commands.FollowCommand;
 import net.minecraft.entity.Entity;

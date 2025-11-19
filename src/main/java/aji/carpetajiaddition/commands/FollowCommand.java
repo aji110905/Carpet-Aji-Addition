@@ -1,6 +1,5 @@
 package aji.carpetajiaddition.commands;
 
-import aji.carpetajiaddition.CarpetAjiAdditionModEntryPoint;
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import aji.carpetajiaddition.data.FollowCommandData;
 import aji.carpetajiaddition.translations.CarpetAjiAdditionTranslation;

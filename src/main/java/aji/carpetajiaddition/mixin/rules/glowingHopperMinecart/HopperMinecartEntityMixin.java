@@ -1,6 +1,5 @@
 package aji.carpetajiaddition.mixin.rules.glowingHopperMinecart;
 
-import aji.carpetajiaddition.CarpetAjiAdditionModEntryPoint;
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import net.minecraft.block.entity.Hopper;
 import net.minecraft.entity.EntityType;
