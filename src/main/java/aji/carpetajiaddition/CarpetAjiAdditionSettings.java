@@ -1,7 +1,6 @@
 package aji.carpetajiaddition;
 
 import aji.carpetajiaddition.data.DataManager;
-import aji.carpetajiaddition.setting.RecipeRule;
 import carpet.api.settings.Rule;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.server.MinecraftServer;
@@ -47,10 +46,4 @@ public class CarpetAjiAdditionSettings {
 
     @Rule(categories = {CAA, COMMAND})
     public static String commandFollow = "ops";
-
-    @RecipeRule
-    public static Object dragonEggRecipe;
-
-    @RecipeRule
-    public static Object dragonBreathRecipe;
 }

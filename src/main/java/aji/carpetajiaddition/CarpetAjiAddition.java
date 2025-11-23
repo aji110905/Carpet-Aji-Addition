@@ -2,6 +2,7 @@ package aji.carpetajiaddition;
 
 import aji.carpetajiaddition.commands.FollowCommand;
 import aji.carpetajiaddition.data.DataManager;
+import aji.carpetajiaddition.setting.RecipeRule;
 import aji.carpetajiaddition.setting.validators.RecipeRuleValidator;
 import aji.carpetajiaddition.translations.CarpetAjiAdditionTranslation;
 import aji.carpetajiaddition.translations.getTranslationsMap;
@@ -19,6 +20,7 @@ public class CarpetAjiAddition implements CarpetExtension {
     @Override
     public void onGameStarted() {
         CarpetServer.settingsManager.parseSettingsClass(CarpetAjiAdditionSettings.class);
+        RecipeRule.addRecipeRulesToSettingManager();
     }
 
     @Override
