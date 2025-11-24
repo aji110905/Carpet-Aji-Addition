@@ -11,22 +11,17 @@ import java.nio.file.Path;
 import java.util.Map;
 
 public class DataManager {
-    private Path path;
+    private final Path path;
     private final Map<String, Data> All_DATA = Map.of(
             FollowCommandData.DATA_NAME, new FollowCommandData()
     );
 
     public DataManager(Path path) {
-        try {
-            path.toFile().mkdirs();
-            this.path = path.getParent().resolve("data/carpetajiaddition.dat.json");
-            if(this.path.toFile().createNewFile()){
-                saveData();
-            }
-            loadData();
-        } catch (IOException e) {
-            CarpetAjiAdditionSettings.LOGGER.error("Failed to initialize the data file", e);
+        this.path = path;
+        if(this.path.toFile().exists()){
+            saveData();
         }
+        loadData();
     }
 
     public void saveData(){
