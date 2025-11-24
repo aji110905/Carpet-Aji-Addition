@@ -14,7 +14,7 @@ import java.util.Set;
 public class FollowCommandData implements Data {
     public static final String DATA_NAME = "followCommand";
 
-    private Set<Item> followItems = new HashSet<>();
+    private final Set<Item> followItems = new HashSet<>();
     private Formatting color = Formatting.BLUE;
 
     @Override
@@ -41,9 +41,7 @@ public class FollowCommandData implements Data {
     @Override
     public void load(JsonObject object) {
         object = object.get(DATA_NAME).getAsJsonObject();
-        object.get("followItems").getAsJsonArray().forEach(JsonItem -> {
-            followItems.add(Item.byRawId(JsonItem.getAsInt()));
-        });
+        object.get("followItems").getAsJsonArray().forEach(JsonItem -> followItems.add(Item.byRawId(JsonItem.getAsInt())));
         color = Formatting.byColorIndex(object.get("color").getAsInt());
     }
 
