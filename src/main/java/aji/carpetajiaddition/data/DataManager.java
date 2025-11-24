@@ -18,7 +18,7 @@ public class DataManager {
 
     public DataManager(Path path) {
         this.path = path;
-        if(this.path.toFile().exists()){
+        if(!this.path.toFile().exists()){
             saveData();
         }
         loadData();
