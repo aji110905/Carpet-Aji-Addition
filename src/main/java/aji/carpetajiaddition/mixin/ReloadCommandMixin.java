@@ -18,5 +18,6 @@ public abstract class ReloadCommandMixin {
     )
     private static void onReloadDataPacks(CommandContext context, CallbackInfoReturnable<Integer> cir) {
         CarpetAjiAdditionSettings.data.loadData();
+        CarpetAjiAdditionSettings.config.loadConfig();
     }
 }

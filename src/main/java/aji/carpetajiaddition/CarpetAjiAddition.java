@@ -1,6 +1,7 @@
 package aji.carpetajiaddition;
 
 import aji.carpetajiaddition.commands.FollowCommand;
+import aji.carpetajiaddition.config.ConfigManager;
 import aji.carpetajiaddition.data.DataManager;
 import aji.carpetajiaddition.setting.RecipeRule;
 import aji.carpetajiaddition.setting.validators.RecipeRuleValidator;
@@ -9,11 +10,13 @@ import aji.carpetajiaddition.translations.getTranslationsMap;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import com.mojang.brigadier.CommandDispatcher;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.util.WorldSavePath;
 
+import java.io.File;
 import java.util.Map;
 
 public class CarpetAjiAddition implements CarpetExtension {
@@ -21,6 +24,7 @@ public class CarpetAjiAddition implements CarpetExtension {
     public void onGameStarted() {
         CarpetServer.settingsManager.parseSettingsClass(CarpetAjiAdditionSettings.class);
         RecipeRule.addRecipeRulesToSettingManager();
+        CarpetAjiAdditionSettings.config = new ConfigManager(new File(FabricLoader.getInstance().getConfigDir().toFile(), CarpetAjiAdditionSettings.MOD_ID + ".json").toPath());
     }
 
     @Override
