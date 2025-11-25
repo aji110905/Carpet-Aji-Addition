@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class FollowCommandData implements Data {
-    private static final String DATA_NAME = "followCommand";
+    public static final String DATA_NAME = "followCommand";
 
     private final Set<Item> followItems = new HashSet<>();
     private Formatting color = Formatting.BLUE;
