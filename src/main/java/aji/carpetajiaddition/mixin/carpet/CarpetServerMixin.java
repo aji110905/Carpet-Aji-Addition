@@ -1,7 +1,7 @@
 package aji.carpetajiaddition.mixin.carpet;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
-import aji.carpetajiaddition.setting.validators.RecipeRuleValidator;
+import aji.carpetajiaddition.settings.validators.RecipeRuleValidator;
 import carpet.CarpetServer;
 import net.minecraft.server.MinecraftServer;
 import org.spongepowered.asm.mixin.Mixin;

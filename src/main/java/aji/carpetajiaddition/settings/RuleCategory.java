@@ -1,4 +1,4 @@
-package aji.carpetajiaddition.setting;
+package aji.carpetajiaddition.settings;
 
 public class RuleCategory {
     public static final String CAA = "CAA";

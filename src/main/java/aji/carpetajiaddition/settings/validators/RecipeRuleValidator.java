@@ -1,4 +1,4 @@
-package aji.carpetajiaddition.setting.validators;
+package aji.carpetajiaddition.settings.validators;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import carpet.api.settings.CarpetRule;

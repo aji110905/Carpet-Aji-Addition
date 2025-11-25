@@ -1,6 +1,6 @@
-package aji.carpetajiaddition.setting;
+package aji.carpetajiaddition.settings;
 
-import aji.carpetajiaddition.setting.validators.RecipeRuleValidator;
+import aji.carpetajiaddition.settings.validators.RecipeRuleValidator;
 import carpet.CarpetServer;
 import carpet.api.settings.CarpetRule;
 import carpet.api.settings.InvalidRuleValueException;

@@ -8,7 +8,7 @@ import net.minecraft.server.MinecraftServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static aji.carpetajiaddition.setting.RuleCategory.*;
+import static aji.carpetajiaddition.settings.RuleCategory.*;
 import static carpet.api.settings.RuleCategory.*;
 
 public class CarpetAjiAdditionSettings {
