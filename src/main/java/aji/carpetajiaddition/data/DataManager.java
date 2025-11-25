@@ -8,12 +8,12 @@ import com.google.gson.stream.JsonWriter;
 
 import java.io.*;
 import java.nio.file.Path;
-import java.util.Map;
+import java.util.Set;
 
 public class DataManager {
     private final Path path;
-    private final Map<String, Data> All_DATA = Map.of(
-            FollowCommandData.DATA_NAME, new FollowCommandData()
+    private final Set<Data> All_DATA = Set.of(
+            new FollowCommandData()
     );
 
     public DataManager(Path path) {
@@ -29,7 +29,7 @@ public class DataManager {
             JsonWriter writer = new JsonWriter(new FileWriter(path.toFile()));
             writer.setIndent("  ");
             writer.beginObject();
-            for(Data data : All_DATA.values()){
+            for(Data data : All_DATA){
                 data.save(writer);
             }
             writer.endObject();
@@ -43,8 +43,8 @@ public class DataManager {
         try {
             JsonReader reader = new JsonReader(new FileReader(path.toFile()));
             JsonObject jsonObject = JsonParser.parseReader(reader).getAsJsonObject();
-            for(Data data : All_DATA.values()){
-                data.load(jsonObject);
+            for(Data data : All_DATA){
+                data.load(jsonObject.getAsJsonObject(data.name()));
             }
             reader.close();
         }catch (IOException e){
@@ -52,12 +52,12 @@ public class DataManager {
         }
     }
 
-    public Data getData(String DataName){
-        for (Map.Entry<String, Data> entry : All_DATA.entrySet()) {
-            if (entry.getKey().equals(DataName)) {
-                return entry.getValue();
+    public Data getData(String dataName){
+        for (Data data : All_DATA) {
+            if (data.name().equals(dataName)){
+                return data;
             }
         }
-        return null;
+        throw new IllegalArgumentException("No data found with name " + dataName);
     }
 }

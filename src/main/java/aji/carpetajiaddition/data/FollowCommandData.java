@@ -18,20 +18,22 @@ public class FollowCommandData implements Data {
     private Formatting color = Formatting.BLUE;
 
     @Override
+    public String name() {
+        return DATA_NAME;
+    }
+
+    @Override
     public void save(JsonWriter writer) {
         try {
             writer.name(DATA_NAME);
             writer.beginObject();
-
             writer.name("followItems");
             writer.beginArray();
             for (Item item : followItems) {
                 writer.value(Item.getRawId(item));
             }
             writer.endArray();
-
             writer.name("color").value(color.getColorIndex());
-
             writer.endObject();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -40,7 +42,6 @@ public class FollowCommandData implements Data {
 
     @Override
     public void load(JsonObject object) {
-        object = object.get(DATA_NAME).getAsJsonObject();
         object.get("followItems").getAsJsonArray().forEach(JsonItem -> followItems.add(Item.byRawId(JsonItem.getAsInt())));
         color = Formatting.byColorIndex(object.get("color").getAsInt());
     }
