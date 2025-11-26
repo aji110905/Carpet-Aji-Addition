@@ -17,6 +17,10 @@ carpetajiaddition:
       dragonEggRecipe:
         desc: Ajout de recettes raisonnables pour les œufs de dragon.
         name: Peut être transformé en œufs de dragon
+      entryNotice:
+        desc: Les joueurs recevront une invite configurable lors de leur entrée sur
+          le serveur.
+        name: Conseils d'entrée sur le serveur
       glowingHopperMinecart:
         desc: Le wagonnet à trémie brillera en rouge lorsqu'il est verrouillé et en
           blanc lorsqu'il est verrouillé.

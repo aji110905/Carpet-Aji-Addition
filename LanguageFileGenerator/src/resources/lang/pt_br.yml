@@ -17,6 +17,9 @@ carpetajiaddition:
       dragonEggRecipe:
         desc: Adicionadas receitas razoáveis ​​para ovos de dragão.
         name: Pode ser transformado em ovos de dragão
+      entryNotice:
+        desc: Os jogadores receberão um prompt configurável ao entrar no servidor
+        name: Dicas de entrada no servidor
       glowingHopperMinecart:
         desc: O minecart funil brilhará em vermelho quando travado e em branco quando
           travado.
@@ -45,7 +48,7 @@ carpetajiaddition:
         desc: Quando esta regra estiver ativada, o Google Translate será usado para
           todos os idiomas, exceto zh_cn, incluindo esta frase; quando esta regra
           estiver desativada, apenas zh_cn será usado.
-        name: Use tradução automática
+        name: Usar tradução automática
   color:
     aqua: azul
     black: preto

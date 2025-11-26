@@ -17,6 +17,9 @@ carpetajiaddition:
       dragonEggRecipe:
         desc: Added reasonable recipes for dragon eggs.
         name: Can be crafted into dragon eggs
+      entryNotice:
+        desc: Players will be shown a configurable prompt when entering the server
+        name: Server entry tips
       glowingHopperMinecart:
         desc: The hopper minecart will glow red when locked, and white when locked.
         name: glowing hopper minecart

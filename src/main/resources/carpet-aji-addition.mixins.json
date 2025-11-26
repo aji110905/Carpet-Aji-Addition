@@ -4,21 +4,20 @@
   "package": "aji.carpetajiaddition.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "carpet.SettingsManagerMixin",
+    "MinecraftServerMixin",
+    "ReloadCommandMixin",
     "carpet.CarpetServerMixin",
-
+    "carpet.SettingsManagerMixin",
     "command.follow.ItemEntityMixin",
-
-    "rules.glowingHopperMinecart.HopperMinecartEntityMixin",
+    "notice.PlayerManagerMixin",
+    "rules.cactusWrench.BlockItemMixin",
     "rules.endlessVault.VaultServerDataMixin",
-    "rules.tameHorse.HorseMixin",
+    "rules.glowingHopperMinecart.HopperMinecartEntityMixin",
     "rules.lockAllHopper.HopperBlockEntityMixin",
     "rules.lockAllHopperMinecart.HopperMinecartMixin",
-    "rules.sitOnTheGround.PlayerEntityMixin",
-    "rules.cactusWrench.BlockItemMixin",
     "rules.safeMagmaBlock.MagmaBlockMixin",
-      "MinecraftServerMixin",
-      "ReloadCommandMixin"
+    "rules.sitOnTheGround.PlayerEntityMixin",
+    "rules.tameHorse.HorseMixin"
   ],
   "client": [
   ],

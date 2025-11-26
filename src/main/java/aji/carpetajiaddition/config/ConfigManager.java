@@ -15,7 +15,7 @@ import java.util.Set;
 public class ConfigManager {
     private final Path path;
     private final Set<Config> All_CONFIG = Set.of(
-
+        new NoticeConfig()
     );
 
     public ConfigManager(Path path){

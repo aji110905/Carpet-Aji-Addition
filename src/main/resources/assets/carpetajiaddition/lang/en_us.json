@@ -9,6 +9,8 @@
   "carpetajiaddition.carpet.rule.dragonBreathRecipe.name": "Can be synthesized into dragon breath",
   "carpetajiaddition.carpet.rule.dragonEggRecipe.desc": "Added reasonable recipes for dragon eggs.",
   "carpetajiaddition.carpet.rule.dragonEggRecipe.name": "Can be crafted into dragon eggs",
+  "carpetajiaddition.carpet.rule.entryNotice.desc": "Players will be shown a configurable prompt when entering the server",
+  "carpetajiaddition.carpet.rule.entryNotice.name": "Server entry tips",
   "carpetajiaddition.carpet.rule.glowingHopperMinecart.desc": "The hopper minecart will glow red when locked, and white when locked.",
   "carpetajiaddition.carpet.rule.glowingHopperMinecart.name": "glowing hopper minecart",
   "carpetajiaddition.carpet.rule.keepOpeningVault.desc": "The same player can always open the same treasure house.",

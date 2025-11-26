@@ -46,6 +46,9 @@ public class CarpetAjiAdditionSettings {
     @Rule(categories = {CAA, SURVIVAL, FEATURE})
     public static boolean safeMagmaBlock = false;
 
+    @Rule(categories = {CAA, FEATURE})
+    public static boolean entryNotice = false;
+
     @Rule(categories = {CAA, COMMAND})
     public static String commandFollow = "ops";
 }
