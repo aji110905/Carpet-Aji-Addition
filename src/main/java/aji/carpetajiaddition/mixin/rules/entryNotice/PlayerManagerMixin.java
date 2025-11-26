@@ -1,4 +1,4 @@
-package aji.carpetajiaddition.mixin.notice;
+package aji.carpetajiaddition.mixin.rules.entryNotice;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import aji.carpetajiaddition.config.NoticeConfig;
@@ -30,6 +30,7 @@ public abstract class PlayerManagerMixin {
 
     @Inject(method = "onPlayerConnect", at = @At("RETURN"))
     private void onPlayerConnect(ClientConnection connection, ServerPlayerEntity player, ConnectedClientData clientData, CallbackInfo ci) {
+        if (CarpetAjiAdditionSettings.entryNotice) return;
         NoticeConfig config = (NoticeConfig) CarpetAjiAdditionSettings.config.getConfig(NoticeConfig.CONFIG_NAME);
         NoticeContext context = new NoticeContext(player, server);
         if (config.isSendOrder()){

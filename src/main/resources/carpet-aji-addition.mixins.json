@@ -9,7 +9,7 @@
     "carpet.CarpetServerMixin",
     "carpet.SettingsManagerMixin",
     "command.follow.ItemEntityMixin",
-    "notice.PlayerManagerMixin",
+    "rules.entryNotice.PlayerManagerMixin",
     "rules.cactusWrench.BlockItemMixin",
     "rules.endlessVault.VaultServerDataMixin",
     "rules.glowingHopperMinecart.HopperMinecartEntityMixin",
