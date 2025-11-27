@@ -33,12 +33,12 @@ public abstract class PlayerManagerMixin {
         if (CarpetAjiAdditionSettings.entryNotice) return;
         NoticeConfig config = (NoticeConfig) CarpetAjiAdditionSettings.config.getConfig(NoticeConfig.CONFIG_NAME);
         NoticeContext context = new NoticeContext(player, server);
-        if (config.isSendOrder()){
-            config.getEntrant().send(context);
+        if (config.getPriority().equals("others")){
             sendOthersNotice(context, config);
+            config.getEntrant().send(context);
         } else {
-            sendOthersNotice(context, config);
             config.getEntrant().send(context);
+            sendOthersNotice(context, config);
         }
     }
 

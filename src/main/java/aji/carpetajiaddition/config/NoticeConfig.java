@@ -11,7 +11,7 @@ public class NoticeConfig implements Config{
     public static final String CONFIG_NAME = "notice";
 
     private boolean general = false;
-    private boolean sendOrder = false;
+    private String priority ="entrant";
     private Notice entrant = new Notice(null);
     private Notice others = new Notice(null);
 
@@ -26,7 +26,7 @@ public class NoticeConfig implements Config{
             writer.name(CONFIG_NAME);
             writer.beginObject();
             writer.name("general").value(false);
-            writer.name("send_order").value(false);
+            writer.name("priority").value("entrant");
             writer.name("info");
             writer.beginObject();
             writer.name("entrant").nullValue();
@@ -41,7 +41,7 @@ public class NoticeConfig implements Config{
     @Override
     public void load(JsonObject object) {
         general = object.get("general").getAsBoolean();
-        sendOrder = object.get("send_order").getAsBoolean();
+        priority = object.get("send_order").getAsString();
         JsonObject info = object.getAsJsonObject("info");
         entrant = new Notice(info.get("entrant").isJsonNull() ? null : info.get("entrant"));
         others = new Notice(info.get("others").isJsonNull() ? null : info.get("others"));
@@ -59,7 +59,7 @@ public class NoticeConfig implements Config{
         return others;
     }
 
-    public boolean isSendOrder() {
-        return sendOrder;
+    public String getPriority() {
+        return priority;
     }
 }
