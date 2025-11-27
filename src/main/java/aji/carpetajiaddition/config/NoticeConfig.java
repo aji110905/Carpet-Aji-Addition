@@ -43,8 +43,8 @@ public class NoticeConfig implements Config{
         general = object.get("general").getAsBoolean();
         sendOrder = object.get("send_order").getAsBoolean();
         JsonObject info = object.getAsJsonObject("info");
-        entrant = new Notice(info.get("entrant"));
-        others = new Notice(info.get("others"));
+        entrant = new Notice(info.get("entrant").isJsonNull() ? null : info.get("entrant"));
+        others = new Notice(info.get("others").isJsonNull() ? null : info.get("others"));
     }
 
     public boolean isGeneral() {
