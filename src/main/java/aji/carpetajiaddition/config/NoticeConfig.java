@@ -41,7 +41,7 @@ public class NoticeConfig implements Config{
     @Override
     public void load(JsonObject object) {
         general = object.get("general").getAsBoolean();
-        priority = object.get("send_order").getAsString();
+        priority = object.get("priority").getAsString();
         JsonObject info = object.getAsJsonObject("info");
         entrant = new Notice(info.get("entrant").isJsonNull() ? null : info.get("entrant"));
         others = new Notice(info.get("others").isJsonNull() ? null : info.get("others"));
