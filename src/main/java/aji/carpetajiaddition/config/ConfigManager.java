@@ -42,7 +42,7 @@ public class ConfigManager {
             JsonReader reader = new JsonReader(new FileReader(path.toFile()));
             JsonObject jsonObject = JsonParser.parseReader(reader).getAsJsonObject();
             for (Config config : All_CONFIG) {
-                config.load(jsonObject.getAsJsonObject(config.name()));
+                config.load(jsonObject.get(config.name()));
             }
             reader.close();
         } catch (IOException e) {

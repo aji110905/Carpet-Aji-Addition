@@ -2,6 +2,7 @@ package aji.carpetajiaddition.config;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import aji.carpetajiaddition.notice.Notice;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonWriter;
 
@@ -39,7 +40,8 @@ public class NoticeConfig implements Config{
     }
 
     @Override
-    public void load(JsonObject object) {
+    public void load(JsonElement element) {
+        JsonObject object = element.getAsJsonObject();
         general = object.get("general").getAsBoolean();
         priority = object.get("priority").getAsString();
         JsonObject info = object.getAsJsonObject("info");
