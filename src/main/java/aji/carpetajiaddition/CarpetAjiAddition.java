@@ -2,8 +2,8 @@ package aji.carpetajiaddition;
 
 import aji.carpetajiaddition.commands.FollowCommand;
 import aji.carpetajiaddition.config.ConfigManager;
+import aji.carpetajiaddition.config.NoticeConfig;
 import aji.carpetajiaddition.data.DataManager;
-import aji.carpetajiaddition.notice.NoticeElement;
 import aji.carpetajiaddition.settings.RecipeRule;
 import aji.carpetajiaddition.settings.validators.RecipeRuleValidator;
 import aji.carpetajiaddition.translations.CarpetAjiAdditionTranslation;
@@ -25,7 +25,7 @@ public class CarpetAjiAddition implements CarpetExtension {
     public void onGameStarted() {
         CarpetServer.settingsManager.parseSettingsClass(CarpetAjiAdditionSettings.class);
         RecipeRule.addRecipeRulesToSettingManager();
-        NoticeElement.registerNoticeElements();
+        NoticeConfig.registerNoticeElements();
         CarpetAjiAdditionSettings.config = new ConfigManager(new File(FabricLoader.getInstance().getConfigDir().toFile(), CarpetAjiAdditionSettings.MOD_ID + ".json").toPath());
     }
 
