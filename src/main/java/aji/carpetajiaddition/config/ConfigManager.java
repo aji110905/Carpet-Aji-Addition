@@ -45,7 +45,7 @@ public class ConfigManager {
                 config.load(jsonObject.get(config.name()));
             }
             reader.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             CarpetAjiAdditionSettings.LOGGER.error("Failed to loadConfig the config file", e);
         }
     }
