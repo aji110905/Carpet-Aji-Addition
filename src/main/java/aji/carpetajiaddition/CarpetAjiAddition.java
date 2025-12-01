@@ -31,7 +31,7 @@ public class CarpetAjiAddition implements CarpetExtension {
 
     @Override
     public void onServerLoadedWorlds(MinecraftServer server) {
-        CarpetAjiAdditionSettings.data = new DataManager(server.getSavePath(WorldSavePath.ROOT).getParent().resolve("data/carpetajiaddition.dat.json"));
+        CarpetAjiAdditionSettings.data = new DataManager(server.getSavePath(WorldSavePath.ROOT).getParent().resolve("data/carpetajiaddition.dat"));
         FollowCommand.init();
         CarpetAjiAdditionSettings.minecraftServer.getDataPackManager().scanPacks();
         CarpetAjiAdditionSettings.minecraftServer.getDataPackManager().enable("file/CarpetAjiAdditionData");
@@ -46,6 +46,8 @@ public class CarpetAjiAddition implements CarpetExtension {
     public void onServerClosed(MinecraftServer server) {
         RecipeRuleValidator.cleanDataPack();
         CarpetAjiAdditionSettings.minecraftServer.getScoreboard().removeTeam(CarpetAjiAdditionSettings.minecraftServer.getScoreboard().getTeam("followItems"));
+        CarpetAjiAdditionSettings.minecraftServer = null;
+        CarpetAjiAdditionSettings.data = null;
     }
 
     @Override
