@@ -45,7 +45,6 @@ public class CarpetAjiAddition implements CarpetExtension {
     @Override
     public void onServerClosed(MinecraftServer server) {
         RecipeRuleValidator.cleanDataPack();
-        CarpetAjiAdditionSettings.minecraftServer.getScoreboard().removeTeam(CarpetAjiAdditionSettings.minecraftServer.getScoreboard().getTeam("followItems"));
         CarpetAjiAdditionSettings.minecraftServer = null;
         CarpetAjiAdditionSettings.data = null;
     }
