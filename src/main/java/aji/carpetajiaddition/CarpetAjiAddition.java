@@ -45,8 +45,6 @@ public class CarpetAjiAddition implements CarpetExtension {
     @Override
     public void onServerClosed(MinecraftServer server) {
         RecipeRuleValidator.cleanDataPack();
-        CarpetAjiAdditionSettings.minecraftServer = null;
-        CarpetAjiAdditionSettings.data = null;
     }
 
     @Override
