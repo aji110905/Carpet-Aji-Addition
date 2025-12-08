@@ -26,7 +26,7 @@ public class CarpetAjiAddition implements CarpetExtension {
         CarpetServer.settingsManager.parseSettingsClass(CarpetAjiAdditionSettings.class);
         RecipeRule.addRecipeRulesToSettingManager();
         NoticeConfig.registerNoticeElements();
-        CarpetAjiAdditionSettings.config = new ConfigManager(new File(FabricLoader.getInstance().getConfigDir().toFile(), CarpetAjiAdditionSettings.MOD_ID + ".json").toPath());
+        CarpetAjiAdditionSettings.config = new ConfigManager(FabricLoader.getInstance().getConfigDir().resolve("carpetajiaddition.json"));
     }
 
     @Override
