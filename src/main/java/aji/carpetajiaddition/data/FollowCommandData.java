@@ -5,6 +5,10 @@ import aji.carpetajiaddition.commands.FollowCommand;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonWriter;
 import net.minecraft.item.Item;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.NbtInt;
+import net.minecraft.nbt.NbtList;
 import net.minecraft.util.Formatting;
 
 import java.io.IOException;
@@ -23,27 +27,25 @@ public class FollowCommandData implements Data {
     }
 
     @Override
-    public void save(JsonWriter writer) {
-        try {
-            writer.name(DATA_NAME);
-            writer.beginObject();
-            writer.name("followItems");
-            writer.beginArray();
-            for (Item item : followItems) {
-                writer.value(Item.getRawId(item));
-            }
-            writer.endArray();
-            writer.name("color").value(color.getColorIndex());
-            writer.endObject();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    public NbtElement toNbt() {
+        NbtList list = new NbtList();
+        for (Item followItem : followItems) {
+            list.add(NbtInt.of(Item.getRawId(followItem)));
         }
+        NbtCompound compound = new NbtCompound();
+        compound.put("followItems", list);
+        compound.put("color", NbtInt.of(color.getColorIndex()));
+        return compound;
     }
 
     @Override
-    public void load(JsonObject object) {
-        object.get("followItems").getAsJsonArray().forEach(JsonItem -> followItems.add(Item.byRawId(JsonItem.getAsInt())));
-        color = Formatting.byColorIndex(object.get("color").getAsInt());
+    public void load(NbtElement element) {
+        followItems.clear();
+        NbtCompound compound = (NbtCompound) element;
+        for (NbtElement nbtElement : ((NbtList) compound.get("followItems"))) {
+            followItems.add(Item.byRawId(((NbtInt) nbtElement).intValue()));
+        }
+        color = Formatting.byColorIndex(((NbtInt)compound.get("color")).intValue());
     }
 
     public Set<Item> getFollowItems() {

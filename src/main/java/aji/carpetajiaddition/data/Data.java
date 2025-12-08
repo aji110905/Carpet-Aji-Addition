@@ -1,12 +1,10 @@
 package aji.carpetajiaddition.data;
-
-import com.google.gson.JsonObject;
-import com.google.gson.stream.JsonWriter;
+import net.minecraft.nbt.NbtElement;
 
 public interface Data {
     String name();
 
-    void save(JsonWriter writer);
+    NbtElement toNbt();
 
-    void load(JsonObject object);
+    void load(NbtElement element);
 }
