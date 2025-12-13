@@ -29,40 +29,36 @@ public class NoticeConfig implements Config{
     }
 
     @Override
-    public void initConfigFile(JsonWriter writer) {
-        try {
-            writer.name(CONFIG_NAME);
-            writer.beginArray();
-            writer.beginObject();
-            writer.name("alsoNotifyEntrant").value(false);
-            writer.name("priority").value("entrant");
-            writer.name("weight").value(5);
-            writer.name("info");
-            writer.beginObject();
-            writer.name("entrant");
-            writer.beginObject();
-            writer.name("0").value("欢迎");
-            writer.endObject();
-            writer.name("others");
-            writer.beginObject();
-            writer.name("0").value("{player_name}进入游戏");
-            writer.endObject();
-            writer.endObject();
-            writer.endObject();
-            writer.beginObject();
-            writer.name("alsoNotifyEntrant").value(false);
-            writer.name("priority").value("entrant");
-            writer.name("weight").value(5);
-            writer.name("info");
-            writer.beginObject();
-            writer.name("entrant").nullValue();
-            writer.name("others").nullValue();
-            writer.endObject();
-            writer.endObject();
-            writer.endArray();
-        } catch (IOException e) {
-            CarpetAjiAdditionSettings.LOGGER.error("Failed to initialization the config file", e);
-        }
+    public void initConfigFile(JsonWriter writer) throws IOException{
+        writer.name(CONFIG_NAME);
+        writer.beginArray();
+        writer.beginObject();
+        writer.name("alsoNotifyEntrant").value(false);
+        writer.name("priority").value("entrant");
+        writer.name("weight").value(5);
+        writer.name("info");
+        writer.beginObject();
+        writer.name("entrant");
+        writer.beginObject();
+        writer.name("0").value("欢迎");
+        writer.endObject();
+        writer.name("others");
+        writer.beginObject();
+        writer.name("0").value("{player_name}进入游戏");
+        writer.endObject();
+        writer.endObject();
+        writer.endObject();
+        writer.beginObject();
+        writer.name("alsoNotifyEntrant").value(false);
+        writer.name("priority").value("entrant");
+        writer.name("weight").value(5);
+        writer.name("info");
+        writer.beginObject();
+        writer.name("entrant").nullValue();
+        writer.name("others").nullValue();
+        writer.endObject();
+        writer.endObject();
+        writer.endArray();
     }
 
     @Override
