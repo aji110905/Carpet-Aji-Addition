@@ -70,20 +70,16 @@ public class NoticeConfig implements Config{
 
     public void send(ServerPlayerEntity player){
         if (notices.isEmpty()) return;
-        double totalWeight = notices.stream()
-                .mapToDouble(notice -> notice.weight)
-                .sum();
-        double random = Math.random() * totalWeight;
-        double currentWeight = 0;
+        int totalWeight = notices.stream().mapToInt(notice -> notice.weight).sum();
+        int random = new Random().nextInt(totalWeight);
+        int currentWeight = 0;
         for (Notice notice : notices) {
             currentWeight += notice.weight;
-            if (random <= currentWeight) {
+            if (random < currentWeight) {
                 notice.send(player);
-                return;
+                break;
             }
         }
-        notices.get(new Random().nextInt(notices.size())).send(player);
-
     }
 
     public static void registerNoticeElements(){
@@ -174,14 +170,14 @@ public class NoticeConfig implements Config{
     private static class Notice {
         private final boolean alsoNotifyEntrant;
         private final String priority;
-        private final float weight;
+        private final int weight;
         private final NoticeEntity entrant;
         private final NoticeEntity others;
 
         public Notice(JsonObject jsonObject){
             alsoNotifyEntrant = jsonObject.get("alsoNotifyEntrant").getAsBoolean();
             priority = jsonObject.get("priority").getAsString();
-            float v = jsonObject.get("weight").getAsFloat();
+            int v = jsonObject.get("weight").getAsInt();
             if (v >= 1 && v <= 10) weight = v;
             else weight = 5;
             JsonObject info = jsonObject.getAsJsonObject("info");
