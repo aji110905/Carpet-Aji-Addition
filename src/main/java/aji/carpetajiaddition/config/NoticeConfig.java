@@ -77,9 +77,10 @@ public class NoticeConfig implements Config{
             currentWeight += notice.weight;
             if (random < currentWeight) {
                 notice.send(player);
-                break;
+                return;
             }
         }
+        notices.get(new Random().nextInt(notices.size())).send(player);
     }
 
     public static void registerNoticeElements(){
