@@ -1,7 +1,7 @@
 package aji.carpetajiaddition.mixin.carpet;
 
+import aji.carpetajiaddition.CarpetAjiAddition;
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
-import aji.carpetajiaddition.settings.validators.RecipeRuleValidator;
 import carpet.CarpetServer;
 import net.minecraft.server.MinecraftServer;
 import org.spongepowered.asm.mixin.Mixin;
@@ -14,6 +14,6 @@ public abstract class CarpetServerMixin {
     @Inject(method = "onServerLoaded", at = @At("HEAD"), remap = false)
     private static void onServerLoaded(MinecraftServer server, CallbackInfo ci) {
         CarpetAjiAdditionSettings.minecraftServer = server;
-        RecipeRuleValidator.initializationDataPack();
+        CarpetAjiAddition.initializationDataPack();
     }
 }
