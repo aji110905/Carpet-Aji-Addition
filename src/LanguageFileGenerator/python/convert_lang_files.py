@@ -14,7 +14,7 @@ def process_language(d, parent_key='', sep='.'):
 
 def main():
     lang_dir = "../resources/lang"
-    output_dir = "../../../src/main/resources/assets/carpetajiaddition/lang"
+    output_dir = "../../main/resources/assets/carpetajiaddition/lang"
 
     os.makedirs(output_dir, exist_ok=True)
 
