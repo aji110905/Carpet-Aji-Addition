@@ -9,8 +9,6 @@
   "carpetajiaddition.carpet.rule.dragonBreathRecipe.name": "可合成龍息",
   "carpetajiaddition.carpet.rule.dragonEggRecipe.desc": "為龍蛋添加了合理的配方。",
   "carpetajiaddition.carpet.rule.dragonEggRecipe.name": "可合成龍蛋",
-  "carpetajiaddition.carpet.rule.entryNotice.desc": "玩家進入服務器時會顯示一條可配置的提示",
-  "carpetajiaddition.carpet.rule.entryNotice.name": "入服提示",
   "carpetajiaddition.carpet.rule.glowingHopperMinecart.desc": "漏斗礦車被鎖定時會發出紅光，反之白光。",
   "carpetajiaddition.carpet.rule.glowingHopperMinecart.name": "發光的漏斗礦車",
   "carpetajiaddition.carpet.rule.keepOpeningVault.desc": "同一個玩家可以一直開啟同一個寶庫。",

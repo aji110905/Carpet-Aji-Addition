@@ -16,9 +16,6 @@ carpetajiaddition:
       dragonEggRecipe:
         desc: 為龍蛋添加了合理的配方。
         name: 可合成龍蛋
-      entryNotice:
-        desc: 玩家進入服務器時會顯示一條可配置的提示
-        name: 入服提示
       glowingHopperMinecart:
         desc: 漏斗礦車被鎖定時會發出紅光，反之白光。
         name: 發光的漏斗礦車

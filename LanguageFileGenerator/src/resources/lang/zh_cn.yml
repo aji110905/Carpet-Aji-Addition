@@ -75,9 +75,6 @@ carpetajiaddition:
       useMachineFlip:
         name: "使用机翻"
         desc: "当此规则开启时，除zh_cn外，其他语言全部使用谷歌翻译进行翻译，包括这句话；关闭此规则时，则只会使用zh_cn。"
-      entryNotice:
-        name: "入服提示"
-        desc: "玩家进入服务器时会显示一条可配置的提示"
 
     #-----------------
     #下方的规则为配方规则
