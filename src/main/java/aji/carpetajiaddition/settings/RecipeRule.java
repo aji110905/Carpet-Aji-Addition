@@ -19,7 +19,7 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 public class RecipeRule implements CarpetRule<Boolean> {
-    private static final String PATH = CarpetAjiAdditionSettings.minecraftServer.getSavePath(WorldSavePath.DATAPACKS).toString() + "/CarpetAjiAdditionData/data/carpetajiaddition/recipe";
+    public static String PATH;
     private final String name;
     private Boolean value = false;
 

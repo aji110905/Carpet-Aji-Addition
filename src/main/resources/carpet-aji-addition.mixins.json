@@ -11,11 +11,9 @@
     "command.follow.ItemEntityMixin",
     "rules.cactusWrench.BlockItemMixin",
     "rules.endlessVault.VaultServerDataMixin",
-    "rules.entryNotice.PlayerManagerMixin",
     "rules.glowingHopperMinecart.HopperMinecartEntityMixin",
     "rules.lockAllHopper.HopperBlockEntityMixin",
     "rules.lockAllHopperMinecart.HopperMinecartMixin",
-    "rules.customizationServerMetadata.MinecraftServerMixin",
     "rules.safeMagmaBlock.MagmaBlockMixin",
     "rules.sitOnTheGround.PlayerEntityMixin",
     "rules.tameHorse.HorseMixin"

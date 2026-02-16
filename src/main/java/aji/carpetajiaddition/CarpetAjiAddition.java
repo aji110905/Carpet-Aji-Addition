@@ -1,6 +1,7 @@
 package aji.carpetajiaddition;
 
 import aji.carpetajiaddition.commands.FollowCommand;
+import aji.carpetajiaddition.commands.ModlistCommand;
 import aji.carpetajiaddition.data.DataManager;
 import aji.carpetajiaddition.settings.RecipeRule;
 import aji.carpetajiaddition.translations.CarpetAjiAdditionTranslation;
@@ -34,6 +35,7 @@ public class CarpetAjiAddition implements CarpetExtension {
         FollowCommand.init();
         CarpetAjiAdditionSettings.minecraftServer.getDataPackManager().scanPacks();
         CarpetAjiAdditionSettings.minecraftServer.getDataPackManager().enable("file/CarpetAjiAdditionData");
+        RecipeRule.PATH = CarpetAjiAdditionSettings.minecraftServer.getSavePath(WorldSavePath.ROOT).getParent().resolve("data/carpetajiaddition.dat").toString();
     }
 
     @Override
