@@ -6,7 +6,9 @@ import aji.carpetajiaddition.translations.CarpetAjiAdditionTranslation;
 import aji.carpetajiaddition.translations.TranslationsKey;
 import carpet.utils.CommandHelper;
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
+import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.ColorArgumentType;
 import net.minecraft.command.argument.ItemStackArgumentType;
@@ -30,7 +32,11 @@ public class FollowCommand {
                                 .then(argument("item", ItemStackArgumentType.itemStack(commandBuildContext))
                                         .executes(FollowCommand::add)))
                         .then(literal("remove")
-                                .then(argument("followItem", ItemStackArgumentType.itemStack(commandBuildContext))
+                                .then(argument("followItem", StringArgumentType.word())
+                                        .suggests((CommandContext<ServerCommandSource> context, SuggestionsBuilder builder) -> {
+                                            data.getFollowItems().forEach(item -> builder.suggest(item.getDefaultStack().getName().getString()));
+                                            return builder.buildFuture();
+                                        })
                                         .executes(FollowCommand::remove)))
                         .then(literal("list")
                                 .executes(FollowCommand::list))
