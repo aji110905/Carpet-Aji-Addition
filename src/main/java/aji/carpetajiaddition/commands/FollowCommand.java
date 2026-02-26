@@ -13,9 +13,11 @@ import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.ColorArgumentType;
 import net.minecraft.command.argument.ItemStackArgumentType;
 import net.minecraft.item.Item;
+import net.minecraft.registry.Registries;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
 
 import static aji.carpetajiaddition.translations.CarpetAjiAdditionTranslation.trText;
 import static net.minecraft.server.command.CommandManager.argument;
@@ -32,9 +34,9 @@ public class FollowCommand {
                                 .then(argument("item", ItemStackArgumentType.itemStack(commandBuildContext))
                                         .executes(FollowCommand::add)))
                         .then(literal("remove")
-                                .then(argument("followItem", StringArgumentType.word())
+                                .then(argument("followItem", StringArgumentType.greedyString())
                                         .suggests((CommandContext<ServerCommandSource> context, SuggestionsBuilder builder) -> {
-                                            data.getFollowItems().forEach(item -> builder.suggest(item.getDefaultStack().getName().getString()));
+                                            data.getFollowItems().forEach(item -> builder.suggest(Registries.ITEM.getId(item).toString()));
                                             return builder.buildFuture();
                                         })
                                         .executes(FollowCommand::remove)))
@@ -62,15 +64,19 @@ public class FollowCommand {
     }
 
     private static int remove(CommandContext<ServerCommandSource> context){
-        Item item = ItemStackArgumentType.getItemStackArgument(context, "followItem").getItem();
-        boolean bl = data.removeFromFollowItems(item);
-        if (bl){
-            context.getSource().sendFeedback(() -> trText(TranslationsKey.CMD_FOLLOW + "remove.feedback", item.getDefaultStack().toHoverableText()), true);
-            return 1;
-        }else {
-            context.getSource().sendError(trText(TranslationsKey.CMD_FOLLOW + "remove.error", item.getDefaultStack().toHoverableText().copy().setStyle(item.getDefaultStack().toHoverableText().getStyle().withColor(Formatting.RED))));
-            return 0;
+        Identifier identifier = Identifier.of(StringArgumentType.getString(context, "followItem"));
+        if (Registries.ITEM.containsId(identifier)){
+            Item item = Registries.ITEM.get(identifier);
+            boolean bl = data.removeFromFollowItems(item);
+            if (bl){
+                context.getSource().sendFeedback(() -> trText(TranslationsKey.CMD_FOLLOW + "remove.feedback", item.getDefaultStack().toHoverableText()), true);
+                return 1;
+            }else {
+                context.getSource().sendError(trText(TranslationsKey.CMD_FOLLOW + "remove.error", item.getDefaultStack().toHoverableText().copy().setStyle(item.getDefaultStack().toHoverableText().getStyle().withColor(Formatting.RED))));
+                return 0;
+            }
         }
+        return 0;
     }
 
     private static int list(CommandContext<ServerCommandSource> context){
