@@ -1,7 +1,7 @@
 package aji.carpetajiaddition;
 
 import aji.carpetajiaddition.commands.FollowCommand;
-import aji.carpetajiaddition.commands.ModlistCommand;
+import aji.carpetajiaddition.commands.ModsCommand;
 import aji.carpetajiaddition.data.DataManager;
 import aji.carpetajiaddition.settings.RecipeRule;
 import aji.carpetajiaddition.translations.CarpetAjiAdditionTranslation;
@@ -41,6 +41,7 @@ public class CarpetAjiAddition implements CarpetExtension {
     @Override
     public void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess commandBuildContext) {
         FollowCommand.register(dispatcher, commandBuildContext);
+        ModsCommand.register(dispatcher, commandBuildContext);
     }
 
     @Override
