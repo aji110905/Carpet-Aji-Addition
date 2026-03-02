@@ -1,16 +1,20 @@
 import yaml
 import os
 import asyncio
-from googletrans import Translator
+import aiohttp
+import hashlib
+import time
+
+# 百度翻译配置 - 请替换为你自己的 APP ID 和 Secret Key
+BAIDU_APP_ID = "你的百度翻译APP ID"
+BAIDU_SECRET_KEY = "你的百度翻译Secret Key"
 
 LANGUAGES = {
     'en_us': 'en',
-    'fr_fr': 'fr',
+    'fr_fr': 'fra',
     'pt_br': 'pt',
-    'zh_tw': 'zh-TW'
+    'zh_tw': 'cht'
 }
-
-translator = Translator()
 
 def load_yaml(file_path):
     with open(file_path, 'r', encoding='utf-8') as f:
@@ -21,10 +25,31 @@ def save_yaml(data, file_path):
         yaml.dump(data, f, allow_unicode=True, default_flow_style=False, indent=2)
 
 async def translate_text(text, target_lang, source_lang='zh'):
+    if not text.strip():
+        return text
     try:
-        result = await translator.translate(text, src=source_lang, dest=target_lang)
-        await asyncio.sleep(0.1)
-        return result.text
+        api_url = "https://fanyi-api.baidu.com/api/trans/vip/translate"
+        salt = str(int(time.time()))
+        sign_str = BAIDU_APP_ID + text + salt + BAIDU_SECRET_KEY
+        sign = hashlib.md5(sign_str.encode()).hexdigest()
+        params = {
+            'q': text,
+            'from': source_lang,
+            'to': target_lang,
+            'appid': BAIDU_APP_ID,
+            'salt': salt,
+            'sign': sign
+        }
+        async with aiohttp.ClientSession() as session:
+            async with session.get(api_url, params=params) as response:
+                if response.status != 200:
+                    raise Exception(f"API请求失败，状态码：{response.status}")
+                result = await response.json()
+                if 'error_code' in result:
+                    raise Exception(f"翻译API错误：{result['error_code']} - {result.get('error_msg', '未知错误')}")
+                translated_text = ''.join([item['dst'] for item in result['trans_result']])
+                await asyncio.sleep(0.1)
+                return translated_text
     except Exception as e:
         print(f"翻译 '{text}' 到 {target_lang} 时出错: {e}")
         return text
@@ -50,14 +75,11 @@ async def process_resource_directory(resources_dir):
     if not os.path.exists(lang_dir):
         print(f"语言目录不存在: {lang_dir}")
         return
-
     zh_cn_file = os.path.join(lang_dir, "zh_cn.yml")
     if not os.path.exists(zh_cn_file):
         print(f"未找到源语言文件: {zh_cn_file}")
         return
-
     zh_cn_data = load_yaml(zh_cn_file)
-
     for lang_code, lang_short in LANGUAGES.items():
         print(f"正在翻译到 {lang_code}...")
         translated_data = await translate_dict(zh_cn_data, lang_short)
@@ -72,4 +94,7 @@ async def main():
     print("翻译完成!")
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    if BAIDU_APP_ID == "你的百度翻译APP ID" or BAIDU_SECRET_KEY == "你的百度翻译Secret Key":
+        print("错误：请先填写你的百度翻译APP ID和Secret Key！")
+    else:
+        asyncio.run(main())
