@@ -2,55 +2,51 @@ carpetajiaddition:
   carpet:
     category:
       CAA: CAA
-      recipe: recipe
+      recipe: formula
     rule:
       cactusWrench:
-        desc: When the cactus is in the assistant position, the blocks released are
+        desc: When the cactus is in the off-hand position, the blocks released are
           in the opposite direction.
-        name: Flip Cactus
+        name: flip cactus
       commandFollow:
-        desc: You can use the/roll command.
-        name: Follow command
-      commandMods:
-        desc: You can use the/ods command.
-        name: Modlist command
+        desc: You can use the /follow command.
+        name: follow command
       dragonBreathRecipe:
-        desc: Added a reasonable formula for Longxi.
-        name: Can synthesize dragon breath
+        desc: Added reasonable recipes for Dragon's Breath.
+        name: Can be synthesized into dragon breath
       dragonEggRecipe:
-        desc: Added a reasonable formula for dragon eggs.
-        name: Can synthesize dragon eggs
+        desc: Added reasonable recipes for dragon eggs.
+        name: Can be crafted into dragon eggs
       glowingHopperMinecart:
-        desc: When the funnel mining car is locked, it will emit red light, and vice
-          versa, white light.
-        name: Luminous funnel mining car
+        desc: The hopper minecart will glow red when locked, and white when locked.
+        name: glowing hopper minecart
       keepOpeningVault:
-        desc: The same player can always open the same treasure trove.
-        name: Endless Treasury
+        desc: The same player can always open the same treasure house.
+        name: Endless treasure trove
       lockAllHopper:
-        desc: All funnels will be locked, regardless of whether they receive the redstone
+        desc: All hoppers are locked regardless of whether they receive a redstone
           signal or not.
         name: Incompetent funnel
       lockAllHopperMinecart:
-        desc: All funnel mining cars will be locked, regardless of whether there is
-          a charged activation rail underneath.
-        name: Incompetent funnel mining car
+        desc: All hopper minecarts are locked regardless of whether they have powered
+          active rails underneath them.
+        name: Incompetent hopper minecart
       safeMagmaBlock:
-        desc: When you stand on a magma block, you will no longer lose blood.
-        name: A non scalding magma block
+        desc: You will no longer lose health when standing on a magma block.
+        name: Magma blocks that don’t burn your feet
       sitOnTheGround:
-        desc: You can sit on the ground by squatting down multiple times.
-        name: sit on the ground
+        desc: Squat down multiple times to sit on the ground.
+        name: sit on the floor
       tameHorse:
-        desc: You can tame a horse 100%.
-        name: Obedient horse
+        desc: You can tame horses 100%.
+        name: obedient horse
       useMachineFlip:
-        desc: When this rule is enabled, all languages except zh_cn will be translated
-          using Baidu Translate, including this sentence; When this rule is closed,
-          only zh_cn will be used.
-        name: Using machine flipping
+        desc: When this rule is turned on, Google Translate will be used for all languages
+          ​​except zh_cn, including this sentence; when this rule is turned off, only
+          zh_cn will be used.
+        name: Use machine translation
   color:
-    aqua: cyan
+    aqua: blue
     black: black
     blue: blue
     dark_aqua: dark cyan
@@ -58,53 +54,29 @@ carpetajiaddition:
     dark_gray: dark gray
     dark_green: dark green
     dark_purple: deep purple
-    dark_red: crimson
-    gold: golden
+    dark_red: deep red
+    gold: gold
     gray: grey
     green: green
-    light_purple: lavender
+    light_purple: light purple
     red: red
-    white: white
+    white: White
     yellow: yellow
   command:
     follow:
       add:
-        error: '{0} has been added to the following list'
-        feedback: '{0} has been added to the following list'
+        error: '{0} has been added to the follow list'
+        feedback: '{0} has been added to the follow list'
       color:
         set:
-          error: The glowing color of the item is already {0}
-          feedback: The glowing color has been set to {0}
+          error: The item's glow color is already {0}
+          feedback: Glow color has been set to {0}
         show:
-          feedback: The glowing color of the item is {0}
+          feedback: The item's glow color is {0}
       list:
-        error: You haven't added any items to the following list yet
-        feedback: 'The items in the following list are:'
+        error: You haven't added any items to your following list yet
+        feedback: 'Items on the following list are:'
       remove:
-        error: '{0} was not added to the following list'
+        error: '{0} was not added to the follow list'
         feedback: '{0} has been removed from the following list'
-    mods:
-      list:
-        hover: Click to view details
-      mods:
-        error: 'Unknown module: {0}'
-        feedback:
-          author: 'Author: {0}'
-          contact:
-            homepage: Homepage
-            hover: Click to jump to the connection
-            issues: Problem submission
-            root: 'Connection: {0}'
-            sources: source code
-          contributors: 'Contributor: {0}'
-          environment:
-            client: 'Operating environment: Client'
-            server: 'Operating environment: Server'
-            universal: 'Operating environment: client and server'
-            null: 'Operating environment: Unknown'
-          id: 'ID: {0}'
-          license: 'Authorization: {0}'
-          type: 'Type: {0}'
-          unknown: unknown
-          version: 'Version: {0}'
-  version: version
+  version: 'Version:'
