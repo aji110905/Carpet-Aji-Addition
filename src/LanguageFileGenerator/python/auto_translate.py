@@ -48,7 +48,7 @@ async def translate_text(text, target_lang, source_lang='zh'):
                 if 'error_code' in result:
                     raise Exception(f"翻译API错误：{result['error_code']} - {result.get('error_msg', '未知错误')}")
                 translated_text = ''.join([item['dst'] for item in result['trans_result']])
-                await asyncio.sleep(0.1)
+                await asyncio.sleep(1)
                 return translated_text
     except Exception as e:
         print(f"翻译 '{text}' 到 {target_lang} 时出错: {e}")
