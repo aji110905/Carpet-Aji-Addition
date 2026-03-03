@@ -29,7 +29,7 @@ public class ModsCommand {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess commandBuildContext) {
         dispatcher.register(
                literal("mods")
-                       .requires(commandSource -> CommandHelper.canUseCommand(commandSource, CarpetAjiAdditionSettings.commandModlist))
+                       .requires(commandSource -> CommandHelper.canUseCommand(commandSource, CarpetAjiAdditionSettings.commandMods))
                        .then(
                                literal("list")
                                     .executes(ModsCommand::list)

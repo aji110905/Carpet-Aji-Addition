@@ -10,6 +10,9 @@ carpetajiaddition:
       commandFollow:
         desc: 可以使用/follow命令。
         name: follow命令
+      commandMods:
+        desc: 可以使用/mods命令。
+        name: modlist命令
       dragonBreathRecipe:
         desc: 為龍息添加了合理的配方。
         name: 可合成龍息
@@ -23,14 +26,14 @@ carpetajiaddition:
         desc: 同一個玩家可以一直開啟同一個寶庫。
         name: 無盡寶庫
       lockAllHopper:
-        desc: 所有漏斗都會被鎖定，無論他有沒有接受到紅石信號。
+        desc: 所有漏斗都會被鎖定，無論他有沒有接受到紅石訊號。
         name: 無能的漏斗
       lockAllHopperMinecart:
-        desc: 所有漏斗礦車都會被鎖定，無論他下面是不是充能的激活鐵軌。
+        desc: 所有漏斗礦車都會被鎖定，無論他下麵是不是充能的啟動鐵軌。
         name: 無能的漏斗礦車
       safeMagmaBlock:
         desc: 當你站在岩漿塊時不會再掉血。
-        name: 不燙腳的岩漿塊
+        name: 不燙脚的岩漿塊
       sitOnTheGround:
         desc: 多次蹲下可以坐到地上。
         name: 席地而坐
@@ -38,7 +41,7 @@ carpetajiaddition:
         desc: 你可以100%馴服馬。
         name: 聽話的馬
       useMachineFlip:
-        desc: 當此規則開啟時，除zh_cn外，其他語言全部使用谷歌翻譯進行翻譯，包括這句話；關閉此規則時，則只會使用zh_cn。
+        desc: 當此規則開啟時，除zh_cn外，其他語言全部使用百度翻譯進行翻譯，包括這句話； 關閉此規則時，則只會使用zh_cn。
         name: 使用機翻
   color:
     aqua: 青色
@@ -60,8 +63,8 @@ carpetajiaddition:
   command:
     follow:
       add:
-        error: '{0}已添加到跟隨列表中'
-        feedback: 已把{0}添加到跟隨列表中
+        error: '{0}已添加到跟隨清單中'
+        feedback: 已把{0}添加到跟隨清單中
       color:
         set:
           error: 物品的發光顏色已經為{0}
@@ -69,9 +72,33 @@ carpetajiaddition:
         show:
           feedback: 物品的發光顏色為{0}
       list:
-        error: 你還沒有添加任何物品到跟隨列表中
-        feedback: '跟隨列表中的物品有:'
+        error: 你還沒有添加任何物品到跟隨清單中
+        feedback: 跟隨清單中的物品有：
       remove:
-        error: '{0}未添加到跟隨列表中'
-        feedback: 已把{0}從跟隨列表中移除
-  version: '版本:'
+        error: '{0}未添加到跟隨清單中'
+        feedback: 已把{0}從跟隨清單中移除
+    mods:
+      list:
+        hover: 點擊查看詳情
+      mods:
+        error: 未知的模組：{0}
+        feedback:
+          author: 作者：{0}
+          contact:
+            homepage: 主頁
+            hover: 點擊跳轉至連接
+            issues: 問題提交
+            root: 連接：{0}
+            sources: 源碼
+          contributors: 貢獻者：{0}
+          environment:
+            client: 運行環境：用戶端
+            server: 運行環境：服務器
+            universal: 運行環境：用戶端和服務器
+            null: 運行環境：未知
+          id: 'ID: {0}'
+          license: 授權：{0}
+          type: 類型：{0}
+          unknown: 未知
+          version: 版本：{0}
+  version: 版本：

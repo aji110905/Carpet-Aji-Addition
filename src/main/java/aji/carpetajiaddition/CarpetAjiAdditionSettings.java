@@ -48,5 +48,5 @@ public class CarpetAjiAdditionSettings {
     public static String commandFollow = "ops";
 
     @Rule(categories = {CAA, COMMAND})
-    public static String commandModlist = "0";
+    public static String commandMods = "0";
 }

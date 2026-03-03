@@ -2,67 +2,70 @@ carpetajiaddition:
   carpet:
     category:
       CAA: CAA
-      recipe: formule
+      recipe: Recette
     rule:
       cactusWrench:
-        desc: Lorsque le cactus est en position gauche, les blocs libérés sont dans
-          la direction opposée.
-        name: retourner les cactus
+        desc: Le Cactus quand il est en adjoint, le carré qui sort est dans le sens
+          inverse.
+        name: Tourner le cactus
       commandFollow:
-        desc: Vous pouvez utiliser la commande /follow.
-        name: suivre la commande
+        desc: La commande / follow peut être utilisée.
+        name: Suivre la commande
+      commandMods:
+        desc: La commande / MODS peut être utilisée.
+        name: Commande modlist
       dragonBreathRecipe:
-        desc: Ajout de recettes raisonnables pour Dragon's Breath.
-        name: Peut être synthétisé en souffle de dragon
+        desc: Une formule raisonnable a été ajoutée au dragon Buzz.
+        name: Dragon synthétique
       dragonEggRecipe:
-        desc: Ajout de recettes raisonnables pour les œufs de dragon.
-        name: Peut être transformé en œufs de dragon
+        desc: Une recette raisonnable a été ajoutée pour les œufs de dragon.
+        name: Oeufs de dragon synthétiques
       glowingHopperMinecart:
-        desc: Le wagonnet à trémie brillera en rouge lorsqu'il est verrouillé et en
-          blanc lorsqu'il est verrouillé.
-        name: minecart à trémie rougeoyante
+        desc: Les wagons - trémies émettent une lumière rouge lorsqu'ils sont verrouillés,
+          et inversement une lumière blanche.
+        name: Camion de mine d'entonnoir lumineux
       keepOpeningVault:
-        desc: Le même joueur peut toujours ouvrir le même trésor.
-        name: Un trésor sans fin
+        desc: Le même joueur peut ouvrir le même trésor tout le temps.
+        name: Le trésor sans fin
       lockAllHopper:
-        desc: Toutes les trémies sont verrouillées, qu'elles reçoivent ou non un signal
+        desc: Tous les entonnoirs sont verrouillés, qu'il ait ou non reçu le signal
           Redstone.
-        name: Entonnoir incompétent
+        name: L'entonnoir de l'incompétence
       lockAllHopperMinecart:
-        desc: Tous les wagonnets à trémie sont verrouillés, qu'ils soient ou non équipés
-          de rails actifs alimentés en dessous.
-        name: Minecart à trémie incompétent
+        desc: Tous les wagons - trémies seront verrouillés, qu'il y ait des rails
+          activés sous lui ou non.
+        name: Camion minier d'entonnoir incompétent
       safeMagmaBlock:
-        desc: Vous ne perdrez plus de santé lorsque vous vous tiendrez sur un bloc
-          de magma.
-        name: Des blocs de magma qui ne brûlent pas les pieds
+        desc: Lorsque vous vous tenez sur un bloc de magma, vous ne perdez plus de
+          sang.
+        name: Blocs de magma qui ne blanchissent pas les pieds
       sitOnTheGround:
-        desc: Accroupissez-vous plusieurs fois pour vous asseoir par terre.
-        name: s'asseoir par terre
+        desc: Plusieurs squats vous permettent de vous asseoir au sol.
+        name: Assis sur terre
       tameHorse:
-        desc: Vous pouvez apprivoiser les chevaux à 100 %.
-        name: cheval obéissant
+        desc: Vous pouvez apprivoiser un cheval à 100%.
+        name: Le cheval obéissant
       useMachineFlip:
-        desc: Lorsque cette règle est activée, Google Translate sera utilisé pour
-          toutes les langues sauf zh_cn, y compris cette phrase ; lorsque cette règle
-          est désactivée, seul zh_cn sera utilisé.
-        name: Utiliser la traduction automatique
+        desc: Lorsque cette règle est activée, toutes les langues, à l'exception de
+          zh - cn, sont traduites avec Baidu Translation, y compris cette phrase;
+          Lorsque cette règle est désactivée, seul zh.cn est utilisé.
+        name: Utiliser la machine à tourner
   color:
-    aqua: bleu
+    aqua: cyan
     black: noir
     blue: bleu
-    dark_aqua: cyan foncé
+    dark_aqua: Cyan foncé
     dark_blue: bleu foncé
     dark_gray: gris foncé
     dark_green: vert foncé
-    dark_purple: violet foncé
-    dark_red: rouge profond
-    gold: or
+    dark_purple: Violet foncé
+    dark_red: Rouge foncé
+    gold: doré
     gray: gris
     green: vert
-    light_purple: violet clair
+    light_purple: Lavande
     red: rouge
-    white: Blanc
+    white: blanc
     yellow: jaune
   command:
     follow:
@@ -71,14 +74,38 @@ carpetajiaddition:
         feedback: '{0} a été ajouté à la liste de suivi'
       color:
         set:
-          error: La couleur de lueur de l'objet est déjà de {0}
-          feedback: La couleur de l'éclat a été définie sur {0}
+          error: La Couleur lumineuse de l'article est déjà {0}
+          feedback: La Couleur lumineuse est {0}
         show:
-          feedback: La couleur de lueur de l'objet est {0}
+          feedback: La Couleur lumineuse de l'article est {0}
       list:
-        error: Vous n'avez encore ajouté aucun élément à votre liste suivante
-        feedback: 'Les éléments de la liste suivante sont :'
+        error: Vous n'avez encore ajouté aucun article à la liste de suivi
+        feedback: 'Les articles de la liste de suivi sont:'
       remove:
-        error: '{0} n''a pas été ajouté à la liste de suivi'
-        feedback: '{0} a été supprimé de la liste suivante'
+        error: '{0} non ajouté à la liste de suivi'
+        feedback: '{0} a été retiré de la liste de suivi'
+    mods:
+      list:
+        hover: Cliquez pour les détails
+      mods:
+        error: 'Module inconnu: {0}'
+        feedback:
+          author: 'Auteur: {0}'
+          contact:
+            homepage: Page d'accueil
+            hover: Cliquez pour sauter à la connexion
+            issues: Soumission de questions
+            root: 'Connexion: {0}'
+            sources: Source source
+          contributors: 'Contributeurs: {0}'
+          environment:
+            client: 'Environnement d''exécution: client'
+            server: 'Environnement d''exploitation: serveur'
+            universal: 'Environnement d''exécution: client et serveur'
+            null: 'Environnement opérationnel: inconnu'
+          id: 'ID: {0}'
+          license: 'Autorisation: {0}'
+          type: 'Type: {0}'
+          unknown: inconnu
+          version: 'Version: {0}'
   version: 'Version:'
