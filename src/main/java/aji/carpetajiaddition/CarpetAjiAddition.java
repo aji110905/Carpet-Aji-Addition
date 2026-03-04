@@ -5,7 +5,6 @@ import aji.carpetajiaddition.commands.ModsCommand;
 import aji.carpetajiaddition.data.DataManager;
 import aji.carpetajiaddition.settings.RecipeRule;
 import aji.carpetajiaddition.translations.CarpetAjiAdditionTranslation;
-import aji.carpetajiaddition.translations.getTranslationsMap;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import com.mojang.brigadier.CommandDispatcher;
@@ -27,6 +26,7 @@ public class CarpetAjiAddition implements CarpetExtension {
     public void onGameStarted() {
         CarpetServer.settingsManager.parseSettingsClass(CarpetAjiAdditionSettings.class);
         RecipeRule.addRecipeRulesToSettingManager();
+        CarpetAjiAdditionTranslation.addMachineFlipRuleToSettingManager();
     }
 
     @Override
@@ -57,7 +57,7 @@ public class CarpetAjiAddition implements CarpetExtension {
     @Override
     public Map<String, String> canHasTranslations(String lang) {
         CarpetAjiAdditionTranslation.readLanguageFiles(lang);
-        return getTranslationsMap.getFabricCarpetTranslations(lang);
+        return CarpetAjiAdditionTranslation.getFabricCarpetTranslations(lang);
     }
 
     public static void initializationDataPack() {

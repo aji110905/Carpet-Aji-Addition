@@ -17,9 +17,6 @@ public class CarpetAjiAdditionSettings {
     public static MinecraftServer minecraftServer = null;
     public static DataManager data = null;
 
-    @Rule(categories = {CAA, FEATURE})
-    public static boolean useMachineFlip = true;
-
     @Rule(categories = {CAA, CREATIVE})
     public static boolean glowingHopperMinecart = false;
 
