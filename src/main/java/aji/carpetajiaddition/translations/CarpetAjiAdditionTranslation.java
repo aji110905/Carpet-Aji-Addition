@@ -5,7 +5,6 @@ import carpet.CarpetServer;
 import carpet.api.settings.CarpetRule;
 import carpet.api.settings.InvalidRuleValueException;
 import carpet.api.settings.SettingsManager;
-import com.google.common.collect.Maps;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import net.minecraft.server.command.ServerCommandSource;
@@ -22,11 +21,13 @@ import java.util.List;
 import java.util.Map;
 
 public class CarpetAjiAdditionTranslation {
-    private static final Map<String, String> TRANSLATION_MAP = new HashMap<>();
-    private static boolean MachineFlipRuleIsAdded = false;
+    private static Map<String, String> translations = null;
+    private static final Map<String, Map<String, String>> ALL_TRANSLATION_MAP = new HashMap<>();
+    private static final Map<String, Map<String, String>> ALL_FABRIC_CARPET_TRANSLATION_MAP = new HashMap<>();
+    private static boolean machineFlipRuleIsAdded = false;
 
     public static String tr (String path){
-        String str = TRANSLATION_MAP.get(path);
+        String str = translations.get(path);
         if (str == null) return "";
         else return str;
     }
@@ -91,54 +92,50 @@ public class CarpetAjiAdditionTranslation {
         }
     }
 
-    private static Map<String, String> getTranslationFromResourcePath(String lang) {
-        Map<String, String> translations = Maps.newHashMap();
-        String resourcePath = "assets/carpetajiaddition/lang/zh_cn.json";
-        if (MachineFlipRuleIsAdded && (boolean) CarpetServer.settingsManager.getCarpetRule("useMachineFlip").value()){
-            resourcePath = "assets/carpetajiaddition/lang/"+ lang +".json";
-        }
-        InputStream inputStream = CarpetAjiAdditionTranslation.class.getClassLoader().getResourceAsStream(resourcePath);
-
-        if (inputStream == null) {
-            return translations;
-        }
-
+    private static void getTranslationFromResourcePath() {
+        String[] languageFiles = {
+                "en_us",
+                "fr_fr",
+                "pt_br",
+                "zh_cn",
+                "zh_tw"
+        };
         Gson gson = new Gson();
-        translations = gson.fromJson(new InputStreamReader(inputStream, StandardCharsets.UTF_8), new TypeToken<Map<String, String>>(){}.getType());
+        for (String language : languageFiles) {
+            String resourcePath = "assets/carpetajiaddition/lang/" + language + ".json";
+            InputStream inputStream = CarpetAjiAdditionTranslation.class.getClassLoader().getResourceAsStream(resourcePath);
+            Map<String, String> translations = gson.fromJson(
+                    new InputStreamReader(inputStream, StandardCharsets.UTF_8),
+                    new TypeToken<Map<String, String>>(){}.getType()
+            );
 
+            Map<String, String> fabricCarpetTranslations = new HashMap<>();
+            for (Map.Entry<String, String> entry : translations.entrySet()) {
+                String originalKey = entry.getKey();
+                if (originalKey != null && originalKey.startsWith("carpetajiaddition.carpet")) {
+                    String newKey = originalKey.substring(18);
+                    fabricCarpetTranslations.put(newKey, entry.getValue());
+                }
+            }
+            ALL_FABRIC_CARPET_TRANSLATION_MAP.put(language, fabricCarpetTranslations);
 
-        return translations;
+            Map<String, String> translationsMap = new HashMap<>();
+            for (Map.Entry<String, String> entry : translations.entrySet()) {
+                String originalKey = entry.getKey();
+                if (!(originalKey != null && originalKey.startsWith("carpetajiaddition.carpet"))) {
+                    translationsMap.put(entry.getKey(), entry.getValue());
+                }
+            }
+            ALL_TRANSLATION_MAP.put(language, translationsMap);
+        }
     }
 
     public static Map<String, String> getFabricCarpetTranslations(String lang) {
-        Map<String, String> fabricCarpetTranslations = Maps.newHashMap();
-        Map<String, String> translations = getTranslationFromResourcePath(lang);
-
-        String targetPrefix = "carpetajiaddition.carpet";
-        String removePrefix = "carpetajiaddition.";
-
-        for (Map.Entry<String, String> entry : translations.entrySet()) {
-            String originalKey = entry.getKey();
-            if (originalKey != null && originalKey.startsWith(targetPrefix)) {
-                String newKey = originalKey.substring(removePrefix.length());
-                fabricCarpetTranslations.put(newKey, entry.getValue());
-            }
+        if (machineFlipRuleIsAdded && !(boolean) CarpetServer.settingsManager.getCarpetRule("useMachineFlip").value()) {
+            lang = "zh_cn";
         }
-
-        return fabricCarpetTranslations;
-    }
-
-    public static void readLanguageFiles(String lang) {
-        Map<String, String> translations = getTranslationFromResourcePath(lang);
-
-        String targetPrefix = "carpetajiaddition.carpet";
-
-        for (Map.Entry<String, String> entry : translations.entrySet()) {
-            String originalKey = entry.getKey();
-            if (!(originalKey != null && originalKey.startsWith(targetPrefix))) {
-                TRANSLATION_MAP.put(entry.getKey(), entry.getValue());
-            }
-        }
+        translations = new HashMap<>(ALL_TRANSLATION_MAP.get(lang));
+        return new HashMap<>(ALL_FABRIC_CARPET_TRANSLATION_MAP.get(lang));
     }
 
     public static void addMachineFlipRuleToSettingManager(){
@@ -212,6 +209,10 @@ public class CarpetAjiAdditionTranslation {
                     }
                 }
         );
-        MachineFlipRuleIsAdded = true;
+        machineFlipRuleIsAdded = true;
+    }
+
+    static {
+        getTranslationFromResourcePath();
     }
 }

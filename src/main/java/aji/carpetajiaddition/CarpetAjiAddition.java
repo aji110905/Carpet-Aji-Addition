@@ -56,7 +56,6 @@ public class CarpetAjiAddition implements CarpetExtension {
 
     @Override
     public Map<String, String> canHasTranslations(String lang) {
-        CarpetAjiAdditionTranslation.readLanguageFiles(lang);
         return CarpetAjiAdditionTranslation.getFabricCarpetTranslations(lang);
     }
 
