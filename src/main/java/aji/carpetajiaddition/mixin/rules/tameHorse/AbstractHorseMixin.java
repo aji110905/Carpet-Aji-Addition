@@ -12,9 +12,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(AbstractHorseEntity.class)
-public abstract class HorseMixin extends AnimalEntity implements InventoryChangedListener, RideableInventory, Tameable, JumpingMount, Saddleable {
+public abstract class AbstractHorseMixin extends AnimalEntity implements InventoryChangedListener, RideableInventory, Tameable, JumpingMount, Saddleable {
 
-    protected HorseMixin(EntityType<? extends AnimalEntity> entityType, World world) {
+    protected AbstractHorseMixin(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
     }
 
