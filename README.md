@@ -6,8 +6,6 @@ Carpet Aji Addition 顾名思义，他是 [Fabric-Carpet](https://github.com/gne
 
 默认情况下，他不会改变任何原版规则。
 
-更多详细信息请访问 [wiki](https://github.com/aji110905/Carpet-Aji-Addition/wiki)。
-
 ## 问题报告
 
 请在 [Github](https://github.com/aji110905/Carpet-Aji-Addition/issues) 提交问题。
