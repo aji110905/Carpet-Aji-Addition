@@ -19,6 +19,10 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.*;
 import net.minecraft.util.Formatting;
 
+//#if MC > 12105
+//$$ import java.net.URI;
+//$$ import java.net.URISyntaxException;
+//#endif
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -54,8 +58,13 @@ public class ModsCommand {
             text.setStyle(
                     Style
                             .EMPTY
+                            //#if MC < 12105
                             .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, CarpetAjiAdditionTranslation.trText(TranslationsKey.CMD_MODS + "list.hover")))
                             .withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/mods " + name))
+                            //#else
+                            //$$ .withHoverEvent(new HoverEvent.ShowText(CarpetAjiAdditionTranslation.trText(TranslationsKey.CMD_MODS + "list.hover")))
+                            //$$ .withClickEvent(new ClickEvent.RunCommand("/mods " + name))
+                            //#endif
             );
             set.add(text);
         }
@@ -134,12 +143,27 @@ public class ModsCommand {
                                     default -> key;
                                 }
                         );
+                        //#if MC < 12105
                         text.setStyle(
                                 Style
                                         .EMPTY
                                         .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, CarpetAjiAdditionTranslation.trText(TranslationsKey.CMD_MODS + "mods.feedback.contact.hover")))
                                         .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, entry.getValue()))
                         );
+                        //#else
+                        //$$ URI uri;
+                        //$$ try {
+                        //$$     uri = new URI(entry.getValue());
+                        //$$ } catch (URISyntaxException e) {
+                        //$$     uri = null;
+                        //$$ }
+                        //$$ text.setStyle(
+                        //$$         Style
+                        //$$                 .EMPTY
+                        //$$                 .withHoverEvent(new HoverEvent.ShowText(CarpetAjiAdditionTranslation.trText(TranslationsKey.CMD_MODS + "mods.feedback.contact.hover")))
+                        //$$                 .withClickEvent(new ClickEvent.OpenUrl(uri))
+                        //$$ );
+                        //#endif
                         texts.add(text);
                     }
                     list.add(CarpetAjiAdditionTranslation.trText(
