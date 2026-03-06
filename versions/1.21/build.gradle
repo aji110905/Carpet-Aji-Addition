@@ -1,0 +1,59 @@
+apply plugin: 'fabric-loom'
+apply plugin: 'com.replaymod.preprocess'
+
+int mcVersion = 1
+
+preprocess {
+    mcVersion = vars.get()["MC"] as int
+    tabIndentation = true
+}
+
+configurations {
+    modRuntimeOnly.exclude group: 'net.fabricmc', module: 'fabric-loader'
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        name 'MasaMaven'
+        url 'https://masa.dy.fi/maven'
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation("carpet:fabric-carpet:${project.carpet_core_version}")
+}
+
+String fullModVersion = project.mod_version
+
+version = 'v' + fullModVersion
+group = project.maven_group
+
+processResources {
+    inputs.property "version", project.version
+    filesMatching("fabric.mod.json") {
+        def valueMap = [
+                "version"  : fullModVersion,
+                "minecraft_version": project.minecraft_version
+        ]
+        expand valueMap
+    }
+}
+
+java {
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+jar {
+    archiveBaseName.set('carpet-aji-addition-v' + project.version + '-mc' + project.minecraft_version)
+    from "LICENSE"
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = "UTF-8"
+}

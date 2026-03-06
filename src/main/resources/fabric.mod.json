@@ -24,9 +24,9 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.14.18",
-		"minecraft": ">=1.21",
+		"minecraft": "=${minecraft_version}",
 		"java": ">=21",
-		"carpet": "=1.4.147"
+		"carpet": "*"
 	},
 	"suggests": {
 		"another-mod": "*"
