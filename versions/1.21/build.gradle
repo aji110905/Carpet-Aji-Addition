@@ -51,7 +51,8 @@ java {
 }
 
 jar {
-    archiveFileName = "carpet-aji-addition-v${project.version}-mc${project.minecraft_version}"
+    archiveFileName = "carpet-aji-addition-${project.version}-mc${project.minecraft_version}.jar"
+    destinationDirectory.set(layout.buildDirectory.dir("libs"))
     from "LICENSE"
 }
 
