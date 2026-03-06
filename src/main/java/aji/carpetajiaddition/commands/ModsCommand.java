@@ -19,7 +19,7 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.*;
 import net.minecraft.util.Formatting;
 
-//#if MC > 12105
+//#if MC >= 12105
 //$$ import java.net.URI;
 //$$ import java.net.URISyntaxException;
 //#endif
