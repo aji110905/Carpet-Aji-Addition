@@ -35,7 +35,7 @@ public class CarpetAjiAddition implements CarpetExtension {
         FollowCommand.init();
         CarpetAjiAdditionSettings.minecraftServer.getDataPackManager().scanPacks();
         CarpetAjiAdditionSettings.minecraftServer.getDataPackManager().enable("file/CarpetAjiAdditionData");
-        RecipeRule.PATH = CarpetAjiAdditionSettings.minecraftServer.getSavePath(WorldSavePath.ROOT).getParent().resolve("data/carpetajiaddition.dat").toString();
+        RecipeRule.PATH = CarpetAjiAdditionSettings.minecraftServer.getSavePath(WorldSavePath.DATAPACKS).resolve("CarpetAjiAdditionData/data/" + CarpetAjiAdditionSettings.MOD_ID + "/recipe").toString();
     }
 
     @Override
