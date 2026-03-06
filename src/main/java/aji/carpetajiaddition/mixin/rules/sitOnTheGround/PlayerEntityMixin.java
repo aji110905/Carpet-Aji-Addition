@@ -32,7 +32,11 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     private void onTick(CallbackInfo ci) {
         if (!CarpetAjiAdditionSettings.sitOnTheGround) return;
         boolean isSneaking = this.isSneaking();
+        //#if MC < 12109
         long currentTime = this.getWorld().getTime();
+        //#else
+        //$$ long currentTime = this.getEntityWorld().getTime();
+        //#endif
 
         if (ridenEntity != null && !this.hasVehicle()) {
             ridenEntity.discard();
@@ -53,19 +57,32 @@ public abstract class PlayerEntityMixin extends LivingEntity {
                     firstSneakTimestamp = -1;
                 }
             } else if (sneakCount == 4) {
+                //#if MC < 12109
                 if (!getWorld().isClient()) {
+                //#else
+                //$$ if (!getEntityWorld().isClient()) {
+                //#endif
                     if (ridenEntity != null) {
                         ridenEntity.discard();
                         ridenEntity = null;
                     }
+                    //#if MC < 12109
                     ArmorStandEntity armorStand = new ArmorStandEntity(this.getWorld(), this.getX(), this.getY() - 1.9, this.getZ());
+                    //#else
+                    //$$ ArmorStandEntity armorStand = new ArmorStandEntity(this.getEntityWorld(), this.getX(), this.getY() - 1.9, this.getZ());
+                    //#endif
                     ridenEntity = armorStand;
                     armorStand.setInvisible(true);
                     armorStand.setNoGravity(true);
                     armorStand.setInvulnerable(true);
                     armorStand.setCustomNameVisible(false);
+                    //#if MC < 12109
                     this.getWorld().spawnEntity(armorStand);
                     this.startRiding(armorStand, true);
+                    //#else
+                    //$$ this.getEntityWorld().spawnEntity(armorStand);
+                    //$$ this.startRiding(armorStand, true, true);
+                    //#endif
                 }
                 sneakCount = 0;
                 firstSneakTimestamp = -1;
