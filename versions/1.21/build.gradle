@@ -51,7 +51,7 @@ java {
 }
 
 jar {
-    archiveBaseName.set('carpet-aji-addition-v' + project.version + '-mc' + project.minecraft_version)
+    archiveBaseName = "carpet-aji-addition-v${project.version}-mc${project.minecraft_version}"
     from "LICENSE"
 }
 
