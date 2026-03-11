@@ -21,7 +21,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.scores.PlayerTeam;
 
 import java.util.HashSet;
-import java.util.LinkedList;
 
 import static aji.carpetajiaddition.translations.CarpetAjiAdditionTranslation.trComponent;
 import static net.minecraft.commands.Commands.argument;
@@ -59,11 +58,12 @@ public class FollowCommand {
         Item item = ItemArgument.getItem(context, "item").getItem();
         boolean bl = data.addToFollowItems(item);
         Component displayName = item.getDefaultInstance().getDisplayName();
+        CommandSourceStack source = context.getSource();
         if (bl){
-            context.getSource().sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "add.feedback", displayName), true);
+            source.sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "add.feedback", displayName), true);
             return 1;
         }else {
-            context.getSource().sendFailure(trComponent(TranslationsKey.CMD_FOLLOW + "add.error", displayName.copy().setStyle(displayName.getStyle().withColor(ChatFormatting.RED))));
+            source.sendFailure(trComponent(TranslationsKey.CMD_FOLLOW + "add.error", displayName.copy().setStyle(displayName.getStyle().withColor(ChatFormatting.RED))));
             return 0;
         }
     }
@@ -78,11 +78,12 @@ public class FollowCommand {
             //#endif
             boolean bl = data.removeFromFollowItems(item);
             Component displayName = item.getDefaultInstance().getDisplayName();
+            CommandSourceStack source = context.getSource();
             if (bl){
-                context.getSource().sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "remove.feedback", displayName), true);
+                source.sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "remove.feedback", displayName), true);
                 return 1;
             }else {
-                context.getSource().sendFailure(trComponent(TranslationsKey.CMD_FOLLOW + "remove.error", displayName.copy().setStyle(displayName.getStyle().withColor(ChatFormatting.RED))));
+                source.sendFailure(trComponent(TranslationsKey.CMD_FOLLOW + "remove.error", displayName.copy().setStyle(displayName.getStyle().withColor(ChatFormatting.RED))));
                 return 0;
             }
         }
@@ -90,15 +91,16 @@ public class FollowCommand {
     }
 
     private static int list(CommandContext<CommandSourceStack> context){
+        CommandSourceStack source = context.getSource();
         if (data.getFollowItems().isEmpty()) {
-            context.getSource().sendFailure(trComponent(TranslationsKey.CMD_FOLLOW + "list.error"));
+            source.sendFailure(trComponent(TranslationsKey.CMD_FOLLOW + "list.error"));
             return 0;
         }else {
             HashSet<Component> set = new HashSet<>();
             for (Item item : data.getFollowItems()) {
                 set.add(item.getDefaultInstance().getDisplayName());
             }
-            context.getSource().sendSuccess(
+            source.sendSuccess(
                     () -> trComponent(TranslationsKey.CMD_FOLLOW + "list.feedback").copy().append(
                             set
                                     .stream()
@@ -112,12 +114,13 @@ public class FollowCommand {
     }
 
     private static int setColor(CommandContext<CommandSourceStack> context){
+        CommandSourceStack source = context.getSource();
         if (data.getColor().equals(ColorArgument.getColor(context, "color"))) {
-            context.getSource().sendFailure(trComponent(TranslationsKey.CMD_FOLLOW + "color.set.error", CarpetAjiAdditionTranslation.trColor.trText(data.getColor(), false)));
+            source.sendFailure(trComponent(TranslationsKey.CMD_FOLLOW + "color.set.error", CarpetAjiAdditionTranslation.trColor.trText(data.getColor(), false)));
             return 0;
         } else {
             data.setColor(ColorArgument.getColor(context, "color"));
-            context.getSource().sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "color.set.feedback", CarpetAjiAdditionTranslation.trColor.trText(data.getColor(), true)), true);
+            source.sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "color.set.feedback", CarpetAjiAdditionTranslation.trColor.trText(data.getColor(), true)), true);
             return 1;
         }
     }
