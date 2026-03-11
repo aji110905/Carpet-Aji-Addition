@@ -8,10 +8,10 @@ import aji.carpetajiaddition.translations.CarpetAjiAdditionTranslation;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import com.mojang.brigadier.CommandDispatcher;
-import net.minecraft.command.CommandRegistryAccess;
+import net.minecraft.commands.CommandBuildContext;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.util.WorldSavePath;
+import net.minecraft.world.level.storage.LevelResource;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,15 +31,15 @@ public class CarpetAjiAddition implements CarpetExtension {
 
     @Override
     public void onServerLoadedWorlds(MinecraftServer server) {
-        CarpetAjiAdditionSettings.data = new DataManager(server.getSavePath(WorldSavePath.ROOT).getParent().resolve("data/carpetajiaddition.dat"));
+        CarpetAjiAdditionSettings.data = new DataManager(CarpetAjiAdditionSettings.minecraftServer.getWorldPath(LevelResource.ROOT).getParent().resolve("data/carpetajiaddition.dat"));
         FollowCommand.init();
-        CarpetAjiAdditionSettings.minecraftServer.getDataPackManager().scanPacks();
-        CarpetAjiAdditionSettings.minecraftServer.getDataPackManager().enable("file/CarpetAjiAdditionData");
-        RecipeRule.PATH = CarpetAjiAdditionSettings.minecraftServer.getSavePath(WorldSavePath.DATAPACKS).resolve("CarpetAjiAdditionData/data/" + CarpetAjiAdditionSettings.MOD_ID + "/recipe").toString();
+        CarpetAjiAdditionSettings.minecraftServer.getPackRepository().reload();
+        CarpetAjiAdditionSettings.minecraftServer.getPackRepository().addPack("file/CarpetAjiAdditionData");
+        RecipeRule.PATH = CarpetAjiAdditionSettings.minecraftServer.getWorldPath(LevelResource.DATAPACK_DIR).resolve("CarpetAjiAdditionData/data/" + CarpetAjiAdditionSettings.MOD_ID + "/recipe").toString();
     }
 
     @Override
-    public void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess commandBuildContext) {
+    public void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, final CommandBuildContext commandBuildContext) {
         FollowCommand.register(dispatcher, commandBuildContext);
         ModsCommand.register(dispatcher, commandBuildContext);
     }
@@ -61,7 +61,7 @@ public class CarpetAjiAddition implements CarpetExtension {
 
     public static void initializationDataPack() {
         cleanDataPack();
-        File file = new File(CarpetAjiAdditionSettings.minecraftServer.getSavePath(WorldSavePath.DATAPACKS).toString() + "/CarpetAjiAdditionData/pack.mcmeta");
+        File file = new File(CarpetAjiAdditionSettings.minecraftServer.getWorldPath(LevelResource.DATAPACK_DIR) + "/CarpetAjiAdditionData/pack.mcmeta");
         file.getParentFile().mkdirs();
         try {
             InputStream stream = CarpetAjiAddition.class.getClassLoader().getResourceAsStream("assets/carpetajiaddition/pack.mcmeta.json");
@@ -73,7 +73,7 @@ public class CarpetAjiAddition implements CarpetExtension {
     }
 
     public static void cleanDataPack() {
-        File file = new File(CarpetAjiAdditionSettings.minecraftServer.getSavePath(WorldSavePath.DATAPACKS).toString() + "/CarpetAjiAdditionData");
+        File file = new File(CarpetAjiAdditionSettings.minecraftServer.getWorldPath(LevelResource.DATAPACK_DIR) + "/CarpetAjiAdditionData");
         if (file.exists()) {
             try {
                 Files.walk(file.toPath())

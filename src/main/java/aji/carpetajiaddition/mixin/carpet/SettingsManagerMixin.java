@@ -4,7 +4,7 @@ import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import aji.carpetajiaddition.translations.CarpetAjiAdditionTranslation;
 import carpet.api.settings.SettingsManager;
 import carpet.utils.Messenger;
-import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.commands.CommandSourceStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -16,12 +16,12 @@ public abstract class SettingsManagerMixin {
             method = "listAllSettings",
             at = @At(
                     value = "INVOKE",
-                    target = "Lcarpet/utils/Messenger;m(Lnet/minecraft/server/command/ServerCommandSource;[Ljava/lang/Object;)V",
+                    target = "Lcarpet/utils/Messenger;m(Lnet/minecraft/commands/CommandSourceStack;[Ljava/lang/Object;)V",
                     ordinal = 0,
                     shift = At.Shift.AFTER
             )
     )
-    public void listAllSettings(ServerCommandSource source, CallbackInfoReturnable<Integer> cir) {
+    public void listAllSettings(CommandSourceStack source, CallbackInfoReturnable<Integer> cir) {
         Messenger.m(source, "g Carpet Aji Addition " + CarpetAjiAdditionTranslation.tr("carpetajiaddition.version") + CarpetAjiAdditionSettings.VERSION);
     }
 }

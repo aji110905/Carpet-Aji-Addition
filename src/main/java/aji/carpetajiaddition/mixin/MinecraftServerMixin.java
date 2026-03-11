@@ -1,25 +1,25 @@
 package aji.carpetajiaddition.mixin;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
-import net.minecraft.network.QueryableServer;
+import net.minecraft.commands.CommandSource;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.ServerTask;
-import net.minecraft.server.command.CommandOutput;
-import net.minecraft.server.world.ChunkErrorHandler;
-import net.minecraft.util.thread.ReentrantThreadExecutor;
+import net.minecraft.server.ServerInfo;
+import net.minecraft.server.TickTask;
+import net.minecraft.util.thread.ReentrantBlockableEventLoop;
+import net.minecraft.world.level.chunk.storage.ChunkIOErrorReporter;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(MinecraftServer.class)
-public abstract class MinecraftServerMixin extends ReentrantThreadExecutor<ServerTask> implements QueryableServer, ChunkErrorHandler, CommandOutput, AutoCloseable{
+public abstract class MinecraftServerMixin extends ReentrantBlockableEventLoop<TickTask> implements ServerInfo, ChunkIOErrorReporter, CommandSource, AutoCloseable{
     public MinecraftServerMixin(String string) {
         super(string);
     }
 
-    @Inject(method = "save", at = @At("HEAD"))
-    private void save(boolean suppressLogs, boolean flush, boolean force, CallbackInfoReturnable<Boolean> cir) {
+    @Inject(method = "saveEverything", at = @At("HEAD"))
+    private void saveEverything(boolean suppressLogs, boolean flush, boolean force, CallbackInfoReturnable<Boolean> cir) {
         CarpetAjiAdditionSettings.data.saveData();
     }
 }

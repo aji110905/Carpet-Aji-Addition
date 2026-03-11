@@ -1,13 +1,13 @@
 package aji.carpetajiaddition.mixin.rules.lockAllHopper;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.block.entity.Hopper;
-import net.minecraft.block.entity.HopperBlockEntity;
-import net.minecraft.block.entity.LootableContainerBlockEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.Hopper;
+import net.minecraft.world.level.block.entity.HopperBlockEntity;
+import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -16,13 +16,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.function.BooleanSupplier;
 
 @Mixin(HopperBlockEntity.class)
-public abstract class HopperBlockEntityMixin extends LootableContainerBlockEntity implements Hopper {
+public abstract class HopperBlockEntityMixin extends RandomizableContainerBlockEntity implements Hopper {
+
     protected HopperBlockEntityMixin(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState) {
         super(blockEntityType, blockPos, blockState);
     }
 
-    @Inject(method = "insertAndExtract", at = @At("HEAD"), cancellable = true)
-    private static void insertAndExtract(World world, BlockPos pos, BlockState state, HopperBlockEntity blockEntity, BooleanSupplier booleanSupplier, CallbackInfoReturnable<Boolean> cir) {
+    @Inject(method = "tryMoveItems", at = @At("HEAD"), cancellable = true)
+    private static void insertAndExtract(Level level, BlockPos blockPos, BlockState blockState, HopperBlockEntity hopperBlockEntity, BooleanSupplier booleanSupplier, CallbackInfoReturnable<Boolean> cir) {
         if (CarpetAjiAdditionSettings.lockAllHopper) cir.setReturnValue(false);
     }
 }

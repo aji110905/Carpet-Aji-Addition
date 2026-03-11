@@ -1,10 +1,10 @@
 package aji.carpetajiaddition.data;
-import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.Tag;
 
 public interface Data {
     String name();
 
-    NbtElement toNbt();
+    Tag toNbt();
 
-    void load(NbtElement element);
+    void load(Tag tag);
 }

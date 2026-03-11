@@ -1,12 +1,7 @@
 package aji.carpetajiaddition.data;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtIo;
 
 import java.io.*;
@@ -33,7 +28,7 @@ public class DataManager {
     }
 
     public void saveData(){
-        NbtCompound compound = new NbtCompound();
+        CompoundTag compound = new CompoundTag();
         for (Data data : All_DATA) {
             compound.put(data.name(), data.toNbt());
         }
@@ -46,7 +41,7 @@ public class DataManager {
 
     public void loadData(){
         try {
-            NbtCompound compound = NbtIo.read(path);
+            CompoundTag compound = NbtIo.read(path);
             for (Data data : All_DATA) {
                 data.load(compound.get(data.name()));
             }

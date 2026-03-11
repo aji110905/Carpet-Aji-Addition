@@ -2,7 +2,7 @@ package aji.carpetajiaddition.mixin;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import com.mojang.brigadier.context.CommandContext;
-import net.minecraft.server.command.ReloadCommand;
+import net.minecraft.server.commands.ReloadCommand;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -14,7 +14,7 @@ public abstract class ReloadCommandMixin {
             method = "method_13530",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/server/command/ReloadCommand;tryReloadDataPacks(Ljava/util/Collection;Lnet/minecraft/server/command/ServerCommandSource;)V")
+                    target = "Lnet/minecraft/server/commands/ReloadCommand;reloadPacks(Ljava/util/Collection;Lnet/minecraft/commands/CommandSourceStack;)V")
     )
     private static void onReloadDataPacks(CommandContext context, CallbackInfoReturnable<Integer> cir) {
         CarpetAjiAdditionSettings.data.loadData();

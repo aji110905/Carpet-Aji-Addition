@@ -2,16 +2,13 @@ package aji.carpetajiaddition.data;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import aji.carpetajiaddition.commands.FollowCommand;
-import com.google.gson.JsonObject;
-import com.google.gson.stream.JsonWriter;
-import net.minecraft.item.Item;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.nbt.NbtInt;
-import net.minecraft.nbt.NbtList;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.IntTag;
+import net.minecraft.world.item.Item;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,7 +16,7 @@ public class FollowCommandData implements Data {
     public static final String DATA_NAME = "followCommand";
 
     private final Set<Item> followItems = new HashSet<>();
-    private Formatting color = Formatting.BLUE;
+    private ChatFormatting color = ChatFormatting.BLUE;
 
     @Override
     public String name() {
@@ -27,25 +24,25 @@ public class FollowCommandData implements Data {
     }
 
     @Override
-    public NbtElement toNbt() {
-        NbtList list = new NbtList();
+    public Tag toNbt() {
+        ListTag list = new ListTag();
         for (Item followItem : followItems) {
-            list.add(NbtInt.of(Item.getRawId(followItem)));
+            list.add(IntTag.valueOf(Item.getId(followItem)));
         }
-        NbtCompound compound = new NbtCompound();
+        CompoundTag compound = new CompoundTag();
         compound.put("followItems", list);
-        compound.put("color", NbtInt.of(color.getColorIndex()));
+        compound.put("color", IntTag.valueOf(color.getId()));
         return compound;
     }
 
     @Override
-    public void load(NbtElement element) {
+    public void load(Tag tag) {
         followItems.clear();
-        NbtCompound compound = (NbtCompound) element;
-        for (NbtElement nbtElement : ((NbtList) compound.get("followItems"))) {
-            followItems.add(Item.byRawId(((NbtInt) nbtElement).intValue()));
+        CompoundTag compound = (CompoundTag) tag;
+        for (Tag intTag : ((ListTag) compound.get("followItems"))) {
+            followItems.add(Item.byId(((IntTag) intTag).getAsInt()));
         }
-        color = Formatting.byColorIndex(((NbtInt)compound.get("color")).intValue());
+        color = ChatFormatting.getById(((IntTag)compound.get("color")).getAsInt());
     }
 
     public Set<Item> getFollowItems() {
@@ -64,13 +61,13 @@ public class FollowCommandData implements Data {
         return bl;
     }
 
-    public Formatting getColor() {
+    public ChatFormatting getColor() {
         return color;
     }
 
-    public void setColor(Formatting color) {
+    public void setColor(ChatFormatting color) {
         this.color = color;
-        CarpetAjiAdditionSettings.minecraftServer.getScoreboard().getTeam("followItems").setColor(color);
+        CarpetAjiAdditionSettings.minecraftServer.getScoreboard().getPlayerTeam("followItems").setColor(color);
         FollowCommand.data = this;
     }
 }

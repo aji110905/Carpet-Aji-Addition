@@ -5,9 +5,8 @@ import carpet.CarpetServer;
 import carpet.api.settings.CarpetRule;
 import carpet.api.settings.InvalidRuleValueException;
 import carpet.api.settings.SettingsManager;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.Text;
-import net.minecraft.util.WorldSavePath;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.network.chat.Component;
 
 import java.io.*;
 import java.net.URISyntaxException;
@@ -33,7 +32,7 @@ public class RecipeRule implements CarpetRule<Boolean> {
     }
 
     @Override
-    public List<Text> extraInfo() {
+    public List<Component> extraInfo() {
         return List.of();
     }
 
@@ -78,14 +77,14 @@ public class RecipeRule implements CarpetRule<Boolean> {
     }
 
     @Override
-    public void set(ServerCommandSource source, String value) throws InvalidRuleValueException {
+    public void set(CommandSourceStack source, String value) throws InvalidRuleValueException {
         if (value.equals("true")) set(source, true);
         else if (value.equals("false")) set(source, false);
         else throw new InvalidRuleValueException("Invalid boolean value");
     }
 
     @Override
-    public void set(ServerCommandSource source, Boolean value) throws InvalidRuleValueException {
+    public void set(CommandSourceStack source, Boolean value) throws InvalidRuleValueException {
         Map<String, String> recipeFiles = readRecipeFiles(name);
         if (value != null) {
             if (value) {
@@ -93,7 +92,7 @@ public class RecipeRule implements CarpetRule<Boolean> {
             } else {
                 unloadRecipe(recipeFiles);
             }
-            if (source != null && source.getWorld() != null) CarpetAjiAdditionSettings.minecraftServer.reloadResources(CarpetAjiAdditionSettings.minecraftServer.getDataPackManager().getEnabledIds());
+            if (source != null && source.getLevel() != null) CarpetAjiAdditionSettings.minecraftServer.reloadResources(CarpetAjiAdditionSettings.minecraftServer.getPackRepository().getSelectedIds());
         }else{
             throw new InvalidRuleValueException("Invalid boolean value");
         }

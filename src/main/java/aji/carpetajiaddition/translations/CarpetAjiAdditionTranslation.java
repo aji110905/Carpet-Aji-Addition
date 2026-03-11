@@ -7,10 +7,10 @@ import carpet.api.settings.InvalidRuleValueException;
 import carpet.api.settings.SettingsManager;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -43,7 +43,7 @@ public class CarpetAjiAdditionTranslation {
         return str;
     }
 
-    public static String tr (String path, Text... args){
+    public static String tr (String path, Component... args){
         if (tr(path).isEmpty()) return "";
         String[] stringArgs = new String[args.length];
         for (int i = 0; i < args.length; i++) {
@@ -52,22 +52,22 @@ public class CarpetAjiAdditionTranslation {
         return tr(path, stringArgs);
     }
 
-    public static Text trText (String path) {
-        if (tr(path).isEmpty()) return Text.empty();
+    public static Component trComponent (String path) {
+        if (tr(path).isEmpty()) return Component.empty();
         String str = tr(path);
-        return Text.literal(str);
+        return Component.literal(str);
     }
 
-    public static Text trText (String path, String... args) {
-        if (tr(path).isEmpty()) return Text.empty();
+    public static Component trComponent (String path, String... args) {
+        if (tr(path).isEmpty()) return Component.empty();
         String str = tr(path, args);
-        return Text.literal(str);
+        return Component.literal(str);
     }
 
-    public static Text trText (String path, Text... args){
+    public static Component trComponent (String path, Component... args){
         String template = tr(path);
-        if (template.isEmpty()) return Text.empty();
-        Text result = Text.empty();
+        if (template.isEmpty()) return Component.empty();
+        Component result = Component.empty();
         String[] parts = template.split("\\{\\d+}");
         for (int i = 0; i < parts.length; i++) {
             result = result.copy().append(parts[i]);
@@ -79,16 +79,16 @@ public class CarpetAjiAdditionTranslation {
     }
 
     public static class trColor {
-        public static String tr (Formatting color){
+        public static String tr (ChatFormatting color){
             final String COLOR = TranslationsKey.SUFFIX + "color.";
             return CarpetAjiAdditionTranslation.tr(COLOR + color.getName());
         }
 
-        public static Text trText (Formatting color, boolean colorful){
-            MutableText text = Text.literal(tr(color));
+        public static Component trText (ChatFormatting color, boolean colorful){
+            MutableComponent component = Component.literal(tr(color));
             if (colorful) {
-                return text.withColor(color.getColorValue());
-            }else return text;
+                return component.withColor(color.getColor());
+            }else return component;
         }
     }
 
@@ -150,7 +150,7 @@ public class CarpetAjiAdditionTranslation {
                     }
 
                     @Override
-                    public List<Text> extraInfo() {
+                    public List<Component> extraInfo() {
                         return List.of();
                     }
 
@@ -190,14 +190,14 @@ public class CarpetAjiAdditionTranslation {
                     }
 
                     @Override
-                    public void set(ServerCommandSource source, String value) throws InvalidRuleValueException {
+                    public void set(CommandSourceStack source, String value) throws InvalidRuleValueException {
                         if (value.equals("true")) set(source, true);
                         else if (value.equals("false")) set(source, false);
                         else throw new InvalidRuleValueException("Invalid boolean value");
                     }
 
                     @Override
-                    public void set(ServerCommandSource source, Boolean value) throws InvalidRuleValueException {
+                    public void set(CommandSourceStack source, Boolean value) throws InvalidRuleValueException {
                         this.value = value;
                         CarpetRule<?> rule = CarpetServer.settingsManager.getCarpetRule("language");
                         rule.set(null, (String) rule.value());

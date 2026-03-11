@@ -14,10 +14,10 @@ import net.fabricmc.loader.api.Version;
 import net.fabricmc.loader.api.metadata.ContactInformation;
 import net.fabricmc.loader.api.metadata.ModMetadata;
 import net.fabricmc.loader.api.metadata.Person;
-import net.minecraft.command.CommandRegistryAccess;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.*;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.commands.CommandBuildContext;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.network.chat.*;
 
 //#if MC >= 12105
 //$$ import java.net.URI;
@@ -26,11 +26,11 @@ import net.minecraft.util.Formatting;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static net.minecraft.server.command.CommandManager.argument;
-import static net.minecraft.server.command.CommandManager.literal;
+import static net.minecraft.commands.Commands.argument;
+import static net.minecraft.commands.Commands.literal;
 
 public class ModsCommand {
-    public static void register(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess commandBuildContext) {
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher, final CommandBuildContext commandBuildContext) {
         dispatcher.register(
                literal("mods")
                        .requires(commandSource -> CommandHelper.canUseCommand(commandSource, CarpetAjiAdditionSettings.commandMods))
@@ -40,7 +40,7 @@ public class ModsCommand {
                        )
                        .then(
                                argument("mods", StringArgumentType.greedyString())
-                                       .suggests((CommandContext<ServerCommandSource> context, SuggestionsBuilder builder) -> {
+                                       .suggests((CommandContext<CommandSourceStack> context, SuggestionsBuilder builder) -> {
                                            FabricLoader.getInstance().getAllMods().forEach(mod -> builder.suggest(mod.getMetadata().getName()));
                                            return builder.buildFuture();
                                        })
@@ -49,67 +49,67 @@ public class ModsCommand {
         );
     }
 
-    private static int list(CommandContext<ServerCommandSource> context) {
+    private static int list(CommandContext<CommandSourceStack> context) {
         Collection<ModContainer> mods = FabricLoader.getInstance().getAllMods();
-        Set<Text> set = new HashSet<>();
+        Set<Component> set = new HashSet<>();
         for (ModContainer mod : mods) {
             String name = mod.getMetadata().getName();
-            MutableText text = Text.literal(name);
-            text.setStyle(
+            MutableComponent component = Component.literal(name);
+            component.setStyle(
                     Style
                             .EMPTY
                             //#if MC < 12105
-                            .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, CarpetAjiAdditionTranslation.trText(TranslationsKey.CMD_MODS + "list.hover")))
+                            .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, CarpetAjiAdditionTranslation.trComponent(TranslationsKey.CMD_MODS + "list.hover")))
                             .withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/mods " + name))
                             //#else
-                            //$$ .withHoverEvent(new HoverEvent.ShowText(CarpetAjiAdditionTranslation.trText(TranslationsKey.CMD_MODS + "list.hover")))
+                            //$$ .withHoverEvent(new HoverEvent.ShowText(CarpetAjiAdditionTranslation.trComponent(TranslationsKey.CMD_MODS + "list.hover")))
                             //$$ .withClickEvent(new ClickEvent.RunCommand("/mods " + name))
                             //#endif
             );
-            set.add(text);
+            set.add(component);
         }
-        context.getSource().sendFeedback(
+        context.getSource().sendSuccess(
                 () -> set
                         .stream()
                         .reduce((text1, text2) -> text1.copy().append("\n").append(text2))
-                        .orElse(Text.empty()),
+                        .orElse(Component.empty()),
                 false
         );
         return 1;
     }
 
-    private static int mods(CommandContext<ServerCommandSource> context) {
-        ServerCommandSource source = context.getSource();
+    private static int mods(CommandContext<CommandSourceStack> context) {
+        CommandSourceStack source = context.getSource();
         String modName = StringArgumentType.getString(context, "mods");
         for (ModContainer mod : FabricLoader.getInstance().getAllMods()) {
             ModMetadata metadata = mod.getMetadata();
             if (metadata.getName().equals(modName)) {
-                LinkedList<Text> list = new LinkedList<>();
-                list.add(Text.literal("----------").append(Text.literal(metadata.getName()).setStyle(Style.EMPTY.withColor(Formatting.AQUA))).append("----------"));
-                list.add(Text.literal(metadata.getDescription()));
-                list.add(Text.literal("============================="));
+                LinkedList<Component> list = new LinkedList<>();
+                list.add(Component.literal("----------").append(Component.literal(metadata.getName()).setStyle(Style.EMPTY.withColor(ChatFormatting.AQUA))).append("----------"));
+                list.add(Component.literal(metadata.getDescription()));
+                list.add(Component.literal("============================="));
 
                 String unknown = CarpetAjiAdditionTranslation.tr(TranslationsKey.CMD_MODS + "mods.feedback.unknown");
 
                 String type = metadata.getType();
-                list.add(CarpetAjiAdditionTranslation.trText(TranslationsKey.CMD_MODS + "mods.feedback.type", type == null ? unknown : type));
+                list.add(CarpetAjiAdditionTranslation.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.type", type == null ? unknown : type));
 
                 String id = metadata.getId();
-                list.add(CarpetAjiAdditionTranslation.trText(TranslationsKey.CMD_MODS + "mods.feedback.id", id == null ? unknown : id));
+                list.add(CarpetAjiAdditionTranslation.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.id", id == null ? unknown : id));
 
                 Version version = metadata.getVersion();
-                list.add(CarpetAjiAdditionTranslation.trText(TranslationsKey.CMD_MODS + "mods.feedback.version", version == null ? unknown : version.getFriendlyString()));
+                list.add(CarpetAjiAdditionTranslation.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.version", version == null ? unknown : version.getFriendlyString()));
 
                 list.add(
                         switch (metadata.getEnvironment()) {
-                            case CLIENT -> CarpetAjiAdditionTranslation.trText(TranslationsKey.CMD_MODS + "mods.feedback.environment.client");
-                            case SERVER -> CarpetAjiAdditionTranslation.trText(TranslationsKey.CMD_MODS + "mods.feedback.environment.server");
-                            case UNIVERSAL -> CarpetAjiAdditionTranslation.trText(TranslationsKey.CMD_MODS + "mods.feedback.environment.universal");
-                            case null -> CarpetAjiAdditionTranslation.trText(TranslationsKey.CMD_MODS + "mods.feedback.environment.null");
+                            case CLIENT -> CarpetAjiAdditionTranslation.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.environment.client");
+                            case SERVER -> CarpetAjiAdditionTranslation.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.environment.server");
+                            case UNIVERSAL -> CarpetAjiAdditionTranslation.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.environment.universal");
+                            case null -> CarpetAjiAdditionTranslation.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.environment.null");
                         }
                 );
 
-                list.add(CarpetAjiAdditionTranslation.trText(
+                list.add(CarpetAjiAdditionTranslation.trComponent(
                         TranslationsKey.CMD_MODS + "mods.feedback.author",
                         metadata.getAuthors() != null && !metadata.getAuthors().isEmpty()
                                 ? metadata.getAuthors().stream()
@@ -118,7 +118,7 @@ public class ModsCommand {
                                 : unknown
                 ));
 
-                list.add(CarpetAjiAdditionTranslation.trText(
+                list.add(CarpetAjiAdditionTranslation.trComponent(
                         TranslationsKey.CMD_MODS + "mods.feedback.contributors",
                         metadata.getContributors() != null && !metadata.getContributors().isEmpty()
                                 ? metadata.getContributors().stream()
@@ -129,13 +129,13 @@ public class ModsCommand {
 
                 ContactInformation contact = metadata.getContact();
                 if (contact == null || contact.asMap().isEmpty()){
-                    list.add(CarpetAjiAdditionTranslation.trText(TranslationsKey.CMD_MODS + "mods.feedback.contact.root", unknown));
+                    list.add(CarpetAjiAdditionTranslation.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.contact.root", unknown));
                 } else {
                     Map<String, String> map = contact.asMap();
-                    Set<Text> texts = new HashSet<>();
+                    Set<Component> texts = new HashSet<>();
                     for (Map.Entry<String, String> entry : map.entrySet()) {
                         String key = entry.getKey();
-                        MutableText text = Text.literal(
+                        MutableComponent text = Component.literal(
                                 switch (key) {
                                     case "homepage" -> CarpetAjiAdditionTranslation.tr(TranslationsKey.CMD_MODS + "mods.feedback.contact.homepage");
                                     case "sources" -> CarpetAjiAdditionTranslation.tr(TranslationsKey.CMD_MODS + "mods.feedback.contact.sources");
@@ -147,35 +147,35 @@ public class ModsCommand {
                         text.setStyle(
                                 Style
                                         .EMPTY
-                                        .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, CarpetAjiAdditionTranslation.trText(TranslationsKey.CMD_MODS + "mods.feedback.contact.hover")))
+                                        .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, CarpetAjiAdditionTranslation.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.contact.hover")))
                                         .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, entry.getValue()))
                         );
                         //#else
+                        //$$ Style style = Style.EMPTY.withHoverEvent(new HoverEvent.ShowText(CarpetAjiAdditionTranslation.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.contact.hover")));
                         //$$ URI uri;
                         //$$ try {
                         //$$     uri = new URI(entry.getValue());
                         //$$ } catch (URISyntaxException e) {
                         //$$     uri = null;
                         //$$ }
-                        //$$ text.setStyle(
-                        //$$         Style
-                        //$$                 .EMPTY
-                        //$$                 .withHoverEvent(new HoverEvent.ShowText(CarpetAjiAdditionTranslation.trText(TranslationsKey.CMD_MODS + "mods.feedback.contact.hover")))
-                        //$$                 .withClickEvent(new ClickEvent.OpenUrl(uri))
-                        //$$ );
+                        //$$ if (uri == null){
+                        //$$     text.setStyle(style);
+                        //$$ } else {
+                        //$$     text.setStyle(style.withClickEvent(new ClickEvent.OpenUrl(uri)));
+                        //$$ }
                         //#endif
                         texts.add(text);
                     }
-                    list.add(CarpetAjiAdditionTranslation.trText(
+                    list.add(CarpetAjiAdditionTranslation.trComponent(
                             TranslationsKey.CMD_MODS + "mods.feedback.contact.root",
                             texts
                             .stream()
                             .reduce((text1, text2) -> text1.copy().append(", ").append(text2))
-                            .orElse(Text.empty())
+                            .orElse(Component.empty())
                     ));
                 }
 
-                list.add(CarpetAjiAdditionTranslation.trText(
+                list.add(CarpetAjiAdditionTranslation.trComponent(
                         TranslationsKey.CMD_MODS + "mods.feedback.license",
                         metadata.getLicense() != null && !metadata.getLicense().isEmpty()
                                 ? metadata.getLicense().stream()
@@ -184,17 +184,17 @@ public class ModsCommand {
                         )
                 );
 
-                source.sendFeedback(
+                source.sendSuccess(
                         () -> list
                         .stream()
                         .reduce((text1, text2) -> text1.copy().append("\n").append(text2))
-                        .orElse(Text.empty()),
+                        .orElse(Component.empty()),
                         false
                 );
                 return 1;
             }
         }
-        source.sendError(CarpetAjiAdditionTranslation.trText(TranslationsKey.CMD_MODS + "mods.error", modName));
+        source.sendFailure(CarpetAjiAdditionTranslation.trComponent(TranslationsKey.CMD_MODS + "mods.error", modName));
         return 0;
     }
 }

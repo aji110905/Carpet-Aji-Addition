@@ -1,20 +1,20 @@
 package aji.carpetajiaddition.mixin.rules.sitOnTheGround;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.decoration.ArmorStandEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.decoration.ArmorStand;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(PlayerEntity.class)
-public abstract class PlayerEntityMixin extends LivingEntity {
+@Mixin(Player.class)
+public abstract class PlayerMixin extends LivingEntity {
     @Unique
     private boolean lastSneakState = false;
     @Unique
@@ -24,21 +24,16 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     @Unique
     private Entity ridenEntity = null;
 
-    protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
-        super(entityType, world);
+    protected PlayerMixin(EntityType<? extends LivingEntity> entityType, Level level) {
+        super(entityType, level);
     }
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void onTick(CallbackInfo ci) {
         if (!CarpetAjiAdditionSettings.sitOnTheGround) return;
-        boolean isSneaking = this.isSneaking();
-        //#if MC < 12109
-        long currentTime = this.getWorld().getTime();
-        //#else
-        //$$ long currentTime = this.getEntityWorld().getTime();
-        //#endif
-
-        if (ridenEntity != null && !this.hasVehicle()) {
+        boolean isSneaking = this.isCrouching();
+        long currentTime = this.level().getGameTime();
+        if (ridenEntity != null && !this.isPassenger()) {
             ridenEntity.discard();
             ridenEntity = null;
         }
@@ -57,30 +52,21 @@ public abstract class PlayerEntityMixin extends LivingEntity {
                     firstSneakTimestamp = -1;
                 }
             } else if (sneakCount == 4) {
-                //#if MC < 12109
-                if (!getWorld().isClient()) {
-                //#else
-                //$$ if (!getEntityWorld().isClient()) {
-                //#endif
+                if (!level().isClientSide()) {
                     if (ridenEntity != null) {
                         ridenEntity.discard();
                         ridenEntity = null;
                     }
-                    //#if MC < 12109
-                    ArmorStandEntity armorStand = new ArmorStandEntity(this.getWorld(), this.getX(), this.getY() - 1.9, this.getZ());
-                    //#else
-                    //$$ ArmorStandEntity armorStand = new ArmorStandEntity(this.getEntityWorld(), this.getX(), this.getY() - 1.9, this.getZ());
-                    //#endif
+                    ArmorStand armorStand = new ArmorStand(this.level(), this.getX(), this.getY() - 1.9, this.getZ());
                     ridenEntity = armorStand;
                     armorStand.setInvisible(true);
                     armorStand.setNoGravity(true);
                     armorStand.setInvulnerable(true);
                     armorStand.setCustomNameVisible(false);
+                    this.level().addFreshEntity(armorStand);
                     //#if MC < 12109
-                    this.getWorld().spawnEntity(armorStand);
                     this.startRiding(armorStand, true);
                     //#else
-                    //$$ this.getEntityWorld().spawnEntity(armorStand);
                     //$$ this.startRiding(armorStand, true, true);
                     //#endif
                 }

@@ -11,12 +11,12 @@
     "command.follow.ItemEntityMixin",
     "rules.cactusWrench.BlockItemMixin",
     "rules.endlessVault.VaultServerDataMixin",
-    "rules.glowingHopperMinecart.HopperMinecartEntityMixin",
+    "rules.glowingHopperMinecart.MinecartHopperMixin",
     "rules.lockAllHopper.HopperBlockEntityMixin",
-    "rules.lockAllHopperMinecart.HopperMinecartMixin",
+    "rules.lockAllHopperMinecart.MinecartHopperMixin",
     "rules.safeMagmaBlock.MagmaBlockMixin",
-    "rules.sitOnTheGround.PlayerEntityMixin",
-    "rules.tameHorse.AbstractHorseEntityMixin"
+    "rules.sitOnTheGround.PlayerMixin",
+    "rules.tameHorse.AbstractHorseMixin"
   ],
   "client": [
   ],
