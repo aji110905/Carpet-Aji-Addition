@@ -20,6 +20,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.scores.PlayerTeam;
 
+import java.util.HashSet;
+import java.util.LinkedList;
+
 import static aji.carpetajiaddition.translations.CarpetAjiAdditionTranslation.trComponent;
 import static net.minecraft.commands.Commands.argument;
 import static net.minecraft.commands.Commands.literal;
@@ -91,10 +94,19 @@ public class FollowCommand {
             context.getSource().sendFailure(trComponent(TranslationsKey.CMD_FOLLOW + "list.error"));
             return 0;
         }else {
-            context.getSource().sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "list.feedback"), false);
+            HashSet<Component> set = new HashSet<>();
             for (Item item : data.getFollowItems()) {
-                context.getSource().sendSuccess(() -> item.getDefaultInstance().getDisplayName(), false);
+                set.add(item.getDefaultInstance().getDisplayName());
             }
+            context.getSource().sendSuccess(
+                    () -> trComponent(TranslationsKey.CMD_FOLLOW + "list.feedback").copy().append(
+                            set
+                                    .stream()
+                                    .reduce((text1, text2) -> text1.copy().append(", ").append(text2))
+                                    .orElse(Component.empty())
+                    ),
+                    false
+            );
             return 1;
         }
     }
