@@ -94,7 +94,7 @@ carpetajiaddition:
         name: "follow命令"
         desc: "可以使用/follow命令。"
       commandMods:
-        name: "modlist命令"
+        name: "mods命令"
         desc: "可以使用/mods命令。"
       safeMagmaBlock:
         name: "不烫脚的岩浆块"

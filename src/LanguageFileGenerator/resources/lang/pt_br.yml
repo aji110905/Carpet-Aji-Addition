@@ -13,7 +13,7 @@ carpetajiaddition:
         name: seguir o comando
       commandMods:
         desc: Você pode usar o comando /mods.
-        name: Comando modlist
+        name: Comando mods
       dragonBreathRecipe:
         desc: Adicionou uma fórmula razoável para o dragão.
         name: Dragão sintético

@@ -13,7 +13,7 @@ carpetajiaddition:
         name: Suivre la commande
       commandMods:
         desc: La commande / MODS peut être utilisée.
-        name: Commande modlist
+        name: Commande mods
       dragonBreathRecipe:
         desc: Une formule raisonnable a été ajoutée au dragon Buzz.
         name: Dragon synthétique

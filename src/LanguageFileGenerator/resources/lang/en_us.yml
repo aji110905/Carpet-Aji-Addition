@@ -13,7 +13,7 @@ carpetajiaddition:
         name: Follow command
       commandMods:
         desc: You can use the/ods command.
-        name: Modlist command
+        name: Mods command
       dragonBreathRecipe:
         desc: Added a reasonable formula for Longxi.
         name: Can synthesize dragon breath

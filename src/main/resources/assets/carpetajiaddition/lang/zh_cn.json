@@ -61,7 +61,7 @@
   "carpetajiaddition.carpet.rule.tameHorse.desc": "你可以100%驯服马。",
   "carpetajiaddition.carpet.rule.commandFollow.name": "follow命令",
   "carpetajiaddition.carpet.rule.commandFollow.desc": "可以使用/follow命令。",
-  "carpetajiaddition.carpet.rule.commandMods.name": "modlist命令",
+  "carpetajiaddition.carpet.rule.commandMods.name": "mods命令",
   "carpetajiaddition.carpet.rule.commandMods.desc": "可以使用/mods命令。",
   "carpetajiaddition.carpet.rule.safeMagmaBlock.name": "不烫脚的岩浆块",
   "carpetajiaddition.carpet.rule.safeMagmaBlock.desc": "当你站在岩浆块时不会再掉血。",

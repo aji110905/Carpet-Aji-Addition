@@ -12,7 +12,7 @@ carpetajiaddition:
         name: follow命令
       commandMods:
         desc: 可以使用/mods命令。
-        name: modlist命令
+        name: mods命令
       dragonBreathRecipe:
         desc: 為龍息添加了合理的配方。
         name: 可合成龍息
