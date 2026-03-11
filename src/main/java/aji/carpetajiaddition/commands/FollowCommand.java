@@ -15,6 +15,7 @@ import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.arguments.ColorArgument;
 import net.minecraft.commands.arguments.item.ItemArgument;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.scores.PlayerTeam;
@@ -54,11 +55,12 @@ public class FollowCommand {
     private static int add(CommandContext<CommandSourceStack> context){
         Item item = ItemArgument.getItem(context, "item").getItem();
         boolean bl = data.addToFollowItems(item);
+        Component displayName = item.getDefaultInstance().getDisplayName();
         if (bl){
-            context.getSource().sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "add.feedback", item.getDefaultInstance().getDisplayName()), true);
+            context.getSource().sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "add.feedback", displayName), true);
             return 1;
         }else {
-            context.getSource().sendFailure(trComponent(TranslationsKey.CMD_FOLLOW + "add.error", item.getDefaultInstance().getDisplayName().copy().setStyle(item.getDefaultInstance().getDisplayName().getStyle().withColor(ChatFormatting.RED))));
+            context.getSource().sendFailure(trComponent(TranslationsKey.CMD_FOLLOW + "add.error", displayName.copy().setStyle(displayName.getStyle().withColor(ChatFormatting.RED))));
             return 0;
         }
     }
@@ -72,11 +74,12 @@ public class FollowCommand {
             //$$ Item item = BuiltInRegistries.ITEM.get(resourceLocation).get().value();
             //#endif
             boolean bl = data.removeFromFollowItems(item);
+            Component displayName = item.getDefaultInstance().getDisplayName();
             if (bl){
-                context.getSource().sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "remove.feedback", item.getDefaultInstance().getDisplayName()), true);
+                context.getSource().sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "remove.feedback", displayName), true);
                 return 1;
             }else {
-                context.getSource().sendFailure(trComponent(TranslationsKey.CMD_FOLLOW + "remove.error", item.getDefaultInstance().getDisplayName().copy().setStyle(item.getDefaultInstance().getDisplayName().getStyle().withColor(ChatFormatting.RED))));
+                context.getSource().sendFailure(trComponent(TranslationsKey.CMD_FOLLOW + "remove.error", displayName.copy().setStyle(displayName.getStyle().withColor(ChatFormatting.RED))));
                 return 0;
             }
         }
