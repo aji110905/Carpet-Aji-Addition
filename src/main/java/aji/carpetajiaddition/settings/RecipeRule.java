@@ -85,14 +85,58 @@ public class RecipeRule implements CarpetRule<Boolean> {
 
     @Override
     public void set(CommandSourceStack source, Boolean value) throws InvalidRuleValueException {
-        Map<String, String> recipeFiles = readRecipeFiles(name);
+        Map<String, String> recipeFiles = new HashMap<>();
+        try {
+            URL url = RecipeRule.class.getClassLoader().getResource("assets/carpetajiaddition/RecipesTweak/" + name);
+            if ("jar".equals(url.getProtocol())) {
+                String jarPath = URLDecoder.decode(url.getPath().split("!")[0].substring(5), StandardCharsets.UTF_8);
+                JarFile jar = new JarFile(jarPath);
+                Enumeration<JarEntry> entries = jar.entries();
+                while (entries.hasMoreElements()) {
+                    JarEntry entry = entries.nextElement();
+                    if (entry.getName().startsWith("assets/carpetajiaddition/RecipesTweak/" + name + "/") && !entry.isDirectory()) {
+                        InputStream stream = jar.getInputStream(entry);
+                        recipeFiles.put(entry.getName().split("/")[entry.getName().split("/").length - 1], new String(stream.readAllBytes()));
+                        stream.close();
+                    }
+                }
+                jar.close();
+            } else {
+                File[] files = new File(url.toURI()).listFiles();
+                if (files != null) {
+                    for (File file : files) {
+                        FileInputStream stream = new FileInputStream(file);
+                        recipeFiles.put(file.getName(), new String(stream.readAllBytes()));
+                        stream.close();
+                    }
+                }
+            }
+        } catch (IOException | URISyntaxException e) {
+            CarpetAjiAdditionSettings.LOGGER.error("Reading recipes from resource files failed", e);
+        }
         if (value != null) {
             if (value) {
-                loadRecipe(recipeFiles);
+                recipeFiles.forEach((fileName, jsonFile) -> {
+                    File file = new File(PATH, fileName);
+                    try {
+                        file.getParentFile().mkdirs();
+                        file.createNewFile();
+                        FileWriter writer = new FileWriter(file);
+                        writer.write(jsonFile);
+                        writer.close();
+                    } catch (IOException e) {
+                        CarpetAjiAdditionSettings.LOGGER.error("Recipes cannot be loaded into data pack", e);
+                    }
+                });
             } else {
-                unloadRecipe(recipeFiles);
+                recipeFiles.forEach((fileName, jsonFile) -> {
+                    File file = new File(PATH, fileName);
+                    if (file.exists()) {
+                        file.delete();
+                    }
+                });
             }
-            if (source != null && source.getLevel() != null) CarpetAjiAdditionSettings.minecraftServer.reloadResources(CarpetAjiAdditionSettings.minecraftServer.getPackRepository().getSelectedIds());
+            if (source != null) CarpetAjiAdditionSettings.minecraftServer.reloadResources(CarpetAjiAdditionSettings.minecraftServer.getPackRepository().getSelectedIds());
         }else{
             throw new InvalidRuleValueException("Invalid boolean value");
         }
@@ -107,63 +151,5 @@ public class RecipeRule implements CarpetRule<Boolean> {
     public static void addRecipeRulesToSettingManager(){
         CarpetServer.settingsManager.addCarpetRule(new RecipeRule("dragonEggRecipe"));
         CarpetServer.settingsManager.addCarpetRule(new RecipeRule("dragonBreathRecipe"));
-    }
-
-    private void loadRecipe(Map<String, String> files){
-        files.forEach((fileName, jsonFile) -> {
-            File file = new File(PATH, fileName);
-            try {
-                file.getParentFile().mkdirs();
-                file.createNewFile();
-                FileWriter writer = new FileWriter(file);
-                writer.write(jsonFile);
-                writer.close();
-            } catch (IOException e) {
-                CarpetAjiAdditionSettings.LOGGER.error("Recipes cannot be loaded into data pack", e);
-            }
-        });
-    }
-
-    private void unloadRecipe(Map<String, String> files){
-        if (files == null) return;
-        files.forEach((fileName, jsonFile) -> {
-            File file = new File(PATH, fileName);
-            if (file.exists()) {
-                file.delete();
-            }
-        });
-    }
-
-    private Map<String, String> readRecipeFiles(String folderName) {
-        Map<String, String> fileMap = new HashMap<>();
-        try {
-            URL url = RecipeRule.class.getClassLoader().getResource("assets/carpetajiaddition/RecipesTweak/" + folderName);
-            if ("jar".equals(url.getProtocol())) {
-                String jarPath = URLDecoder.decode(url.getPath().split("!")[0].substring(5), StandardCharsets.UTF_8);
-                JarFile jar = new JarFile(jarPath);
-                Enumeration<JarEntry> entries = jar.entries();
-                while (entries.hasMoreElements()) {
-                    JarEntry entry = entries.nextElement();
-                    if (entry.getName().startsWith("assets/carpetajiaddition/RecipesTweak/" + folderName + "/") && !entry.isDirectory()) {
-                        InputStream stream = jar.getInputStream(entry);
-                        fileMap.put(entry.getName().split("/")[entry.getName().split("/").length - 1], new String(stream.readAllBytes()));
-                        stream.close();
-                    }
-                }
-                jar.close();
-            } else {
-                File[] files = new File(url.toURI()).listFiles();
-                if (files != null) {
-                    for (File file : files) {
-                        FileInputStream stream = new FileInputStream(file);
-                        fileMap.put(file.getName(), new String(stream.readAllBytes()));
-                        stream.close();
-                    }
-                }
-            }
-        } catch (IOException | URISyntaxException e) {
-            CarpetAjiAdditionSettings.LOGGER.error("Reading recipes from resource files failed", e);
-        }
-        return fileMap;
     }
 }
