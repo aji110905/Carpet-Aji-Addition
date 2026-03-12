@@ -1,7 +1,6 @@
 package aji.carpetajiaddition.commands;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
-import aji.carpetajiaddition.util.translations.TranslationUtil;
 import aji.carpetajiaddition.util.translations.TranslationsKey;
 import carpet.utils.CommandHelper;
 import com.mojang.brigadier.CommandDispatcher;
@@ -180,8 +179,7 @@ public class ModsCommand {
                 list.add(trComponent(
                         TranslationsKey.CMD_MODS + "mods.feedback.license",
                         metadata.getLicense() != null && !metadata.getLicense().isEmpty()
-                                ? metadata.getLicense().stream()
-                                .collect(Collectors.joining(", "))
+                                ? String.join(", ", metadata.getLicense())
                                 : unknown
                         )
                 );
