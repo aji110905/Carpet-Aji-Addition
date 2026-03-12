@@ -2,8 +2,8 @@ package aji.carpetajiaddition.commands;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import aji.carpetajiaddition.data.FollowCommandData;
-import aji.carpetajiaddition.translations.CarpetAjiAdditionTranslation;
-import aji.carpetajiaddition.translations.TranslationsKey;
+import aji.carpetajiaddition.util.translations.TranslationUtil;
+import aji.carpetajiaddition.util.translations.TranslationsKey;
 import carpet.utils.CommandHelper;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -22,7 +22,7 @@ import net.minecraft.world.scores.PlayerTeam;
 
 import java.util.HashSet;
 
-import static aji.carpetajiaddition.translations.CarpetAjiAdditionTranslation.trComponent;
+import static aji.carpetajiaddition.util.translations.TranslationUtil.trComponent;
 import static net.minecraft.commands.Commands.argument;
 import static net.minecraft.commands.Commands.literal;
 
@@ -116,17 +116,17 @@ public class FollowCommand {
     private static int setColor(CommandContext<CommandSourceStack> context){
         CommandSourceStack source = context.getSource();
         if (data.getColor().equals(ColorArgument.getColor(context, "color"))) {
-            source.sendFailure(trComponent(TranslationsKey.CMD_FOLLOW + "color.set.error", CarpetAjiAdditionTranslation.trComponent(data.getColor(), false)));
+            source.sendFailure(trComponent(TranslationsKey.CMD_FOLLOW + "color.set.error", TranslationUtil.trComponent(data.getColor(), false)));
             return 0;
         } else {
             data.setColor(ColorArgument.getColor(context, "color"));
-            source.sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "color.set.feedback", CarpetAjiAdditionTranslation.trComponent(data.getColor(), true)), true);
+            source.sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "color.set.feedback", TranslationUtil.trComponent(data.getColor(), true)), true);
             return 1;
         }
     }
 
     private static int showColor(CommandContext<CommandSourceStack> context){
-        context.getSource().sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "color.show.feedback", CarpetAjiAdditionTranslation.trComponent(data.getColor(), true)), true);
+        context.getSource().sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "color.show.feedback", TranslationUtil.trComponent(data.getColor(), true)), true);
         return 1;
     }
 

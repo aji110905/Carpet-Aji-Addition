@@ -1,7 +1,7 @@
 package aji.carpetajiaddition.mixin.carpet;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
-import aji.carpetajiaddition.translations.CarpetAjiAdditionTranslation;
+import aji.carpetajiaddition.util.translations.TranslationUtil;
 import carpet.api.settings.SettingsManager;
 import carpet.utils.Messenger;
 import net.minecraft.commands.CommandSourceStack;
@@ -22,6 +22,6 @@ public abstract class SettingsManagerMixin {
             )
     )
     public void listAllSettings(CommandSourceStack source, CallbackInfoReturnable<Integer> cir) {
-        Messenger.m(source, "g Carpet Aji Addition " + CarpetAjiAdditionTranslation.tr("carpetajiaddition.version") + CarpetAjiAdditionSettings.VERSION);
+        Messenger.m(source, "g Carpet Aji Addition " + TranslationUtil.tr("carpetajiaddition.version") + CarpetAjiAdditionSettings.VERSION);
     }
 }

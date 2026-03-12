@@ -1,4 +1,4 @@
-package aji.carpetajiaddition.translations;
+package aji.carpetajiaddition.util.translations;
 
 import aji.carpetajiaddition.settings.RuleCategory;
 import carpet.CarpetServer;
@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CarpetAjiAdditionTranslation {
+public class TranslationUtil {
     private static Map<String, String> translations = null;
     private static final Map<String, Map<String, String>> ALL_TRANSLATION_MAP = new HashMap<>();
     private static final Map<String, Map<String, String>> ALL_FABRIC_CARPET_TRANSLATION_MAP = new HashMap<>();
@@ -54,7 +54,7 @@ public class CarpetAjiAdditionTranslation {
 
     public static String tr (ChatFormatting color){
         final String COLOR = TranslationsKey.SUFFIX + "color.";
-        return CarpetAjiAdditionTranslation.tr(COLOR + color.getName());
+        return TranslationUtil.tr(COLOR + color.getName());
     }
 
     public static Component trComponent (String path) {
@@ -101,7 +101,7 @@ public class CarpetAjiAdditionTranslation {
         Gson gson = new Gson();
         for (String language : languageFiles) {
             String resourcePath = "assets/carpetajiaddition/lang/" + language + ".json";
-            InputStream inputStream = CarpetAjiAdditionTranslation.class.getClassLoader().getResourceAsStream(resourcePath);
+            InputStream inputStream = TranslationUtil.class.getClassLoader().getResourceAsStream(resourcePath);
             Map<String, String> translations = gson.fromJson(
                     new InputStreamReader(inputStream, StandardCharsets.UTF_8),
                     new TypeToken<Map<String, String>>(){}.getType()

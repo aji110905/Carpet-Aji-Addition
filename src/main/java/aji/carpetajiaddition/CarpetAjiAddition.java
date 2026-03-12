@@ -4,7 +4,7 @@ import aji.carpetajiaddition.commands.FollowCommand;
 import aji.carpetajiaddition.commands.ModsCommand;
 import aji.carpetajiaddition.data.DataManager;
 import aji.carpetajiaddition.settings.RecipeRule;
-import aji.carpetajiaddition.translations.CarpetAjiAdditionTranslation;
+import aji.carpetajiaddition.util.translations.TranslationUtil;
 import aji.carpetajiaddition.util.DataPackUtil;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
@@ -28,7 +28,7 @@ public class CarpetAjiAddition implements CarpetExtension {
     public void onGameStarted() {
         CarpetServer.settingsManager.parseSettingsClass(CarpetAjiAdditionSettings.class);
         RecipeRule.addRecipeRulesToSettingManager();
-        CarpetAjiAdditionTranslation.addMachineFlipRuleToSettingManager();
+        TranslationUtil.addMachineFlipRuleToSettingManager();
     }
 
     @Override
@@ -59,7 +59,7 @@ public class CarpetAjiAddition implements CarpetExtension {
 
     @Override
     public Map<String, String> canHasTranslations(String lang) {
-        return CarpetAjiAdditionTranslation.getFabricCarpetTranslations(lang);
+        return TranslationUtil.getFabricCarpetTranslations(lang);
     }
 
     public static void initializationDataPack() {

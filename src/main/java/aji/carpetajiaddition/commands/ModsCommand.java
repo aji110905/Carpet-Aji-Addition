@@ -1,8 +1,8 @@
 package aji.carpetajiaddition.commands;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
-import aji.carpetajiaddition.translations.CarpetAjiAdditionTranslation;
-import aji.carpetajiaddition.translations.TranslationsKey;
+import aji.carpetajiaddition.util.translations.TranslationUtil;
+import aji.carpetajiaddition.util.translations.TranslationsKey;
 import carpet.utils.CommandHelper;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -59,10 +59,10 @@ public class ModsCommand {
                     Style
                             .EMPTY
                             //#if MC < 12105
-                            .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, CarpetAjiAdditionTranslation.trComponent(TranslationsKey.CMD_MODS + "list.hover")))
+                            .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TranslationUtil.trComponent(TranslationsKey.CMD_MODS + "list.hover")))
                             .withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/mods " + name))
                             //#else
-                            //$$ .withHoverEvent(new HoverEvent.ShowText(CarpetAjiAdditionTranslation.trComponent(TranslationsKey.CMD_MODS + "list.hover")))
+                            //$$ .withHoverEvent(new HoverEvent.ShowText(TranslationUtil.trComponent(TranslationsKey.CMD_MODS + "list.hover")))
                             //$$ .withClickEvent(new ClickEvent.RunCommand("/mods " + name))
                             //#endif
             );
@@ -89,27 +89,27 @@ public class ModsCommand {
                 list.add(Component.literal(metadata.getDescription()));
                 list.add(Component.literal("============================="));
 
-                String unknown = CarpetAjiAdditionTranslation.tr(TranslationsKey.CMD_MODS + "mods.feedback.unknown");
+                String unknown = TranslationUtil.tr(TranslationsKey.CMD_MODS + "mods.feedback.unknown");
 
                 String type = metadata.getType();
-                list.add(CarpetAjiAdditionTranslation.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.type", type == null ? unknown : type));
+                list.add(TranslationUtil.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.type", type == null ? unknown : type));
 
                 String id = metadata.getId();
-                list.add(CarpetAjiAdditionTranslation.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.id", id == null ? unknown : id));
+                list.add(TranslationUtil.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.id", id == null ? unknown : id));
 
                 Version version = metadata.getVersion();
-                list.add(CarpetAjiAdditionTranslation.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.version", version == null ? unknown : version.getFriendlyString()));
+                list.add(TranslationUtil.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.version", version == null ? unknown : version.getFriendlyString()));
 
                 list.add(
                         switch (metadata.getEnvironment()) {
-                            case CLIENT -> CarpetAjiAdditionTranslation.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.environment.client");
-                            case SERVER -> CarpetAjiAdditionTranslation.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.environment.server");
-                            case UNIVERSAL -> CarpetAjiAdditionTranslation.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.environment.universal");
-                            case null -> CarpetAjiAdditionTranslation.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.environment.null");
+                            case CLIENT -> TranslationUtil.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.environment.client");
+                            case SERVER -> TranslationUtil.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.environment.server");
+                            case UNIVERSAL -> TranslationUtil.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.environment.universal");
+                            case null -> TranslationUtil.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.environment.null");
                         }
                 );
 
-                list.add(CarpetAjiAdditionTranslation.trComponent(
+                list.add(TranslationUtil.trComponent(
                         TranslationsKey.CMD_MODS + "mods.feedback.author",
                         metadata.getAuthors() != null && !metadata.getAuthors().isEmpty()
                                 ? metadata.getAuthors().stream()
@@ -118,7 +118,7 @@ public class ModsCommand {
                                 : unknown
                 ));
 
-                list.add(CarpetAjiAdditionTranslation.trComponent(
+                list.add(TranslationUtil.trComponent(
                         TranslationsKey.CMD_MODS + "mods.feedback.contributors",
                         metadata.getContributors() != null && !metadata.getContributors().isEmpty()
                                 ? metadata.getContributors().stream()
@@ -129,7 +129,7 @@ public class ModsCommand {
 
                 ContactInformation contact = metadata.getContact();
                 if (contact == null || contact.asMap().isEmpty()){
-                    list.add(CarpetAjiAdditionTranslation.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.contact.root", unknown));
+                    list.add(TranslationUtil.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.contact.root", unknown));
                 } else {
                     Map<String, String> map = contact.asMap();
                     Set<Component> texts = new HashSet<>();
@@ -137,9 +137,9 @@ public class ModsCommand {
                         String key = entry.getKey();
                         MutableComponent text = Component.literal(
                                 switch (key) {
-                                    case "homepage" -> CarpetAjiAdditionTranslation.tr(TranslationsKey.CMD_MODS + "mods.feedback.contact.homepage");
-                                    case "sources" -> CarpetAjiAdditionTranslation.tr(TranslationsKey.CMD_MODS + "mods.feedback.contact.sources");
-                                    case "issues" -> CarpetAjiAdditionTranslation.tr(TranslationsKey.CMD_MODS + "mods.feedback.contact.issues");
+                                    case "homepage" -> TranslationUtil.tr(TranslationsKey.CMD_MODS + "mods.feedback.contact.homepage");
+                                    case "sources" -> TranslationUtil.tr(TranslationsKey.CMD_MODS + "mods.feedback.contact.sources");
+                                    case "issues" -> TranslationUtil.tr(TranslationsKey.CMD_MODS + "mods.feedback.contact.issues");
                                     default -> key;
                                 }
                         );
@@ -147,11 +147,11 @@ public class ModsCommand {
                         text.setStyle(
                                 Style
                                         .EMPTY
-                                        .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, CarpetAjiAdditionTranslation.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.contact.hover")))
+                                        .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TranslationUtil.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.contact.hover")))
                                         .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, entry.getValue()))
                         );
                         //#else
-                        //$$ Style style = Style.EMPTY.withHoverEvent(new HoverEvent.ShowText(CarpetAjiAdditionTranslation.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.contact.hover")));
+                        //$$ Style style = Style.EMPTY.withHoverEvent(new HoverEvent.ShowText(TranslationUtil.trComponent(TranslationsKey.CMD_MODS + "mods.feedback.contact.hover")));
                         //$$ URI uri;
                         //$$ try {
                         //$$     uri = new URI(entry.getValue());
@@ -166,7 +166,7 @@ public class ModsCommand {
                         //#endif
                         texts.add(text);
                     }
-                    list.add(CarpetAjiAdditionTranslation.trComponent(
+                    list.add(TranslationUtil.trComponent(
                             TranslationsKey.CMD_MODS + "mods.feedback.contact.root",
                             texts
                             .stream()
@@ -175,7 +175,7 @@ public class ModsCommand {
                     ));
                 }
 
-                list.add(CarpetAjiAdditionTranslation.trComponent(
+                list.add(TranslationUtil.trComponent(
                         TranslationsKey.CMD_MODS + "mods.feedback.license",
                         metadata.getLicense() != null && !metadata.getLicense().isEmpty()
                                 ? metadata.getLicense().stream()
@@ -194,7 +194,7 @@ public class ModsCommand {
                 return 1;
             }
         }
-        source.sendFailure(CarpetAjiAdditionTranslation.trComponent(TranslationsKey.CMD_MODS + "mods.error", modName));
+        source.sendFailure(TranslationUtil.trComponent(TranslationsKey.CMD_MODS + "mods.error", modName));
         return 0;
     }
 }
