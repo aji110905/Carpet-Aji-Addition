@@ -2,7 +2,6 @@ package aji.carpetajiaddition.commands;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import aji.carpetajiaddition.data.FollowCommandData;
-import aji.carpetajiaddition.util.translations.TranslationUtil;
 import aji.carpetajiaddition.util.translations.TranslationsKey;
 import carpet.utils.CommandHelper;
 import com.mojang.brigadier.CommandDispatcher;
@@ -115,11 +114,12 @@ public class FollowCommand {
 
     private static int setColor(CommandContext<CommandSourceStack> context){
         CommandSourceStack source = context.getSource();
-        if (data.getColor().equals(ColorArgument.getColor(context, "color"))) {
+        ChatFormatting color = ColorArgument.getColor(context, "color");
+        if (data.getColor().equals(color)) {
             source.sendFailure(trComponent(TranslationsKey.CMD_FOLLOW + "color.set.error", trComponent(data.getColor(), false)));
             return 0;
         } else {
-            data.setColor(ColorArgument.getColor(context, "color"));
+            data.setColor(color);
             source.sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "color.set.feedback", trComponent(data.getColor(), true)), true);
             return 1;
         }
