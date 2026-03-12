@@ -116,17 +116,17 @@ public class FollowCommand {
     private static int setColor(CommandContext<CommandSourceStack> context){
         CommandSourceStack source = context.getSource();
         if (data.getColor().equals(ColorArgument.getColor(context, "color"))) {
-            source.sendFailure(trComponent(TranslationsKey.CMD_FOLLOW + "color.set.error", CarpetAjiAdditionTranslation.trColor.trText(data.getColor(), false)));
+            source.sendFailure(trComponent(TranslationsKey.CMD_FOLLOW + "color.set.error", CarpetAjiAdditionTranslation.trComponent(data.getColor(), false)));
             return 0;
         } else {
             data.setColor(ColorArgument.getColor(context, "color"));
-            source.sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "color.set.feedback", CarpetAjiAdditionTranslation.trColor.trText(data.getColor(), true)), true);
+            source.sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "color.set.feedback", CarpetAjiAdditionTranslation.trComponent(data.getColor(), true)), true);
             return 1;
         }
     }
 
     private static int showColor(CommandContext<CommandSourceStack> context){
-        context.getSource().sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "color.show.feedback", CarpetAjiAdditionTranslation.trColor.trText(data.getColor(), true)), true);
+        context.getSource().sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "color.show.feedback", CarpetAjiAdditionTranslation.trComponent(data.getColor(), true)), true);
         return 1;
     }
 

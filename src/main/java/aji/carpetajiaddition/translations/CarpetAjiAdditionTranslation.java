@@ -52,6 +52,11 @@ public class CarpetAjiAdditionTranslation {
         return tr(path, stringArgs);
     }
 
+    public static String tr (ChatFormatting color){
+        final String COLOR = TranslationsKey.SUFFIX + "color.";
+        return CarpetAjiAdditionTranslation.tr(COLOR + color.getName());
+    }
+
     public static Component trComponent (String path) {
         if (tr(path).isEmpty()) return Component.empty();
         String str = tr(path);
@@ -78,18 +83,11 @@ public class CarpetAjiAdditionTranslation {
         return result;
     }
 
-    public static class trColor {
-        public static String tr (ChatFormatting color){
-            final String COLOR = TranslationsKey.SUFFIX + "color.";
-            return CarpetAjiAdditionTranslation.tr(COLOR + color.getName());
-        }
-
-        public static Component trText (ChatFormatting color, boolean colorful){
-            MutableComponent component = Component.literal(tr(color));
-            if (colorful) {
-                return component.withColor(color.getColor());
-            }else return component;
-        }
+    public static Component trComponent (ChatFormatting color, boolean colorful){
+        MutableComponent component = Component.literal(tr(color));
+        if (colorful && color.isColor()) {
+            return component.withColor(color.getColor());
+        }else return component;
     }
 
     private static void getTranslationFromResourcePath() {
