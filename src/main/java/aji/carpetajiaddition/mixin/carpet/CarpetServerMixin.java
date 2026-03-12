@@ -2,6 +2,7 @@ package aji.carpetajiaddition.mixin.carpet;
 
 import aji.carpetajiaddition.CarpetAjiAddition;
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
+import aji.carpetajiaddition.util.DataPackUtil;
 import carpet.CarpetServer;
 import net.minecraft.server.MinecraftServer;
 import org.spongepowered.asm.mixin.Mixin;
@@ -14,6 +15,6 @@ public abstract class CarpetServerMixin {
     @Inject(method = "onServerLoaded", at = @At("HEAD"), remap = false)
     private static void onServerLoaded(MinecraftServer server, CallbackInfo ci) {
         CarpetAjiAdditionSettings.minecraftServer = server;
-        CarpetAjiAddition.initializationDataPack();
+        DataPackUtil.initializationDataPack();
     }
 }

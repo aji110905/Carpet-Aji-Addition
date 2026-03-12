@@ -49,7 +49,7 @@ public class CarpetAjiAddition implements CarpetExtension {
 
     @Override
     public void onServerClosed(MinecraftServer server) {
-        cleanDataPack();
+        DataPackUtil.cleanDataPack();
     }
 
     @Override
@@ -60,32 +60,5 @@ public class CarpetAjiAddition implements CarpetExtension {
     @Override
     public Map<String, String> canHasTranslations(String lang) {
         return TranslationUtil.getFabricCarpetTranslations(lang);
-    }
-
-    public static void initializationDataPack() {
-        cleanDataPack();
-        File file = DataPackUtil.getDataPackPath().resolve("pack.mcmeta").toFile();
-        file.getParentFile().mkdirs();
-        try {
-            InputStream stream = CarpetAjiAddition.class.getClassLoader().getResourceAsStream("assets/carpetajiaddition/pack.mcmeta.json");
-            Files.write(file.toPath(), stream.readAllBytes());
-            stream.close();
-        } catch (IOException e) {
-            CarpetAjiAdditionSettings.LOGGER.error("Initializing data pack failed", e);
-        }
-    }
-
-    public static void cleanDataPack() {
-        File file = DataPackUtil.getDataPackPath().toFile();
-        if (file.exists()) {
-            try {
-                Files.walk(file.toPath())
-                        .sorted(Comparator.reverseOrder())
-                        .map(Path::toFile)
-                        .forEach(File::delete);
-            } catch (IOException e) {
-                CarpetAjiAdditionSettings.LOGGER.error("Failed to clean up data pack residual data", e);
-            }
-        }
     }
 }
