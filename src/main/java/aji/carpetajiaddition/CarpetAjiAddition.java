@@ -5,6 +5,7 @@ import aji.carpetajiaddition.commands.ModsCommand;
 import aji.carpetajiaddition.data.DataManager;
 import aji.carpetajiaddition.settings.RecipeRule;
 import aji.carpetajiaddition.translations.CarpetAjiAdditionTranslation;
+import aji.carpetajiaddition.util.DataPackUtil;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import com.mojang.brigadier.CommandDispatcher;
@@ -37,7 +38,7 @@ public class CarpetAjiAddition implements CarpetExtension {
         PackRepository packRepository = CarpetAjiAdditionSettings.minecraftServer.getPackRepository();
         packRepository.reload();
         packRepository.addPack("file/CarpetAjiAdditionData");
-        RecipeRule.PATH = CarpetAjiAdditionSettings.minecraftServer.getWorldPath(LevelResource.DATAPACK_DIR).resolve("CarpetAjiAdditionData/data/" + CarpetAjiAdditionSettings.MOD_ID + "/recipe").toString();
+        RecipeRule.PATH = DataPackUtil.getDataPackPath().resolve("data/" + CarpetAjiAdditionSettings.MOD_ID + "/recipe").toString();
     }
 
     @Override
@@ -63,7 +64,7 @@ public class CarpetAjiAddition implements CarpetExtension {
 
     public static void initializationDataPack() {
         cleanDataPack();
-        File file = new File(CarpetAjiAdditionSettings.minecraftServer.getWorldPath(LevelResource.DATAPACK_DIR) + "/CarpetAjiAdditionData/pack.mcmeta");
+        File file = DataPackUtil.getDataPackPath().resolve("pack.mcmeta").toFile();
         file.getParentFile().mkdirs();
         try {
             InputStream stream = CarpetAjiAddition.class.getClassLoader().getResourceAsStream("assets/carpetajiaddition/pack.mcmeta.json");
@@ -75,7 +76,7 @@ public class CarpetAjiAddition implements CarpetExtension {
     }
 
     public static void cleanDataPack() {
-        File file = new File(CarpetAjiAdditionSettings.minecraftServer.getWorldPath(LevelResource.DATAPACK_DIR) + "/CarpetAjiAdditionData");
+        File file = DataPackUtil.getDataPackPath().toFile();
         if (file.exists()) {
             try {
                 Files.walk(file.toPath())
