@@ -11,6 +11,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.packs.repository.PackRepository;
 import net.minecraft.world.level.storage.LevelResource;
 
 import java.io.File;
@@ -33,8 +34,9 @@ public class CarpetAjiAddition implements CarpetExtension {
     public void onServerLoadedWorlds(MinecraftServer server) {
         CarpetAjiAdditionSettings.data = new DataManager(CarpetAjiAdditionSettings.minecraftServer.getWorldPath(LevelResource.ROOT).getParent().resolve("data/carpetajiaddition.dat"));
         FollowCommand.init();
-        CarpetAjiAdditionSettings.minecraftServer.getPackRepository().reload();
-        CarpetAjiAdditionSettings.minecraftServer.getPackRepository().addPack("file/CarpetAjiAdditionData");
+        PackRepository packRepository = CarpetAjiAdditionSettings.minecraftServer.getPackRepository();
+        packRepository.reload();
+        packRepository.addPack("file/CarpetAjiAdditionData");
         RecipeRule.PATH = CarpetAjiAdditionSettings.minecraftServer.getWorldPath(LevelResource.DATAPACK_DIR).resolve("CarpetAjiAdditionData/data/" + CarpetAjiAdditionSettings.MOD_ID + "/recipe").toString();
     }
 
