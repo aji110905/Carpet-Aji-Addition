@@ -2,6 +2,7 @@ package aji.carpetajiaddition.mixin.rules.glowingHopperMinecart;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import net.minecraft.ChatFormatting;
+import net.minecraft.server.ServerScoreboard;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.vehicle.AbstractMinecartContainer;
 import net.minecraft.world.entity.vehicle.MinecartHopper;
@@ -29,31 +30,34 @@ public abstract class MinecartHopperMixin extends AbstractMinecartContainer impl
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void tick(CallbackInfo ci) {
+        ServerScoreboard scoreboard = CarpetAjiAdditionSettings.minecraftServer.getScoreboard();
         if (!CarpetAjiAdditionSettings.glowingHopperMinecart) {
-            if (CarpetAjiAdditionSettings.minecraftServer.getScoreboard().getPlayerTeam("enabled_hopper_minecraft") != null) {
-                CarpetAjiAdditionSettings.minecraftServer.getScoreboard().removePlayerTeam(CarpetAjiAdditionSettings.minecraftServer.getScoreboard().getPlayerTeam("enabled_hopper_minecraft"));
+            PlayerTeam enabled = scoreboard.getPlayerTeam("enabled_hopper_minecraft");
+            if (enabled != null) {
+                scoreboard.removePlayerTeam(enabled);
             }
-            if (CarpetAjiAdditionSettings.minecraftServer.getScoreboard().getPlayerTeam("locked_hopper_minecraft") != null) {
-                CarpetAjiAdditionSettings.minecraftServer.getScoreboard().removePlayerTeam(CarpetAjiAdditionSettings.minecraftServer.getScoreboard().getPlayerTeam("locked_hopper_minecraft"));
+            PlayerTeam locked = scoreboard.getPlayerTeam("locked_hopper_minecraft");
+            if (locked != null) {
+                scoreboard.removePlayerTeam(locked);
             }
             return;
         }
         this.setGlowingTag(true);
-        PlayerTeam enabled = CarpetAjiAdditionSettings.minecraftServer.getScoreboard().getPlayerTeam("enabled_hopper_minecraft");
+        PlayerTeam enabled = scoreboard.getPlayerTeam("enabled_hopper_minecraft");
         if (enabled == null) {
-            enabled = CarpetAjiAdditionSettings.minecraftServer.getScoreboard().addPlayerTeam("enabled_hopper_minecraft");
+            enabled = scoreboard.addPlayerTeam("enabled_hopper_minecraft");
             enabled.setColor(ChatFormatting.WHITE);
         }
-        PlayerTeam locked = CarpetAjiAdditionSettings.minecraftServer.getScoreboard().getPlayerTeam("locked_hopper_minecraft");
+        PlayerTeam locked = scoreboard.getPlayerTeam("locked_hopper_minecraft");
         if (locked == null) {
-            locked = CarpetAjiAdditionSettings.minecraftServer.getScoreboard().addPlayerTeam("locked_hopper_minecraft");
+            locked = scoreboard.addPlayerTeam("locked_hopper_minecraft");
             locked.setColor(ChatFormatting.RED);
         }
         if (isEnabled() == nextTickState) return;
         if (isEnabled()) {
-            CarpetAjiAdditionSettings.minecraftServer.getScoreboard().addPlayerToTeam(getUUID().toString(), enabled);
+            scoreboard.addPlayerToTeam(getUUID().toString(), enabled);
         } else {
-            CarpetAjiAdditionSettings.minecraftServer.getScoreboard().addPlayerToTeam(getUUID().toString(), locked);
+            scoreboard.addPlayerToTeam(getUUID().toString(), locked);
         }
         nextTickState = isEnabled();
     }
