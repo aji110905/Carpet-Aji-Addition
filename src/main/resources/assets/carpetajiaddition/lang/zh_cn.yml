@@ -99,9 +99,6 @@ carpetajiaddition:
       safeMagmaBlock:
         name: "不烫脚的岩浆块"
         desc: "当你站在岩浆块时不会再掉血。"
-      useMachineFlip:
-        name: "使用机翻"
-        desc: "当此规则开启时，除zh_cn外，其他语言全部使用百度翻译进行翻译，包括这句话；关闭此规则时，则只会使用zh_cn。"
 
     #-----------------
     #下方的规则为配方规则
