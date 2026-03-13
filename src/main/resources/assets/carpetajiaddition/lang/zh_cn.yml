@@ -34,7 +34,7 @@ carpetajiaddition:
           author: "作者: {0}"
           contributors: "贡献者: {0}"
           contact:
-            root: "连接: {0}"
+            root: "链接: {0}"
             homepage: "主页"
             sources: "源码"
             issues: "问题提交"
