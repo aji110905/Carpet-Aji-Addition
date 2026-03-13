@@ -1,110 +1,100 @@
 carpetajiaddition:
-  carpet:
-    category:
-      CAA: CAA
-      recipe: recipe
-    rule:
-      cactusWrench:
-        desc: When the cactus is in the assistant position, the blocks released are
-          in the opposite direction.
-        name: Flip Cactus
-      commandFollow:
-        desc: You can use the/roll command.
-        name: Follow command
-      commandMods:
-        desc: You can use the/ods command.
-        name: Mods command
-      dragonBreathRecipe:
-        desc: Added a reasonable formula for Longxi.
-        name: Can synthesize dragon breath
-      dragonEggRecipe:
-        desc: Added a reasonable formula for dragon eggs.
-        name: Can synthesize dragon eggs
-      glowingHopperMinecart:
-        desc: When the funnel mining car is locked, it will emit red light, and vice
-          versa, white light.
-        name: Luminous funnel mining car
-      keepOpeningVault:
-        desc: The same player can always open the same treasure trove.
-        name: Endless Treasury
-      lockAllHopper:
-        desc: All funnels will be locked, regardless of whether they receive the redstone
-          signal or not.
-        name: Incompetent funnel
-      lockAllHopperMinecart:
-        desc: All funnel mining cars will be locked, regardless of whether there is
-          a charged activation rail underneath.
-        name: Incompetent funnel mining car
-      safeMagmaBlock:
-        desc: When you stand on a magma block, you will no longer lose blood.
-        name: A non scalding magma block
-      sitOnTheGround:
-        desc: You can sit on the ground by squatting down multiple times.
-        name: sit on the ground
-      tameHorse:
-        desc: You can tame a horse 100%.
-        name: Obedient horse
-      useMachineFlip:
-        desc: When this rule is enabled, all languages except zh_cn will be translated
-          using Baidu Translate, including this sentence; When this rule is closed,
-          only zh_cn will be used.
-        name: Using machine flipping
+  version: "version: "
   color:
-    aqua: cyan
-    black: black
-    blue: blue
-    dark_aqua: dark cyan
-    dark_blue: dark blue
-    dark_gray: dark gray
-    dark_green: dark green
-    dark_purple: deep purple
-    dark_red: crimson
-    gold: golden
-    gray: grey
-    green: green
-    light_purple: lavender
-    red: red
-    white: white
-    yellow: yellow
+    black: "black"
+    dark_blue: "dark_blue"
+    dark_green: "dark_green"
+    dark_aqua: "dark_aqua"
+    dark_red: "dark_red"
+    dark_purple: "dark_purple"
+    gold: "gold"
+    gray: "gray"
+    dark_gray: "dark_gray"
+    blue: "blue"
+    green: "green"
+    aqua: "aqua"
+    red: "red"
+    light_purple: "light_purple"
+    yellow: "yellow"
+    white: "white"
   command:
-    follow:
-      add:
-        error: '{0} has been added to the following list'
-        feedback: '{0} has been added to the following list'
-      color:
-        set:
-          error: The glowing color of the item is already {0}
-          feedback: The glowing color has been set to {0}
-        show:
-          feedback: The glowing color of the item is {0}
-      list:
-        error: You haven't added any items to the following list yet
-        feedback: 'The items in the following list are:'
-      remove:
-        error: '{0} was not added to the following list'
-        feedback: '{0} has been removed from the following list'
     mods:
       list:
-        hover: Click to view details
+        hover: "Click for details"
       mods:
-        error: 'Unknown module: {0}'
         feedback:
-          author: 'Author: {0}'
-          contact:
-            homepage: Homepage
-            hover: Click to jump to the connection
-            issues: Problem submission
-            root: 'Connection: {0}'
-            sources: source code
-          contributors: 'Contributor: {0}'
+          type: "Type: {0}"
+          id: "ID: {0}"
+          version: "version: {0}"
           environment:
-            client: 'Operating environment: Client'
-            server: 'Operating environment: Server'
-            universal: 'Operating environment: client and server'
-            null: 'Operating environment: Unknown'
-          id: 'ID: {0}'
-          license: 'Authorization: {0}'
-          type: 'Type: {0}'
-          unknown: unknown
-          version: 'Version: {0}'
-  version: version
+            client: "Environment: Client"
+            server: "Environment: Server"
+            universal: "Environment: Client & Server"
+            null: "Environment: Unknown"
+          author: "Author: {0}"
+          contributors: "Contributor: {0}"
+          contact:
+            root: "Link: {0}"
+            homepage: "Homepage"
+            sources: "Sources"
+            issues: "Issues"
+            hover: "Click to open link"
+          license: "License: {0}"
+          unknown: "unknown"
+        error: "Unknown Mod: {0}"
+    follow:
+      add:
+        feedback: "Added {0} to the follow list."
+        error: "{0} has been added to the follow list."
+      remove:
+        feedback: "Removed {0} from the follow list."
+        error: "{0} is not in the follow list."
+      list:
+        error: "You haven't added any items to the follow list."
+        feedback: "Items in the follow list:"
+      color:
+        set:
+          feedback: "Set glow color to {0}"
+          error: "The item's glow color is already {0}"
+        show:
+          feedback: "物品的发光颜色为{0}"
+
+  # ---------------------------------
+  # Translation sent to Fabric-Carpet
+  # Only the `category` and `rule` dictionaries should be present inside.
+  # ---------------------------------
+
+  carpet:
+    category:
+      CAA: "CAA"
+      recipe: "Recipe"
+    rule:
+      glowingHopperMinecart:
+        desc: "When a hopper minecart is locked, it glows red; otherwise, it glows white."
+      sitOnTheGround:
+        desc: "Sit on the ground by crouching multiple times.。"
+      lockAllHopper:
+        desc: "All hoppers will be locked, regardless of whether they receive a redstone signal."
+      keepOpeningVault:
+        desc: "The same player can open the same vault repeatedly."
+      lockAllHopperMinecart:
+        desc: "All hopper minecarts will be locked, regardless of whether the rail beneath them is a powered activator rail."
+      cactusWrench:
+        desc: "When holding a cactus in the off-hand, placed blocks face the opposite direction."
+      tameHorse:
+        desc: "You can tame horses with 100% success."
+      commandFollow:
+        desc: "Can use the /follow command."
+      commandMods:
+        desc: "Can use the /mods command."
+      safeMagmaBlock:
+        desc: "You no longer take damage when standing on magma blocks."
+
+      #-----------------
+      #The rules below are recipe rules.
+      #-----------------
+
+      dragonEggRecipe:
+        desc: "Added a proper recipe for the dragon egg."
+      dragonBreathRecipe:
+        desc: "Added a proper recipe for dragon's breath."
