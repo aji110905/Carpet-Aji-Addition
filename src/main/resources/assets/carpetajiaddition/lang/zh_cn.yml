@@ -54,7 +54,7 @@ carpetajiaddition:
         feedback: "跟随列表中的物品有:"
       color:
         set:
-          feedback: "已将发光颜色为{0}"
+          feedback: "已将发光颜色设置为{0}"
           error: "物品的发光颜色已经为{0}"
         show:
           feedback: "物品的发光颜色为{0}"
