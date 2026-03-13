@@ -14,13 +14,6 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.packs.repository.PackRepository;
 import net.minecraft.world.level.storage.LevelResource;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Comparator;
 import java.util.Map;
 
 public class CarpetAjiAddition implements CarpetExtension {
@@ -28,7 +21,6 @@ public class CarpetAjiAddition implements CarpetExtension {
     public void onGameStarted() {
         CarpetServer.settingsManager.parseSettingsClass(CarpetAjiAdditionSettings.class);
         RecipeRule.addRecipeRulesToSettingManager();
-        TranslationUtil.addMachineFlipRuleToSettingManager();
     }
 
     @Override

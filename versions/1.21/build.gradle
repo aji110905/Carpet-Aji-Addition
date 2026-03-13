@@ -27,6 +27,7 @@ dependencies {
     }
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation("carpet:fabric-carpet:${project.carpet_core_version}")
+    include(implementation 'org.yaml:snakeyaml:2.2')
 }
 
 String fullModVersion = project.mod_version
