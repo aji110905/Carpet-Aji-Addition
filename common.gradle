@@ -52,15 +52,20 @@ processResources {
 }
 
 java {
-    withSourcesJar()
     sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_21
 }
 
+String jarName = project.archives_base_name + '-v' + project.mod_version + '-mc' + project.minecraft_version
+
 jar {
-    archiveFileName = "carpet-aji-addition-${project.version}-mc${project.minecraft_version}.jar"
-    destinationDirectory.set(layout.buildDirectory.dir("libs"))
-    from "LICENSE"
+    from("LICENSE") {
+        rename { "${it}_${jarName}"}
+    }
+}
+
+remapJar {
+    archiveFileName = "${jarName}.jar"
 }
 
 tasks.withType(JavaCompile).configureEach {
