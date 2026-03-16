@@ -16,7 +16,8 @@
     "rules.lockAllHopperMinecart.MinecartHopperMixin",
     "rules.safeMagmaBlock.MagmaBlockMixin",
     "rules.sitOnTheGround.PlayerMixin",
-    "rules.tameHorse.AbstractHorseMixin"
+    "rules.tameHorse.AbstractHorseMixin",
+    "rules.toughTurtleEgg.TurtleEggBlockMixin"
   ],
   "client": [
   ],

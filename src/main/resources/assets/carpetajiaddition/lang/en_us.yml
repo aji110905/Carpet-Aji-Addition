@@ -89,6 +89,8 @@ carpetajiaddition:
         desc: "Can use the /mods command."
       safeMagmaBlock:
         desc: "You no longer take damage when standing on magma blocks."
+      toughTurtleEgg:
+        desc: "Turtle eggs cannot be broken by stepping on them."
 
       #-----------------
       #The rules below are recipe rules.

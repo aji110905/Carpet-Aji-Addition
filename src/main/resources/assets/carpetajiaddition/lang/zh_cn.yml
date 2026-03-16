@@ -99,6 +99,9 @@ carpetajiaddition:
       safeMagmaBlock:
         name: "不烫脚的岩浆块"
         desc: "当你站在岩浆块时不会再掉血。"
+      toughTurtleEgg:
+        name: "坚韧海龟蛋"
+        desc: "海龟蛋不会被踩碎。"
 
     #-----------------
     #下方的规则为配方规则
