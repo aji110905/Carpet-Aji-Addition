@@ -11,12 +11,7 @@ import net.minecraft.network.chat.Component;
 
 import java.io.*;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
 
 public class RecipeRule implements CarpetRule<Boolean> {
     public static String PATH;
@@ -86,6 +81,7 @@ public class RecipeRule implements CarpetRule<Boolean> {
 
     @Override
     public void set(CommandSourceStack source, Boolean value) throws InvalidRuleValueException {
+        if (PATH == null) return;
         try {
             Map<String, String> recipeFiles = IOUtil.readAllFilesFromResource("assets/carpetajiaddition/RecipesTweak/" + name);
             if (value != null) {
