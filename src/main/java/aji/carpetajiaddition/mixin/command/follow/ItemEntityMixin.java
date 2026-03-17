@@ -2,6 +2,7 @@ package aji.carpetajiaddition.mixin.command.follow;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import aji.carpetajiaddition.commands.FollowCommand;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.ServerScoreboard;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -27,7 +28,11 @@ public abstract class ItemEntityMixin extends Entity implements TraceableEntity 
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void tick(CallbackInfo ci) {
-        ServerScoreboard scoreboard = CarpetAjiAdditionSettings.minecraftServer.getScoreboard();
+        MinecraftServer server = getServer();
+        if (server == null) {
+            return;
+        }
+        ServerScoreboard scoreboard = server.getScoreboard();
         PlayerTeam team = scoreboard.getPlayerTeam("followItems");
         if (team == null) {
             return;
