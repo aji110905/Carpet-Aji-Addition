@@ -1,7 +1,5 @@
 package aji.carpetajiaddition.util;
 
-import aji.carpetajiaddition.settings.RecipeRule;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -22,7 +20,7 @@ public class IOUtil {
 
     public static Map<String, String> readAllFilesFromResource(String path) throws IOException, URISyntaxException {
         Map<String, String> fileMap = new HashMap<>();
-        URL url = RecipeRule.class.getClassLoader().getResource(path);
+        URL url = IOUtil.class.getClassLoader().getResource(path);
         if ("jar".equals(url.getProtocol())) {
             String jarPath = URLDecoder.decode(url.getPath().split("!")[0].substring(5), StandardCharsets.UTF_8);
             JarFile jar = new JarFile(jarPath);
