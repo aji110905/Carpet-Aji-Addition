@@ -2,6 +2,7 @@ package aji.carpetajiaddition.commands;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import aji.carpetajiaddition.data.FollowCommandData;
+import aji.carpetajiaddition.util.ResourceLocationUtil;
 import aji.carpetajiaddition.util.translations.TranslationsKey;
 import carpet.utils.CommandHelper;
 import com.mojang.brigadier.CommandDispatcher;
@@ -38,7 +39,7 @@ public class FollowCommand {
                         .then(literal("remove")
                                 .then(argument("followItem", StringArgumentType.greedyString())
                                         .suggests((CommandContext<CommandSourceStack> context, SuggestionsBuilder builder) -> {
-                                            data.getFollowItems().forEach(item -> builder.suggest(BuiltInRegistries.ITEM.getKey(item).toString()));
+                                            data.getFollowItems().forEach(item -> builder.suggest(ResourceLocationUtil.getItemRegistryName(item)));
                                             return builder.buildFuture();
                                         })
                                         .executes(FollowCommand::remove)))
