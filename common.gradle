@@ -34,10 +34,9 @@ dependencies {
     include(implementation 'org.yaml:snakeyaml:2.2')
 }
 
-String fullModVersion = project.mod_version
-
+String fullModVersion = "1.2.2"
 version = 'v' + fullModVersion
-group = project.maven_group
+group = "aji.carpetajiaddition"
 
 processResources {
     inputs.property "version", project.version
@@ -56,7 +55,7 @@ java {
     targetCompatibility = JavaVersion.VERSION_21
 }
 
-String jarName = project.archives_base_name + '-v' + project.mod_version + '-mc' + project.minecraft_version
+String jarName = "carpet-aji-addition" + '-' + version + '-mc' + project.minecraft_version
 
 jar {
     from("LICENSE") {
