@@ -19,6 +19,10 @@ repositories {
 
 loom{
     accessWidenerPath = file("carpetajiaddition.accesswidener")
+
+    runConfigs.all {
+        ideConfigGenerated = true
+    }
 }
 
 dependencies {
