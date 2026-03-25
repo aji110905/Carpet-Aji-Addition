@@ -1,10 +1,7 @@
 apply plugin: 'fabric-loom'
 apply plugin: 'com.replaymod.preprocess'
 
-int mcVersion = 1
-
 preprocess {
-    mcVersion = vars.get()["MC"] as int
     tabIndentation = true
 }
 
