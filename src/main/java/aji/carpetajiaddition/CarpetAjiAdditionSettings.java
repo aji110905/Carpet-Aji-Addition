@@ -1,6 +1,7 @@
 package aji.carpetajiaddition;
 
 import aji.carpetajiaddition.data.DataManager;
+import aji.carpetajiaddition.settings.validators.observer.RecipeRuleObserve;
 import carpet.api.settings.Rule;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.server.MinecraftServer;
@@ -49,4 +50,10 @@ public class CarpetAjiAdditionSettings {
 
     @Rule(categories = {CAA, COMMAND})
     public static String commandMods = "0";
+
+    @Rule(categories = {CAA, RECIPE}, validators = RecipeRuleObserve.class)
+    public static boolean dragonEggRecipe = false;
+
+    @Rule(categories = {CAA, RECIPE}, validators = RecipeRuleObserve.class)
+    public static boolean dragonBreathRecipe = false;
 }

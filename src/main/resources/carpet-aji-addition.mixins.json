@@ -6,9 +6,9 @@
   "mixins": [
     "MinecraftServerMixin",
     "ReloadCommandMixin",
-    "carpet.CarpetServerMixin",
     "carpet.SettingsManagerMixin",
     "command.follow.ItemEntityMixin",
+    "recipe.RecipeManagerMixin",
     "rules.cactusWrench.BlockItemMixin",
     "rules.endlessVault.VaultServerDataMixin",
     "rules.glowingHopperMinecart.MinecartHopperMixin",
