@@ -4,8 +4,8 @@
   "package": "aji.carpetajiaddition.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "MinecraftServerMixin",
-    "ReloadCommandMixin",
+    "data.MinecraftServerMixin",
+    "data.ReloadCommandMixin",
     "carpet.SettingsManagerMixin",
     "command.follow.ItemEntityMixin",
     "recipe.RecipeManagerMixin",
