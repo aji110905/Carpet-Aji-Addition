@@ -8,7 +8,7 @@
     "data.ReloadCommandMixin",
     "carpet.SettingsManagerMixin",
     "command.follow.ItemEntityMixin",
-    "recipe.RecipeManagerMixin",
+    "rules.recipeRule.RecipeManagerMixin",
     "rules.cactusWrench.BlockItemMixin",
     "rules.endlessVault.VaultServerDataMixin",
     "rules.glowingHopperMinecart.MinecartHopperMixin",
