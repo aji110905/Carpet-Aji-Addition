@@ -30,8 +30,8 @@ dependencies {
     mappings loom.layered() {
         officialMojangMappings()
     }
-    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    implementation("carpet:fabric-carpet:${project.carpet_core_version}")
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation("carpet:fabric-carpet:${project.carpet_core_version}")
     include(implementation 'org.yaml:snakeyaml:2.2')
 }
 
