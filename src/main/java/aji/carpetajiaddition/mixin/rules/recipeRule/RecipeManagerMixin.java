@@ -1,4 +1,5 @@
 package aji.carpetajiaddition.mixin.rules.recipeRule;
+
 import aji.carpetajiaddition.recipe.CustomRecipes;
 import aji.carpetajiaddition.recipe.RecipeManager;
 import com.google.gson.JsonElement;

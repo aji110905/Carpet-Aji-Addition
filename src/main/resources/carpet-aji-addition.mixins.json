@@ -13,6 +13,7 @@
     "rules.glowingHopperMinecart.MinecartHopperMixin",
     "rules.lockAllHopper.HopperBlockEntityMixin",
     "rules.lockAllHopperMinecart.MinecartHopperMixin",
+    "rules.recipeRule.RecipeManagerAccessor",
     "rules.recipeRule.RecipeManagerMixin",
     "rules.removeEnderPearlDamage.ThrownEnderPearlMixin",
     "rules.safeMagmaBlock.MagmaBlockMixin",
