@@ -17,11 +17,6 @@ import java.util.Map;
 
 public class CarpetAjiAddition implements CarpetExtension {
     @Override
-    public void onPlayerLoggedIn(ServerPlayer player) {
-        CustomRecipes.onPlayerLoggedIn(player);
-    }
-
-    @Override
     public void onGameStarted() {
         CarpetServer.settingsManager.parseSettingsClass(CarpetAjiAdditionSettings.class);
     }
@@ -38,6 +33,11 @@ public class CarpetAjiAddition implements CarpetExtension {
     public void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, final CommandBuildContext commandBuildContext) {
         FollowCommand.register(dispatcher, commandBuildContext);
         ModsCommand.register(dispatcher, commandBuildContext);
+    }
+
+    @Override
+    public void onPlayerLoggedIn(ServerPlayer player) {
+        CustomRecipes.onPlayerLoggedIn(player);
     }
 
     @Override
