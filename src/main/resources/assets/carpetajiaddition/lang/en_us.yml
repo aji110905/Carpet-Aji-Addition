@@ -91,6 +91,8 @@ carpetajiaddition:
         desc: "You no longer take damage when standing on magma blocks."
       toughTurtleEgg:
         desc: "Turtle eggs cannot be broken by stepping on them."
+      removeEnderPearlDamage:
+        desc: "The ender Portal pearl will not cause damage after transmission"
 
       #-----------------
       #The rules below are recipe rules.

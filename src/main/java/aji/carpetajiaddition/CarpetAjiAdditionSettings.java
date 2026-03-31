@@ -45,6 +45,9 @@ public class CarpetAjiAdditionSettings {
     @Rule(categories = {CAA, SURVIVAL, FEATURE})
     public static boolean toughTurtleEgg = false;
 
+    @Rule(categories = {CAA, SURVIVAL, FEATURE})
+    public static boolean removeEnderPearlDamage = false;
+
     @Rule(categories = {CAA, COMMAND})
     public static String commandFollow = "ops";
 
