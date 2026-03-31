@@ -2,7 +2,6 @@ package aji.carpetajiaddition.mixin.rules.glowingHopperMinecart;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import net.minecraft.ChatFormatting;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.ServerScoreboard;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.vehicle.AbstractMinecartContainer;
@@ -31,11 +30,10 @@ public abstract class MinecartHopperMixin extends AbstractMinecartContainer impl
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void tick(CallbackInfo ci) {
-        MinecraftServer server = getServer();
-        if (server == null) {
+        if (CarpetAjiAdditionSettings.minecraftServer == null) {
             return;
         }
-        ServerScoreboard scoreboard = server.getScoreboard();
+        ServerScoreboard scoreboard = CarpetAjiAdditionSettings.minecraftServer.getScoreboard();
         if (!CarpetAjiAdditionSettings.glowingHopperMinecart) {
             PlayerTeam enabled = scoreboard.getPlayerTeam("enabled_hopper_minecraft");
             if (enabled != null) {

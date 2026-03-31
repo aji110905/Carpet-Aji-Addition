@@ -37,7 +37,11 @@ public class CustomRecipes {
             CarpetAjiAdditionSettings.minecraftServer.execute(() -> {
                 needReloadServerResources();
                 for (RecipeHolder<?> recipe : CarpetAjiAdditionSettings.minecraftServer.getRecipeManager().getRecipes()) {
+                    //#if MC < 12102
                     if (recipe.id().getNamespace().equals(CarpetAjiAdditionSettings.MOD_ID)) {
+                    //#else
+                    //$$ if (recipe.id().location().getNamespace().equals(CarpetAjiAdditionSettings.MOD_ID)) {
+                    //#endif
                         for (ServerPlayer player : CarpetAjiAdditionSettings.minecraftServer.getPlayerList().getPlayers()) {
                             if (!player.getRecipeBook().contains(recipe.id())) {
                                 player.awardRecipes(List.of(recipe));
@@ -52,7 +56,11 @@ public class CustomRecipes {
     public static void onPlayerLoggedIn(ServerPlayer player){
         if (MinecraftServerUtil.serverIsRunning() && hasActiveRecipeRule()) {
             for (RecipeHolder<?> recipe : CarpetAjiAdditionSettings.minecraftServer.getRecipeManager().getRecipes()) {
+                //#if MC < 12102
                 if (recipe.id().getNamespace().equals(CarpetAjiAdditionSettings.MOD_ID) && !player.getRecipeBook().contains(recipe.id())) {
+                //#else
+                //$$ if (recipe.id().location().getNamespace().equals(CarpetAjiAdditionSettings.MOD_ID) && !player.getRecipeBook().contains(recipe.id())) {
+                //#endif
                     player.awardRecipes(List.of(recipe));
                 }
             }
