@@ -12,5 +12,8 @@
 | 1.21-1.21.11 |   https://github.com/aji110905/Carpet-Aji-Addition    |
 |    26.1+     | https://github.com/aji110905/Carpet-Aji-Addition-26.1 |
 
+## 官网
+https://aji110905.github.io/Carpet-Aji-Addition-Web
+
 ## 许可
 此项目在 [MIT许可证](https://opensource.org/licenses/MIT) 下可用,您可以随意从中学习并将其纳入您自己的项目中。
