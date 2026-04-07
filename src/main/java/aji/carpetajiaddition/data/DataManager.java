@@ -5,6 +5,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtIo;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Set;
 
@@ -16,9 +17,14 @@ public class DataManager {
 
     public DataManager(Path path) {
         this.path = path;
-        if(!this.path.toFile().exists()){
+        File file = path.toFile();
+        if(!file.exists()){
             try {
-                path.toFile().createNewFile();
+                Path parent = path.getParent();
+                if(!parent.toFile().exists()){
+                    Files.createDirectories(parent);
+                }
+                file.createNewFile();
             } catch (IOException e) {
                 CarpetAjiAdditionSettings.LOGGER.error("Failed to create data file", e);
             }
