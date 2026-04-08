@@ -105,6 +105,9 @@ carpetajiaddition:
       removeEnderPortalDamage:
         name: "移除末影珍珠伤害"
         desc: "末影珍珠传送后不会造成伤害"
+      betterLogCommand:
+        name: "更详好的Log命令"
+        desc: "服务器重启后玩家不需要重新使用log命令"
 
     #-----------------
     #下方的规则为配方规则

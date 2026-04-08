@@ -12,7 +12,8 @@ import java.util.Set;
 public class DataManager {
     private final Path path;
     private final Set<Data> All_DATA = Set.of(
-            new FollowCommandData()
+            new FollowCommandData(),
+            new BetterLogCommandData()
     );
 
     public DataManager(Path path) {

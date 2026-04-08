@@ -8,6 +8,7 @@
     "command.follow.ItemEntityMixin",
     "hooks.MinecraftServerMixin",
     "hooks.ReloadCommandMixin",
+    "rules.betterLogCommand.LoggerRegistryAccessor",
     "rules.cactusWrench.BlockItemMixin",
     "rules.endlessVault.VaultServerDataMixin",
     "rules.glowingHopperMinecart.MinecartHopperMixin",

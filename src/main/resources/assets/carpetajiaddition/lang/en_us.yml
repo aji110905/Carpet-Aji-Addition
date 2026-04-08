@@ -93,6 +93,8 @@ carpetajiaddition:
         desc: "Turtle eggs cannot be broken by stepping on them."
       removeEnderPearlDamage:
         desc: "The ender Portal pearl will not cause damage after transmission"
+      betterLogCommand:
+        desc: "After the server restarts, players do not need to use the log command again"
 
       #-----------------
       #The rules below are recipe rules.

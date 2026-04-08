@@ -55,6 +55,10 @@ public class CarpetAjiAdditionSettings {
     @Rule(categories = {CAA, SURVIVAL, FEATURE})
     public static boolean removeEnderPearlDamage = false;
 
+    @Rule(categories = {CAA})
+    @MustSetDefault
+    public static boolean betterLogCommand = false;
+
     @Rule(categories = {CAA, COMMAND})
     public static String commandFollow = "ops";
 
