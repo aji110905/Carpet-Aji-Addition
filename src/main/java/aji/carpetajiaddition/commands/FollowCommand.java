@@ -17,6 +17,7 @@ import net.minecraft.commands.arguments.ColorArgument;
 import net.minecraft.commands.arguments.item.ItemArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.ServerScoreboard;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.scores.PlayerTeam;
 
@@ -132,7 +133,14 @@ public class FollowCommand {
     }
 
     public static void init(){
-        PlayerTeam followItems = CarpetAjiAdditionSettings.minecraftServer.getScoreboard().addPlayerTeam("followItems");
+        ServerScoreboard scoreboard = CarpetAjiAdditionSettings.minecraftServer.getScoreboard();
+        PlayerTeam followItems;
+        PlayerTeam team = scoreboard.getPlayerTeam("followItems");
+        if (team == null){
+            followItems = scoreboard.addPlayerTeam("followItems");
+        } else {
+            followItems = team;
+        }
         data = (FollowCommandData) CarpetAjiAdditionSettings.data.getData(FollowCommandData.DATA_NAME);
         followItems.setColor(data.getColor());
     }
