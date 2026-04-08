@@ -11,7 +11,7 @@ import java.util.Set;
 
 public class DataManager {
     private final Path path;
-    private final Set<Data> All_DATA = Set.of(
+    private final Set<Data> Datas = Set.of(
             new FollowCommandData(),
             new BetterLogCommandData()
     );
@@ -36,7 +36,7 @@ public class DataManager {
 
     public void saveData(){
         CompoundTag compound = new CompoundTag();
-        for (Data data : All_DATA) {
+        for (Data data : Datas) {
             compound.put(data.name(), data.toNbt());
         }
         try {
@@ -49,7 +49,7 @@ public class DataManager {
     public void loadData(){
         try {
             CompoundTag compound = NbtIo.read(path);
-            for (Data data : All_DATA) {
+            for (Data data : Datas) {
                 data.load(compound.get(data.name()));
             }
         } catch (IOException e) {
@@ -58,7 +58,7 @@ public class DataManager {
     }
 
     public Data getData(String dataName){
-        for (Data data : All_DATA) {
+        for (Data data : Datas) {
             if (data.name().equals(dataName)){
                 return data;
             }
