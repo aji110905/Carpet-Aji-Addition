@@ -1,4 +1,4 @@
-package aji.carpetajiaddition.mixin.settings;
+package aji.carpetajiaddition.mixin.hooks;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import net.minecraft.commands.CommandSource;
