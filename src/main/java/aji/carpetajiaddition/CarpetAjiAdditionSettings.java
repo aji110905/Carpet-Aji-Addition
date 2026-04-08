@@ -1,7 +1,7 @@
 package aji.carpetajiaddition;
 
 import aji.carpetajiaddition.data.DataManager;
-import aji.carpetajiaddition.settings.validators.observer.RecipeRuleObserve;
+import aji.carpetajiaddition.validators.observer.RecipeRuleObserve;
 import carpet.api.settings.Rule;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.server.MinecraftServer;

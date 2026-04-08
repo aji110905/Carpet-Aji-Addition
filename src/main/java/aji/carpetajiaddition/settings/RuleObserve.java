@@ -1,11 +1,11 @@
-package aji.carpetajiaddition.settings.validators.observer;
+package aji.carpetajiaddition.settings;
 
 import carpet.api.settings.CarpetRule;
 import carpet.api.settings.Validator;
 import net.minecraft.commands.CommandSourceStack;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class AbstractRuleObserve<T> extends Validator<T> {
+public abstract class RuleObserve<T> extends Validator<T> {
     @Override
     public T validate(@Nullable CommandSourceStack source, CarpetRule<T> changingRule, T newValue, String userInput) {
         onRuleValueChanged(source, changingRule, newValue, userInput);
