@@ -35,9 +35,22 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
         ModsCommand.register(dispatcher, commandBuildContext);
     }
 
+    public void onSave() {
+        CarpetAjiAdditionSettings.data.saveData();
+    }
+
+    public void onReload() {
+        CarpetAjiAdditionSettings.data.loadData();
+    }
+
     @Override
     public void onPlayerLoggedIn(ServerPlayer player) {
         CustomRecipes.onPlayerLoggedIn(player);
+    }
+
+    public void afterServerClose() {
+        CarpetAjiAdditionSettings.minecraftServer = null;
+        CarpetAjiAdditionSettings.data = null;
     }
 
     @Override

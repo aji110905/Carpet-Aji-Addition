@@ -1,4 +1,4 @@
-package aji.carpetajiaddition.mixin.data;
+package aji.carpetajiaddition.mixin.settings;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import net.minecraft.commands.CommandSource;
@@ -10,6 +10,7 @@ import net.minecraft.world.level.chunk.storage.ChunkIOErrorReporter;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(MinecraftServer.class)
@@ -18,8 +19,13 @@ public abstract class MinecraftServerMixin extends ReentrantBlockableEventLoop<T
         super(string);
     }
 
+    @Inject(method = "close", at = @At("RETURN"))
+    private void close(CallbackInfo ci) {
+        CarpetAjiAdditionSettings.EXTENSION.afterServerClose();
+    }
+
     @Inject(method = "saveEverything", at = @At("HEAD"))
     private void saveEverything(boolean suppressLogs, boolean flush, boolean force, CallbackInfoReturnable<Boolean> cir) {
-        CarpetAjiAdditionSettings.data.saveData();
+        CarpetAjiAdditionSettings.EXTENSION.onSave();
     }
 }
