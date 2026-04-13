@@ -49,6 +49,11 @@ public class DataManager {
     public void loadData(){
         try {
             CompoundTag compound = NbtIo.read(path);
+            if (compound == null) {
+                saveData();
+                CarpetAjiAdditionSettings.LOGGER.warn("Data file is empty, saving default data");
+                return;
+            }
             for (Data data : dataSet) {
                 data.load(compound.get(data.name()));
             }

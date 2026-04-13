@@ -5,6 +5,7 @@ import aji.carpetajiaddition.mixin.rules.betterLogCommand.LoggerRegistryAccessor
 import carpet.logging.LoggerRegistry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 
@@ -36,7 +37,10 @@ public class BetterLogCommandData implements Data{
     }
 
     @Override
-    public void load(Tag tag) {
+    public void load(@Nullable Tag tag) {
+        if (tag == null) {
+            return;
+        }
         if (isFirstLoad && CarpetAjiAdditionSettings.betterLogCommand) {
             CompoundTag tag1 = (CompoundTag) tag;
             for (String string : tag1.getAllKeys()) {

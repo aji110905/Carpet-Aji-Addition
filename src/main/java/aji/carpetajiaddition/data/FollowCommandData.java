@@ -8,6 +8,7 @@ import net.minecraft.nbt.IntTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -36,13 +37,22 @@ public class FollowCommandData implements Data {
     }
 
     @Override
-    public void load(Tag tag) {
+    public void load(@Nullable Tag tag) {
+        if (tag == null) {
+            return;
+        }
         followItems.clear();
         CompoundTag compound = (CompoundTag) tag;
-        for (Tag intTag : ((ListTag) compound.get("followItems"))) {
-            followItems.add(Item.byId(((IntTag) intTag).getAsInt()));
+        ListTag followItemsTag = (ListTag) compound.get("followItems");
+        if (followItemsTag != null) {
+            for (Tag intTag : followItemsTag) {
+                followItems.add(Item.byId(((IntTag) intTag).getAsInt()));
+            }
         }
-        color = ChatFormatting.getById(((IntTag)compound.get("color")).getAsInt());
+        IntTag colorTag = (IntTag) compound.get("color");
+        if (colorTag != null) {
+            color = ChatFormatting.getById(colorTag.getAsInt());
+        }
     }
 
     public Set<Item> getFollowItems() {
