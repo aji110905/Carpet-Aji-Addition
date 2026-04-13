@@ -24,7 +24,7 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
     @Override
     public void onServerLoadedWorlds(MinecraftServer server) {
         CarpetAjiAdditionSettings.minecraftServer = server;
-        CarpetAjiAdditionSettings.data = new DataManager(CarpetAjiAdditionSettings.minecraftServer.getWorldPath(LevelResource.ROOT).getParent().resolve("data/carpetajiaddition.dat"));
+        CarpetAjiAdditionSettings.data = new DataManager(CarpetAjiAdditionSettings.minecraftServer.getWorldPath(LevelResource.ROOT).getParent().resolve("data/" + CarpetAjiAdditionSettings.MOD_ID + ".dat"));
         FollowCommand.init();
         CustomRecipes.needReloadServerResources();
     }
