@@ -1,7 +1,6 @@
 package aji.carpetajiaddition.data;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
-import aji.carpetajiaddition.commands.FollowCommand;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.IntTag;
@@ -60,15 +59,11 @@ public class FollowCommandData implements Data {
     }
 
     public boolean addToFollowItems(Item Item) {
-        boolean bl = followItems.add(Item);
-        FollowCommand.data = this;
-        return bl;
+        return followItems.add(Item);
     }
 
     public boolean removeFromFollowItems(Item Item) {
-        boolean bl = followItems.remove(Item);
-        FollowCommand.data = this;
-        return bl;
+        return followItems.remove(Item);
     }
 
     public ChatFormatting getColor() {
@@ -78,6 +73,9 @@ public class FollowCommandData implements Data {
     public void setColor(ChatFormatting color) {
         this.color = color;
         CarpetAjiAdditionSettings.minecraftServer.getScoreboard().getPlayerTeam("followItems").setColor(color);
-        FollowCommand.data = this;
+    }
+
+    public static FollowCommandData getInstance(){
+        return (FollowCommandData) CarpetAjiAdditionSettings.data.getData(DATA_NAME);
     }
 }

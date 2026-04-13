@@ -28,8 +28,6 @@ import static net.minecraft.commands.Commands.argument;
 import static net.minecraft.commands.Commands.literal;
 
 public class FollowCommand {
-    public static FollowCommandData data;
-
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher, final CommandBuildContext commandBuildContext){
         dispatcher.register(
                 literal("follow")
@@ -40,7 +38,7 @@ public class FollowCommand {
                         .then(literal("remove")
                                 .then(argument("followItem", StringArgumentType.greedyString())
                                         .suggests((CommandContext<CommandSourceStack> context, SuggestionsBuilder builder) -> {
-                                            data.getFollowItems().forEach(item -> builder.suggest(ResourceLocationUtil.getItemRegistryName(item)));
+                                            FollowCommandData.getInstance().getFollowItems().forEach(item -> builder.suggest(ResourceLocationUtil.getItemRegistryName(item)));
                                             return builder.buildFuture();
                                         })
                                         .executes(FollowCommand::remove)))
@@ -57,10 +55,9 @@ public class FollowCommand {
 
     private static int add(CommandContext<CommandSourceStack> context){
         Item item = ItemArgument.getItem(context, "item").getItem();
-        boolean bl = data.addToFollowItems(item);
         Component displayName = item.getDefaultInstance().getDisplayName();
         CommandSourceStack source = context.getSource();
-        if (bl){
+        if (FollowCommandData.getInstance().addToFollowItems(item)){
             source.sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "add.feedback", displayName), true);
             return 1;
         }else {
@@ -77,10 +74,9 @@ public class FollowCommand {
             //#else
             //$$ Item item = BuiltInRegistries.ITEM.get(resourceLocation).get().value();
             //#endif
-            boolean bl = data.removeFromFollowItems(item);
             Component displayName = item.getDefaultInstance().getDisplayName();
             CommandSourceStack source = context.getSource();
-            if (bl){
+            if (FollowCommandData.getInstance().removeFromFollowItems(item)){
                 source.sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "remove.feedback", displayName), true);
                 return 1;
             }else {
@@ -92,6 +88,7 @@ public class FollowCommand {
     }
 
     private static int list(CommandContext<CommandSourceStack> context){
+        FollowCommandData data = FollowCommandData.getInstance();
         CommandSourceStack source = context.getSource();
         if (data.getFollowItems().isEmpty()) {
             source.sendFailure(trComponent(TranslationsKey.CMD_FOLLOW + "list.error"));
@@ -115,6 +112,7 @@ public class FollowCommand {
     }
 
     private static int setColor(CommandContext<CommandSourceStack> context){
+        FollowCommandData data = FollowCommandData.getInstance();
         CommandSourceStack source = context.getSource();
         ChatFormatting color = ColorArgument.getColor(context, "color");
         if (data.getColor().equals(color)) {
@@ -128,20 +126,16 @@ public class FollowCommand {
     }
 
     private static int showColor(CommandContext<CommandSourceStack> context){
-        context.getSource().sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "color.show.feedback", trComponent(data.getColor(), true)), true);
+        context.getSource().sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "color.show.feedback", trComponent(FollowCommandData.getInstance().getColor(), true)), true);
         return 1;
     }
 
     public static void init(){
         ServerScoreboard scoreboard = CarpetAjiAdditionSettings.minecraftServer.getScoreboard();
-        PlayerTeam followItems;
         PlayerTeam team = scoreboard.getPlayerTeam("followItems");
         if (team == null){
-            followItems = scoreboard.addPlayerTeam("followItems");
-        } else {
-            followItems = team;
+            team = scoreboard.addPlayerTeam("followItems");
         }
-        data = (FollowCommandData) CarpetAjiAdditionSettings.data.getData(FollowCommandData.DATA_NAME);
-        followItems.setColor(data.getColor());
+        team.setColor(FollowCommandData.getInstance().getColor());
     }
 }

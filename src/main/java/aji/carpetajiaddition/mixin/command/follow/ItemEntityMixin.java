@@ -1,7 +1,7 @@
 package aji.carpetajiaddition.mixin.command.follow;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
-import aji.carpetajiaddition.commands.FollowCommand;
+import aji.carpetajiaddition.data.FollowCommandData;
 import net.minecraft.server.ServerScoreboard;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -35,7 +35,7 @@ public abstract class ItemEntityMixin extends Entity implements TraceableEntity 
         if (team == null) {
             return;
         }
-        if (FollowCommand.data.getFollowItems().contains(getItem().getItem())) {
+        if (FollowCommandData.getInstance().getFollowItems().contains(getItem().getItem())) {
             scoreboard.addPlayerToTeam(getUUID().toString(), team);
             setGlowingTag(true);
         } else {
