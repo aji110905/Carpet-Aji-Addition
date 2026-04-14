@@ -3,6 +3,8 @@ package aji.carpetajiaddition.data;
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtIo;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.level.storage.LevelResource;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -16,8 +18,8 @@ public class DataManager {
             new BetterLogCommandData()
     );
 
-    public DataManager(Path path) {
-        this.path = path;
+    public DataManager(MinecraftServer server) {
+        this.path = server.getWorldPath(LevelResource.ROOT).getParent().resolve("data/" + CarpetAjiAdditionSettings.MOD_ID + ".dat");
         File file = path.toFile();
         if(!file.exists()){
             try {

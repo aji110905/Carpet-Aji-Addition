@@ -12,7 +12,6 @@ import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.storage.LevelResource;
 import java.util.Map;
 
 public class CarpetAjiAdditionExtension implements CarpetExtension {
@@ -24,8 +23,8 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
     @Override
     public void onServerLoadedWorlds(MinecraftServer server) {
         CarpetAjiAdditionSettings.minecraftServer = server;
-        CarpetAjiAdditionSettings.data = new DataManager(CarpetAjiAdditionSettings.minecraftServer.getWorldPath(LevelResource.ROOT).getParent().resolve("data/" + CarpetAjiAdditionSettings.MOD_ID + ".dat"));
-        FollowCommand.init();
+        CarpetAjiAdditionSettings.data = new DataManager(server);
+        FollowCommand.init(server);
         RecipeManager.needReloadServerResources();
     }
 
