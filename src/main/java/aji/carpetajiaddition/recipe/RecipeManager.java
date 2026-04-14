@@ -4,12 +4,12 @@ import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import aji.carpetajiaddition.recipe.builder.ShapedRecipeBuilder;
 import aji.carpetajiaddition.recipe.template.ShapedRecipeTemplate;
 import aji.carpetajiaddition.settings.RuleCategory;
-import aji.carpetajiaddition.util.MinecraftServerUtil;
 import carpet.api.settings.Rule;
 //#if MC < 12102
 import com.google.gson.JsonElement;
 //#endif
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.crafting.RecipeHolder;
 //#if MC >= 12102
@@ -24,11 +24,6 @@ import java.util.List;
 import java.util.Map;
 
 import static net.minecraft.world.item.Items.*;
-import static net.minecraft.world.item.Items.DRAGON_BREATH;
-import static net.minecraft.world.item.Items.DRAGON_EGG;
-import static net.minecraft.world.item.Items.EGG;
-import static net.minecraft.world.item.Items.END_CRYSTAL;
-import static net.minecraft.world.item.Items.GLASS_BOTTLE;
 
 public class RecipeManager {
     private static final List<ShapedRecipeTemplate> shapedRecipeList = new ArrayList<>();
@@ -65,37 +60,41 @@ public class RecipeManager {
                 .output(DRAGON_BREATH, 1).build();
     }
 
-    public static void onRuleValueChanged(){
-        if (MinecraftServerUtil.serverIsRunning()) {
-            RecipeManager.clearRecipeListMemory();
-            buildRecipes();
-            CarpetAjiAdditionSettings.minecraftServer.execute(() -> {
-                needReloadServerResources();
-                for (RecipeHolder<?> recipe : CarpetAjiAdditionSettings.minecraftServer.getRecipeManager().getRecipes()) {
-                    //#if MC < 12102
-                    if (recipe.id().getNamespace().equals(CarpetAjiAdditionSettings.MOD_ID)) {
-                        //#else
-                        //$$ if (recipe.id().location().getNamespace().equals(CarpetAjiAdditionSettings.MOD_ID)) {
-                        //#endif
-                        for (ServerPlayer player : CarpetAjiAdditionSettings.minecraftServer.getPlayerList().getPlayers()) {
-                            if (!player.getRecipeBook().contains(recipe.id())) {
-                                player.awardRecipes(List.of(recipe));
-                            }
+    public static void onRuleValueChanged(MinecraftServer server){
+        clearRecipeListMemory();
+        buildRecipes();
+        server.execute(() -> {
+            needReloadServerResources(server);
+            for (RecipeHolder<?> recipe : server.getRecipeManager().getRecipes()) {
+                //#if MC < 12102
+                if (recipe.id().getNamespace().equals(CarpetAjiAdditionSettings.MOD_ID)) {
+                //#else
+                //$$ if (recipe.id().location().getNamespace().equals(CarpetAjiAdditionSettings.MOD_ID)) {
+                //#endif
+                    for (ServerPlayer player : server.getPlayerList().getPlayers()) {
+                        if (!player.getRecipeBook().contains(recipe.id())) {
+                            player.awardRecipes(List.of(recipe));
                         }
                     }
                 }
-            });
-        }
+            }
+        });
     }
 
     public static void onPlayerLoggedIn(ServerPlayer player){
-        if (MinecraftServerUtil.serverIsRunning() && hasActiveRecipeRule()) {
-            for (RecipeHolder<?> recipe : CarpetAjiAdditionSettings.minecraftServer.getRecipeManager().getRecipes()) {
+        //#if MC < 12109
+        MinecraftServer server = player.getServer();
+        if (hasActiveRecipeRule() && server != null) {
+        //#else
+        //$$ MinecraftServer server = player.level().getServer();
+        //$$ if (hasActiveRecipeRule()) {
+        //#endif
+            for (RecipeHolder<?> recipe : server.getRecipeManager().getRecipes()) {
                 //#if MC < 12102
                 if (recipe.id().getNamespace().equals(CarpetAjiAdditionSettings.MOD_ID) && !player.getRecipeBook().contains(recipe.id())) {
-                    //#else
-                    //$$ if (recipe.id().location().getNamespace().equals(CarpetAjiAdditionSettings.MOD_ID) && !player.getRecipeBook().contains(recipe.id())) {
-                    //#endif
+                //#else
+                //$$ if (recipe.id().location().getNamespace().equals(CarpetAjiAdditionSettings.MOD_ID) && !player.getRecipeBook().contains(recipe.id())) {
+                //#endif
                     player.awardRecipes(List.of(recipe));
                 }
             }
@@ -119,9 +118,9 @@ public class RecipeManager {
         return false;
     }
 
-    public static void needReloadServerResources() {
-        if (MinecraftServerUtil.serverIsRunning() && hasActiveRecipeRule()) {
-            CarpetAjiAdditionSettings.minecraftServer.reloadResources(CarpetAjiAdditionSettings.minecraftServer.getPackRepository().getSelectedIds());
+    public static void needReloadServerResources(MinecraftServer server) {
+        if (hasActiveRecipeRule()) {
+            server.reloadResources(server.getPackRepository().getSelectedIds());
         }
     }
 }

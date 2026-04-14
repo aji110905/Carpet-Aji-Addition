@@ -25,7 +25,7 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
         CarpetAjiAdditionSettings.minecraftServer = server;
         CarpetAjiAdditionSettings.data = new DataManager(server);
         FollowCommand.init(server);
-        RecipeManager.needReloadServerResources();
+        RecipeManager.needReloadServerResources(server);
     }
 
     @Override

@@ -10,6 +10,8 @@ public class RecipeRuleObserve extends RuleObserve<Boolean> {
 
     @Override
     public void onRuleValueChanged(@Nullable CommandSourceStack source, CarpetRule<Boolean> changingRule, Boolean newValue, String userInput) {
-        RecipeManager.onRuleValueChanged();
+        if (source != null) {
+            RecipeManager.onRuleValueChanged(source.getServer());
+        }
     }
 }
