@@ -6,7 +6,9 @@ import aji.carpetajiaddition.recipe.template.ShapedRecipeTemplate;
 import aji.carpetajiaddition.settings.RuleCategory;
 import aji.carpetajiaddition.util.MinecraftServerUtil;
 import carpet.api.settings.Rule;
+//#if MC < 12102
 import com.google.gson.JsonElement;
+//#endif
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.crafting.RecipeHolder;
