@@ -22,7 +22,6 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
 
     @Override
     public void onServerLoadedWorlds(MinecraftServer server) {
-        CarpetAjiAdditionSettings.minecraftServer = server;
         CarpetAjiAdditionSettings.data = new DataManager(server);
         FollowCommand.init(server);
         RecipeManager.needReloadServerResources(server);
@@ -48,7 +47,6 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
     }
 
     public void afterServerClose() {
-        CarpetAjiAdditionSettings.minecraftServer = null;
         CarpetAjiAdditionSettings.data = null;
     }
 

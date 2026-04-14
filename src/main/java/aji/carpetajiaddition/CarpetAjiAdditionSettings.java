@@ -5,7 +5,6 @@ import aji.carpetajiaddition.settings.MustSetDefault;
 import aji.carpetajiaddition.validators.observer.RecipeRuleObserve;
 import carpet.api.settings.Rule;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.server.MinecraftServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,7 +21,6 @@ public class CarpetAjiAdditionSettings {
     public static final String VERSION = FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow().getMetadata().getVersion().toString();
     public static final CarpetAjiAdditionExtension EXTENSION = new CarpetAjiAdditionExtension();
     public static final Set<String> MUST_SET_DEFAULT_RULES = new HashSet<>();
-    public static MinecraftServer minecraftServer = null;
     public static DataManager data = null;
 
     @Rule(categories = {CAA, CREATIVE})
