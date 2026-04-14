@@ -1,6 +1,6 @@
 package aji.carpetajiaddition.validators.observer;
 
-import aji.carpetajiaddition.recipe.CustomRecipes;
+import aji.carpetajiaddition.recipe.RecipeManager;
 import aji.carpetajiaddition.settings.RuleObserve;
 import carpet.api.settings.CarpetRule;
 import net.minecraft.commands.CommandSourceStack;
@@ -10,6 +10,6 @@ public class RecipeRuleObserve extends RuleObserve<Boolean> {
 
     @Override
     public void onRuleValueChanged(@Nullable CommandSourceStack source, CarpetRule<Boolean> changingRule, Boolean newValue, String userInput) {
-        CustomRecipes.onRuleValueChanged();
+        RecipeManager.onRuleValueChanged();
     }
 }

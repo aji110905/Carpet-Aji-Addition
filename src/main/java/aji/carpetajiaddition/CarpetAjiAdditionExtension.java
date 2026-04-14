@@ -3,7 +3,7 @@ package aji.carpetajiaddition;
 import aji.carpetajiaddition.commands.FollowCommand;
 import aji.carpetajiaddition.commands.ModsCommand;
 import aji.carpetajiaddition.data.DataManager;
-import aji.carpetajiaddition.recipe.CustomRecipes;
+import aji.carpetajiaddition.recipe.RecipeManager;
 import aji.carpetajiaddition.util.translations.TranslationUtil;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
@@ -26,7 +26,7 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
         CarpetAjiAdditionSettings.minecraftServer = server;
         CarpetAjiAdditionSettings.data = new DataManager(CarpetAjiAdditionSettings.minecraftServer.getWorldPath(LevelResource.ROOT).getParent().resolve("data/" + CarpetAjiAdditionSettings.MOD_ID + ".dat"));
         FollowCommand.init();
-        CustomRecipes.needReloadServerResources();
+        RecipeManager.needReloadServerResources();
     }
 
     @Override
@@ -45,7 +45,7 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
 
     @Override
     public void onPlayerLoggedIn(ServerPlayer player) {
-        CustomRecipes.onPlayerLoggedIn(player);
+        RecipeManager.onPlayerLoggedIn(player);
     }
 
     public void afterServerClose() {
