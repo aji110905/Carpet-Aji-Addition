@@ -8,6 +8,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.item.Item;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.world.scores.PlayerTeam;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
@@ -73,7 +74,12 @@ public class FollowCommandData implements Data {
 
     public void setColor(MinecraftServer server, ChatFormatting color) {
         this.color = color;
-        server.getScoreboard().getPlayerTeam("followItems").setColor(color);
+        PlayerTeam team = server.getScoreboard().getPlayerTeam("followItems");
+        if (team == null) {
+            CarpetAjiAdditionSettings.LOGGER.warn("Team 'followItems' not found");
+            return;
+        }
+        team.setColor(color);
     }
 
     public static FollowCommandData getInstance(){
