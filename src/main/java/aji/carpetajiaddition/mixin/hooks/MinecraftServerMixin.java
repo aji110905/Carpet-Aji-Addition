@@ -1,12 +1,7 @@
 package aji.carpetajiaddition.mixin.hooks;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
-import net.minecraft.commands.CommandSource;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.ServerInfo;
-import net.minecraft.server.TickTask;
-import net.minecraft.util.thread.ReentrantBlockableEventLoop;
-import net.minecraft.world.level.chunk.storage.ChunkIOErrorReporter;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -14,11 +9,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(MinecraftServer.class)
-public abstract class MinecraftServerMixin extends ReentrantBlockableEventLoop<TickTask> implements ServerInfo, ChunkIOErrorReporter, CommandSource, AutoCloseable{
-    public MinecraftServerMixin(String string) {
-        super(string);
-    }
-
+public abstract class MinecraftServerMixin{
     @Inject(method = "close", at = @At("RETURN"))
     private void close(CallbackInfo ci) {
         CarpetAjiAdditionSettings.EXTENSION.afterServerClose();
