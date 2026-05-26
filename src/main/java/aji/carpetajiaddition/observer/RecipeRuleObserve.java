@@ -1,4 +1,4 @@
-package aji.carpetajiaddition.validators.observer;
+package aji.carpetajiaddition.observer;
 
 import aji.carpetajiaddition.recipe.RecipeManager;
 import aji.carpetajiaddition.settings.RuleObserve;
