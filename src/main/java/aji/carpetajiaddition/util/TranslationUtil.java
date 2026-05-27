@@ -11,7 +11,7 @@ import java.io.*;
 import java.net.URISyntaxException;
 import java.util.*;
 
-public class TranslationUtil {
+public final class TranslationUtil {
     private static Map<String, String> translations = new HashMap<>();
     private static final List<String> LANGUAGES = new ArrayList<>();
     private static final String DEFAULT_LANGUAGE = "en_us";
@@ -19,6 +19,7 @@ public class TranslationUtil {
     private static final Map<String, Map<String, String>> ALL_FABRIC_CARPET_TRANSLATION_MAP = new HashMap<>();
 
     private TranslationUtil(){
+
     }
 
     public static String tr (String path){

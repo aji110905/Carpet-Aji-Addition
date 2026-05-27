@@ -1,6 +1,10 @@
 package aji.carpetajiaddition.constant;
 
-public class TranslationsKey {
+public final class TranslationsKey {
+    private TranslationsKey(){
+
+    }
+
     public static final String SUFFIX = "carpetajiaddition.";
 
     public static final String COMMAND = SUFFIX + "command.";

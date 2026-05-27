@@ -2,8 +2,9 @@ package aji.carpetajiaddition.util;
 
 import java.io.File;
 
-public class FileUtil {
+public final class FileUtil {
     private FileUtil(){
+
     }
 
     public static String getFileNameWithoutExtension(File file){

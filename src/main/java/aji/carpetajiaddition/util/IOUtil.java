@@ -14,8 +14,9 @@ import java.util.Map;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-public class IOUtil {
+public final class IOUtil {
     private IOUtil() {
+
     }
 
     public static Map<String, String> readAllFilesFromResource(String path) throws IOException, URISyntaxException {
