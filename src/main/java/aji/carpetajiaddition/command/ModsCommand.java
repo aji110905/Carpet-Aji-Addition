@@ -1,4 +1,4 @@
-package aji.carpetajiaddition.commands;
+package aji.carpetajiaddition.command;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import aji.carpetajiaddition.constant.TranslationsKey;

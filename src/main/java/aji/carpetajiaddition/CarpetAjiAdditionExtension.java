@@ -1,7 +1,7 @@
 package aji.carpetajiaddition;
 
-import aji.carpetajiaddition.commands.FollowCommand;
-import aji.carpetajiaddition.commands.ModsCommand;
+import aji.carpetajiaddition.command.FollowCommand;
+import aji.carpetajiaddition.command.ModsCommand;
 import aji.carpetajiaddition.data.DataManager;
 import aji.carpetajiaddition.recipe.RecipeManager;
 import aji.carpetajiaddition.util.TranslationUtil;
