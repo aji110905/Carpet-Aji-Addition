@@ -3,7 +3,7 @@ package aji.carpetajiaddition.recipe;
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import aji.carpetajiaddition.recipe.builder.ShapedRecipeBuilder;
 import aji.carpetajiaddition.recipe.template.ShapedRecipeTemplate;
-import aji.carpetajiaddition.settings.RuleCategory;
+import aji.carpetajiaddition.constant.RuleCategory;
 import carpet.api.settings.Rule;
 //#if MC < 12102
 import com.google.gson.JsonElement;

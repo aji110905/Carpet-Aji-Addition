@@ -1,7 +1,7 @@
 package aji.carpetajiaddition.commands;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
-import aji.carpetajiaddition.util.translations.TranslationsKey;
+import aji.carpetajiaddition.constant.TranslationsKey;
 import carpet.utils.CommandHelper;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -25,8 +25,8 @@ import net.minecraft.network.chat.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static aji.carpetajiaddition.util.translations.TranslationUtil.tr;
-import static aji.carpetajiaddition.util.translations.TranslationUtil.trComponent;
+import static aji.carpetajiaddition.util.TranslationUtil.tr;
+import static aji.carpetajiaddition.util.TranslationUtil.trComponent;
 import static net.minecraft.commands.Commands.argument;
 import static net.minecraft.commands.Commands.literal;
 

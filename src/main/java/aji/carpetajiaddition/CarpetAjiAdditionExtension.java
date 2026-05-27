@@ -4,7 +4,7 @@ import aji.carpetajiaddition.commands.FollowCommand;
 import aji.carpetajiaddition.commands.ModsCommand;
 import aji.carpetajiaddition.data.DataManager;
 import aji.carpetajiaddition.recipe.RecipeManager;
-import aji.carpetajiaddition.util.translations.TranslationUtil;
+import aji.carpetajiaddition.util.TranslationUtil;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import com.mojang.brigadier.CommandDispatcher;

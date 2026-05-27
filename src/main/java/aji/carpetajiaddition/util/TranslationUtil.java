@@ -1,8 +1,7 @@
-package aji.carpetajiaddition.util.translations;
+package aji.carpetajiaddition.util;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
-import aji.carpetajiaddition.util.FileUtil;
-import aji.carpetajiaddition.util.IOUtil;
+import aji.carpetajiaddition.constant.TranslationsKey;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;

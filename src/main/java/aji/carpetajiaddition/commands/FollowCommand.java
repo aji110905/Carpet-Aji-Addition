@@ -3,7 +3,7 @@ package aji.carpetajiaddition.commands;
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import aji.carpetajiaddition.data.FollowCommandData;
 import aji.carpetajiaddition.util.ResourceLocationUtil;
-import aji.carpetajiaddition.util.translations.TranslationsKey;
+import aji.carpetajiaddition.constant.TranslationsKey;
 import carpet.utils.CommandHelper;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -24,7 +24,7 @@ import net.minecraft.world.scores.PlayerTeam;
 
 import java.util.HashSet;
 
-import static aji.carpetajiaddition.util.translations.TranslationUtil.trComponent;
+import static aji.carpetajiaddition.util.TranslationUtil.trComponent;
 import static net.minecraft.commands.Commands.argument;
 import static net.minecraft.commands.Commands.literal;
 

@@ -1,7 +1,7 @@
 package aji.carpetajiaddition.mixin.carpet;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
-import aji.carpetajiaddition.util.translations.TranslationUtil;
+import aji.carpetajiaddition.util.TranslationUtil;
 import carpet.api.settings.CarpetRule;
 import carpet.api.settings.SettingsManager;
 import carpet.utils.Messenger;

@@ -1,4 +1,4 @@
-package aji.carpetajiaddition.util.translations;
+package aji.carpetajiaddition.constant;
 
 public class TranslationsKey {
     public static final String SUFFIX = "carpetajiaddition.";

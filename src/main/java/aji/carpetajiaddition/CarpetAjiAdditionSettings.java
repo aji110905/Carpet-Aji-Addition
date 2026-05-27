@@ -2,7 +2,7 @@ package aji.carpetajiaddition;
 
 import aji.carpetajiaddition.data.DataManager;
 import aji.carpetajiaddition.observer.RecipeRuleObserve;
-import aji.carpetajiaddition.settings.MustSetDefault;
+import aji.carpetajiaddition.annotation.MustSetDefault;
 import carpet.api.settings.Rule;
 import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.Logger;
@@ -12,7 +12,7 @@ import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.Set;
 
-import static aji.carpetajiaddition.settings.RuleCategory.*;
+import static aji.carpetajiaddition.constant.RuleCategory.*;
 import static carpet.api.settings.RuleCategory.*;
 
 public class CarpetAjiAdditionSettings {
