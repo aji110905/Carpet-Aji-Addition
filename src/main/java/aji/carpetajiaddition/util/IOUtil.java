@@ -22,6 +22,9 @@ public final class IOUtil {
     public static Map<String, String> readAllFilesFromResource(String path) throws IOException, URISyntaxException {
         Map<String, String> fileMap = new HashMap<>();
         URL url = IOUtil.class.getClassLoader().getResource(path);
+        if (url == null) {
+            return fileMap;
+        }
         if ("jar".equals(url.getProtocol())) {
             String jarPath = URLDecoder.decode(url.getPath().split("!")[0].substring(5), StandardCharsets.UTF_8);
             JarFile jar = new JarFile(jarPath);
