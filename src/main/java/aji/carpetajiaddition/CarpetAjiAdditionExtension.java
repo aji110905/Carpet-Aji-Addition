@@ -37,13 +37,14 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
         CarpetAjiAdditionSettings.data.saveData();
     }
 
-    public void onReload() {
-        CarpetAjiAdditionSettings.data.loadData();
-    }
-
     @Override
     public void onPlayerLoggedIn(ServerPlayer player) {
         RecipeManager.onPlayerLoggedIn(player);
+    }
+
+    @Override
+    public void onReload(MinecraftServer server) {
+        CarpetAjiAdditionSettings.data.loadData();
     }
 
     public void afterServerClose() {
