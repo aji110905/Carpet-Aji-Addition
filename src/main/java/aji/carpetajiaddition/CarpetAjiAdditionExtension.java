@@ -4,7 +4,7 @@ import aji.carpetajiaddition.command.FollowCommand;
 import aji.carpetajiaddition.command.ModsCommand;
 import aji.carpetajiaddition.data.DataManager;
 import aji.carpetajiaddition.recipe.RecipeManager;
-import aji.carpetajiaddition.util.TranslationUtil;
+import aji.carpetajiaddition.translate.TranslateManager;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import com.mojang.brigadier.CommandDispatcher;
@@ -58,6 +58,8 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
 
     @Override
     public Map<String, String> canHasTranslations(String lang) {
-        return TranslationUtil.getFabricCarpetTranslations(lang);
+        TranslateManager translateManager = TranslateManager.getInstance();
+        translateManager.updateTranslations(lang);
+        return translateManager.getFabricCarpetTranslationMap();
     }
 }

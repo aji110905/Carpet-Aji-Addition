@@ -25,8 +25,8 @@ import net.minecraft.network.chat.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static aji.carpetajiaddition.util.TranslationUtil.tr;
-import static aji.carpetajiaddition.util.TranslationUtil.trComponent;
+import static aji.carpetajiaddition.util.TranslateUtil.tr;
+import static aji.carpetajiaddition.util.TranslateUtil.trc;
 import static net.minecraft.commands.Commands.argument;
 import static net.minecraft.commands.Commands.literal;
 
@@ -42,7 +42,9 @@ public class ModsCommand {
                        .then(
                                argument("mods", StringArgumentType.greedyString())
                                        .suggests((CommandContext<CommandSourceStack> context, SuggestionsBuilder builder) -> {
-                                           FabricLoader.getInstance().getAllMods().forEach(mod -> builder.suggest(mod.getMetadata().getName()));
+                                           FabricLoader.getInstance().getAllMods().forEach(
+                                                   mod -> builder.suggest(mod.getMetadata().getName())
+                                           );
                                            return builder.buildFuture();
                                        })
                                        .executes(ModsCommand::mods)
@@ -60,10 +62,10 @@ public class ModsCommand {
                     Style
                             .EMPTY
                             //#if MC < 12105
-                            .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, trComponent(TranslationsKey.CMD_MODS + "list.hover")))
+                            .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, trc(TranslationsKey.CMD_MODS + "list.hover")))
                             .withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/mods " + name))
                             //#else
-                            //$$ .withHoverEvent(new HoverEvent.ShowText(trComponent(TranslationsKey.CMD_MODS + "list.hover")))
+                            //$$ .withHoverEvent(new HoverEvent.ShowText(trc(TranslationsKey.CMD_MODS + "list.hover")))
                             //$$ .withClickEvent(new ClickEvent.RunCommand("/mods " + name))
                             //#endif
             );
@@ -93,24 +95,24 @@ public class ModsCommand {
                 String unknown = tr(TranslationsKey.CMD_MODS + "mods.feedback.unknown");
 
                 String type = metadata.getType();
-                list.add(trComponent(TranslationsKey.CMD_MODS + "mods.feedback.type", type == null ? unknown : type));
+                list.add(trc(TranslationsKey.CMD_MODS + "mods.feedback.type", type == null ? unknown : type));
 
                 String id = metadata.getId();
-                list.add(trComponent(TranslationsKey.CMD_MODS + "mods.feedback.id", id == null ? unknown : id));
+                list.add(trc(TranslationsKey.CMD_MODS + "mods.feedback.id", id == null ? unknown : id));
 
                 Version version = metadata.getVersion();
-                list.add(trComponent(TranslationsKey.CMD_MODS + "mods.feedback.version", version == null ? unknown : version.getFriendlyString()));
+                list.add(trc(TranslationsKey.CMD_MODS + "mods.feedback.version", version == null ? unknown : version.getFriendlyString()));
 
                 list.add(
                         switch (metadata.getEnvironment()) {
-                            case CLIENT -> trComponent(TranslationsKey.CMD_MODS + "mods.feedback.environment.client");
-                            case SERVER -> trComponent(TranslationsKey.CMD_MODS + "mods.feedback.environment.server");
-                            case UNIVERSAL -> trComponent(TranslationsKey.CMD_MODS + "mods.feedback.environment.universal");
-                            case null -> trComponent(TranslationsKey.CMD_MODS + "mods.feedback.environment.null");
+                            case CLIENT -> trc(TranslationsKey.CMD_MODS + "mods.feedback.environment.client");
+                            case SERVER -> trc(TranslationsKey.CMD_MODS + "mods.feedback.environment.server");
+                            case UNIVERSAL -> trc(TranslationsKey.CMD_MODS + "mods.feedback.environment.universal");
+                            case null -> trc(TranslationsKey.CMD_MODS + "mods.feedback.environment.null");
                         }
                 );
 
-                list.add(trComponent(
+                list.add(trc(
                         TranslationsKey.CMD_MODS + "mods.feedback.author",
                         metadata.getAuthors() != null && !metadata.getAuthors().isEmpty()
                                 ? metadata.getAuthors().stream()
@@ -119,7 +121,7 @@ public class ModsCommand {
                                 : unknown
                 ));
 
-                list.add(trComponent(
+                list.add(trc(
                         TranslationsKey.CMD_MODS + "mods.feedback.contributors",
                         metadata.getContributors() != null && !metadata.getContributors().isEmpty()
                                 ? metadata.getContributors().stream()
@@ -130,7 +132,7 @@ public class ModsCommand {
 
                 ContactInformation contact = metadata.getContact();
                 if (contact == null || contact.asMap().isEmpty()){
-                    list.add(trComponent(TranslationsKey.CMD_MODS + "mods.feedback.contact.root", unknown));
+                    list.add(trc(TranslationsKey.CMD_MODS + "mods.feedback.contact.root", unknown));
                 } else {
                     Map<String, String> map = contact.asMap();
                     Set<Component> texts = new HashSet<>();
@@ -148,11 +150,11 @@ public class ModsCommand {
                         text.setStyle(
                                 Style
                                         .EMPTY
-                                        .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, trComponent(TranslationsKey.CMD_MODS + "mods.feedback.contact.hover")))
+                                        .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, trc(TranslationsKey.CMD_MODS + "mods.feedback.contact.hover")))
                                         .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, entry.getValue()))
                         );
                         //#else
-                        //$$ Style style = Style.EMPTY.withHoverEvent(new HoverEvent.ShowText(trComponent(TranslationsKey.CMD_MODS + "mods.feedback.contact.hover")));
+                        //$$ Style style = Style.EMPTY.withHoverEvent(new HoverEvent.ShowText(trc(TranslationsKey.CMD_MODS + "mods.feedback.contact.hover")));
                         //$$ URI uri;
                         //$$ try {
                         //$$     uri = new URI(entry.getValue());
@@ -167,7 +169,7 @@ public class ModsCommand {
                         //#endif
                         texts.add(text);
                     }
-                    list.add(trComponent(
+                    list.add(trc(
                             TranslationsKey.CMD_MODS + "mods.feedback.contact.root",
                             texts
                             .stream()
@@ -176,7 +178,7 @@ public class ModsCommand {
                     ));
                 }
 
-                list.add(trComponent(
+                list.add(trc(
                         TranslationsKey.CMD_MODS + "mods.feedback.license",
                         metadata.getLicense() != null && !metadata.getLicense().isEmpty()
                                 ? String.join(", ", metadata.getLicense())
@@ -194,7 +196,7 @@ public class ModsCommand {
                 return 1;
             }
         }
-        source.sendFailure(trComponent(TranslationsKey.CMD_MODS + "mods.error", modName));
+        source.sendFailure(trc(TranslationsKey.CMD_MODS + "mods.error", modName));
         return 0;
     }
 }

@@ -2,6 +2,7 @@ package aji.carpetajiaddition.command;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import aji.carpetajiaddition.data.FollowCommandData;
+import aji.carpetajiaddition.translate.TranslateManager;
 import aji.carpetajiaddition.util.ResourceLocationUtil;
 import aji.carpetajiaddition.constant.TranslationsKey;
 import carpet.utils.CommandHelper;
@@ -24,7 +25,7 @@ import net.minecraft.world.scores.PlayerTeam;
 
 import java.util.HashSet;
 
-import static aji.carpetajiaddition.util.TranslationUtil.trComponent;
+import static aji.carpetajiaddition.util.TranslateUtil.trc;
 import static net.minecraft.commands.Commands.argument;
 import static net.minecraft.commands.Commands.literal;
 
@@ -63,10 +64,10 @@ public class FollowCommand {
         Component displayName = item.getDefaultInstance().getDisplayName();
         CommandSourceStack source = context.getSource();
         if (FollowCommandData.getInstance().addToFollowItems(item)){
-            source.sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "add.feedback", displayName), true);
+            source.sendSuccess(() -> trc(TranslationsKey.CMD_FOLLOW + "add.feedback", displayName), true);
             return 1;
         }else {
-            source.sendFailure(trComponent(TranslationsKey.CMD_FOLLOW + "add.error", displayName.copy().setStyle(displayName.getStyle().withColor(ChatFormatting.RED))));
+            source.sendFailure(trc(TranslationsKey.CMD_FOLLOW + "add.error", displayName.copy().setStyle(displayName.getStyle().withColor(ChatFormatting.RED))));
             return 0;
         }
     }
@@ -82,10 +83,10 @@ public class FollowCommand {
             Component displayName = item.getDefaultInstance().getDisplayName();
             CommandSourceStack source = context.getSource();
             if (FollowCommandData.getInstance().removeFromFollowItems(item)){
-                source.sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "remove.feedback", displayName), true);
+                source.sendSuccess(() -> trc(TranslationsKey.CMD_FOLLOW + "remove.feedback", displayName), true);
                 return 1;
             }else {
-                source.sendFailure(trComponent(TranslationsKey.CMD_FOLLOW + "remove.error", displayName.copy().setStyle(displayName.getStyle().withColor(ChatFormatting.RED))));
+                source.sendFailure(trc(TranslationsKey.CMD_FOLLOW + "remove.error", displayName.copy().setStyle(displayName.getStyle().withColor(ChatFormatting.RED))));
                 return 0;
             }
         }
@@ -96,7 +97,7 @@ public class FollowCommand {
         FollowCommandData data = FollowCommandData.getInstance();
         CommandSourceStack source = context.getSource();
         if (data.getFollowItems().isEmpty()) {
-            source.sendFailure(trComponent(TranslationsKey.CMD_FOLLOW + "list.error"));
+            source.sendFailure(trc(TranslationsKey.CMD_FOLLOW + "list.error"));
             return 0;
         }else {
             HashSet<Component> set = new HashSet<>();
@@ -104,7 +105,7 @@ public class FollowCommand {
                 set.add(item.getDefaultInstance().getDisplayName());
             }
             source.sendSuccess(
-                    () -> trComponent(TranslationsKey.CMD_FOLLOW + "list.feedback").copy().append(
+                    () -> trc(TranslationsKey.CMD_FOLLOW + "list.feedback").copy().append(
                             set
                                     .stream()
                                     .reduce((text1, text2) -> text1.copy().append(", ").append(text2))
@@ -121,17 +122,17 @@ public class FollowCommand {
         CommandSourceStack source = context.getSource();
         ChatFormatting color = ColorArgument.getColor(context, "color");
         if (data.getColor().equals(color)) {
-            source.sendFailure(trComponent(TranslationsKey.CMD_FOLLOW + "color.set.error", trComponent(data.getColor(), false)));
+            source.sendFailure(trc(TranslationsKey.CMD_FOLLOW + "color.set.error", trc(data.getColor(), false)));
             return 0;
         } else {
             data.setColor(source.getServer(), color);
-            source.sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "color.set.feedback", trComponent(data.getColor(), true)), true);
+            source.sendSuccess(() -> trc(TranslationsKey.CMD_FOLLOW + "color.set.feedback", trc(data.getColor(), true)), true);
             return 1;
         }
     }
 
     private static int showColor(CommandContext<CommandSourceStack> context){
-        context.getSource().sendSuccess(() -> trComponent(TranslationsKey.CMD_FOLLOW + "color.show.feedback", trComponent(FollowCommandData.getInstance().getColor(), true)), true);
+        context.getSource().sendSuccess(() -> trc(TranslationsKey.CMD_FOLLOW + "color.show.feedback", trc(FollowCommandData.getInstance().getColor(), true)), true);
         return 1;
     }
 
