@@ -15,6 +15,8 @@ import net.minecraft.server.level.ServerPlayer;
 import java.util.Map;
 
 public class CarpetAjiAdditionExtension implements CarpetExtension {
+    public static final CarpetAjiAdditionExtension INSTANCE = new CarpetAjiAdditionExtension();
+
     @Override
     public void onGameStarted() {
         CarpetServer.settingsManager.parseSettingsClass(CarpetAjiAdditionSettings.class);

@@ -1,6 +1,6 @@
 package aji.carpetajiaddition.mixin.hooks;
 
-import aji.carpetajiaddition.CarpetAjiAdditionSettings;
+import aji.carpetajiaddition.CarpetAjiAdditionExtension;
 import net.minecraft.server.MinecraftServer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -12,11 +12,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class MinecraftServerMixin{
     @Inject(method = "close", at = @At("RETURN"))
     private void close(CallbackInfo ci) {
-        CarpetAjiAdditionSettings.EXTENSION.afterServerClose();
+        CarpetAjiAdditionExtension.INSTANCE.afterServerClose();
     }
 
     @Inject(method = "saveEverything", at = @At("HEAD"))
     private void saveEverything(boolean suppressLogs, boolean flush, boolean force, CallbackInfoReturnable<Boolean> cir) {
-        CarpetAjiAdditionSettings.EXTENSION.onSave();
+        CarpetAjiAdditionExtension.INSTANCE.onSave();
     }
 }

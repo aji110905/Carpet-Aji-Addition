@@ -6,6 +6,6 @@ import net.fabricmc.api.ModInitializer;
 public class CarpetAjiAdditionMod implements ModInitializer {
 	@Override
 	public void onInitialize() {
-        CarpetServer.manageExtension(CarpetAjiAdditionSettings.EXTENSION);
+        CarpetServer.manageExtension(CarpetAjiAdditionExtension.INSTANCE);
 	}
 }
