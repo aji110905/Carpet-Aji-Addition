@@ -2,7 +2,6 @@ package aji.carpetajiaddition.command;
 
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import aji.carpetajiaddition.data.FollowCommandData;
-import aji.carpetajiaddition.translate.TranslateManager;
 import aji.carpetajiaddition.util.ResourceLocationUtil;
 import aji.carpetajiaddition.constant.TranslationsKey;
 import carpet.utils.CommandHelper;
