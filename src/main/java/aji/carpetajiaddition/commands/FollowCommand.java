@@ -55,7 +55,11 @@ public class FollowCommand {
     }
 
     private static int add(CommandContext<CommandSourceStack> context){
+        //#if MC < 260100
         Item item = ItemArgument.getItem(context, "item").getItem();
+        //#else
+        //$$ Item item = ItemArgument.getItem(context, "item").item().value();
+        //#endif
         Component displayName = item.getDefaultInstance().getDisplayName();
         CommandSourceStack source = context.getSource();
         if (FollowCommandData.getInstance().addToFollowItems(item)){
