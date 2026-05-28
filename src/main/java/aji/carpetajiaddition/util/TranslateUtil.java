@@ -27,7 +27,7 @@ public final class TranslateUtil {
         for (int i = 0; i < args.length; i++) {
             argsStr[i] = args[i].getString();
         }
-        return getTranslator().tr(key, argsStr);
+        return tr(key, argsStr);
     }
 
     public static String tr (ChatFormatting color){
