@@ -25,17 +25,13 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
 
     public void onServerCreated(MinecraftServer server){
         CarpetAjiAdditionSettings.recipeManager = new RecipeManager(server);
+        FollowCommand.init(server);
     }
 
     @Override
     public void onServerLoaded(MinecraftServer server) {
-        CarpetAjiAdditionSettings.recipeManager.reloadResourcesIfRecipeRuleEnabled();
-    }
-
-    @Override
-    public void onServerLoadedWorlds(MinecraftServer server) {
         CarpetAjiAdditionSettings.data = new DataManager(server);
-        FollowCommand.init(server);
+        CarpetAjiAdditionSettings.recipeManager.reloadResourcesIfRecipeRuleEnabled();
     }
 
     @Override
