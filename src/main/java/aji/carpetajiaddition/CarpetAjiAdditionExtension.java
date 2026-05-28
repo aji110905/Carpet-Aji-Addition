@@ -40,7 +40,7 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
         ModsCommand.register(dispatcher, commandBuildContext);
     }
 
-    public void onSave() {
+    public void onSave(MinecraftServer server) {
         CarpetAjiAdditionSettings.data.saveData();
     }
 
@@ -54,7 +54,7 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
         CarpetAjiAdditionSettings.data.loadData();
     }
 
-    public void afterServerClose() {
+    public void afterServerClose(MinecraftServer server) {
         CarpetAjiAdditionSettings.data = null;
     }
 

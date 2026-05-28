@@ -17,11 +17,11 @@ public abstract class MinecraftServerMixin{
 
     @Inject(method = "close", at = @At("RETURN"))
     private void close(CallbackInfo ci) {
-        CarpetAjiAdditionExtension.INSTANCE.afterServerClose();
+        CarpetAjiAdditionExtension.INSTANCE.afterServerClose((MinecraftServer) (Object) this);
     }
 
     @Inject(method = "saveEverything", at = @At("HEAD"))
     private void saveEverything(boolean suppressLogs, boolean flush, boolean force, CallbackInfoReturnable<Boolean> cir) {
-        CarpetAjiAdditionExtension.INSTANCE.onSave();
+        CarpetAjiAdditionExtension.INSTANCE.onSave((MinecraftServer) (Object) this);
     }
 }
