@@ -22,7 +22,7 @@ public class RecipeManager {
     public RecipeManager(MinecraftServer server) {
         this.server = server;
     }
-    public void onApply(SortedMap<ResourceLocation, net.minecraft.world.item.crafting.Recipe<?>> map, HolderLookup.Provider provider) {
+    public void registerRecipe(SortedMap<ResourceLocation, net.minecraft.world.item.crafting.Recipe<?>> map, HolderLookup.Provider provider) {
         ShapedRecipe.builder(CarpetAjiAdditionSettings.dragonEggRecipe, "dragon_egg")
                 .pattern("&#&")
                 .pattern("^*^")

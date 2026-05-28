@@ -21,7 +21,7 @@ public class RecipeManager {
         this.server = server;
     }
 
-    public void onApply(Map<ResourceLocation, JsonElement> map) {
+    public void registerRecipe(Map<ResourceLocation, JsonElement> map) {
         ShapedRecipe.builder(CarpetAjiAdditionSettings.dragonEggRecipe, "dragon_egg")
                 .pattern("&#&")
                 .pattern("^*^")
