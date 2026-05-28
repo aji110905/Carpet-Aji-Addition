@@ -21,7 +21,7 @@ public class CarpetAjiAdditionSettings {
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
     public static final String VERSION = FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow().getMetadata().getVersion().toString();
     public static final Set<String> MUST_SET_DEFAULT_RULES = new HashSet<>();
-    public static DataManager data = null;
+    public static DataManager dataManager = null;
     public static RecipeManager recipeManager = null;
 
     @Rule(categories = {CAA, CREATIVE})

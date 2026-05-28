@@ -83,6 +83,6 @@ public class FollowCommandData implements Data {
     }
 
     public static FollowCommandData getInstance(){
-        return (FollowCommandData) CarpetAjiAdditionSettings.data.getData(DATA_NAME);
+        return (FollowCommandData) CarpetAjiAdditionSettings.dataManager.getData(DATA_NAME);
     }
 }
