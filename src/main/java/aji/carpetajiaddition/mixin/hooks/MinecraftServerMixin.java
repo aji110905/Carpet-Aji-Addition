@@ -10,6 +10,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(MinecraftServer.class)
 public abstract class MinecraftServerMixin{
+    @Inject(method = "<init>", at = @At("RETURN"))
+    private void init(CallbackInfo ci) {
+        CarpetAjiAdditionExtension.INSTANCE.onServerCreated((MinecraftServer) (Object) this);
+    }
+
     @Inject(method = "close", at = @At("RETURN"))
     private void close(CallbackInfo ci) {
         CarpetAjiAdditionExtension.INSTANCE.afterServerClose();

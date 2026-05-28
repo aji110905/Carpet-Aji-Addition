@@ -7,6 +7,7 @@ import aji.carpetajiaddition.recipe.RecipeManager;
 import aji.carpetajiaddition.translate.TranslateManager;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
+import carpet.api.settings.SettingsManager;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
@@ -22,11 +23,19 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
         CarpetServer.settingsManager.parseSettingsClass(CarpetAjiAdditionSettings.class);
     }
 
+    public void onServerCreated(MinecraftServer server){
+        CarpetAjiAdditionSettings.recipeManager = new RecipeManager(server);
+    }
+
+    @Override
+    public void onServerLoaded(MinecraftServer server) {
+        CarpetAjiAdditionSettings.recipeManager.reloadResourcesIfRecipeRuleEnabled();
+    }
+
     @Override
     public void onServerLoadedWorlds(MinecraftServer server) {
         CarpetAjiAdditionSettings.data = new DataManager(server);
         FollowCommand.init(server);
-        RecipeManager.needReloadServerResources(server);
     }
 
     @Override
@@ -41,7 +50,7 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
 
     @Override
     public void onPlayerLoggedIn(ServerPlayer player) {
-        RecipeManager.onPlayerLoggedIn(player);
+        CarpetAjiAdditionSettings.recipeManager.onPlayerLoggedIn(player);
     }
 
     @Override

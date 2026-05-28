@@ -3,14 +3,16 @@ package aji.carpetajiaddition.recipe;
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import aji.carpetajiaddition.constant.RuleCategory;
 import carpet.api.settings.Rule;
-import com.google.gson.JsonElement;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.crafting.RecipeHolder;
 
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.SortedMap;
 
 import static net.minecraft.world.item.Items.*;
 
@@ -20,28 +22,27 @@ public class RecipeManager {
     public RecipeManager(MinecraftServer server) {
         this.server = server;
     }
-
-    public void onApply(Map<ResourceLocation, JsonElement> map) {
+    public void onApply(SortedMap<ResourceLocation, net.minecraft.world.item.crafting.Recipe<?>> map, HolderLookup.Provider provider) {
         ShapedRecipe.builder(CarpetAjiAdditionSettings.dragonEggRecipe, "dragon_egg")
                 .pattern("&#&")
                 .pattern("^*^")
                 .pattern("$$$")
                 .define('&', CRYING_OBSIDIAN).define('#', GLASS_BOTTLE).define('^', OBSIDIAN).define('*', EGG).define('$', END_CRYSTAL)
                 .output(DRAGON_EGG, 1)
-                .build().addToRecipeMap(map);
+                .build().addToRecipeMap(map, provider);
         ShapedRecipe.builder(CarpetAjiAdditionSettings.dragonBreathRecipe, "dragon_breath")
                 .pattern("#")
                 .pattern("*")
                 .define('#', DRAGON_EGG).define('*', GLASS_BOTTLE)
                 .output(DRAGON_BREATH, 1)
-                .build().addToRecipeMap(map);
+                .build().addToRecipeMap(map, provider);
     }
 
     public void onRuleValueChanged(){
         server.execute(() -> {
             reloadResourcesIfRecipeRuleEnabled();
             for (RecipeHolder<?> recipe : server.getRecipeManager().getRecipes()) {
-                if (!recipe.id().getNamespace().equals(CarpetAjiAdditionSettings.MOD_ID)) {
+                if (!recipe.id().location().getNamespace().equals(CarpetAjiAdditionSettings.MOD_ID)) {
                     continue;
                 }
                 for (ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -55,7 +56,7 @@ public class RecipeManager {
 
     public void onPlayerLoggedIn(ServerPlayer player){
         for (RecipeHolder<?> recipe : server.getRecipeManager().getRecipes()) {
-            if (recipe.id().getNamespace().equals(CarpetAjiAdditionSettings.MOD_ID) && !player.getRecipeBook().contains(recipe.id())) {
+            if (recipe.id().location().getNamespace().equals(CarpetAjiAdditionSettings.MOD_ID) && !player.getRecipeBook().contains(recipe.id())) {
                 player.awardRecipes(List.of(recipe));
             }
         }
