@@ -1,6 +1,7 @@
 package aji.carpetajiaddition.mixin.carpet;
 
-import aji.carpetajiaddition.CarpetAjiAdditionSettings;
+import aji.carpetajiaddition.CarpetAjiAdditionRules;
+import aji.carpetajiaddition.constant.ModConstants;
 import aji.carpetajiaddition.constant.TranslationsKey;
 import aji.carpetajiaddition.util.TranslateUtil;
 import carpet.api.settings.CarpetRule;
@@ -28,12 +29,12 @@ public abstract class SettingsManagerMixin {
             )
     )
     public void listAllSettings(CommandSourceStack source, CallbackInfoReturnable<Integer> cir) {
-        Messenger.m(source, "g Carpet Aji Addition " + TranslateUtil.tr(TranslationsKey.SUFFIX + "version") + CarpetAjiAdditionSettings.VERSION);
+        Messenger.m(source, "g Carpet Aji Addition " + TranslateUtil.tr(TranslationsKey.SUFFIX + "version") + ModConstants.VERSION);
     }
 
     @Inject(method = "setRule", at = @At("RETURN"))
     private void setRule(CommandSourceStack source, CarpetRule<?> rule, String value, CallbackInfoReturnable<Integer> cir) {
-        if (CarpetAjiAdditionSettings.MUST_SET_DEFAULT_RULES.contains(rule.name())) {
+        if (CarpetAjiAdditionRules.MUST_SET_DEFAULT_RULES.contains(rule.name())) {
             setDefault(source, rule, value);
         }
     }

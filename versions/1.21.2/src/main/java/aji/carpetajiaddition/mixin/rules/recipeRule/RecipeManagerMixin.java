@@ -1,7 +1,6 @@
 package aji.carpetajiaddition.mixin.rules.recipeRule;
 
 import aji.carpetajiaddition.CarpetAjiAdditionExtension;
-import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import aji.carpetajiaddition.recipe.RecipeManager;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.resources.ResourceLocation;

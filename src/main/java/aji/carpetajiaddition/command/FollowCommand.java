@@ -1,6 +1,6 @@
 package aji.carpetajiaddition.command;
 
-import aji.carpetajiaddition.CarpetAjiAdditionSettings;
+import aji.carpetajiaddition.CarpetAjiAdditionRules;
 import aji.carpetajiaddition.data.FollowCommandData;
 import aji.carpetajiaddition.util.ResourceLocationUtil;
 import aji.carpetajiaddition.constant.TranslationsKey;
@@ -32,7 +32,7 @@ public class FollowCommand {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher, final CommandBuildContext commandBuildContext){
         dispatcher.register(
                 literal("follow")
-                        .requires(commandSource -> CommandHelper.canUseCommand(commandSource, CarpetAjiAdditionSettings.commandFollow))
+                        .requires(commandSource -> CommandHelper.canUseCommand(commandSource, CarpetAjiAdditionRules.commandFollow))
                         .then(literal("add")
                                 .then(argument("item", ItemArgument.item(commandBuildContext))
                                         .executes(FollowCommand::add)))

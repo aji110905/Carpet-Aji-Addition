@@ -2,6 +2,7 @@ package aji.carpetajiaddition;
 
 import aji.carpetajiaddition.command.FollowCommand;
 import aji.carpetajiaddition.command.ModsCommand;
+import aji.carpetajiaddition.constant.ModConstants;
 import aji.carpetajiaddition.data.DataManager;
 import aji.carpetajiaddition.recipe.RecipeManager;
 import aji.carpetajiaddition.translate.TranslateManager;
@@ -22,7 +23,7 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
 
     @Override
     public void onGameStarted() {
-        CarpetServer.settingsManager.parseSettingsClass(CarpetAjiAdditionSettings.class);
+        CarpetServer.settingsManager.parseSettingsClass(CarpetAjiAdditionRules.class);
     }
 
     public void onServerCreated(MinecraftServer server){
@@ -63,7 +64,7 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
 
     @Override
     public String version() {
-        return CarpetAjiAdditionSettings.MOD_ID;
+        return ModConstants.MOD_ID;
     }
 
     @Override

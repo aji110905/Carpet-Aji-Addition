@@ -1,6 +1,6 @@
 package aji.carpetajiaddition.mixin.rules.cactusWrench;
 
-import aji.carpetajiaddition.CarpetAjiAdditionSettings;
+import aji.carpetajiaddition.CarpetAjiAdditionRules;
 import carpet.helpers.BlockRotator;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
@@ -29,7 +29,7 @@ public abstract class BlockItemMixin extends Item {
             cancellable = true
     )
     private void placeBlock(BlockPlaceContext context, BlockState state, CallbackInfoReturnable<Boolean> cir){
-        if (!CarpetAjiAdditionSettings.cactusWrench) return;
+        if (!CarpetAjiAdditionRules.cactusWrench) return;
         Player player = context.getPlayer();
         if (player == null) return;
         if (!(player.getOffhandItem().getItem() == Items.CACTUS)) return;

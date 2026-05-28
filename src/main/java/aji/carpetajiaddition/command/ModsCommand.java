@@ -1,6 +1,6 @@
 package aji.carpetajiaddition.command;
 
-import aji.carpetajiaddition.CarpetAjiAdditionSettings;
+import aji.carpetajiaddition.CarpetAjiAdditionRules;
 import aji.carpetajiaddition.constant.TranslationsKey;
 import carpet.utils.CommandHelper;
 import com.mojang.brigadier.CommandDispatcher;
@@ -34,7 +34,7 @@ public class ModsCommand {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher, final CommandBuildContext commandBuildContext) {
         dispatcher.register(
                literal("mods")
-                       .requires(commandSource -> CommandHelper.canUseCommand(commandSource, CarpetAjiAdditionSettings.commandMods))
+                       .requires(commandSource -> CommandHelper.canUseCommand(commandSource, CarpetAjiAdditionRules.commandMods))
                        .then(
                                literal("list")
                                     .executes(ModsCommand::list)

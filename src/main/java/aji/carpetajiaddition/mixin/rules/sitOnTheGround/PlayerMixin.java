@@ -1,6 +1,6 @@
 package aji.carpetajiaddition.mixin.rules.sitOnTheGround;
 
-import aji.carpetajiaddition.CarpetAjiAdditionSettings;
+import aji.carpetajiaddition.CarpetAjiAdditionRules;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -30,7 +30,7 @@ public abstract class PlayerMixin extends LivingEntity {
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void onTick(CallbackInfo ci) {
-        if (!CarpetAjiAdditionSettings.sitOnTheGround) return;
+        if (!CarpetAjiAdditionRules.sitOnTheGround) return;
         boolean isSneaking = this.isCrouching();
         long currentTime = this.level().getGameTime();
         if (ridenEntity != null && !this.isPassenger()) {

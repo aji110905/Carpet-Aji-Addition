@@ -3,9 +3,6 @@ package aji.carpetajiaddition;
 import aji.carpetajiaddition.observer.RecipeRuleObserve;
 import aji.carpetajiaddition.annotation.MustSetDefault;
 import carpet.api.settings.Rule;
-import net.fabricmc.loader.api.FabricLoader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
 import java.util.HashSet;
@@ -14,11 +11,8 @@ import java.util.Set;
 import static aji.carpetajiaddition.constant.RuleCategory.*;
 import static carpet.api.settings.RuleCategory.*;
 
-public class CarpetAjiAdditionSettings {
-    public static final String MOD_ID = "carpetajiaddition";
-    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-    public static final String VERSION = FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow().getMetadata().getVersion().toString();
-    public static final Set<String> MUST_SET_DEFAULT_RULES = new HashSet<>();
+public class CarpetAjiAdditionRules {
+    public static final Set<String> MUST_SET_DEFAULT_RULES;
 
     @Rule(categories = {CAA, CREATIVE})
     public static boolean glowingHopperMinecart = false;
@@ -67,7 +61,8 @@ public class CarpetAjiAdditionSettings {
     public static boolean dragonBreathRecipe = false;
 
     static {
-        for (Field field : CarpetAjiAdditionSettings.class.getDeclaredFields()) {
+        MUST_SET_DEFAULT_RULES = new HashSet<>();
+        for (Field field : CarpetAjiAdditionRules.class.getDeclaredFields()) {
             if (field.isAnnotationPresent(MustSetDefault.class)){
                 MUST_SET_DEFAULT_RULES.add(field.getName());
             }

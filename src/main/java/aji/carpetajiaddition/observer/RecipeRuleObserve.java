@@ -1,8 +1,6 @@
 package aji.carpetajiaddition.observer;
 
 import aji.carpetajiaddition.CarpetAjiAdditionExtension;
-import aji.carpetajiaddition.CarpetAjiAdditionSettings;
-import aji.carpetajiaddition.recipe.RecipeManager;
 import carpet.api.settings.CarpetRule;
 import net.minecraft.commands.CommandSourceStack;
 import org.jetbrains.annotations.Nullable;

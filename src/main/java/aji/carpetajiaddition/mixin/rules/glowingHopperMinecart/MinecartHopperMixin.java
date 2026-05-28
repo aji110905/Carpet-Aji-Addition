@@ -1,6 +1,6 @@
 package aji.carpetajiaddition.mixin.rules.glowingHopperMinecart;
 
-import aji.carpetajiaddition.CarpetAjiAdditionSettings;
+import aji.carpetajiaddition.CarpetAjiAdditionRules;
 import net.minecraft.ChatFormatting;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.ServerScoreboard;
@@ -39,7 +39,7 @@ public abstract class MinecartHopperMixin extends AbstractMinecartContainer{
             return;
         }
         ServerScoreboard scoreboard = server.getScoreboard();
-        if (!CarpetAjiAdditionSettings.glowingHopperMinecart) {
+        if (!CarpetAjiAdditionRules.glowingHopperMinecart) {
             PlayerTeam enabled = scoreboard.getPlayerTeam("enabled_hopper_minecraft");
             if (enabled != null) {
                 scoreboard.removePlayerTeam(enabled);

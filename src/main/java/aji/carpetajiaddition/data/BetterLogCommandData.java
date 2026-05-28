@@ -1,6 +1,6 @@
 package aji.carpetajiaddition.data;
 
-import aji.carpetajiaddition.CarpetAjiAdditionSettings;
+import aji.carpetajiaddition.CarpetAjiAdditionRules;
 import aji.carpetajiaddition.mixin.rules.betterLogCommand.LoggerRegistryAccessor;
 import carpet.logging.LoggerRegistry;
 import net.minecraft.nbt.CompoundTag;
@@ -41,7 +41,7 @@ public class BetterLogCommandData implements Data{
         if (tag == null) {
             return;
         }
-        if (isFirstLoad && CarpetAjiAdditionSettings.betterLogCommand) {
+        if (isFirstLoad && CarpetAjiAdditionRules.betterLogCommand) {
             CompoundTag tag1 = (CompoundTag) tag;
             for (String string : tag1.getAllKeys()) {
                 CompoundTag tag2 = (CompoundTag) tag1.get(string);

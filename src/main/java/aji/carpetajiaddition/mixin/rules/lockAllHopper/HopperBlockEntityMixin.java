@@ -1,6 +1,6 @@
 package aji.carpetajiaddition.mixin.rules.lockAllHopper;
 
-import aji.carpetajiaddition.CarpetAjiAdditionSettings;
+import aji.carpetajiaddition.CarpetAjiAdditionRules;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.HopperBlockEntity;
@@ -16,6 +16,6 @@ import java.util.function.BooleanSupplier;
 public abstract class HopperBlockEntityMixin{
     @Inject(method = "tryMoveItems", at = @At("HEAD"), cancellable = true)
     private static void insertAndExtract(Level level, BlockPos blockPos, BlockState blockState, HopperBlockEntity hopperBlockEntity, BooleanSupplier booleanSupplier, CallbackInfoReturnable<Boolean> cir) {
-        if (CarpetAjiAdditionSettings.lockAllHopper) cir.setReturnValue(false);
+        if (CarpetAjiAdditionRules.lockAllHopper) cir.setReturnValue(false);
     }
 }

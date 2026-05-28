@@ -1,6 +1,6 @@
 package aji.carpetajiaddition.util;
 
-import aji.carpetajiaddition.CarpetAjiAdditionSettings;
+import aji.carpetajiaddition.constant.ModConstants;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -11,7 +11,7 @@ public final class ResourceLocationUtil {
     }
 
     public static ResourceLocation getResourceLocation(String name){
-        return ResourceLocation.fromNamespaceAndPath(CarpetAjiAdditionSettings.MOD_ID, name);
+        return ResourceLocation.fromNamespaceAndPath(ModConstants.MOD_ID, name);
     }
 
     public static String getItemRegistryName(Item item){
