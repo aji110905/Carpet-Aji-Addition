@@ -1,5 +1,6 @@
 package aji.carpetajiaddition.data;
 
+import aji.carpetajiaddition.CarpetAjiAdditionExtension;
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
@@ -83,6 +84,6 @@ public class FollowCommandData implements Data {
     }
 
     public static FollowCommandData getInstance(){
-        return (FollowCommandData) CarpetAjiAdditionSettings.dataManager.getData(DATA_NAME);
+        return (FollowCommandData) CarpetAjiAdditionExtension.INSTANCE.getDataManager().getData(DATA_NAME);
     }
 }

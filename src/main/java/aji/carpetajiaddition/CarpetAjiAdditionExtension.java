@@ -15,6 +15,9 @@ import net.minecraft.server.level.ServerPlayer;
 import java.util.Map;
 
 public class CarpetAjiAdditionExtension implements CarpetExtension {
+    private DataManager dataManager = null;
+    private RecipeManager recipeManager = null;
+
     public static final CarpetAjiAdditionExtension INSTANCE = new CarpetAjiAdditionExtension();
 
     @Override
@@ -23,14 +26,14 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
     }
 
     public void onServerCreated(MinecraftServer server){
-        CarpetAjiAdditionSettings.recipeManager = new RecipeManager(server);
+        recipeManager = new RecipeManager(server);
         FollowCommand.init(server);
     }
 
     @Override
     public void onServerLoaded(MinecraftServer server) {
-        CarpetAjiAdditionSettings.dataManager = new DataManager(server);
-        CarpetAjiAdditionSettings.recipeManager.reloadResourcesIfRecipeRuleEnabled();
+        dataManager = new DataManager(server);
+        recipeManager.reloadResourcesIfRecipeRuleEnabled();
     }
 
     @Override
@@ -40,22 +43,22 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
     }
 
     public void onSave(MinecraftServer server) {
-        CarpetAjiAdditionSettings.dataManager.saveData();
+        dataManager.saveData();
     }
 
     @Override
     public void onPlayerLoggedIn(ServerPlayer player) {
-        CarpetAjiAdditionSettings.recipeManager.onPlayerLoggedIn(player);
+        recipeManager.onPlayerLoggedIn(player);
     }
 
     @Override
     public void onReload(MinecraftServer server) {
-        CarpetAjiAdditionSettings.dataManager.loadData();
+        dataManager.loadData();
     }
 
     public void afterServerClose(MinecraftServer server) {
-        CarpetAjiAdditionSettings.dataManager = null;
-        CarpetAjiAdditionSettings.recipeManager = null;
+        dataManager = null;
+        recipeManager = null;
     }
 
     @Override
@@ -68,5 +71,13 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
         TranslateManager translateManager = TranslateManager.getInstance();
         translateManager.updateTranslations(lang);
         return translateManager.getFabricCarpetTranslationMap();
+    }
+
+    public RecipeManager getRecipeManager() {
+        return recipeManager;
+    }
+
+    public DataManager getDataManager() {
+        return dataManager;
     }
 }

@@ -1,5 +1,6 @@
 package aji.carpetajiaddition.mixin.rules.recipeRule;
 
+import aji.carpetajiaddition.CarpetAjiAdditionExtension;
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import aji.carpetajiaddition.recipe.RecipeManager;
 import com.llamalad7.mixinextras.sugar.Local;
@@ -23,6 +24,6 @@ public abstract class RecipeManagerMixin {
             )
     )
     private void addCustomRecipes(CallbackInfoReturnable<RecipeMap> cir, @Local(name = "sortedMap") SortedMap<ResourceLocation, Recipe<?>> map) {
-        CarpetAjiAdditionSettings.recipeManager.onApply(map, ((RecipeManagerAccessor) this).getRegistries());
+        CarpetAjiAdditionExtension.INSTANCE.getRecipeManager().onApply(map, ((RecipeManagerAccessor) this).getRegistries());
     }
 }

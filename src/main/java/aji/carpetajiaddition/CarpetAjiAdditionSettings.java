@@ -1,9 +1,7 @@
 package aji.carpetajiaddition;
 
-import aji.carpetajiaddition.data.DataManager;
 import aji.carpetajiaddition.observer.RecipeRuleObserve;
 import aji.carpetajiaddition.annotation.MustSetDefault;
-import aji.carpetajiaddition.recipe.RecipeManager;
 import carpet.api.settings.Rule;
 import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.Logger;
@@ -21,8 +19,6 @@ public class CarpetAjiAdditionSettings {
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
     public static final String VERSION = FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow().getMetadata().getVersion().toString();
     public static final Set<String> MUST_SET_DEFAULT_RULES = new HashSet<>();
-    public static DataManager dataManager = null;
-    public static RecipeManager recipeManager = null;
 
     @Rule(categories = {CAA, CREATIVE})
     public static boolean glowingHopperMinecart = false;

@@ -1,5 +1,6 @@
 package aji.carpetajiaddition.observer;
 
+import aji.carpetajiaddition.CarpetAjiAdditionExtension;
 import aji.carpetajiaddition.CarpetAjiAdditionSettings;
 import aji.carpetajiaddition.recipe.RecipeManager;
 import carpet.api.settings.CarpetRule;
@@ -10,6 +11,6 @@ public class RecipeRuleObserve extends RuleObserve<Boolean> {
 
     @Override
     public void onRuleValueChanged(@Nullable CommandSourceStack source, CarpetRule<Boolean> changingRule, Boolean newValue, String userInput) {
-        CarpetAjiAdditionSettings.recipeManager.onRuleValueChanged();
+        CarpetAjiAdditionExtension.INSTANCE.getRecipeManager().onRuleValueChanged();
     }
 }
