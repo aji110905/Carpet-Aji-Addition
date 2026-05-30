@@ -16,10 +16,10 @@ import net.minecraft.server.level.ServerPlayer;
 import java.util.Map;
 
 public class CarpetAjiAdditionExtension implements CarpetExtension {
+    public static final CarpetAjiAdditionExtension INSTANCE = new CarpetAjiAdditionExtension();
+
     private DataManager dataManager = null;
     private RecipeManager recipeManager = null;
-
-    public static final CarpetAjiAdditionExtension INSTANCE = new CarpetAjiAdditionExtension();
 
     @Override
     public void onGameStarted() {
