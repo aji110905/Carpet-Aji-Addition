@@ -15,6 +15,7 @@ import static carpet.api.settings.RuleCategory.*;
 
 public class CarpetAjiAdditionRules {
     public static final Set<String> MUST_SET_DEFAULT_RULES;
+    public static final Set<Field> RECIPE_RULES;
 
     @Rule(categories = {CAA, CREATIVE})
     public static boolean glowingHopperMinecart = false;
@@ -63,17 +64,13 @@ public class CarpetAjiAdditionRules {
     public static boolean dragonBreathRecipe = false;
 
     public static boolean hasEnabledRecipeRule(){
-        for (Field field : CarpetAjiAdditionRules.class.getDeclaredFields()) {
-            if (!field.isAnnotationPresent(Rule.class)){
-                continue;
-            }
+        for (Field recipeRule : RECIPE_RULES) {
             try {
-                field.setAccessible(true);
-                if (Arrays.asList(field.getAnnotation(Rule.class).categories()).contains(RECIPE) && field.getBoolean(null)){
+                if (recipeRule.getBoolean(null)){
                     return true;
                 }
             } catch (IllegalAccessException e) {
-                ModConstants.LOGGER.error("Failed to get rule value", e);
+                ModConstants.LOGGER.error("Failed to get value of rule " + recipeRule.getName(), e);
             }
         }
         return false;
@@ -84,6 +81,16 @@ public class CarpetAjiAdditionRules {
         for (Field field : CarpetAjiAdditionRules.class.getDeclaredFields()) {
             if (field.isAnnotationPresent(MustSetDefault.class)){
                 MUST_SET_DEFAULT_RULES.add(field.getName());
+            }
+        }
+
+        RECIPE_RULES = new HashSet<>();
+        for (Field field : CarpetAjiAdditionRules.class.getDeclaredFields()) {
+            if (!field.isAnnotationPresent(Rule.class)){
+                continue;
+            }
+            if (Arrays.asList(field.getAnnotation(Rule.class).categories()).contains(RECIPE)){
+                RECIPE_RULES.add(field);
             }
         }
     }
