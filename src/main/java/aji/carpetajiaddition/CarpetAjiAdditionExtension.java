@@ -28,11 +28,11 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
 
     public void onServerCreated(MinecraftServer server){
         recipeManager = new RecipeManager(server);
-        FollowCommand.init(server);
     }
 
     @Override
     public void onServerLoaded(MinecraftServer server) {
+        FollowCommand.init(server);
         dataManager = new DataManager(server);
         recipeManager.reloadResourcesIfRecipeRuleEnabled();
     }
