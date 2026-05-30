@@ -39,10 +39,7 @@ public class RecipeManager {
     }
 
     public void onRuleValueChanged(){
-        if (!CarpetAjiAdditionRules.hasEnabledRecipeRule()){
-            return;
-        }
-        //server.execute(() -> {
+        server.execute(() -> {
             server.reloadResources(server.getPackRepository().getSelectedIds());
             for (RecipeHolder<?> recipe : server.getRecipeManager().getRecipes()) {
                 if (!recipe.id().getNamespace().equals(MOD_ID)) {
@@ -54,7 +51,7 @@ public class RecipeManager {
                     }
                 }
             }
-        //});
+        });
     }
 
     public void onPlayerLoggedIn(ServerPlayer player){
@@ -65,12 +62,6 @@ public class RecipeManager {
             if (recipe.id().getNamespace().equals(MOD_ID) && !player.getRecipeBook().contains(recipe.id())) {
                 player.awardRecipes(List.of(recipe));
             }
-        }
-    }
-
-    public void reloadResourcesIfRecipeRuleEnabled(){
-        if (CarpetAjiAdditionRules.hasEnabledRecipeRule()) {
-            server.reloadResources(server.getPackRepository().getSelectedIds());
         }
     }
 }

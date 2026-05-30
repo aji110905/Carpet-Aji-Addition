@@ -34,7 +34,7 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
     public void onServerLoaded(MinecraftServer server) {
         dataManager = new DataManager(server);
         FollowCommand.init(server);
-        recipeManager.reloadResourcesIfRecipeRuleEnabled();
+        server.reloadResources(server.getPackRepository().getSelectedIds());
     }
 
     @Override
