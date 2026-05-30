@@ -2,7 +2,7 @@ package aji.carpetajiaddition.recipe;
 
 import net.minecraft.world.item.Item;
 
-public abstract class RecipeBuilder<T extends Recipe> {
+public abstract class RecipeBuilder {
     protected final boolean enabled;
     protected final String recipeName;
     protected Item resultItem;
