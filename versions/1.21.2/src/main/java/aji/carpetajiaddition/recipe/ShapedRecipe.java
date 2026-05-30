@@ -59,7 +59,7 @@ public class ShapedRecipe extends Recipe {
         return new Builder(enabled, recipeName);
     }
 
-    public static class Builder extends RecipeBuilder<ShapedRecipe>{
+    public static class Builder extends RecipeBuilder{
         private final List<String> patternRows = new ArrayList<>();
         private final Map<Character, Item> ingredients = new HashMap<>();
 
