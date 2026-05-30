@@ -14,7 +14,7 @@ public abstract class RecipeBuilder {
         this.recipeName = recipeName;
     }
 
-    public RecipeBuilder<T> output(Item item, int count) {
+    public RecipeBuilder output(Item item, int count) {
         isSetResult = true;
         resultItem = item;
         resultCount = count;
