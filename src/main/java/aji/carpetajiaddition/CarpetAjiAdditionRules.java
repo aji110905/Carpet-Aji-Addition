@@ -1,10 +1,12 @@
 package aji.carpetajiaddition;
 
+import aji.carpetajiaddition.constant.ModConstants;
 import aji.carpetajiaddition.observer.RecipeRuleObserve;
 import aji.carpetajiaddition.annotation.MustSetDefault;
 import carpet.api.settings.Rule;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -59,6 +61,23 @@ public class CarpetAjiAdditionRules {
 
     @Rule(categories = {CAA, RECIPE}, validators = RecipeRuleObserve.class)
     public static boolean dragonBreathRecipe = false;
+
+    public static boolean hasEnabledRecipeRule(){
+        for (Field field : CarpetAjiAdditionRules.class.getDeclaredFields()) {
+            if (!field.isAnnotationPresent(Rule.class)){
+                continue;
+            }
+            try {
+                field.setAccessible(true);
+                if (Arrays.asList(field.getAnnotation(Rule.class).categories()).contains(RECIPE) && field.getBoolean(null)){
+                    return true;
+                }
+            } catch (IllegalAccessException e) {
+                ModConstants.LOGGER.error("Failed to get rule value", e);
+            }
+        }
+        return false;
+    }
 
     static {
         MUST_SET_DEFAULT_RULES = new HashSet<>();

@@ -1,16 +1,12 @@
 package aji.carpetajiaddition.recipe;
 
 import aji.carpetajiaddition.CarpetAjiAdditionRules;
-import aji.carpetajiaddition.constant.ModConstants;
-import aji.carpetajiaddition.constant.RuleCategory;
-import carpet.api.settings.Rule;
 import com.google.gson.JsonElement;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.crafting.RecipeHolder;
 
-import java.lang.reflect.Field;
 import java.util.*;
 
 import static aji.carpetajiaddition.constant.ModConstants.MOD_ID;
@@ -24,6 +20,9 @@ public class RecipeManager {
     }
 
     public void registerRecipe(Map<ResourceLocation, JsonElement> map) {
+        if (!CarpetAjiAdditionRules.hasEnabledRecipeRule()){
+            return;
+        }
         ShapedRecipe.builder(CarpetAjiAdditionRules.dragonEggRecipe, "dragon_egg")
                 .pattern("&#&")
                 .pattern("^*^")
@@ -40,8 +39,11 @@ public class RecipeManager {
     }
 
     public void onRuleValueChanged(){
-        server.execute(() -> {
-            reloadResourcesIfRecipeRuleEnabled();
+        if (!CarpetAjiAdditionRules.hasEnabledRecipeRule()){
+            return;
+        }
+        //server.execute(() -> {
+            server.reloadResources(server.getPackRepository().getSelectedIds());
             for (RecipeHolder<?> recipe : server.getRecipeManager().getRecipes()) {
                 if (!recipe.id().getNamespace().equals(MOD_ID)) {
                     continue;
@@ -52,10 +54,13 @@ public class RecipeManager {
                     }
                 }
             }
-        });
+        //});
     }
 
     public void onPlayerLoggedIn(ServerPlayer player){
+        if (!CarpetAjiAdditionRules.hasEnabledRecipeRule()){
+            return;
+        }
         for (RecipeHolder<?> recipe : server.getRecipeManager().getRecipes()) {
             if (recipe.id().getNamespace().equals(MOD_ID) && !player.getRecipeBook().contains(recipe.id())) {
                 player.awardRecipes(List.of(recipe));
@@ -64,20 +69,8 @@ public class RecipeManager {
     }
 
     public void reloadResourcesIfRecipeRuleEnabled(){
-        Field[] fields = CarpetAjiAdditionRules.class.getDeclaredFields();
-        for (Field field : fields) {
-            if (!field.isAnnotationPresent(Rule.class)) {
-                continue;
-            }
-            try {
-                field.setAccessible(true);
-                if (Arrays.asList(field.getAnnotation(Rule.class).categories()).contains(RuleCategory.RECIPE) && field.getBoolean(null)) {
-                    server.reloadResources(server.getPackRepository().getSelectedIds());
-                    return;
-                }
-            } catch (IllegalAccessException e) {
-                ModConstants.LOGGER.error("Failed to get rule value", e);
-            }
+        if (CarpetAjiAdditionRules.hasEnabledRecipeRule()) {
+            server.reloadResources(server.getPackRepository().getSelectedIds());
         }
     }
 }
