@@ -18,8 +18,11 @@ import java.util.Map;
 public class CarpetAjiAdditionExtension implements CarpetExtension {
     public static final CarpetAjiAdditionExtension INSTANCE = new CarpetAjiAdditionExtension();
 
+    private final TranslateManager translateManager = new TranslateManager();
+
     private DataManager dataManager = null;
     private RecipeManager recipeManager = null;
+
 
     @Override
     public void onGameStarted() {
@@ -69,7 +72,6 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
 
     @Override
     public Map<String, String> canHasTranslations(String lang) {
-        TranslateManager translateManager = TranslateManager.getInstance();
         translateManager.updateTranslations(lang);
         return translateManager.getFabricCarpetTranslationMap();
     }
@@ -80,5 +82,9 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
 
     public DataManager getDataManager() {
         return dataManager;
+    }
+
+    public TranslateManager getTranslateManager() {
+        return translateManager;
     }
 }

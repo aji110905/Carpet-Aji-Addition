@@ -1,5 +1,6 @@
 package aji.carpetajiaddition.util;
 
+import aji.carpetajiaddition.CarpetAjiAdditionExtension;
 import aji.carpetajiaddition.constant.TranslationsKey;
 import aji.carpetajiaddition.translate.TranslateManager;
 import aji.carpetajiaddition.translate.Translator;
@@ -70,6 +71,6 @@ public final class TranslateUtil {
     }
     
     private static Translator getTranslator(){
-        return TranslateManager.getInstance().getTranslator();
+        return CarpetAjiAdditionExtension.INSTANCE.getTranslateManager().getTranslator();
     }
 }
