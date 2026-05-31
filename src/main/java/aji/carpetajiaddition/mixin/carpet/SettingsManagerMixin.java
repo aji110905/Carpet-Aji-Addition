@@ -34,7 +34,7 @@ public abstract class SettingsManagerMixin {
 
     @Inject(method = "setRule", at = @At("RETURN"))
     private void setRule(CommandSourceStack source, CarpetRule<?> rule, String value, CallbackInfoReturnable<Integer> cir) {
-        if (CarpetAjiAdditionRules.MUST_SET_DEFAULT_RULES.contains(rule.name())) {
+        if (CarpetAjiAdditionRules.isMustSetDefaultRule(rule.name())) {
             setDefault(source, rule, value);
         }
     }

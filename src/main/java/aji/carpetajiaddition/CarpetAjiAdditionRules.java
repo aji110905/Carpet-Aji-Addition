@@ -14,8 +14,8 @@ import static aji.carpetajiaddition.constant.RuleCategory.*;
 import static carpet.api.settings.RuleCategory.*;
 
 public class CarpetAjiAdditionRules {
-    public static final Set<String> MUST_SET_DEFAULT_RULES;
-    public static final Set<Field> RECIPE_RULES;
+    private static final Set<String> MUST_SET_DEFAULT_RULES;
+    private static final Set<Field> RECIPE_RULES;
 
     @Rule(categories = {CAA, CREATIVE})
     public static boolean glowingHopperMinecart = false;
@@ -70,10 +70,14 @@ public class CarpetAjiAdditionRules {
                     return true;
                 }
             } catch (IllegalAccessException e) {
-                ModConstants.LOGGER.error("Failed to get value of rule " + recipeRule.getName(), e);
+                ModConstants.LOGGER.error("Failed to get value of rule {}", recipeRule.getName(), e);
             }
         }
         return false;
+    }
+
+    public static boolean isMustSetDefaultRule(String ruleName){
+        return MUST_SET_DEFAULT_RULES.contains(ruleName);
     }
 
     static {
