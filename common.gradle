@@ -39,7 +39,7 @@ dependencies {
     include(autoImplementation 'org.yaml:snakeyaml:2.2')
 }
 
-String fullModVersion = "1.5.0"
+String fullModVersion = "1.5.1"
 version = 'v' + fullModVersion
 group = "aji.carpetajiaddition"
 

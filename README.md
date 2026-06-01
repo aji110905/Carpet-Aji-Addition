@@ -5,7 +5,7 @@
 
 **中文** | [**English**](https://github.com/aji110905/Carpet-Aji-Addition/blob/master/README_en.md)
 
-## 官网
+## 网站
 
 https://aji110905.github.io/Carpet-Aji-Addition-Web
 
