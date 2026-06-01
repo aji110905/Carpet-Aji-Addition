@@ -1,6 +1,6 @@
 package aji.carpetajiaddition.mixin.rules.removeEnderPearlDamage;
 
-import aji.carpetajiaddition.CarpetAjiAdditionSettings;
+import aji.carpetajiaddition.CarpetAjiAdditionRules;
 import net.minecraft.world.entity.projectile.ThrownEnderpearl;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -23,7 +23,7 @@ public abstract class ThrownEnderPearlMixin{
             //#endif
     )
     private float removeEnderPearlDamage(float damage) {
-        if (CarpetAjiAdditionSettings.removeEnderPearlDamage) {
+        if (CarpetAjiAdditionRules.removeEnderPearlDamage) {
             return 0;
         } else {
             return damage;

@@ -1,8 +1,8 @@
 package aji.carpetajiaddition.mixin.rules.recipeRule;
 
-import aji.carpetajiaddition.util.compatible.DummyClass;
+import net.minecraft.world.item.crafting.RecipeManager;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(DummyClass.class)
+@Mixin(RecipeManager.class)
 public interface RecipeManagerAccessor {
 }

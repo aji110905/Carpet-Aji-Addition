@@ -1,6 +1,6 @@
 package aji.carpetajiaddition.mixin.rules.safeMagmaBlock;
 
-import aji.carpetajiaddition.CarpetAjiAdditionSettings;
+import aji.carpetajiaddition.CarpetAjiAdditionRules;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
@@ -21,7 +21,7 @@ public abstract class MagmaBlockMixin extends Block {
 
     @Inject(method = "stepOn", at = @At("HEAD"), cancellable = true)
     private void onSteepedOn(Level level, BlockPos blockPos, BlockState blockState, Entity entity, CallbackInfo ci){
-        if (!CarpetAjiAdditionSettings.safeMagmaBlock) return;
+        if (!CarpetAjiAdditionRules.safeMagmaBlock) return;
         if (level.isClientSide()) return;
         super.stepOn(level, blockPos, blockState, entity);
         ci.cancel();

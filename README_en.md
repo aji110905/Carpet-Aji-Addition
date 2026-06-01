@@ -5,15 +5,13 @@
 
 [**中文**](https://github.com/aji110905/Carpet-Aji-Addition/blob/master/README.md) | **English**
 
-## Supported Versions
-
-| Game Version |                      repository                       |
-|:------------:|:-----------------------------------------------------:|
-| 1.21-1.21.11 |   https://github.com/aji110905/Carpet-Aji-Addition    |
-|    26.1+     | https://github.com/aji110905/Carpet-Aji-Addition-26.1 |
-
 ## Web
+
 https://aji110905.github.io/Carpet-Aji-Addition-Web
 
+You can find more information about this mod on this website.
+
 ## License
+
+
 This project is available under the [MIT License](https://opensource.org/licenses/MIT). Feel free to learn from it and incorporate it into your own projects.

@@ -1,6 +1,6 @@
 package aji.carpetajiaddition.data;
 
-import aji.carpetajiaddition.CarpetAjiAdditionSettings;
+import aji.carpetajiaddition.constant.ModConstants;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtIo;
 import net.minecraft.server.MinecraftServer;
@@ -11,6 +11,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Set;
 
+import static aji.carpetajiaddition.constant.ModConstants.LOGGER;
+
 public class DataManager {
     private final Path path;
     private final Set<Data> dataSet = Set.of(
@@ -19,7 +21,7 @@ public class DataManager {
     );
 
     public DataManager(MinecraftServer server) {
-        this.path = server.getWorldPath(LevelResource.ROOT).getParent().resolve("data/" + CarpetAjiAdditionSettings.MOD_ID + ".dat");
+        this.path = server.getWorldPath(LevelResource.ROOT).getParent().resolve("data/" + ModConstants.MOD_ID + ".dat");
         File file = path.toFile();
         if(!file.exists()){
             try {
@@ -29,7 +31,7 @@ public class DataManager {
                 }
                 file.createNewFile();
             } catch (IOException e) {
-                CarpetAjiAdditionSettings.LOGGER.error("Failed to create data file", e);
+                LOGGER.error("Failed to create data file", e);
             }
             saveData();
         }
@@ -44,7 +46,7 @@ public class DataManager {
         try {
             NbtIo.write(compound, path);
         } catch (IOException e) {
-            CarpetAjiAdditionSettings.LOGGER.error("Failed to save data", e);
+            ModConstants.LOGGER.error("Failed to save data", e);
         }
     }
 
@@ -53,14 +55,14 @@ public class DataManager {
             CompoundTag compound = NbtIo.read(path);
             if (compound == null) {
                 saveData();
-                CarpetAjiAdditionSettings.LOGGER.warn("Data file is empty, saving default data");
+                LOGGER.warn("Data file is empty, saving default data");
                 return;
             }
             for (Data data : dataSet) {
                 data.load(compound.get(data.name()));
             }
         } catch (IOException e) {
-            CarpetAjiAdditionSettings.LOGGER.error("Failed to load data", e);
+            LOGGER.error("Failed to load data", e);
         }
     }
 

@@ -1,5 +1,6 @@
 package aji.carpetajiaddition.mixin.rules.recipeRule;
 
+import aji.carpetajiaddition.CarpetAjiAdditionExtension;
 import aji.carpetajiaddition.recipe.RecipeManager;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.resources.ResourceLocation;
@@ -21,9 +22,10 @@ public abstract class RecipeManagerMixin {
                     target = "Ljava/util/ArrayList;<init>(I)V"
             )
     )
-    private void addCustomRecipes(CallbackInfoReturnable<RecipeMap> cir, @Local(name = "sortedMap") SortedMap<ResourceLocation, Recipe<?>> recipes) {
-        RecipeManager.clearRecipeListMemory();
-        RecipeManager.buildRecipes();
-        RecipeManager.registerRecipes(recipes, ((RecipeManagerAccessor) this).getRegistries());
+    private void prepare(CallbackInfoReturnable<RecipeMap> cir, @Local(name = "sortedMap") SortedMap<ResourceLocation, Recipe<?>> map) {
+        RecipeManager recipeManager = CarpetAjiAdditionExtension.INSTANCE.getRecipeManager();
+        if (recipeManager != null) {
+            recipeManager.registerRecipe(map, ((RecipeManagerAccessor) this).getRegistries());
+        }
     }
 }

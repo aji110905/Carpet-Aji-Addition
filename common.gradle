@@ -1,9 +1,12 @@
-apply plugin: 'fabric-loom'
-apply plugin: 'com.replaymod.preprocess'
+final int mcVersion = {
+    def s = project.minecraft_version.split('\\.')
+    int v = s[0].toInteger() * 10000 + s[1].toInteger() * 100
+    s.length >= 3 ? v + s[2].toInteger() : v
+}.call()
+final boolean unobfuscated = mcVersion >= 26_00_00
 
-preprocess {
-    tabIndentation = true
-}
+apply plugin: unobfuscated ? 'net.fabricmc.fabric-loom' : 'net.fabricmc.fabric-loom-remap'
+apply plugin: 'com.replaymod.preprocess'
 
 configurations {
     modRuntimeOnly.exclude group: 'net.fabricmc', module: 'fabric-loader'
@@ -19,53 +22,59 @@ repositories {
 
 loom{
     accessWidenerPath = file("carpetajiaddition.accesswidener")
-
-    runConfigs.all {
-        ideConfigGenerated = true
-    }
 }
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings loom.layered() {
-        officialMojangMappings()
+    if (!unobfuscated) {
+        mappings loom.layered() {
+            officialMojangMappings()
+        }
     }
-    modImplementation"net.fabricmc:fabric-loader:${project.loader_version}"
-    modImplementation"carpet:fabric-carpet:${project.carpet_core_version}"
-    include(implementation 'org.yaml:snakeyaml:2.2')
+    def autoImplementation = {
+        dep -> unobfuscated ? implementation(dep) : modImplementation(dep)
+    }
+    autoImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    autoImplementation "carpet:fabric-carpet:${project.carpet_core_version}"
+    include(autoImplementation 'org.yaml:snakeyaml:2.2')
 }
 
-String fullModVersion = "1.5.0"
+String fullModVersion = "1.5.1"
 version = 'v' + fullModVersion
 group = "aji.carpetajiaddition"
+
+JavaVersion JAVA_VERSION
+
+if (mcVersion >= 260000) {
+    JAVA_VERSION = JavaVersion.VERSION_25
+} else if (mcVersion >= 12100) {
+    JAVA_VERSION = JavaVersion.VERSION_21
+}
+
+java {
+    sourceCompatibility = JAVA_VERSION
+    targetCompatibility = JAVA_VERSION
+}
+
+String jarName = "carpet-aji-addition-${version}-mc${project.minecraft_version}"
+
+base {
+    archivesName.set(jarName)
+}
+
+jar {
+    from("LICENSE")
+}
 
 processResources {
     inputs.property "version", project.version
     filesMatching("fabric.mod.json") {
-        def valueMap = [
+        expand ([
                 "version": fullModVersion,
                 "minecraft_version": project.minecraft_version,
                 "loader_version": project.loader_version
-        ]
-        expand valueMap
+        ])
     }
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
-}
-
-String jarName = "carpet-aji-addition" + '-' + version + '-mc' + project.minecraft_version
-
-jar {
-    from("LICENSE") {
-        rename { "${it}_${jarName}"}
-    }
-}
-
-remapJar {
-    archiveFileName = "${jarName}.jar"
 }
 
 tasks.withType(JavaCompile).configureEach {

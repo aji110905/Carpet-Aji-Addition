@@ -1,10 +1,11 @@
 plugins {
-	id 'fabric-loom' version "1.15-SNAPSHOT" apply false
-    id "com.replaymod.preprocess" version "88169fcbc9"
+    id 'net.fabricmc.fabric-loom' version '1.15-SNAPSHOT' apply false
+    id 'net.fabricmc.fabric-loom-remap' version '1.15-SNAPSHOT' apply false
+    id "com.replaymod.preprocess" version "c5abb4fb12"
 }
 
 preprocess {
-    def mc12100 = createNode("1.21", 1_21, "official")
+    def mc12100 = createNode("1.21", 1_21_00, "official")
     def mc12101 = createNode("1.21.1", 1_21_01, "official")
     def mc12102 = createNode("1.21.2", 1_21_02, "official")
     def mc12103 = createNode("1.21.3", 1_21_03, "official")
@@ -16,6 +17,9 @@ preprocess {
     def mc12109 = createNode("1.21.9", 1_21_09, "official")
     def mc12110 = createNode("1.21.10", 1_21_10, "official")
     def mc12111 = createNode("1.21.11", 1_21_11, "official")
+    def mc260100 = createNode("26.1", 26_01_00, "")
+    def mc260101 = createNode("26.1.1", 26_01_01, "")
+    def mc260102 = createNode("26.1.2", 26_01_02, "")
 
     mc12101.link(mc12100, null)
     mc12102.link(mc12101, null)
@@ -28,4 +32,7 @@ preprocess {
     mc12109.link(mc12108, null)
     mc12110.link(mc12109, null)
     mc12111.link(mc12110, null)
+    mc260100.link(mc12111, null)
+    mc260101.link(mc260100, null)
+    mc260102.link(mc260101, null)
 }
