@@ -1,5 +1,3 @@
-import groovy.json.JsonSlurper
-
 pluginManagement {
     repositories {
         mavenLocal()
@@ -26,13 +24,12 @@ pluginManagement {
     }
 }
 
-List<String> versions = file("versions.json").withReader {
-    new JsonSlurper().parse(it) as List<String>
-}
-
-for (String version : versions) {
-    include(":$version")
-    ProjectDescriptor proj = project(":$version")
-    proj.setProjectDir(file("versions/$version"))
-    proj.setBuildFileName("../../common.gradle")
+file('versions').eachFile { file ->
+    if (file.isDirectory()) {
+        String name = file.getName()
+        include(":$name")
+        ProjectDescriptor proj = project(":$name")
+        proj.setProjectDir(file)
+        proj.setBuildFileName("../../common.gradle")
+    }
 }
