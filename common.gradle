@@ -36,12 +36,8 @@ dependencies {
     }
     autoImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     autoImplementation "carpet:fabric-carpet:${project.carpet_core_version}"
-    include(autoImplementation 'org.yaml:snakeyaml:2.2')
+    include(autoImplementation "org.yaml:snakeyaml:${project.yaml_version}")
 }
-
-String fullModVersion = "1.5.1"
-version = 'v' + fullModVersion
-group = "aji.carpetajiaddition"
 
 JavaVersion JAVA_VERSION
 
@@ -56,10 +52,8 @@ java {
     targetCompatibility = JAVA_VERSION
 }
 
-String jarName = "carpet-aji-addition-${version}-mc${project.minecraft_version}"
-
 base {
-    archivesName.set(jarName)
+    archivesName.set("carpet-aji-addition-v${project.mod_version}-mc${project.minecraft_version}")
 }
 
 jar {
@@ -67,7 +61,7 @@ jar {
 }
 
 processResources {
-    inputs.property "version", project.version
+    inputs.property "version", project.mod_version
     filesMatching("fabric.mod.json") {
         expand ([
                 "version": fullModVersion,
