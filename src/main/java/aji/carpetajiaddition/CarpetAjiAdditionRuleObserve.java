@@ -9,7 +9,7 @@ public class CarpetAjiAdditionRuleObserve implements SettingsManager.RuleObserve
     @Override
     public void ruleChanged(CommandSourceStack source, CarpetRule<?> changedRule, String userInput) {
         if (changedRule.categories().contains(RuleCategory.RECIPE)){
-            CarpetAjiAdditionExtension.INSTANCE.getRecipeManager().onRuleValueChanged();
+            CarpetAjiAdditionExtension.INSTANCE.getRecipeManager().onRecipeRuleValueChanged();
         }
     }
 }

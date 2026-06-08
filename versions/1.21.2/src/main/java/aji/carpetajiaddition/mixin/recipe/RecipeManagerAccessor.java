@@ -1,4 +1,4 @@
-package aji.carpetajiaddition.mixin.rules.recipeRule;
+package aji.carpetajiaddition.mixin.recipe;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.world.item.crafting.RecipeManager;

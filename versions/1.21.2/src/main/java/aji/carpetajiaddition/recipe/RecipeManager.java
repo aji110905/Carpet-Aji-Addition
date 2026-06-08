@@ -25,22 +25,24 @@ public class RecipeManager {
         this.server = server;
     }
     public void registerRecipe(SortedMap<ResourceLocation, net.minecraft.world.item.crafting.Recipe<?>> map, HolderLookup.Provider provider) {
-        ShapedRecipe.builder(CarpetAjiAdditionRules.dragonEggRecipe, "dragon_egg")
-                .pattern("&#&")
-                .pattern("^*^")
-                .pattern("$$$")
-                .define('&', CRYING_OBSIDIAN).define('#', GLASS_BOTTLE).define('^', OBSIDIAN).define('*', EGG).define('$', END_CRYSTAL)
-                .output(DRAGON_EGG, 1)
-                .build().addToRecipeMap(map, provider);
-        ShapedRecipe.builder(CarpetAjiAdditionRules.dragonBreathRecipe, "dragon_breath")
-                .pattern("#")
-                .pattern("*")
-                .define('#', DRAGON_EGG).define('*', GLASS_BOTTLE)
-                .output(DRAGON_BREATH, 1)
-                .build().addToRecipeMap(map, provider);
+        if (CarpetAjiAdditionRules.dragonEggRecipe) {
+            ShapedRecipe.builder("dragon_egg", DRAGON_EGG, 1)
+                    .pattern("&#&")
+                    .pattern("^*^")
+                    .pattern("$$$")
+                    .define('&', CRYING_OBSIDIAN).define('#', GLASS_BOTTLE).define('^', OBSIDIAN).define('*', EGG).define('$', END_CRYSTAL)
+                    .build().addToRecipeMap(map, provider);
+        }
+        if (CarpetAjiAdditionRules.dragonBreathRecipe) {
+            ShapedRecipe.builder("dragon_breath", DRAGON_BREATH, 1)
+                    .pattern("#")
+                    .pattern("*")
+                    .define('#', DRAGON_EGG).define('*', GLASS_BOTTLE)
+                    .build().addToRecipeMap(map, provider);
+        }
     }
 
-    public void onRuleValueChanged(){
+    public void onRecipeRuleValueChanged(){
         server.execute(() -> {
             reloadResourcesIfRecipeRuleEnabled();
             for (RecipeHolder<?> recipe : server.getRecipeManager().getRecipes()) {

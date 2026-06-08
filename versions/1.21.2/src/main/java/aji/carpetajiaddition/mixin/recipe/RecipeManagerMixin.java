@@ -1,4 +1,4 @@
-package aji.carpetajiaddition.mixin.rules.recipeRule;
+package aji.carpetajiaddition.mixin.recipe;
 
 import aji.carpetajiaddition.CarpetAjiAdditionExtension;
 import aji.carpetajiaddition.recipe.RecipeManager;
