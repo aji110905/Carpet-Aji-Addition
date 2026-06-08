@@ -1,7 +1,6 @@
 package aji.carpetajiaddition;
 
 import aji.carpetajiaddition.constant.ModConstants;
-import aji.carpetajiaddition.observer.RecipeRuleObserve;
 import aji.carpetajiaddition.annotation.MustSetDefault;
 import carpet.api.settings.Rule;
 
@@ -57,10 +56,10 @@ public class CarpetAjiAdditionRules {
     @Rule(categories = {CAA, COMMAND})
     public static String commandMods = "0";
 
-    @Rule(categories = {CAA, RECIPE}, validators = RecipeRuleObserve.class)
+    @Rule(categories = {CAA, RECIPE})
     public static boolean dragonEggRecipe = false;
 
-    @Rule(categories = {CAA, RECIPE}, validators = RecipeRuleObserve.class)
+    @Rule(categories = {CAA, RECIPE})
     public static boolean dragonBreathRecipe = false;
 
     public static boolean hasEnabledRecipeRule(){
