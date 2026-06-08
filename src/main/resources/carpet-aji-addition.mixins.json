@@ -17,7 +17,6 @@
     "rules.recipeRule.RecipeManagerMixin",
     "rules.removeEnderPearlDamage.ThrownEnderPearlMixin",
     "rules.safeMagmaBlock.MagmaBlockMixin",
-    "rules.sitOnTheGround.PlayerMixin",
     "rules.tameHorse.AbstractHorseMixin",
     "rules.toughTurtleEgg.TurtleEggBlockMixin"
   ],

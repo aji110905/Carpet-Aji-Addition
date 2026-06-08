@@ -19,9 +19,6 @@ public class CarpetAjiAdditionRules {
     @Rule(categories = {CAA, CREATIVE})
     public static boolean glowingHopperMinecart = false;
 
-    @Rule(categories = {CAA, SURVIVAL})
-    public static boolean sitOnTheGround = false;
-
     @Rule(categories = {CAA, SURVIVAL, CREATIVE, FEATURE})
     public static boolean lockAllHopper = false;
 
