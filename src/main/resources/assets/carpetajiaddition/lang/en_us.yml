@@ -71,8 +71,6 @@ carpetajiaddition:
     rule:
       glowingHopperMinecart:
         desc: "When a hopper minecart is locked, it glows red; otherwise, it glows white."
-      sitOnTheGround:
-        desc: "Sit on the ground by crouching multiple times.。"
       lockAllHopper:
         desc: "All hoppers will be locked, regardless of whether they receive a redstone signal."
       keepOpeningVault:

@@ -72,9 +72,6 @@ carpetajiaddition:
       glowingHopperMinecart:
         name: "发光的漏斗矿车"
         desc: "漏斗矿车被锁定时会发出红光，反之白光。"
-      sitOnTheGround:
-        name: "席地而坐"
-        desc: "多次蹲下可以坐到地上。"
       lockAllHopper:
         name: "无能的漏斗"
         desc: "所有漏斗都会被锁定，无论他有没有接受到红石信号。"
