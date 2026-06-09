@@ -108,6 +108,9 @@ carpetajiaddition:
       betterLogCommand:
         name: "更好的Log命令"
         desc: "服务器重启后玩家不需要重新使用log命令。"
+      safeCreeper:
+        name: "无能的苦力怕"
+        desc: "苦力怕不会爆炸。"
 
     #-----------------
     #下方的规则为配方规则

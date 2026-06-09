@@ -95,6 +95,8 @@ carpetajiaddition:
         desc: "The ender Portal pearl will not cause damage after transmission."
       betterLogCommand:
         desc: "After the server restarts, players do not need to use the log command again."
+      safeCreeper:
+        desc: "Creeper won't explode."
 
       #-----------------
       #The rules below are recipe rules.
