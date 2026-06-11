@@ -38,7 +38,6 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
 
     @Override
     public void onServerLoaded(MinecraftServer server) {
-
         FollowCommand.init(server);
         server.reloadResources(server.getPackRepository().getSelectedIds());
     }
