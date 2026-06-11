@@ -38,13 +38,13 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
 
     @Override
     public void onServerLoaded(MinecraftServer server) {
-        FollowCommand.init(server);
         server.reloadResources(server.getPackRepository().getSelectedIds());
     }
 
     @Override
     public void onServerLoadedWorlds(MinecraftServer server) {
         dataManager = new DataManager(server);
+        FollowCommand.init(server);
     }
 
     @Override
