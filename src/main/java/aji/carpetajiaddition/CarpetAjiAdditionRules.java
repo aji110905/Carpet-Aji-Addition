@@ -46,6 +46,9 @@ public class CarpetAjiAdditionRules {
     @Rule(categories = {CAA, SURVIVAL, FEATURE})
     public static boolean safeCreeper = false;
 
+    @Rule(categories = {CAA, SURVIVAL, FEATURE})
+    public static boolean anvilCannotDamage = false;
+
     @Rule(categories = {CAA})
     @MustSetDefault
     public static boolean betterLogCommand = false;

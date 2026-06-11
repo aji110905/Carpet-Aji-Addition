@@ -95,6 +95,8 @@ carpetajiaddition:
         desc: "After the server restarts, players do not need to use the log command again."
       safeCreeper:
         desc: "Creeper won't explode."
+      anvilCannotDamage:
+        desc: "Whether falling from a height or using an anvil, the anvil will remain in its current state."
 
       #-----------------
       #The rules below are recipe rules.

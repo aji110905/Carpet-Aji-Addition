@@ -108,6 +108,9 @@ carpetajiaddition:
       safeCreeper:
         name: "无能的苦力怕"
         desc: "苦力怕不会爆炸。"
+      anvilCannotDamage:
+        name: "无法破坏的铁砧"
+        desc: "无论是从高处坠落，还是使用铁砧，铁砧都会保持现在的状态。"
 
     #-----------------
     #下方的规则为配方规则

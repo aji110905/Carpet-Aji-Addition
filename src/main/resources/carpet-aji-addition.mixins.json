@@ -9,6 +9,7 @@
     "hooks.MinecraftServerMixin",
     "recipe.RecipeManagerAccessor",
     "recipe.RecipeManagerMixin",
+    "rules.anvilCannotDamage.AnvilBlockMixin",
     "rules.betterLogCommand.LoggerRegistryAccessor",
     "rules.cactusWrench.BlockItemMixin",
     "rules.endlessVault.VaultServerDataMixin",
