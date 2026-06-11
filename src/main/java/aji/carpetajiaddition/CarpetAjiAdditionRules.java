@@ -1,7 +1,6 @@
 package aji.carpetajiaddition;
 
 import aji.carpetajiaddition.constant.ModConstants;
-import aji.carpetajiaddition.observer.RecipeRuleObserve;
 import aji.carpetajiaddition.annotation.MustSetDefault;
 import carpet.api.settings.Rule;
 
@@ -19,9 +18,6 @@ public class CarpetAjiAdditionRules {
 
     @Rule(categories = {CAA, CREATIVE})
     public static boolean glowingHopperMinecart = false;
-
-    @Rule(categories = {CAA, SURVIVAL})
-    public static boolean sitOnTheGround = false;
 
     @Rule(categories = {CAA, SURVIVAL, CREATIVE, FEATURE})
     public static boolean lockAllHopper = false;
@@ -47,6 +43,12 @@ public class CarpetAjiAdditionRules {
     @Rule(categories = {CAA, SURVIVAL, FEATURE})
     public static boolean removeEnderPearlDamage = false;
 
+    @Rule(categories = {CAA, SURVIVAL, FEATURE})
+    public static boolean safeCreeper = false;
+
+    @Rule(categories = {CAA, SURVIVAL, FEATURE})
+    public static boolean anvilCannotDamage = false;
+
     @Rule(categories = {CAA})
     @MustSetDefault
     public static boolean betterLogCommand = false;
@@ -57,10 +59,10 @@ public class CarpetAjiAdditionRules {
     @Rule(categories = {CAA, COMMAND})
     public static String commandMods = "0";
 
-    @Rule(categories = {CAA, RECIPE}, validators = RecipeRuleObserve.class)
+    @Rule(categories = {CAA, RECIPE})
     public static boolean dragonEggRecipe = false;
 
-    @Rule(categories = {CAA, RECIPE}, validators = RecipeRuleObserve.class)
+    @Rule(categories = {CAA, RECIPE})
     public static boolean dragonBreathRecipe = false;
 
     public static boolean hasEnabledRecipeRule(){

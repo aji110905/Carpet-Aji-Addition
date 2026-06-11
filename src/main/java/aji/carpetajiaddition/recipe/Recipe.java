@@ -8,22 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 
 import java.util.Map;
 
-public abstract class Recipe {
-    protected final String resultItem;
-    protected final int resultCount;
-
-    protected Recipe(String resultItem, int resultCount) {
-        this.resultItem = resultItem;
-        this.resultCount = resultCount;
-    }
-
-    public abstract void addToRecipeMap(Map<ResourceLocation, JsonElement> recipeMap);
-
-    public static Recipe empty() {
-        return new Recipe("", 0) {
-            @Override
-            public void addToRecipeMap(Map<ResourceLocation, JsonElement> recipeMap) {
-            }
-        };
-    }
+@FunctionalInterface
+public interface Recipe {
+    void addToRecipeMap(Map<ResourceLocation, JsonElement> recipeMap);
 }

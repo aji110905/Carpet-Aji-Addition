@@ -1,6 +1,5 @@
 package aji.carpetajiaddition.recipe;
 
-import aji.carpetajiaddition.exception.RecipeBuildException;
 import aji.carpetajiaddition.util.ResourceLocationUtil;
 import com.google.gson.*;
 import com.mojang.serialization.JsonOps;
@@ -13,18 +12,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ShapedRecipe extends Recipe {
+public class ShapedRecipe implements Recipe {
     private static final String TYPE = "minecraft:crafting_shaped";
 
     private final ResourceLocation recipeId;
     private final String[][] pattern;
     private final Map<Character, String> ingredients;
+    private final String resultItem;
+    private final int resultCount;
 
     private ShapedRecipe(ResourceLocation recipeId, String[][] pattern, Map<Character, String> ingredients, String resultItem, int resultCount) {
-        super(resultItem, resultCount);
         this.recipeId = recipeId;
         this.pattern = pattern;
         this.ingredients = ingredients;
+        this.resultItem = resultItem;
+        this.resultCount = resultCount;
+
     }
 
     @Override
@@ -55,23 +58,25 @@ public class ShapedRecipe extends Recipe {
         );
     }
 
-    public static Builder builder(boolean enabled, String recipeName) {
-        return new Builder(enabled, recipeName);
+    public static Builder builder(String recipeName, Item resultItem, int resultCount) {
+        return new Builder(recipeName, resultItem, resultCount);
     }
 
-    public static class Builder extends RecipeBuilder{
+    public static class Builder{
+        private final String recipeName;
+        private final Item resultItem;
+        private final int resultCount;
         private final List<String> patternRows = new ArrayList<>();
         private final Map<Character, Item> ingredients = new HashMap<>();
 
-        private Builder(boolean enabled, String recipeName) {
-            super(enabled, recipeName);
+        private Builder(String recipeName, Item resultItem, int resultCount) {
+            this.recipeName = recipeName;
+            this.resultItem = resultItem;
+            this.resultCount = resultCount;
         }
 
 
         public Builder pattern(String row) {
-            if (row.length() > 3 || patternRows.size() > 3) {
-                throw new RecipeBuildException("Pattern rows cannot be longer than 3 characters");
-            }
             patternRows.add(row);
             return this;
         }
@@ -81,14 +86,7 @@ public class ShapedRecipe extends Recipe {
             return this;
         }
 
-        @Override
-        public Recipe build() {
-            if (!isSetResult) {
-                throw new RecipeBuildException("You must set the result item");
-            }
-            if (!enabled) {
-                return Recipe.empty();
-            }
+        public ShapedRecipe build() {
             String[][] pattern = new String[patternRows.size()][];
             for (int i = 0; i < patternRows.size(); i++) {
                 pattern[i] = patternRows.get(i).split("");

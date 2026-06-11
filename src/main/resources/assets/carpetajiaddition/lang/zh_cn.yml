@@ -72,9 +72,6 @@ carpetajiaddition:
       glowingHopperMinecart:
         name: "发光的漏斗矿车"
         desc: "漏斗矿车被锁定时会发出红光，反之白光。"
-      sitOnTheGround:
-        name: "席地而坐"
-        desc: "多次蹲下可以坐到地上。"
       lockAllHopper:
         name: "无能的漏斗"
         desc: "所有漏斗都会被锁定，无论他有没有接受到红石信号。"
@@ -104,10 +101,16 @@ carpetajiaddition:
         desc: "海龟蛋不会被踩碎。"
       removeEnderPortalDamage:
         name: "移除末影珍珠伤害"
-        desc: "末影珍珠传送后不会造成伤害"
+        desc: "末影珍珠传送后不会造成伤害。"
       betterLogCommand:
         name: "更好的Log命令"
-        desc: "服务器重启后玩家不需要重新使用log命令"
+        desc: "服务器重启后玩家不需要重新使用log命令。"
+      safeCreeper:
+        name: "无能的苦力怕"
+        desc: "苦力怕不会爆炸。"
+      anvilCannotDamage:
+        name: "无法破坏的铁砧"
+        desc: "无论是从高处坠落，还是使用铁砧，铁砧都会保持现在的状态。"
 
     #-----------------
     #下方的规则为配方规则

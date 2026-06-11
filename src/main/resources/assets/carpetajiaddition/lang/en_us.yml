@@ -71,8 +71,6 @@ carpetajiaddition:
     rule:
       glowingHopperMinecart:
         desc: "When a hopper minecart is locked, it glows red; otherwise, it glows white."
-      sitOnTheGround:
-        desc: "Sit on the ground by crouching multiple times.。"
       lockAllHopper:
         desc: "All hoppers will be locked, regardless of whether they receive a redstone signal."
       keepOpeningVault:
@@ -92,9 +90,13 @@ carpetajiaddition:
       toughTurtleEgg:
         desc: "Turtle eggs cannot be broken by stepping on them."
       removeEnderPearlDamage:
-        desc: "The ender Portal pearl will not cause damage after transmission"
+        desc: "The ender Portal pearl will not cause damage after transmission."
       betterLogCommand:
-        desc: "After the server restarts, players do not need to use the log command again"
+        desc: "After the server restarts, players do not need to use the log command again."
+      safeCreeper:
+        desc: "Creeper won't explode."
+      anvilCannotDamage:
+        desc: "Whether falling from a height or using an anvil, the anvil will remain in its current state."
 
       #-----------------
       #The rules below are recipe rules.
@@ -103,4 +105,4 @@ carpetajiaddition:
       dragonEggRecipe:
         desc: "Added a proper recipe for the dragon egg."
       dragonBreathRecipe:
-        desc: "Added a proper recipe for dragon's breath."
+        desc: "Added a proper recipe for dragon breath."
