@@ -77,8 +77,6 @@ carpetajiaddition:
         desc: "The same player can open the same vault repeatedly."
       lockAllHopperMinecart:
         desc: "All hopper minecarts will be locked, regardless of whether the rail beneath them is a powered activator rail."
-      cactusWrench:
-        desc: "When holding a cactus in the off-hand, placed blocks face the opposite direction."
       tameHorse:
         desc: "You can tame horses with 100% success."
       commandFollow:

@@ -39,15 +39,14 @@ public abstract class ItemEntityMixin extends Entity{
         if (team == null) {
             return;
         }
+        String uuid = getUUID().toString();
         if (FollowCommandData.getInstance().getFollowItems().contains(getItem().getItem())) {
-            scoreboard.addPlayerToTeam(getUUID().toString(), team);
+            scoreboard.addPlayerToTeam(uuid, team);
             setGlowingTag(true);
         } else {
-            team.getPlayers().forEach(uuidString -> {
-                if (uuidString.equals(getUUID().toString())) {
-                    scoreboard.removePlayerFromTeam(uuidString, team);
-                }
-            });
+            if (team.getPlayers().contains(uuid)) {
+                scoreboard.removePlayerFromTeam(uuid, team);
+            }
             setGlowingTag(false);
         }
     }
