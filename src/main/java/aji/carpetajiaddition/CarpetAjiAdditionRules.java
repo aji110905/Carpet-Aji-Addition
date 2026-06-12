@@ -28,9 +28,6 @@ public class CarpetAjiAdditionRules {
     @Rule(categories = {CAA, SURVIVAL, CREATIVE, FEATURE})
     public static boolean lockAllHopperMinecart = false;
 
-    @Rule(categories = {CAA, SURVIVAL, CREATIVE, FEATURE})
-    public static boolean cactusWrench = false;
-
     @Rule(categories = {CAA, SURVIVAL, FEATURE})
     public static boolean tameHorse = false;
 

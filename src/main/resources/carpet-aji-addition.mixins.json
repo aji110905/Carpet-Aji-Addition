@@ -11,7 +11,6 @@
     "recipe.RecipeManagerMixin",
     "rules.anvilCannotDamage.AnvilBlockMixin",
     "rules.betterLogCommand.LoggerRegistryAccessor",
-    "rules.cactusWrench.BlockItemMixin",
     "rules.endlessVault.VaultServerDataMixin",
     "rules.glowingHopperMinecart.MinecartHopperMixin",
     "rules.lockAllHopper.HopperBlockEntityMixin",

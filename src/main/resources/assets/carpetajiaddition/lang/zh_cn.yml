@@ -81,9 +81,6 @@ carpetajiaddition:
       lockAllHopperMinecart:
         name: "无能的漏斗矿车"
         desc: "所有漏斗矿车都会被锁定，无论他下面是不是充能的激活铁轨。"
-      cactusWrench:
-        name: "翻转仙人掌"
-        desc: "仙人掌在副手时，放出来的方块为反方向。"
       tameHorse:
         name: "听话的马"
         desc: "你可以100%驯服马。"
