@@ -1,0 +1,89 @@
+package top.ajitech.carpetajiaddition.mixin.rules.glowingHopperMinecart;
+
+import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
+//#if MC < 260200
+import net.minecraft.ChatFormatting;
+//#endif
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.ServerScoreboard;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.vehicle.AbstractMinecartContainer;
+import net.minecraft.world.entity.vehicle.MinecartHopper;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.scores.PlayerTeam;
+//#if MC >= 260200
+//$$ import net.minecraft.world.scores.TeamColor;
+//#endif
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+//#if MC >= 260200
+//$$ import java.util.Optional;
+//#endif
+
+@Mixin(MinecartHopper.class)
+public abstract class MinecartHopperMixin extends AbstractMinecartContainer{
+    protected MinecartHopperMixin(EntityType<?> entityType, Level level) {
+        super(entityType, level);
+    }
+
+    @Shadow
+    public abstract boolean isEnabled();
+
+    @Unique
+    private boolean nextTickState = isEnabled();
+
+    @Inject(method = "tick", at = @At("HEAD"))
+    private void tick(CallbackInfo ci) {
+        //#if MC < 12109
+        MinecraftServer server = getServer();
+        //#else
+        //$$ MinecraftServer server = level().getServer();
+        //#endif
+        if (server == null) {
+            return;
+        }
+        ServerScoreboard scoreboard = server.getScoreboard();
+        if (!CarpetAjiAdditionRules.glowingHopperMinecart) {
+            PlayerTeam enabled = scoreboard.getPlayerTeam("enabled_hopper_minecraft");
+            if (enabled != null) {
+                scoreboard.removePlayerTeam(enabled);
+            }
+            PlayerTeam locked = scoreboard.getPlayerTeam("locked_hopper_minecraft");
+            if (locked != null) {
+                scoreboard.removePlayerTeam(locked);
+            }
+            return;
+        }
+        this.setGlowingTag(true);
+        PlayerTeam enabled = scoreboard.getPlayerTeam("enabled_hopper_minecraft");
+        if (enabled == null) {
+            enabled = scoreboard.addPlayerTeam("enabled_hopper_minecraft");
+            //#if MC < 260200
+            enabled.setColor(ChatFormatting.WHITE);
+            //#else
+            //$$ enabled.setColor(Optional.of(TeamColor.WHITE));
+            //#endif
+        }
+        PlayerTeam locked = scoreboard.getPlayerTeam("locked_hopper_minecraft");
+        if (locked == null) {
+            locked = scoreboard.addPlayerTeam("locked_hopper_minecraft");
+            //#if MC < 260200
+            locked.setColor(ChatFormatting.RED);
+            //#else
+            //$$ locked.setColor(Optional.of(TeamColor.RED));
+            //#endif
+        }
+        if (isEnabled() == nextTickState) return;
+        if (isEnabled()) {
+            scoreboard.addPlayerToTeam(getUUID().toString(), enabled);
+        } else {
+            scoreboard.addPlayerToTeam(getUUID().toString(), locked);
+        }
+        nextTickState = isEnabled();
+    }
+}
