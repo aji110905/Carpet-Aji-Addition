@@ -1,3 +1,7 @@
+plugins {
+    id 'maven-publish'
+}
+
 final int mcVersion = {
     def s = project.minecraft_version.split('\\.')
     int v = s[0].toInteger() * 10000 + s[1].toInteger() * 100
@@ -15,7 +19,6 @@ configurations {
 repositories {
     mavenLocal()
     maven {
-        name 'MasaMaven'
         url 'https://masa.dy.fi/maven'
     }
 }
@@ -50,12 +53,14 @@ if (mcVersion >= 260000) {
 java {
     sourceCompatibility = JAVA_VERSION
     targetCompatibility = JAVA_VERSION
+    withSourcesJar()
 }
 
-String fullModVersion = "v${project.mod_version}-mc${project.minecraft_version}"
+group = "top.ajitech"
+version = "v${project.mod_version}-mc${project.minecraft_version}"
 
 base {
-    archivesName.set("carpet-aji-addition-${fullModVersion}")
+    archivesName.set("carpetajiaddition")
 }
 
 jar {
@@ -65,7 +70,7 @@ jar {
 processResources {
     filesMatching("fabric.mod.json") {
         expand ([
-                "version": fullModVersion,
+                "version": version,
                 "minecraft_version": project.minecraft_version,
                 "loader_version": project.loader_version
         ])
@@ -74,4 +79,22 @@ processResources {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = "UTF-8"
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifactId = "carpetajiaddition"
+        }
+    }
+    repositories {
+        maven {
+            url = "https://maven.ajitech.top/releases"
+            credentials(PasswordCredentials) {
+                username = 'aji'
+                password = System.getenv("AJI_MAVEN_TOKEN_PASSWORD")
+            }
+        }
+    }
 }

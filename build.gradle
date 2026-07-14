@@ -20,3 +20,35 @@ preprocess {
     mc260100.link(mc12109, null)
     mc260200.link(mc260100, null)
 }
+
+tasks.register('collectJars') {
+    group = 'build'
+    description = 'Run publish on all subprojects, collect bytecode jars into build/lib, and delete source jars'
+
+    subprojects.each { sp ->
+        dependsOn "${sp.path}:publish"
+    }
+
+    doLast {
+        def libDir = file("${layout.buildDirectory.get().asFile}/lib")
+        libDir.mkdirs()
+
+        subprojects.each { subproject ->
+            def buildLibsDir = file("${subproject.projectDir}/build/libs")
+            if (buildLibsDir.exists()) {
+                def jars = fileTree(buildLibsDir).include('**/*.jar')
+
+                jars.each { jar ->
+                    if (jar.name.endsWith('-sources.jar')) {
+                        jar.delete()
+                    } else {
+                        project.copy {
+                            from jar
+                            into libDir
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
