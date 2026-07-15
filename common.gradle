@@ -2,11 +2,6 @@ plugins {
     id 'maven-publish'
 }
 
-final int mcVersion = {
-    def s = project.minecraft_version.split('\\.')
-    int v = s[0].toInteger() * 10000 + s[1].toInteger() * 100
-    s.length >= 3 ? v + s[2].toInteger() : v
-}.call()
 final boolean unobfuscated = mcVersion >= 26_00_00
 
 apply plugin: unobfuscated ? 'net.fabricmc.fabric-loom' : 'net.fabricmc.fabric-loom-remap'

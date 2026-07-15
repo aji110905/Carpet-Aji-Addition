@@ -21,6 +21,10 @@ preprocess {
     mc12111.link(mc12109, null)
     mc260100.link(mc12111, null)
     mc260200.link(mc260100, null)
+
+    for (final def node in getNodes()) {
+        findProject(node.project).ext.mcVersion = node.mcVersion
+    }
 }
 
 tasks.register('collectJars') {
