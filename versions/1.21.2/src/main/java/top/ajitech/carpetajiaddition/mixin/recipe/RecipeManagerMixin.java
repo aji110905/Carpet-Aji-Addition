@@ -22,7 +22,7 @@ public abstract class RecipeManagerMixin {
                     target = "Ljava/util/ArrayList;<init>(I)V"
             )
     )
-    private void prepare(CallbackInfoReturnable<RecipeMap> cir, @Local(name = "sortedMap") SortedMap<ResourceLocation, Recipe<?>> map) {
+    private void prepare(CallbackInfoReturnable<RecipeMap> cir, @Local() SortedMap<ResourceLocation, Recipe<?>> map) {
         RecipeManager recipeManager = CarpetAjiAdditionExtension.INSTANCE.getRecipeManager();
         if (recipeManager != null) {
             recipeManager.registerRecipe(map, ((RecipeManagerAccessor) this).getRegistries());
