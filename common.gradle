@@ -7,19 +7,11 @@ final boolean unobfuscated = mcVersion >= 26_00_00
 apply plugin: unobfuscated ? 'net.fabricmc.fabric-loom' : 'net.fabricmc.fabric-loom-remap'
 apply plugin: 'com.replaymod.preprocess'
 
-configurations {
-    modRuntimeOnly.exclude group: 'net.fabricmc', module: 'fabric-loader'
-}
-
 repositories {
     mavenLocal()
     maven {
         url 'https://masa.dy.fi/maven'
     }
-}
-
-loom{
-    accessWidenerPath = file("carpetajiaddition.accesswidener")
 }
 
 dependencies {

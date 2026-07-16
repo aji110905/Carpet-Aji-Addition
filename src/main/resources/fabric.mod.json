@@ -3,12 +3,14 @@
 	"id": "carpetajiaddition",
 	"version": "${version}",
 	"name": "Carpet Aji Addition",
-	"description": "This is a carpet addition",
+	"description": "A Fabric Carpet extension that provides more rules.",
 	"authors": [
 		"Aji"
 	],
 	"contact": {
-		"sources": "https://github.com/aji110905/carpet-aji-addition"
+		"homepage": "https://modrinth.com/mod/carpet-aji-addition",
+		"sources": "https://github.com/aji110905/carpet-aji-addition",
+		"issues": "https://github.com/aji110905/carpet-aji-addition/issues"
 	},
 	"license": "MIT",
 	"icon": "assets/carpetajiaddition/icon.png",
@@ -22,12 +24,8 @@
 		"carpet-aji-addition.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=${loader_version}",
 		"minecraft": ">=${minecraft_version}",
 		"carpet": "*"
-	},
-	"suggests": {
-		"another-mod": "*"
 	},
     "custom": {
       "modmenu": {
