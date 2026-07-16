@@ -3,7 +3,7 @@
 	"id": "carpetajiaddition",
 	"version": "${version}",
 	"name": "Carpet Aji Addition",
-	"description": "This is a carpet addition",
+	"description": "A Fabric Carpet extension that provides more rules.",
 	"authors": [
 		"Aji"
 	],
