@@ -14,7 +14,3 @@
 2. 安装对应Minecraft版本的[Carpet](https://modrinth.com/mod/carpet)
 3. 安装对应Minecraft版本的[Carpet Aji Addition](https://modrinth.com/mod/carpet-aji-addition)
 4. 进入游戏后输入`/carpet list CAA`查看该扩展添加的所有规则
-
-## 许可
-
-此项目在[MIT许可证](https://opensource.org/licenses/MIT)下可用，您可以随意从中学习并将其纳入您自己的项目中。

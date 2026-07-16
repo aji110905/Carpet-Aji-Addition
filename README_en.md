@@ -14,7 +14,3 @@ An add-on extension for [fabric-carpet](https://github.com/gnembon/fabric-carpet
 2. Install [Carpet](https://modrinth.com/mod/carpet) for the corresponding Minecraft version.
 3. Install [Carpet Aji Addition](https://modrinth.com/mod/carpet-aji-addition) for the corresponding Minecraft version.
 4. Once in-game, enter `/carpet list CAA` to view all the rules added by this extension.
-
-## License
-
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT). Feel free to learn from the source code or integrate its content into your own projects.
