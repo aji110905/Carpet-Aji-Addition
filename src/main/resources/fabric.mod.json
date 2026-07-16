@@ -8,7 +8,9 @@
 		"Aji"
 	],
 	"contact": {
-		"sources": "https://github.com/aji110905/carpet-aji-addition"
+		"homepage": "https://modrinth.com/mod/carpet-aji-addition",
+		"sources": "https://github.com/aji110905/carpet-aji-addition",
+		"issues": "https://github.com/aji110905/carpet-aji-addition/issues"
 	},
 	"license": "MIT",
 	"icon": "assets/carpetajiaddition/icon.png",
@@ -25,9 +27,6 @@
 		"fabricloader": ">=${loader_version}",
 		"minecraft": ">=${minecraft_version}",
 		"carpet": "*"
-	},
-	"suggests": {
-		"another-mod": "*"
 	},
     "custom": {
       "modmenu": {
