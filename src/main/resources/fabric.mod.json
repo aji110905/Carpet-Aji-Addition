@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "carpetajiaddition",
+	"id": "${id}",
 	"version": "${version}",
 	"name": "Carpet Aji Addition",
 	"description": "A Fabric Carpet extension that provides more rules.",
