@@ -1,17 +1,12 @@
 package top.ajitech.carpetajiaddition.recipe;
 
 import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
-import top.ajitech.carpetajiaddition.constant.ModConstants;
-import top.ajitech.carpetajiaddition.constant.RuleCategory;
-import carpet.api.settings.Rule;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.crafting.RecipeHolder;
 
-import java.lang.reflect.Field;
-import java.util.Arrays;
 import java.util.List;
 import java.util.SortedMap;
 
@@ -43,8 +38,11 @@ public class RecipeManager {
     }
 
     public void onRecipeRuleValueChanged(){
+        if (!CarpetAjiAdditionRules.hasEnabledRecipeRule()) {
+            return;
+        }
         server.execute(() -> {
-            reloadResourcesIfRecipeRuleEnabled();
+            server.reloadResources(server.getPackRepository().getSelectedIds());
             for (RecipeHolder<?> recipe : server.getRecipeManager().getRecipes()) {
                 if (!recipe.id().location().getNamespace().equals(MOD_ID)) {
                     continue;
@@ -62,24 +60,6 @@ public class RecipeManager {
         for (RecipeHolder<?> recipe : server.getRecipeManager().getRecipes()) {
             if (recipe.id().location().getNamespace().equals(MOD_ID) && !player.getRecipeBook().contains(recipe.id())) {
                 player.awardRecipes(List.of(recipe));
-            }
-        }
-    }
-
-    public void reloadResourcesIfRecipeRuleEnabled(){
-        Field[] fields = CarpetAjiAdditionRules.class.getDeclaredFields();
-        for (Field field : fields) {
-            if (!field.isAnnotationPresent(Rule.class)) {
-                continue;
-            }
-            try {
-                field.setAccessible(true);
-                if (Arrays.asList(field.getAnnotation(Rule.class).categories()).contains(RuleCategory.RECIPE) && field.getBoolean(null)) {
-                    server.reloadResources(server.getPackRepository().getSelectedIds());
-                    return;
-                }
-            } catch (IllegalAccessException e) {
-                ModConstants.LOGGER.error("Failed to get rule value", e);
             }
         }
     }
