@@ -12,6 +12,9 @@ repositories {
     maven {
         url 'https://masa.dy.fi/maven'
     }
+    maven {
+        url = 'https://api.modrinth.com/maven'
+    }
 }
 
 dependencies {
@@ -25,7 +28,12 @@ dependencies {
         dep -> unobfuscated ? implementation(dep) : modImplementation(dep)
     }
     autoImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    autoImplementation "carpet:fabric-carpet:${project.carpet_core_version}"
+    //26.3的Carpet仍未发布到Masa的Maven，临时使用Modrinth的Maven的Carpet核心。
+    if (mcVersion == 260300) {
+        autoImplementation "maven.modrinth:carpet:26.3"
+    } else {
+        autoImplementation "carpet:fabric-carpet:${project.carpet_core_version}"
+    }
     include(autoImplementation "org.yaml:snakeyaml:${project.yaml_version}")
 }
 
@@ -47,7 +55,7 @@ group = "top.ajitech"
 version = "v${project.mod_version}-mc${project.minecraft_version}"
 
 base {
-    archivesName.set("carpetajiaddition")
+    archivesName.set(project.mod_id)
 }
 
 jar {
@@ -57,9 +65,9 @@ jar {
 processResources {
     filesMatching("fabric.mod.json") {
         expand ([
+                "id": project.mod_id,
                 "version": version,
                 "minecraft_version": project.minecraft_version,
-                "loader_version": project.loader_version
         ])
     }
 }
@@ -72,7 +80,7 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
-            artifactId = "carpetajiaddition"
+            artifactId = project.mod_id
         }
     }
     repositories {

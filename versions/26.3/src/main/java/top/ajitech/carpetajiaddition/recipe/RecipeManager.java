@@ -1,17 +1,19 @@
 package top.ajitech.carpetajiaddition.recipe;
 
-import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.FileToIdConverter;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.packs.PackResources;
+import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
 
 import java.util.List;
-import java.util.SortedMap;
+import java.util.Map;
 
-import static top.ajitech.carpetajiaddition.constant.ModConstants.MOD_ID;
 import static net.minecraft.world.item.Items.*;
+import static top.ajitech.carpetajiaddition.constant.ModConstants.MOD_ID;
 
 public class RecipeManager {
     private final MinecraftServer server;
@@ -19,21 +21,21 @@ public class RecipeManager {
     public RecipeManager(MinecraftServer server) {
         this.server = server;
     }
-    public void registerRecipe(SortedMap<ResourceLocation, net.minecraft.world.item.crafting.Recipe<?>> map, HolderLookup.Provider provider) {
+    public void registerRecipe(Map<Identifier, Resource> map, FileToIdConverter converter,  PackResources packResources) {
         if (CarpetAjiAdditionRules.dragonEggRecipe) {
             ShapedRecipe.builder("dragon_egg", DRAGON_EGG, 1)
                     .pattern("&#&")
                     .pattern("^*^")
                     .pattern("$$$")
                     .define('&', CRYING_OBSIDIAN).define('#', GLASS_BOTTLE).define('^', OBSIDIAN).define('*', EGG).define('$', END_CRYSTAL)
-                    .build().addToRecipeMap(map, provider);
+                    .build().addToRecipeMap(packResources, map, converter);
         }
         if (CarpetAjiAdditionRules.dragonBreathRecipe) {
             ShapedRecipe.builder("dragon_breath", DRAGON_BREATH, 1)
                     .pattern("#")
                     .pattern("*")
                     .define('#', DRAGON_EGG).define('*', GLASS_BOTTLE)
-                    .build().addToRecipeMap(map, provider);
+                    .build().addToRecipeMap(packResources, map, converter);
         }
     }
 
@@ -44,7 +46,7 @@ public class RecipeManager {
         server.execute(() -> {
             server.reloadResources(server.getPackRepository().getSelectedIds());
             for (RecipeHolder<?> recipe : server.getRecipeManager().getRecipes()) {
-                if (!recipe.id().location().getNamespace().equals(MOD_ID)) {
+                if (!recipe.id().identifier().getNamespace().equals(MOD_ID)) {
                     continue;
                 }
                 for (ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -58,7 +60,7 @@ public class RecipeManager {
 
     public void onPlayerLoggedIn(ServerPlayer player){
         for (RecipeHolder<?> recipe : server.getRecipeManager().getRecipes()) {
-            if (recipe.id().location().getNamespace().equals(MOD_ID) && !player.getRecipeBook().contains(recipe.id())) {
+            if (recipe.id().identifier().getNamespace().equals(MOD_ID) && !player.getRecipeBook().contains(recipe.id())) {
                 player.awardRecipes(List.of(recipe));
             }
         }

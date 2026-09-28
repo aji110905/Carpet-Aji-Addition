@@ -1,6 +1,9 @@
 package top.ajitech.carpetajiaddition.mixin.rules.toughTurtleEgg;
 
 import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
+//#if MC >= 260300
+//$$ import net.minecraft.core.BlockPos;
+//#endif
 import net.minecraft.world.entity.Entity;
 //#if MC < 12102
 import net.minecraft.world.level.Level;
@@ -18,8 +21,10 @@ public abstract class TurtleEggBlockMixin{
     @Inject(method = "canDestroyEgg", at = @At("HEAD"), cancellable = true)
     //#if MC < 12102
     private void canDestroyEgg(Level level, Entity entity, CallbackInfoReturnable<Boolean> cir) {
-    //#else
+    //#elseif MC < 260300
     //$$ private void canDestroyEgg(ServerLevel serverLevel, Entity entity, CallbackInfoReturnable<Boolean> cir) {
+    //#else
+    //$$ private void canDestroyEgg(ServerLevel level, BlockPos pos, Entity entity, CallbackInfoReturnable<Boolean> cir) {
     //#endif
         if (CarpetAjiAdditionRules.toughTurtleEgg) {
             cir.setReturnValue(false);
