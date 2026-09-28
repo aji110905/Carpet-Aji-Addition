@@ -1,8 +1,8 @@
 package top.ajitech.carpetajiaddition.mixin.recipe;
 
-import net.minecraft.world.item.crafting.RecipeManager;
 import org.spongepowered.asm.mixin.Mixin;
+import top.ajitech.carpetajiaddition.util.EmptyClass;
 
-@Mixin(RecipeManager.class)
+@Mixin(EmptyClass.class)
 public interface RecipeManagerAccessor {
 }
