@@ -12,6 +12,9 @@ repositories {
     maven {
         url 'https://masa.dy.fi/maven'
     }
+    maven {
+        url = 'https://api.modrinth.com/maven'
+    }
 }
 
 dependencies {
@@ -25,7 +28,12 @@ dependencies {
         dep -> unobfuscated ? implementation(dep) : modImplementation(dep)
     }
     autoImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    autoImplementation "carpet:fabric-carpet:${project.carpet_core_version}"
+    //26.3的Carpet仍未发布到Masa的Maven，临时使用Modrinth的Maven的Carpet核心。
+    if (mcVersion == 260300) {
+        autoImplementation "maven.modrinth:carpet:26.3"
+    } else {
+        autoImplementation "carpet:fabric-carpet:${project.carpet_core_version}"
+    }
     include(autoImplementation "org.yaml:snakeyaml:${project.yaml_version}")
 }
 

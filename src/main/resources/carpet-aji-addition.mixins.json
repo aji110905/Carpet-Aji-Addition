@@ -7,6 +7,7 @@
     "carpet.SettingsManagerMixin",
     "command.follow.ItemEntityMixin",
     "hooks.MinecraftServerMixin",
+    "recipe.FileToIdConverterMixin",
     "recipe.RecipeManagerAccessor",
     "recipe.RecipeManagerMixin",
     "rules.anvilCannotDamage.AnvilBlockMixin",
