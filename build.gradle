@@ -2,6 +2,7 @@ plugins {
     id 'net.fabricmc.fabric-loom' version '1.17-SNAPSHOT' apply false
     id 'net.fabricmc.fabric-loom-remap' version '1.17-SNAPSHOT' apply false
     id "com.replaymod.preprocess" version "c5abb4fb12"
+    id 'top.ajitech.modrinthpublish' version '1.1.0'
 }
 
 preprocess {
@@ -29,34 +30,33 @@ preprocess {
     }
 }
 
-tasks.register('collectJars') {
-    group = 'build'
-    description = 'Run publish on all subprojects, collect bytecode jars into build/lib, and delete source jars'
+modrinthPublish {
+    modName = 'Downmatica'
+    projectId = 'emavu5vy'
+    token = System.getenv('MODRINTH_TOKEN')
+    loaders = ['fabric']
+    environment = 'client_only'
+    versionType = 'release'
+    dependencies {
+        required 'malilib'
+    }
+}
+
+tasks.register('publishAll') {
+    group = 'publishing'
+    description = 'Run publish on all subprojects'
 
     subprojects.each { sp ->
         dependsOn "${sp.path}:publish"
     }
-
-    doLast {
-        def libDir = file("${layout.buildDirectory.get().asFile}/lib")
-        libDir.mkdirs()
-
-        subprojects.each { subproject ->
-            def buildLibsDir = file("${subproject.projectDir}/build/libs")
-            if (buildLibsDir.exists()) {
-                def jars = fileTree(buildLibsDir).include('**/*.jar')
-
-                jars.each { jar ->
-                    if (jar.name.endsWith('-sources.jar')) {
-                        jar.delete()
-                    } else {
-                        project.copy {
-                            from jar
-                            into libDir
-                        }
-                    }
-                }
-            }
-        }
-    }
 }
+
+tasks.register('publishAllAndPublishToModrinth') {
+    group = 'publishing'
+    description = 'Run publish on all subprojects, collect libs, clean artifacts and publish to Modrinth'
+
+    dependsOn 'publishAll', 'collectLibs', 'cleanArtifacts', 'publishToModrinth'
+}
+tasks.named('collectLibs').configure { mustRunAfter 'publishAll' }
+tasks.named('cleanArtifacts').configure { mustRunAfter 'collectLibs' }
+tasks.named('publishToModrinth').configure { mustRunAfter 'cleanArtifacts' }
