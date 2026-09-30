@@ -31,7 +31,7 @@ preprocess {
 }
 
 modrinthPublish {
-    modName = 'Downmatica'
+    modName = 'Carpet Aji Addition'
     projectId = 'emavu5vy'
     token = System.getenv('MODRINTH_TOKEN')
     loaders = ['fabric']
