@@ -32,7 +32,7 @@ preprocess {
 
 modrinthPublish {
     modName = 'Carpet Aji Addition'
-    projectId = 'emavu5vy'
+    projectId = 'yhR7byWp'
     token = System.getenv('MODRINTH_TOKEN')
     loaders = ['fabric']
     environment = 'server_only'
