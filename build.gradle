@@ -35,10 +35,10 @@ modrinthPublish {
     projectId = 'emavu5vy'
     token = System.getenv('MODRINTH_TOKEN')
     loaders = ['fabric']
-    environment = 'client_only'
+    environment = 'server_only'
     versionType = 'release'
     dependencies {
-        required 'malilib'
+        required 'carpet'
     }
 }
 
