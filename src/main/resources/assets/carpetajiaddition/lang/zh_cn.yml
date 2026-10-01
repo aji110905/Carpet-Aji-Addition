@@ -111,6 +111,9 @@ carpetajiaddition:
       anvilCannotDamage:
         name: "无法破坏的铁砧"
         desc: "无论是从高处坠落，还是使用铁砧，铁砧都会保持现在的状态。"
+      noSnowGolemMelting:
+        name: "不怕热的雪傀儡"
+        desc: "雪傀儡在炎热生物群系时不会融化。"
 
     #-----------------
     #下方的规则为配方规则

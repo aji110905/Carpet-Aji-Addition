@@ -16,6 +16,7 @@
     "rules.glowingHopperMinecart.MinecartHopperMixin",
     "rules.lockAllHopper.HopperBlockEntityMixin",
     "rules.lockAllHopperMinecart.MinecartHopperMixin",
+    "rules.noSnowGolemMelting.SnowGolemMixin",
     "rules.removeEnderPearlDamage.ThrownEnderPearlMixin",
     "rules.safeCreeper.CreeperMixin",
     "rules.safeMagmaBlock.MagmaBlockMixin",

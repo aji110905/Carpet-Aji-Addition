@@ -19,13 +19,13 @@ public class CarpetAjiAdditionRules {
     @Rule(categories = {CAA, CREATIVE})
     public static boolean glowingHopperMinecart = false;
 
-    @Rule(categories = {CAA, SURVIVAL, CREATIVE, FEATURE})
+    @Rule(categories = {CAA, CREATIVE, FEATURE})
     public static boolean lockAllHopper = false;
 
     @Rule(categories = {CAA, SURVIVAL, FEATURE})
     public static boolean keepOpeningVault = false;
 
-    @Rule(categories = {CAA, SURVIVAL, CREATIVE, FEATURE})
+    @Rule(categories = {CAA, CREATIVE, FEATURE})
     public static boolean lockAllHopperMinecart = false;
 
     @Rule(categories = {CAA, SURVIVAL, FEATURE})
@@ -45,6 +45,9 @@ public class CarpetAjiAdditionRules {
 
     @Rule(categories = {CAA, SURVIVAL, FEATURE})
     public static boolean anvilCannotDamage = false;
+
+    @Rule(categories = {CAA, FEATURE})
+    public static boolean noSnowGolemMelting = false;
 
     @Rule(categories = {CAA})
     @MustSetDefault

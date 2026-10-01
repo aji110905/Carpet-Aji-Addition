@@ -95,6 +95,8 @@ carpetajiaddition:
         desc: "Creeper won't explode."
       anvilCannotDamage:
         desc: "Whether falling from a height or using an anvil, the anvil will remain in its current state."
+      noSnowGolemMelting:
+        desc: "Snow Golem do not melt in hot biomes."
 
       #-----------------
       #The rules below are recipe rules.
