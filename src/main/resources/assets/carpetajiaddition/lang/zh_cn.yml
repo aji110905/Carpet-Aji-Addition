@@ -58,6 +58,10 @@ carpetajiaddition:
           error: "物品的发光颜色已经为{0}"
         show:
           feedback: "物品的发光颜色为{0}"
+    carpet:
+      extensions:
+        start: "当前服务器共启用了{0}个Carpet扩展:"
+        error: "{0}个Carpet扩展信息读取失败。"
 
   # ---------------------------------
   # 传递给fabric-carpet的翻译

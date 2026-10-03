@@ -58,6 +58,10 @@ carpetajiaddition:
           error: "The item's glow color is already {0}"
         show:
           feedback: "物品的发光颜色为{0}"
+    carpet:
+      extensions:
+        start: "The current server has enabled {0} Carpet extension(s):"
+        error: "Failed to read information for {0} Carpet extension(s)."
 
   # ---------------------------------
   # Translation sent to Fabric-Carpet
