@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class BetterLogCommandData implements Data{
     public static final String DATA_NAME = "betterLogCommand";
-    private final Map<String, Map<String, String>> playerSubscriptions = ((LoggerRegistryAccessor) new LoggerRegistry()).getPlayerSubscriptions();
+    private final Map<String, Map<String, String>> playerSubscriptions = LoggerRegistryAccessor.getPlayerSubscriptions();
     private boolean isFirstLoad = true;
 
     @Override
