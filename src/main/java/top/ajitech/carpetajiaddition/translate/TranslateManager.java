@@ -1,6 +1,6 @@
 package top.ajitech.carpetajiaddition.translate;
 
-import top.ajitech.carpetajiaddition.setting.InitializationException;
+import top.ajitech.carpetajiaddition.setting.TranslationLoadException;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.IOException;
@@ -31,18 +31,18 @@ public class TranslateManager {
                 languages.add(defaultLanguage);
             }
         } catch (IOException e) {
-            throw new InitializationException("Failed to read language meta file", e);
+            throw new TranslationLoadException("Failed to read language meta file", e);
         } catch (Exception e) {
-            throw new InitializationException("Language meta file format error", e);
+            throw new TranslationLoadException("Language meta file format error", e);
         }
         translators = new HashMap<>();
         for (String language : languages) {
             try (InputStream inputStream = getClass().getResourceAsStream(LANG_FILE_PATH + language + LANG_FILE_EXT)) {
                 translators.put(language, new Translator(yaml.load(inputStream)));
             } catch (IOException e) {
-                throw new InitializationException("Failed to read language file", e);
+                throw new TranslationLoadException("Failed to read language file", e);
             } catch (Exception e) {
-                throw new InitializationException("Language file format error", e);
+                throw new TranslationLoadException("Language file format error", e);
             }
         }
     }
