@@ -1,5 +1,6 @@
 package top.ajitech.carpetajiaddition.recipe;
 
+import top.ajitech.carpetajiaddition.CarpetAjiAdditionRecipes;
 import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
 import com.google.gson.JsonElement;
 import net.minecraft.resources.ResourceLocation;
@@ -10,7 +11,6 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import java.util.*;
 
 import static top.ajitech.carpetajiaddition.CarpetAjiAdditionMod.MOD_ID;
-import static net.minecraft.world.item.Items.*;
 
 public class RecipeManager {
     private final MinecraftServer server;
@@ -20,21 +20,7 @@ public class RecipeManager {
     }
 
     public void registerRecipe(Map<ResourceLocation, JsonElement> map) {
-        if (CarpetAjiAdditionRules.dragonEggRecipe) {
-            ShapedRecipe.builder("dragon_egg", DRAGON_EGG, 1)
-                    .pattern("&#&")
-                    .pattern("^*^")
-                    .pattern("$$$")
-                    .define('&', CRYING_OBSIDIAN).define('#', GLASS_BOTTLE).define('^', OBSIDIAN).define('*', EGG).define('$', END_CRYSTAL)
-                    .build().addToRecipeMap(map);
-        }
-       if (CarpetAjiAdditionRules.dragonBreathRecipe) {
-            ShapedRecipe.builder("dragon_breath", DRAGON_BREATH, 1)
-                    .pattern("#")
-                    .pattern("*")
-                    .define('#', DRAGON_EGG).define('*', GLASS_BOTTLE)
-                    .build().addToRecipeMap(map);
-       }
+        CarpetAjiAdditionRecipes.INSTANCE.getRecipes().forEach(recipe -> recipe.addToRecipeMap(map));
     }
 
     public void onRecipeRuleValueChanged(){
