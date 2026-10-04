@@ -1,7 +1,6 @@
 package top.ajitech.carpetajiaddition;
 
-import top.ajitech.carpetajiaddition.constant.ModConstants;
-import top.ajitech.carpetajiaddition.annotation.MustSetDefault;
+import top.ajitech.carpetajiaddition.setting.MustSetDefault;
 import carpet.api.settings.Rule;
 
 import java.lang.reflect.Field;
@@ -9,7 +8,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import static top.ajitech.carpetajiaddition.constant.RuleCategory.*;
+import static top.ajitech.carpetajiaddition.setting.RuleCategory.*;
 import static carpet.api.settings.RuleCategory.*;
 
 public class CarpetAjiAdditionRules {
@@ -72,7 +71,7 @@ public class CarpetAjiAdditionRules {
                     return true;
                 }
             } catch (IllegalAccessException e) {
-                ModConstants.LOGGER.error("Failed to get value of rule {}", recipeRule.getName(), e);
+                CarpetAjiAdditionMod.LOGGER.error("Failed to get value of rule {}", recipeRule.getName(), e);
             }
         }
         return false;

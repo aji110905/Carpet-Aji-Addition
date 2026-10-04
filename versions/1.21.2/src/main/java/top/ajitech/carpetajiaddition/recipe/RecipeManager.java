@@ -10,7 +10,7 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import java.util.List;
 import java.util.SortedMap;
 
-import static top.ajitech.carpetajiaddition.constant.ModConstants.MOD_ID;
+import static top.ajitech.carpetajiaddition.CarpetAjiAdditionMod.MOD_ID;
 import static net.minecraft.world.item.Items.*;
 
 public class RecipeManager {

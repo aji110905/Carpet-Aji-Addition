@@ -1,4 +1,4 @@
-package top.ajitech.carpetajiaddition.constant;
+package top.ajitech.carpetajiaddition.translate;
 
 public final class TranslationsKey {
     private TranslationsKey(){

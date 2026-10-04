@@ -1,6 +1,6 @@
 package top.ajitech.carpetajiaddition;
 
-import top.ajitech.carpetajiaddition.constant.RuleCategory;
+import top.ajitech.carpetajiaddition.setting.RuleCategory;
 import carpet.api.settings.CarpetRule;
 import carpet.api.settings.SettingsManager;
 import net.minecraft.commands.CommandSourceStack;

@@ -2,7 +2,6 @@ package top.ajitech.carpetajiaddition;
 
 import top.ajitech.carpetajiaddition.command.FollowCommand;
 import top.ajitech.carpetajiaddition.command.ModsCommand;
-import top.ajitech.carpetajiaddition.constant.ModConstants;
 import top.ajitech.carpetajiaddition.data.DataManager;
 import top.ajitech.carpetajiaddition.recipe.RecipeManager;
 import top.ajitech.carpetajiaddition.translate.TranslateManager;
@@ -23,7 +22,6 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
 
     private DataManager dataManager = null;
     private RecipeManager recipeManager = null;
-
 
     @Override
     public void onGameStarted() {
@@ -74,7 +72,7 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
 
     @Override
     public String version() {
-        return ModConstants.MOD_ID;
+        return CarpetAjiAdditionMod.MOD_ID;
     }
 
     @Override

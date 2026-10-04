@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import static net.minecraft.world.item.Items.*;
-import static top.ajitech.carpetajiaddition.constant.ModConstants.MOD_ID;
+import static top.ajitech.carpetajiaddition.CarpetAjiAdditionMod.MOD_ID;
 
 public class RecipeManager {
     private final MinecraftServer server;

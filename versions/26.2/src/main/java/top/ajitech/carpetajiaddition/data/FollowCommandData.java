@@ -1,7 +1,7 @@
 package top.ajitech.carpetajiaddition.data;
 
 import top.ajitech.carpetajiaddition.CarpetAjiAdditionExtension;
-import top.ajitech.carpetajiaddition.constant.ModConstants;
+import top.ajitech.carpetajiaddition.CarpetAjiAdditionMod;
 import net.minecraft.nbt.*;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.item.Item;
@@ -75,7 +75,7 @@ public class FollowCommandData implements Data {
         this.color = color;
         PlayerTeam team = server.getScoreboard().getPlayerTeam("followItems");
         if (team == null) {
-            ModConstants.LOGGER.warn("Team 'followItems' not found");
+            CarpetAjiAdditionMod.LOGGER.warn("Team 'followItems' not found");
             return;
         }
         team.setColor(Optional.of(color));

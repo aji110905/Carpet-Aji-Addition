@@ -13,8 +13,8 @@ import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.Commands;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
-import top.ajitech.carpetajiaddition.constant.ModConstants;
-import top.ajitech.carpetajiaddition.constant.TranslationsKey;
+import top.ajitech.carpetajiaddition.CarpetAjiAdditionMod;
+import top.ajitech.carpetajiaddition.translate.TranslationsKey;
 import top.ajitech.carpetajiaddition.util.TranslateUtil;
 import carpet.api.settings.CarpetRule;
 import carpet.api.settings.SettingsManager;
@@ -45,7 +45,7 @@ public abstract class SettingsManagerMixin {
             )
     )
     public void listAllSettings(CommandSourceStack source, CallbackInfoReturnable<Integer> cir) {
-        Messenger.m(source, "g Carpet Aji Addition " + TranslateUtil.tr(TranslationsKey.SUFFIX + "version") + ModConstants.VERSION);
+        Messenger.m(source, "g Carpet Aji Addition " + TranslateUtil.tr(TranslationsKey.SUFFIX + "version") + CarpetAjiAdditionMod.VERSION);
     }
 
     @Inject(method = "setRule", at = @At("RETURN"))
