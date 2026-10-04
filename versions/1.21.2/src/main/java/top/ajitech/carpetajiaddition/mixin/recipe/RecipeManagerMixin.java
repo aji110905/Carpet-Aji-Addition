@@ -25,7 +25,7 @@ public abstract class RecipeManagerMixin {
     private void prepare(CallbackInfoReturnable<RecipeMap> cir, @Local SortedMap<ResourceLocation, Recipe<?>> map) {
         RecipeManager recipeManager = CarpetAjiAdditionExtension.INSTANCE.getRecipeManager();
         if (recipeManager != null) {
-            recipeManager.registerRecipe(map, ((RecipeManagerAccessor) this).getRegistries());
+            recipeManager.registerRecipe(map, ((RecipeManagerAccessor) this).carpetajiaddition$getRegistries());
         }
     }
 }
