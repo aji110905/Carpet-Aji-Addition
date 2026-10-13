@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.tags.EnchantmentTags;
+import net.minecraft.world.inventory.GrindstoneMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -14,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
 
-@Mixin(net.minecraft.world.inventory.GrindstoneMenu.class)
+@Mixin(GrindstoneMenu.class)
 public abstract class GrindstoneMenuMixin {
     @Inject(method = "removeNonCursesFrom", at = @At("RETURN"), cancellable = true)
     private void removeNonCursesFrom(ItemStack itemStack, CallbackInfoReturnable<ItemStack> cir) {
