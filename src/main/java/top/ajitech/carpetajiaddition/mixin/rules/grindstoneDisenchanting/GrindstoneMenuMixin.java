@@ -27,9 +27,10 @@ public abstract class GrindstoneMenuMixin {
         if (!EnchantmentHelper.hasAnyEnchantments(itemStack)) {
             return;
         }
+        // 诅咒类附魔只有在开启 enhanceGrindstone 时才允许被剥离。
         for (Object2IntMap.Entry<Holder<Enchantment>> entry : EnchantmentHelper.getEnchantmentsForCrafting(itemStack).entrySet()) {
             Holder<Enchantment> holder = entry.getKey();
-            if (holder.is(EnchantmentTags.CURSE)) {
+            if (holder.is(EnchantmentTags.CURSE) && !CarpetAjiAdditionRules.enhanceGrindstone) {
                 continue;
             }
             ItemStack book = new ItemStack(Items.ENCHANTED_BOOK);

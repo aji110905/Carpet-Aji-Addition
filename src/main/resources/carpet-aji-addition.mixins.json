@@ -13,6 +13,7 @@
     "rules.anvilCannotDamage.AnvilBlockMixin",
     "rules.betterLogCommand.LoggerRegistryAccessor",
     "rules.endlessVault.VaultServerDataMixin",
+    "rules.enhanceGrindstone.GrindstoneMenuMixin",
     "rules.grindstoneDisenchanting.GrindstoneMenu$3Mixin",
     "rules.grindstoneDisenchanting.GrindstoneMenu$4Mixin",
     "rules.grindstoneDisenchanting.GrindstoneMenuMixin",
