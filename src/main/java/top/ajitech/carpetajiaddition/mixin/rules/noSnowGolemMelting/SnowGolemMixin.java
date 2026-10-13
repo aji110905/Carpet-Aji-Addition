@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
 
 @Mixin(SnowGolem.class)
-public class SnowGolemMixin {
+public abstract class SnowGolemMixin {
     @WrapOperation(
             method = "aiStep",
             at = @At(
