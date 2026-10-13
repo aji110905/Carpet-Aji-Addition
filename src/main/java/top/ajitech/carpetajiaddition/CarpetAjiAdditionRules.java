@@ -45,6 +45,9 @@ public class CarpetAjiAdditionRules {
     @Rule(categories = {CAA, SURVIVAL, FEATURE})
     public static boolean anvilCannotDamage = false;
 
+    @Rule(categories = {CAA, SURVIVAL, FEATURE})
+    public static boolean grindstoneDisenchanting = false;
+
     @Rule(categories = {CAA, FEATURE})
     public static boolean noSnowGolemMelting = false;
 

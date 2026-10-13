@@ -118,6 +118,9 @@ carpetajiaddition:
       noSnowGolemMelting:
         name: "不怕热的雪傀儡"
         desc: "雪傀儡在炎热生物群系时不会融化。"
+      grindstoneDisenchanting:
+        name: "砂轮剥离附魔"
+        desc: "在砂轮的第一个槽位放入已附魔物品、第二个槽位放入书，可以逐条把物品上的附魔剥离成附魔书，每取出一本消耗一本书，且不返还经验。"
 
     #-----------------
     #下方的规则为配方规则
