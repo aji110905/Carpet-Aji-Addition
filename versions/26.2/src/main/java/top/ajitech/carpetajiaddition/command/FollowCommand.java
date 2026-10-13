@@ -3,7 +3,7 @@ package top.ajitech.carpetajiaddition.command;
 import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
 import top.ajitech.carpetajiaddition.data.FollowCommandData;
 import top.ajitech.carpetajiaddition.util.ResourceLocationUtil;
-import top.ajitech.carpetajiaddition.constant.TranslationsKey;
+import top.ajitech.carpetajiaddition.translate.TranslationsKey;
 import carpet.utils.CommandHelper;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;

@@ -1,7 +1,6 @@
 package top.ajitech.carpetajiaddition;
 
-import top.ajitech.carpetajiaddition.constant.ModConstants;
-import top.ajitech.carpetajiaddition.annotation.MustSetDefault;
+import top.ajitech.carpetajiaddition.setting.MustSetDefault;
 import carpet.api.settings.Rule;
 
 import java.lang.reflect.Field;
@@ -9,42 +8,54 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import static top.ajitech.carpetajiaddition.constant.RuleCategory.*;
+import static top.ajitech.carpetajiaddition.setting.RuleCategory.*;
 import static carpet.api.settings.RuleCategory.*;
 
 public class CarpetAjiAdditionRules {
     private static final Set<String> MUST_SET_DEFAULT_RULES;
     private static final Set<Field> RECIPE_RULES;
 
-    @Rule(categories = {CAA, CREATIVE})
+    @Rule(categories = {CAA})
     public static boolean glowingHopperMinecart = false;
 
-    @Rule(categories = {CAA, SURVIVAL, CREATIVE, FEATURE})
+    @Rule(categories = {CAA})
     public static boolean lockAllHopper = false;
 
-    @Rule(categories = {CAA, SURVIVAL, FEATURE})
+    @Rule(categories = {CAA})
     public static boolean keepOpeningVault = false;
 
-    @Rule(categories = {CAA, SURVIVAL, CREATIVE, FEATURE})
+    @Rule(categories = {CAA})
     public static boolean lockAllHopperMinecart = false;
 
-    @Rule(categories = {CAA, SURVIVAL, FEATURE})
+    @Rule(categories = {CAA})
     public static boolean tameHorse = false;
 
-    @Rule(categories = {CAA, SURVIVAL, FEATURE})
+    @Rule(categories = {CAA})
     public static boolean safeMagmaBlock = false;
 
-    @Rule(categories = {CAA, SURVIVAL, FEATURE})
+    @Rule(categories = {CAA})
     public static boolean toughTurtleEgg = false;
 
-    @Rule(categories = {CAA, SURVIVAL, FEATURE})
+    @Rule(categories = {CAA})
     public static boolean removeEnderPearlDamage = false;
 
-    @Rule(categories = {CAA, SURVIVAL, FEATURE})
+    @Rule(categories = {CAA})
     public static boolean safeCreeper = false;
 
-    @Rule(categories = {CAA, SURVIVAL, FEATURE})
+    @Rule(categories = {CAA})
     public static boolean anvilCannotDamage = false;
+
+    @Rule(categories = {CAA})
+    public static boolean grindstoneDisenchanting = false;
+
+    @Rule(categories = {CAA})
+    public static boolean noSnowGolemMelting = false;
+
+    @Rule(categories = {CAA})
+    public static boolean enhanceGrindstone = false;
+
+    @Rule(categories = {CAA})
+    public static boolean removeTooExpensive = false;
 
     @Rule(categories = {CAA})
     @MustSetDefault
@@ -69,7 +80,7 @@ public class CarpetAjiAdditionRules {
                     return true;
                 }
             } catch (IllegalAccessException e) {
-                ModConstants.LOGGER.error("Failed to get value of rule {}", recipeRule.getName(), e);
+                CarpetAjiAdditionMod.LOGGER.error("Failed to get value of rule {}", recipeRule.getName(), e);
             }
         }
         return false;

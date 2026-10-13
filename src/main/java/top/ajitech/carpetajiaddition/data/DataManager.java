@@ -1,6 +1,6 @@
 package top.ajitech.carpetajiaddition.data;
 
-import top.ajitech.carpetajiaddition.constant.ModConstants;
+import top.ajitech.carpetajiaddition.CarpetAjiAdditionMod;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtIo;
 import net.minecraft.server.MinecraftServer;
@@ -11,7 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Set;
 
-import static top.ajitech.carpetajiaddition.constant.ModConstants.LOGGER;
+import static top.ajitech.carpetajiaddition.CarpetAjiAdditionMod.LOGGER;
 
 public class DataManager {
     private final Path path;
@@ -21,7 +21,7 @@ public class DataManager {
     );
 
     public DataManager(MinecraftServer server) {
-        this.path = server.getWorldPath(LevelResource.ROOT).getParent().resolve("data/" + ModConstants.MOD_ID + ".dat");
+        this.path = server.getWorldPath(LevelResource.ROOT).getParent().resolve("data/" + CarpetAjiAdditionMod.MOD_ID + ".dat");
         File file = path.toFile();
         if(!file.exists()){
             try {
@@ -46,7 +46,7 @@ public class DataManager {
         try {
             NbtIo.write(compound, path);
         } catch (IOException e) {
-            ModConstants.LOGGER.error("Failed to save data", e);
+            CarpetAjiAdditionMod.LOGGER.error("Failed to save data", e);
         }
     }
 

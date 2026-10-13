@@ -58,6 +58,10 @@ carpetajiaddition:
           error: "The item's glow color is already {0}"
         show:
           feedback: "物品的发光颜色为{0}"
+    carpet:
+      extensions:
+        start: "The current server has enabled {0} Carpet extension(s):"
+        error: "Failed to read information for {0} Carpet extension(s)."
 
   # ---------------------------------
   # Translation sent to Fabric-Carpet
@@ -95,6 +99,14 @@ carpetajiaddition:
         desc: "Creeper won't explode."
       anvilCannotDamage:
         desc: "Whether falling from a height or using an anvil, the anvil will remain in its current state."
+      noSnowGolemMelting:
+        desc: "Snow Golem do not melt in hot biomes."
+      grindstoneDisenchanting:
+        desc: "Put an enchanted item in the first grindstone slot and books in the second slot to strip its enchantments into enchanted books one by one. Each book taken consumes one book and grants no experience. Curse enchantments can only be stripped when enhanceGrindstone is enabled as well."
+      enhanceGrindstone:
+        desc: "The grindstone can remove curse enchantments. When enabled together with grindstoneDisenchanting, curse enchantments can be stripped into enchanted books as well."
+      removeTooExpensive:
+        desc: "Remove the experience limit when enchanting with an anvil."
 
       #-----------------
       #The rules below are recipe rules.

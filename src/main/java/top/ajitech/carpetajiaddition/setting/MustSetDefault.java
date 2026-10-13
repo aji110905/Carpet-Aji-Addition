@@ -1,4 +1,4 @@
-package top.ajitech.carpetajiaddition.annotation;
+package top.ajitech.carpetajiaddition.setting;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

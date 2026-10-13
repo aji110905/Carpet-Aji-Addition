@@ -9,5 +9,7 @@ import java.util.Map;
 @Mixin(LoggerRegistry.class)
 public interface LoggerRegistryAccessor {
     @Accessor("playerSubscriptions")
-    Map<String, Map<String, String>> getPlayerSubscriptions();
+    static Map<String, Map<String, String>> getPlayerSubscriptions() {
+        throw new AssertionError("Untransformed @Accessor");
+    }
 }

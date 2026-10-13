@@ -1,4 +1,4 @@
-package top.ajitech.carpetajiaddition.constant;
+package top.ajitech.carpetajiaddition.setting;
 
 public final class RuleCategory {
     private RuleCategory(){
