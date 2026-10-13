@@ -124,6 +124,9 @@ carpetajiaddition:
       enhanceGrindstone:
         name: "增强砂轮"
         desc: "砂轮可以去除诅咒类的附魔。与「砂轮剥离附魔」同时开启时，诅咒类附魔也能被剥离成附魔书。"
+      removeTooExpensive:
+        name: "移除过于昂贵"
+        desc: "移除铁砧附魔时的经验限制。"
 
     #-----------------
     #下方的规则为配方规则

@@ -105,6 +105,8 @@ carpetajiaddition:
         desc: "Put an enchanted item in the first grindstone slot and books in the second slot to strip its enchantments into enchanted books one by one. Each book taken consumes one book and grants no experience. Curse enchantments can only be stripped when enhanceGrindstone is enabled as well."
       enhanceGrindstone:
         desc: "The grindstone can remove curse enchantments. When enabled together with grindstoneDisenchanting, curse enchantments can be stripped into enchanted books as well."
+      removeTooExpensive:
+        desc: "Remove the experience limit when enchanting with an anvil."
 
       #-----------------
       #The rules below are recipe rules.

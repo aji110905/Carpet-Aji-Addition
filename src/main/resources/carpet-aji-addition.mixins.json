@@ -22,6 +22,7 @@
     "rules.lockAllHopperMinecart.MinecartHopperMixin",
     "rules.noSnowGolemMelting.SnowGolemMixin",
     "rules.removeEnderPearlDamage.ThrownEnderPearlMixin",
+    "rules.removeTooExpensive.AnvilMenuMixin",
     "rules.safeCreeper.CreeperMixin",
     "rules.safeMagmaBlock.MagmaBlockMixin",
     "rules.tameHorse.AbstractHorseMixin",

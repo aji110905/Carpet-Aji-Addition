@@ -55,6 +55,9 @@ public class CarpetAjiAdditionRules {
     public static boolean enhanceGrindstone = false;
 
     @Rule(categories = {CAA})
+    public static boolean removeTooExpensive = false;
+
+    @Rule(categories = {CAA})
     @MustSetDefault
     public static boolean betterLogCommand = false;
 
