@@ -38,7 +38,7 @@ modrinthPublish {
     environment = 'server_only'
     versionType = 'release'
     dependencies {
-        required 'carpet'
+        required 'TQTTVgYE'
     }
 }
 
