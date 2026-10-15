@@ -1,12 +1,15 @@
 package top.ajitech.carpetajiaddition.mixin.rules.grindstoneDisenchanting;
 
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import net.minecraft.core.Holder;
+import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.GrindstoneMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.ItemEnchantments;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -26,23 +29,27 @@ public class GrindstoneMenu$4Mixin {
         Container inputSlots = menu.getSlot(GrindstoneMenu.INPUT_SLOT).container;
         ItemStack input = inputSlots.getItem(0);
         ItemStack book = inputSlots.getItem(1);
-        if (input.isEmpty() || input.getCount() > 1 || book.isEmpty() || !book.is(Items.BOOK)) {
+        if (input.isEmpty() || input.getCount() > 1 || book.isEmpty() || !book.is(Items.BOOK) || !EnchantmentHelper.hasAnyEnchantments(input)) {
             return;
         }
-        ItemEnchantments enchantments = EnchantmentHelper.getEnchantmentsForCrafting(itemStack);
-        if (enchantments.isEmpty()) {
+        for (Object2IntMap.Entry<Holder<Enchantment>> entry : EnchantmentHelper.getEnchantmentsForCrafting(input).entrySet()) {
+            Holder<Enchantment> holder = entry.getKey();
+            // 诅咒类附魔只有在开启 enhanceGrindstone 时才允许被剥离。
+            if (holder.is(EnchantmentTags.CURSE) && !CarpetAjiAdditionRules.enhanceGrindstone) {
+                continue;
+            }
+            ci.cancel();
+            player.level().levelEvent(1042, player.blockPosition(), 0);
+            EnchantmentHelper.updateEnchantments(input, mutable -> mutable.set(holder, 0));
+            if (input.is(Items.ENCHANTED_BOOK) && EnchantmentHelper.getEnchantmentsForCrafting(input).isEmpty()) {
+                inputSlots.setItem(0, input.transmuteCopy(Items.BOOK));
+            } else {
+                inputSlots.setItem(0, input);
+            }
+            ItemStack books = book.copy();
+            books.shrink(1);
+            inputSlots.setItem(1, books.isEmpty() ? ItemStack.EMPTY : books);
             return;
         }
-        ci.cancel();
-        player.level().levelEvent(1042, player.blockPosition(), 0);
-        EnchantmentHelper.updateEnchantments(input, mutable -> mutable.set(enchantments.entrySet().iterator().next().getKey(), 0));
-        if (input.is(Items.ENCHANTED_BOOK) && EnchantmentHelper.getEnchantmentsForCrafting(input).isEmpty()) {
-            inputSlots.setItem(0, input.transmuteCopy(Items.BOOK));
-        } else {
-            inputSlots.setItem(0, input);
-        }
-        ItemStack books = book.copy();
-        books.shrink(1);
-        inputSlots.setItem(1, books.isEmpty() ? ItemStack.EMPTY : books);
     }
 }
