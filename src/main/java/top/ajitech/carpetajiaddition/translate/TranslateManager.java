@@ -1,6 +1,5 @@
 package top.ajitech.carpetajiaddition.translate;
 
-import top.ajitech.carpetajiaddition.setting.TranslationLoadException;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.IOException;
