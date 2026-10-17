@@ -2,7 +2,6 @@ package top.ajitech.carpetajiaddition.mixin.rules.grindstoneDisenchanting;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.core.Holder;
-import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.GrindstoneMenu;
@@ -17,6 +16,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
+import top.ajitech.carpetajiaddition.helper.GrindstoneDisenchantingHelper;
 
 @Mixin(GrindstoneMenu.class)
 public abstract class GrindstoneMenuMixin {
@@ -28,16 +28,12 @@ public abstract class GrindstoneMenuMixin {
         if (!CarpetAjiAdditionRules.grindstoneDisenchanting) {
             return;
         }
-        if (itemStack.isEmpty() || itemStack.getCount() > 1 || itemStack2.isEmpty() || !itemStack2.is(Items.BOOK)) {
-            return;
-        }
-        if (!EnchantmentHelper.hasAnyEnchantments(itemStack)) {
+        if (!GrindstoneDisenchantingHelper.isValidDisenchantingInput(itemStack, itemStack2)) {
             return;
         }
         for (Object2IntMap.Entry<Holder<Enchantment>> entry : EnchantmentHelper.getEnchantmentsForCrafting(itemStack).entrySet()) {
             Holder<Enchantment> holder = entry.getKey();
-            // 诅咒类附魔只有在开启 enhanceGrindstone 时才允许被剥离。
-            if (holder.is(EnchantmentTags.CURSE) && !CarpetAjiAdditionRules.enhanceGrindstone) {
+            if (GrindstoneDisenchantingHelper.shouldSkipEnchantment(holder)) {
                 continue;
             }
             ItemStack book = new ItemStack(Items.ENCHANTED_BOOK);
@@ -66,7 +62,7 @@ public abstract class GrindstoneMenuMixin {
         Container inputSlots = menu.getSlot(GrindstoneMenu.INPUT_SLOT).container;
         ItemStack input = inputSlots.getItem(0);
         ItemStack book = inputSlots.getItem(1);
-        if (input.isEmpty() || input.getCount() > 1 || book.isEmpty() || !book.is(Items.BOOK) || !EnchantmentHelper.hasAnyEnchantments(input)) {
+        if (!GrindstoneDisenchantingHelper.isValidDisenchantingInput(input, book)) {
             return;
         }
         this.disenchantingQuickMove = true;
