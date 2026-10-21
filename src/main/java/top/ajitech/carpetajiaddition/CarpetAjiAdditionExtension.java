@@ -4,10 +4,10 @@ import top.ajitech.carpetajiaddition.command.FollowCommand;
 import top.ajitech.carpetajiaddition.command.ModsCommand;
 import top.ajitech.carpetajiaddition.data.DataManager;
 import top.ajitech.carpetajiaddition.recipe.RecipeManager;
+import top.ajitech.carpetajiaddition.recipe.RecipeRuleObserve;
 import top.ajitech.carpetajiaddition.translate.TranslateManager;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
-import carpet.api.settings.SettingsManager;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
@@ -25,9 +25,8 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
 
     @Override
     public void onGameStarted() {
-        SettingsManager settingsManager = CarpetServer.settingsManager;
-        settingsManager.parseSettingsClass(CarpetAjiAdditionRules.class);
-        settingsManager.registerRuleObserver(new CarpetAjiAdditionRuleObserve());
+        CarpetServer.settingsManager.parseSettingsClass(CarpetAjiAdditionRules.class);
+        CarpetServer.settingsManager.registerRuleObserver(new RecipeRuleObserve());
     }
 
     public void onServerCreated(MinecraftServer server){

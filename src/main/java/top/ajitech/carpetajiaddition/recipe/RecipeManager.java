@@ -1,6 +1,5 @@
 package top.ajitech.carpetajiaddition.recipe;
 
-import top.ajitech.carpetajiaddition.CarpetAjiAdditionRecipes;
 import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
 import com.google.gson.JsonElement;
 import net.minecraft.resources.ResourceLocation;
@@ -20,7 +19,7 @@ public class RecipeManager {
     }
 
     public void registerRecipe(Map<ResourceLocation, JsonElement> map) {
-        CarpetAjiAdditionRecipes.INSTANCE.getRecipes().forEach(recipe -> recipe.addToRecipeMap(map));
+        CustomRecipes.INSTANCE.getRecipes().forEach(recipe -> recipe.addToRecipeMap(map));
     }
 
     public void onRecipeRuleValueChanged(){

@@ -1,6 +1,5 @@
 package top.ajitech.carpetajiaddition.recipe;
 
-import top.ajitech.carpetajiaddition.CarpetAjiAdditionRecipes;
 import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.resources.ResourceLocation;
@@ -21,7 +20,7 @@ public class RecipeManager {
     }
 
     public void registerRecipe(SortedMap<ResourceLocation, net.minecraft.world.item.crafting.Recipe<?>> map, HolderLookup.Provider provider) {
-        CarpetAjiAdditionRecipes.INSTANCE.getRecipes().forEach(recipe -> recipe.addToRecipeMap(map, provider));
+        CustomRecipes.INSTANCE.getRecipes().forEach(recipe -> recipe.addToRecipeMap(map, provider));
     }
 
     public void onRecipeRuleValueChanged(){

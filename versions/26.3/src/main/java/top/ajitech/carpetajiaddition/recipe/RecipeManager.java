@@ -7,7 +7,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.packs.PackResources;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.world.item.crafting.RecipeHolder;
-import top.ajitech.carpetajiaddition.CarpetAjiAdditionRecipes;
 import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
 
 import java.util.List;
@@ -23,7 +22,7 @@ public class RecipeManager {
     }
 
     public void registerRecipe(Map<Identifier, Resource> map, FileToIdConverter converter, PackResources packResources) {
-        CarpetAjiAdditionRecipes.INSTANCE.getRecipes().forEach(recipe -> recipe.addToRecipeMap(packResources, map, converter));
+        CustomRecipes.INSTANCE.getRecipes().forEach(recipe -> recipe.addToRecipeMap(packResources, map, converter));
     }
 
     public void onRecipeRuleValueChanged(){

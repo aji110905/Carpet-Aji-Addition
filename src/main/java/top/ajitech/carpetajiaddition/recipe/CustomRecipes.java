@@ -1,7 +1,6 @@
-package top.ajitech.carpetajiaddition;
+package top.ajitech.carpetajiaddition.recipe;
 
-import top.ajitech.carpetajiaddition.recipe.Recipe;
-import top.ajitech.carpetajiaddition.recipe.ShapedRecipe;
+import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +13,8 @@ import static net.minecraft.world.item.Items.END_CRYSTAL;
 import static net.minecraft.world.item.Items.GLASS_BOTTLE;
 import static net.minecraft.world.item.Items.OBSIDIAN;
 
-public class CarpetAjiAdditionRecipes {
-    public static final CarpetAjiAdditionRecipes INSTANCE = new CarpetAjiAdditionRecipes();
+public class CustomRecipes {
+    public static final CustomRecipes INSTANCE = new CustomRecipes();
 
     public List<Recipe> getRecipes() {
         ArrayList<Recipe> recipes = new ArrayList<>();
