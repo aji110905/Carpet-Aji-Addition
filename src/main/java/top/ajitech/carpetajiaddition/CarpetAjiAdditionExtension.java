@@ -41,7 +41,6 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
     @Override
     public void onServerLoadedWorlds(MinecraftServer server) {
         dataManager = new DataManager(server);
-        FollowCommand.init(server);
     }
 
     @Override

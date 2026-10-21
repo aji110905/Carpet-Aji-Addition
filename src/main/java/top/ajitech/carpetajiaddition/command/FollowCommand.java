@@ -17,10 +17,7 @@ import net.minecraft.commands.arguments.ColorArgument;
 import net.minecraft.commands.arguments.item.ItemArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.ServerScoreboard;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.scores.PlayerTeam;
 
 import java.util.HashSet;
 
@@ -133,14 +130,5 @@ public class FollowCommand {
     private static int showColor(CommandContext<CommandSourceStack> context){
         context.getSource().sendSuccess(() -> trc(TranslationsKey.CMD_FOLLOW + "color.show.feedback", trc(FollowCommandData.getInstance().getColor(), true)), true);
         return 1;
-    }
-
-    public static void init(MinecraftServer server){
-        ServerScoreboard scoreboard = server.getScoreboard();
-        PlayerTeam team = scoreboard.getPlayerTeam("followItems");
-        if (team == null){
-            team = scoreboard.addPlayerTeam("followItems");
-        }
-        team.setColor(FollowCommandData.getInstance().getColor());
     }
 }
