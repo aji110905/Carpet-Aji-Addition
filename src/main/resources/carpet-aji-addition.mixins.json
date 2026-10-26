@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "carpet.SettingsManagerMixin",
+    "command.CommandsMixin",
     "command.follow.ItemEntityMixin",
     "command.follow.MinecraftServerMixin",
     "hooks.MinecraftServerMixin",
