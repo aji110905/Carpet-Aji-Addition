@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 public class TranslateManager {
+    public static final TranslateManager INSTANCE = new TranslateManager();
+
     private static final String LANG_FILE_PATH = "/assets/carpetajiaddition/lang/";
     private static final String META_FILE_PATH = LANG_FILE_PATH + "meta/meta.yml";
     private static final String LANG_FILE_EXT = ".yml";
@@ -19,7 +21,7 @@ public class TranslateManager {
 
     private String currentLanguage;
 
-    public TranslateManager(){
+    private TranslateManager(){
         Yaml yaml = new Yaml();
         try (InputStream inputStream = getClass().getResourceAsStream(META_FILE_PATH)) {
             Map<String, Object> meat = yaml.load(inputStream);

@@ -3,17 +3,16 @@ package top.ajitech.carpetajiaddition;
 import top.ajitech.carpetajiaddition.data.DataManager;
 import top.ajitech.carpetajiaddition.recipe.RecipeManager;
 import top.ajitech.carpetajiaddition.recipe.RecipeRuleObserve;
-import top.ajitech.carpetajiaddition.translate.TranslateManager;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
+import top.ajitech.carpetajiaddition.translate.TranslateManager;
+
 import java.util.Map;
 
 public class CarpetAjiAdditionExtension implements CarpetExtension {
     public static final CarpetAjiAdditionExtension INSTANCE = new CarpetAjiAdditionExtension();
-
-    private final TranslateManager translateManager = new TranslateManager();
 
     private DataManager dataManager = null;
     private RecipeManager recipeManager = null;
@@ -59,8 +58,8 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
 
     @Override
     public Map<String, String> canHasTranslations(String lang) {
-        translateManager.updateTranslations(lang);
-        return translateManager.getFabricCarpetTranslationMap();
+        TranslateManager.INSTANCE.updateTranslations(lang);
+        return TranslateManager.INSTANCE.getFabricCarpetTranslationMap();
     }
 
     public RecipeManager getRecipeManager() {
@@ -69,9 +68,5 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
 
     public DataManager getDataManager() {
         return dataManager;
-    }
-
-    public TranslateManager getTranslateManager() {
-        return translateManager;
     }
 }
