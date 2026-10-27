@@ -73,18 +73,22 @@ public abstract class Rule<T> implements CarpetRule<T> {
 
     @Override
     public void set(CommandSourceStack source, String value) throws InvalidRuleValueException {
-        set(source, parse(value));
-        settingsManager().notifyRuleChanged(source, this, value);
+        set(source, parse(value), value);
     }
 
     protected abstract T parse(String value) throws InvalidRuleValueException;
 
     @Override
     public void set(CommandSourceStack source, T value) throws InvalidRuleValueException {
+        set(source, value, null);
+    }
+
+    private void set(CommandSourceStack source, T value, String userInput) throws InvalidRuleValueException {
         if (value == null) {
-            throw new InvalidRuleValueException("Value cannot be null");
+            throw new InvalidRuleValueException();
         }
         this.value = value;
+        settingsManager().notifyRuleChanged(source, this, userInput);
         onValueChanged(value);
     }
 
