@@ -1,7 +1,6 @@
 package top.ajitech.carpetajiaddition.mixin.recipe;
 
 import top.ajitech.carpetajiaddition.CarpetAjiAdditionServer;
-import top.ajitech.carpetajiaddition.recipe.RecipeManager;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Recipe;
@@ -23,9 +22,9 @@ public abstract class RecipeManagerMixin {
             )
     )
     private void prepare(CallbackInfoReturnable<RecipeMap> cir, @Local SortedMap<ResourceLocation, Recipe<?>> map) {
-        RecipeManager recipeManager = CarpetAjiAdditionServer.getInstance().getRecipeManager();
-        if (recipeManager != null) {
-            recipeManager.registerRecipe(map, ((RecipeManagerAccessor) this).carpetajiaddition$getRegistries());
+        CarpetAjiAdditionServer carpetAjiAdditionServer = CarpetAjiAdditionServer.getInstance();
+        if (carpetAjiAdditionServer != null) {
+            carpetAjiAdditionServer.getRecipeManager().registerRecipe(map, ((RecipeManagerAccessor) this).carpetajiaddition$getRegistries());
         }
     }
 }

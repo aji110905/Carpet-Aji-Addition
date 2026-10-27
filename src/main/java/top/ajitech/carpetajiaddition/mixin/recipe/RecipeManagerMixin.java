@@ -1,7 +1,6 @@
 package top.ajitech.carpetajiaddition.mixin.recipe;
 
 import top.ajitech.carpetajiaddition.CarpetAjiAdditionServer;
-import top.ajitech.carpetajiaddition.recipe.RecipeManager;
 import com.google.gson.JsonElement;
 import net.minecraft.resources.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,9 +17,9 @@ public abstract class RecipeManagerMixin {
             argsOnly = true
     )
     private Map<ResourceLocation, JsonElement> apply(Map<ResourceLocation, JsonElement> map) {
-        RecipeManager recipeManager = CarpetAjiAdditionServer.getInstance().getRecipeManager();
-        if (recipeManager != null) {
-            recipeManager.registerRecipe(map);
+        CarpetAjiAdditionServer carpetAjiAdditionServer = CarpetAjiAdditionServer.getInstance();
+        if (carpetAjiAdditionServer != null) {
+            carpetAjiAdditionServer.getRecipeManager().registerRecipe(map);
         }
         return map;
     }
