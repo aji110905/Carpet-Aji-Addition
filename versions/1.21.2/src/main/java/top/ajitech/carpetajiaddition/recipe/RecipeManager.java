@@ -6,6 +6,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
+import top.ajitech.carpetajiaddition.setting.Rule;
 
 import java.util.List;
 import java.util.SortedMap;
@@ -24,6 +25,9 @@ public class RecipeManager {
     }
 
     public void onRecipeRuleValueChanged(){
+        if (!hasEnabledRecipeRule()) {
+            return;
+        }
         server.execute(() -> {
             server.reloadResources(server.getPackRepository().getSelectedIds());
             for (RecipeHolder<?> recipe : server.getRecipeManager().getRecipes()) {
@@ -40,10 +44,17 @@ public class RecipeManager {
     }
 
     public void onPlayerLoggedIn(ServerPlayer player){
+        if (!hasEnabledRecipeRule()) {
+            return;
+        }
         for (RecipeHolder<?> recipe : server.getRecipeManager().getRecipes()) {
             if (recipe.id().location().getNamespace().equals(MOD_ID) && !player.getRecipeBook().contains(recipe.id())) {
                 player.awardRecipes(List.of(recipe));
             }
         }
+    }
+
+    private static boolean hasEnabledRecipeRule () {
+        return CarpetAjiAdditionRules.RECIPE_RULES.stream().anyMatch(Rule::value);
     }
 }
