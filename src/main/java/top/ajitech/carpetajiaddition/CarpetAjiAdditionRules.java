@@ -11,9 +11,6 @@ import java.util.List;
 import java.util.Set;
 
 import static net.minecraft.world.item.Items.*;
-import static net.minecraft.world.item.Items.EGG;
-import static net.minecraft.world.item.Items.END_CRYSTAL;
-import static net.minecraft.world.item.Items.OBSIDIAN;
 
 public final class CarpetAjiAdditionRules {
     private CarpetAjiAdditionRules() {
