@@ -36,17 +36,28 @@ public final class CarpetAjiAdditionRules {
     public static final BooleanRule ENHANCE_GRINDSTONE = register("enhanceGrindstone", false);
     public static final BooleanRule REMOVE_TOO_EXPENSIVE = register("removeTooExpensive", false);
 
+
     private static BooleanRule register(String name, boolean defaultValue) {
-        return register(name, List.of(), defaultValue, false);
+        return register(true, name, defaultValue);
+    }
+
+    private static BooleanRule register(boolean shouldRegister, String name, boolean defaultValue) {
+        return register(shouldRegister, name, List.of(), defaultValue, false);
     }
 
     private static BooleanRule register(String name, boolean defaultValue, boolean mustSetDefault) {
-        return register(name, List.of(), defaultValue, mustSetDefault);
+        return register(true, name, defaultValue, mustSetDefault);
     }
 
-    private static BooleanRule register(String name, Collection<String> categories, boolean defaultValue, boolean isMustSetDefault) {
+    private static BooleanRule register(boolean shouldRegister, String name, boolean defaultValue, boolean mustSetDefault) {
+        return register(shouldRegister, name, List.of(), defaultValue, mustSetDefault);
+    }
+
+    private static BooleanRule register(boolean shouldRegister, String name, Collection<String> categories, boolean defaultValue, boolean isMustSetDefault) {
         BooleanRule rule = new BooleanRule(name,  categories, defaultValue, isMustSetDefault);
-        RULES.add(rule);
+        if (shouldRegister) {
+            RULES.add(rule);
+        }
         return rule;
     }
 
