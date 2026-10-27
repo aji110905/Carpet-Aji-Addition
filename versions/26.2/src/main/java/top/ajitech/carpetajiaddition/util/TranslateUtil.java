@@ -1,6 +1,6 @@
 package top.ajitech.carpetajiaddition.util;
 
-import top.ajitech.carpetajiaddition.CarpetAjiAdditionExtension;
+import top.ajitech.carpetajiaddition.translate.TranslateManager;
 import top.ajitech.carpetajiaddition.translate.TranslationsKey;
 import top.ajitech.carpetajiaddition.translate.Translator;
 import net.minecraft.network.chat.Component;
@@ -70,6 +70,6 @@ public final class TranslateUtil {
     }
     
     private static Translator getTranslator(){
-        return CarpetAjiAdditionExtension.INSTANCE.getTranslateManager().getTranslator();
+        return TranslateManager.INSTANCE.getTranslator();
     }
 }
