@@ -1,6 +1,7 @@
 package top.ajitech.carpetajiaddition;
 
 import carpet.CarpetServer;
+import net.fabricmc.loader.api.FabricLoader;
 import top.ajitech.carpetajiaddition.recipe.Recipe;
 import top.ajitech.carpetajiaddition.recipe.ShapedRecipe;
 import top.ajitech.carpetajiaddition.setting.*;
@@ -30,7 +31,7 @@ public final class CarpetAjiAdditionRules {
     public static final BooleanRule REMOVE_ENDER_PEARL_DAMAGE = register("removeEnderPearlDamage", false);
     public static final BooleanRule BETTER_LOG_COMMAND = register("betterLogCommand", false, true);
     public static final BooleanRule SAFE_CREEPER = register("safeCreeper", false);
-    public static final BooleanRule ANVIL_CANNOT_DAMAGE = register("anvilCannotDamage", false);
+    public static final BooleanRule ANVIL_CANNOT_DAMAGE = register(!FabricLoader.getInstance().isModLoaded("carpet_cuo_addition"), "anvilCannotDamage", false);
     public static final BooleanRule NO_SNOW_GOLEM_MELTING = register("noSnowGolemMelting", false);
     public static final BooleanRule GRINDSTONE_DISENCHANTING = register("grindstoneDisenchanting", false);
     public static final BooleanRule ENHANCE_GRINDSTONE = register("enhanceGrindstone", false);
