@@ -1,12 +1,8 @@
 package top.ajitech.carpetajiaddition;
 
-import top.ajitech.carpetajiaddition.data.DataManager;
-import top.ajitech.carpetajiaddition.recipe.RecipeManager;
 import top.ajitech.carpetajiaddition.recipe.RecipeRuleObserve;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.level.ServerPlayer;
 import top.ajitech.carpetajiaddition.translate.TranslateManager;
 
 import java.util.Map;
@@ -14,41 +10,10 @@ import java.util.Map;
 public class CarpetAjiAdditionExtension implements CarpetExtension {
     public static final CarpetAjiAdditionExtension INSTANCE = new CarpetAjiAdditionExtension();
 
-    private DataManager dataManager = null;
-    private RecipeManager recipeManager = null;
-
     @Override
     public void onGameStarted() {
         CarpetServer.settingsManager.parseSettingsClass(CarpetAjiAdditionRules.class);
         CarpetServer.settingsManager.registerRuleObserver(new RecipeRuleObserve());
-    }
-
-    public void onServerCreated(MinecraftServer server){
-        recipeManager = new RecipeManager(server);
-    }
-
-    @Override
-    public void onServerLoadedWorlds(MinecraftServer server) {
-        dataManager = new DataManager(server);
-    }
-
-    public void onSave(MinecraftServer server) {
-        dataManager.saveData();
-    }
-
-    @Override
-    public void onPlayerLoggedIn(ServerPlayer player) {
-        recipeManager.onPlayerLoggedIn(player);
-    }
-
-    @Override
-    public void onReload(MinecraftServer server) {
-        dataManager.loadData();
-    }
-
-    public void afterServerClose(MinecraftServer server) {
-        dataManager = null;
-        recipeManager = null;
     }
 
     @Override
@@ -60,13 +25,5 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
     public Map<String, String> canHasTranslations(String lang) {
         TranslateManager.INSTANCE.updateTranslations(lang);
         return TranslateManager.INSTANCE.getFabricCarpetTranslationMap();
-    }
-
-    public RecipeManager getRecipeManager() {
-        return recipeManager;
-    }
-
-    public DataManager getDataManager() {
-        return dataManager;
     }
 }

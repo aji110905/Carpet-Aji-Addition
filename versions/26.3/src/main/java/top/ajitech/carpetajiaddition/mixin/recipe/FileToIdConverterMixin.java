@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import top.ajitech.carpetajiaddition.CarpetAjiAdditionExtension;
+import top.ajitech.carpetajiaddition.CarpetAjiAdditionServer;
 import top.ajitech.carpetajiaddition.recipe.RecipeManager;
 
 import java.util.Map;
@@ -21,7 +21,7 @@ public class FileToIdConverterMixin {
         FileToIdConverter converter = (FileToIdConverter) (Object) this;
         if (converter.prefix().equals(Registries.elementsDirPath(Registries.RECIPE))) {
             Map<Identifier, Resource> map = cir.getReturnValue();
-            RecipeManager recipeManager = CarpetAjiAdditionExtension.INSTANCE.getRecipeManager();
+            RecipeManager recipeManager = CarpetAjiAdditionServer.getInstance().getRecipeManager();
             if (recipeManager != null) {
                 recipeManager.registerRecipe(map, (FileToIdConverter) (Object) this, resourceManager.listPacks().findFirst().orElseThrow());
                 cir.setReturnValue(map);

@@ -9,6 +9,8 @@
     "command.follow.ItemEntityMixin",
     "command.follow.MinecraftServerMixin",
     "hooks.MinecraftServerMixin",
+    "hooks.PlayerListMixin",
+    "hooks.ReloadCommandMixin",
     "recipe.FileToIdConverterMixin",
     "recipe.RecipeManagerAccessor",
     "recipe.RecipeManagerMixin",
