@@ -10,6 +10,6 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 public abstract class AnvilMenuMixin {
     @ModifyConstant(method = "createResult", constant = @Constant(intValue = 40, ordinal = 2))
     private int removeTooExpensive(int costLimit) {
-        return CarpetAjiAdditionRules.removeTooExpensive ? Integer.MAX_VALUE : costLimit;
+        return CarpetAjiAdditionRules.REMOVE_TOO_EXPENSIVE.value() ? Integer.MAX_VALUE : costLimit;
     }
 }

@@ -48,7 +48,7 @@ public abstract class MinecartHopperMixin extends AbstractMinecartContainer{
             return;
         }
         ServerScoreboard scoreboard = server.getScoreboard();
-        if (!CarpetAjiAdditionRules.glowingHopperMinecart) {
+        if (!CarpetAjiAdditionRules.GLOWING_HOPPER_MINECART.value()) {
             PlayerTeam enabled = scoreboard.getPlayerTeam("enabled_hopper_minecraft");
             if (enabled != null) {
                 scoreboard.removePlayerTeam(enabled);

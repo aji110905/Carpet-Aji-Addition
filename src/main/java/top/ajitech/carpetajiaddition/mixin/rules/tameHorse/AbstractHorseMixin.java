@@ -11,7 +11,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class AbstractHorseMixin{
     @Inject(method = "getTemper", at = @At("HEAD"), cancellable = true)
     public void getTemper(CallbackInfoReturnable<Integer> cir) {
-        if (!CarpetAjiAdditionRules.tameHorse) return;
-        cir.setReturnValue(100);
+        if (CarpetAjiAdditionRules.TAME_HORSE.value()) {
+            cir.setReturnValue(100);
+        }
     }
 }

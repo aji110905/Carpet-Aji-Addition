@@ -28,7 +28,7 @@ public class ShapedRecipe implements Recipe {
     }
 
     @Override
-    public void addToRecipeMap(Map<ResourceLocation, JsonElement> recipeMap) {
+    public void addToRecipeMap(Map<ResourceLocation, JsonElement> map) {
         JsonObject json = new JsonObject();
         json.add("type", new JsonPrimitive(TYPE));
         JsonArray jsonPattern = new JsonArray();
@@ -51,7 +51,7 @@ public class ShapedRecipe implements Recipe {
         jsonResult.addProperty("id", resultItem);
         jsonResult.addProperty("count", resultCount);
         json.add("result", jsonResult);
-        recipeMap.put(recipeId, json);
+        map.put(recipeId, json);
     }
 
     public static Builder builder(String recipeName, Item resultItem, int resultCount) {

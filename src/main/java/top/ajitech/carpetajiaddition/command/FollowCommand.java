@@ -5,7 +5,6 @@ import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
 import top.ajitech.carpetajiaddition.data.FollowCommandData;
 import top.ajitech.carpetajiaddition.util.ResourceLocationUtil;
 import top.ajitech.carpetajiaddition.translate.TranslationsKey;
-import carpet.utils.CommandHelper;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
@@ -29,7 +28,7 @@ public class FollowCommand extends Command{
     @Override
     protected LiteralArgumentBuilder<CommandSourceStack> getCommand(CommandBuildContext buildContext) {
         return literal("follow")
-                .requires(commandSource -> CommandHelper.canUseCommand(commandSource, CarpetAjiAdditionRules.commandFollow))
+                .requires(CarpetAjiAdditionRules.COMMAND_FOLLOW::canUseCommand)
                 .then(literal("add")
                         .then(argument("item", ItemArgument.item(buildContext))
                                 .executes(FollowCommand::add)))

@@ -25,7 +25,7 @@ public abstract class GrindstoneMenuMixin {
 
     @Inject(method = "computeResult", at = @At("HEAD"), cancellable = true)
     private void computeResult(ItemStack itemStack, ItemStack itemStack2, CallbackInfoReturnable<ItemStack> cir) {
-        if (!CarpetAjiAdditionRules.grindstoneDisenchanting) {
+        if (!CarpetAjiAdditionRules.GRINDSTONE_DISENCHANTING.value()) {
             return;
         }
         if (!GrindstoneDisenchantingHelper.isValidDisenchantingInput(itemStack, itemStack2)) {
@@ -48,7 +48,7 @@ public abstract class GrindstoneMenuMixin {
     @Inject(method = "quickMoveStack", at = @At("HEAD"))
     private void quickMoveStackHead(Player player, int index, CallbackInfoReturnable<ItemStack> cir) {
         this.disenchantingQuickMove = false;
-        if (!CarpetAjiAdditionRules.grindstoneDisenchanting) {
+        if (!CarpetAjiAdditionRules.GRINDSTONE_DISENCHANTING.value()) {
             return;
         }
         if (index != GrindstoneMenu.RESULT_SLOT) {

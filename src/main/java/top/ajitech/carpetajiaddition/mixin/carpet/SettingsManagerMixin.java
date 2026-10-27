@@ -12,8 +12,8 @@ import net.fabricmc.loader.api.metadata.ModMetadata;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.Commands;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
 import top.ajitech.carpetajiaddition.CarpetAjiAdditionMod;
+import top.ajitech.carpetajiaddition.setting.Rule;
 import top.ajitech.carpetajiaddition.translate.TranslationsKey;
 import top.ajitech.carpetajiaddition.util.TranslateUtil;
 import carpet.api.settings.CarpetRule;
@@ -49,9 +49,9 @@ public abstract class SettingsManagerMixin {
     }
 
     @Inject(method = "setRule", at = @At("RETURN"))
-    private void setRule(CommandSourceStack source, CarpetRule<?> rule, String value, CallbackInfoReturnable<Integer> cir) {
-        if (CarpetAjiAdditionRules.isMustSetDefaultRule(rule.name())) {
-            setDefault(source, rule, value);
+    private void setRule(CommandSourceStack source, CarpetRule<?> carpetRule, String value, CallbackInfoReturnable<Integer> cir) {
+        if (carpetRule instanceof Rule<?> rule && rule.mustSetDefault()) {
+            setDefault(source, carpetRule, value);
         }
     }
 

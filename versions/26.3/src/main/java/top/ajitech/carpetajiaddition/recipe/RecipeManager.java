@@ -22,13 +22,10 @@ public class RecipeManager {
     }
 
     public void registerRecipe(Map<Identifier, Resource> map, FileToIdConverter converter, PackResources packResources) {
-        CustomRecipes.INSTANCE.getRecipes().forEach(recipe -> recipe.addToRecipeMap(packResources, map, converter));
+        CarpetAjiAdditionRules.RECIPE_RULES.forEach(rule -> rule.addToRecipeMap(packResources, map, converter));
     }
 
     public void onRecipeRuleValueChanged(){
-        if (!CarpetAjiAdditionRules.hasEnabledRecipeRule()) {
-            return;
-        }
         server.execute(() -> {
             server.reloadResources(server.getPackRepository().getSelectedIds());
             for (RecipeHolder<?> recipe : server.getRecipeManager().getRecipes()) {

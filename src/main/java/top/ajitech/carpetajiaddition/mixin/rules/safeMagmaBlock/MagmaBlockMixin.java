@@ -21,9 +21,10 @@ public abstract class MagmaBlockMixin extends Block {
 
     @Inject(method = "stepOn", at = @At("HEAD"), cancellable = true)
     private void onSteepedOn(Level level, BlockPos blockPos, BlockState blockState, Entity entity, CallbackInfo ci){
-        if (!CarpetAjiAdditionRules.safeMagmaBlock) return;
-        if (level.isClientSide()) return;
-        super.stepOn(level, blockPos, blockState, entity);
-        ci.cancel();
+        if (CarpetAjiAdditionRules.SAFE_MAGMA_BLOCK.value() && !level.isClientSide()) {
+            super.stepOn(level, blockPos, blockState, entity);
+            ci.cancel();
+        }
+
     }
 }

@@ -11,6 +11,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class MinecartHopperMixin{
     @Inject(method = "isEnabled", at = @At("HEAD"), cancellable = true)
     private void isEnabled(CallbackInfoReturnable<Boolean> cir) {
-        if (CarpetAjiAdditionRules.lockAllHopperMinecart) cir.setReturnValue(false);
+        if (CarpetAjiAdditionRules.LOCK_ALL_HOPPER_MINECART.value()) {
+            cir.setReturnValue(false);
+        }
     }
 }

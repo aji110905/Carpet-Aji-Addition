@@ -1,111 +1,102 @@
 package top.ajitech.carpetajiaddition;
 
-import top.ajitech.carpetajiaddition.setting.MustSetDefault;
-import carpet.api.settings.Rule;
+import carpet.CarpetServer;
+import top.ajitech.carpetajiaddition.recipe.Recipe;
+import top.ajitech.carpetajiaddition.recipe.ShapedRecipe;
+import top.ajitech.carpetajiaddition.setting.*;
 
-import java.lang.reflect.Field;
-import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-import static top.ajitech.carpetajiaddition.setting.RuleCategory.*;
-import static carpet.api.settings.RuleCategory.*;
+import static net.minecraft.world.item.Items.*;
+import static net.minecraft.world.item.Items.EGG;
+import static net.minecraft.world.item.Items.END_CRYSTAL;
+import static net.minecraft.world.item.Items.OBSIDIAN;
 
-public class CarpetAjiAdditionRules {
-    private static final Set<String> MUST_SET_DEFAULT_RULES;
-    private static final Set<Field> RECIPE_RULES;
-
-    @Rule(categories = {CAA})
-    public static boolean glowingHopperMinecart = false;
-
-    @Rule(categories = {CAA})
-    public static boolean lockAllHopper = false;
-
-    @Rule(categories = {CAA})
-    public static boolean keepOpeningVault = false;
-
-    @Rule(categories = {CAA})
-    public static boolean lockAllHopperMinecart = false;
-
-    @Rule(categories = {CAA})
-    public static boolean tameHorse = false;
-
-    @Rule(categories = {CAA})
-    public static boolean safeMagmaBlock = false;
-
-    @Rule(categories = {CAA})
-    public static boolean toughTurtleEgg = false;
-
-    @Rule(categories = {CAA})
-    public static boolean removeEnderPearlDamage = false;
-
-    @Rule(categories = {CAA})
-    public static boolean safeCreeper = false;
-
-    @Rule(categories = {CAA})
-    public static boolean anvilCannotDamage = false;
-
-    @Rule(categories = {CAA})
-    public static boolean grindstoneDisenchanting = false;
-
-    @Rule(categories = {CAA})
-    public static boolean noSnowGolemMelting = false;
-
-    @Rule(categories = {CAA})
-    public static boolean enhanceGrindstone = false;
-
-    @Rule(categories = {CAA})
-    public static boolean removeTooExpensive = false;
-
-    @Rule(categories = {CAA})
-    @MustSetDefault
-    public static boolean betterLogCommand = false;
-
-    @Rule(categories = {CAA, COMMAND})
-    public static String commandFollow = "ops";
-
-    @Rule(categories = {CAA, COMMAND})
-    public static String commandMods = "0";
-
-    @Rule(categories = {CAA, RECIPE})
-    public static boolean dragonEggRecipe = false;
-
-    @Rule(categories = {CAA, RECIPE})
-    public static boolean dragonBreathRecipe = false;
-
-    public static boolean hasEnabledRecipeRule(){
-        for (Field recipeRule : RECIPE_RULES) {
-            try {
-                if (recipeRule.getBoolean(null)){
-                    return true;
-                }
-            } catch (IllegalAccessException e) {
-                CarpetAjiAdditionMod.LOGGER.error("Failed to get value of rule {}", recipeRule.getName(), e);
-            }
-        }
-        return false;
+public final class CarpetAjiAdditionRules {
+    private CarpetAjiAdditionRules() {
     }
 
-    public static boolean isMustSetDefaultRule(String ruleName){
-        return MUST_SET_DEFAULT_RULES.contains(ruleName);
+    private static final Set<Rule<?>> RULES = new HashSet<>();
+
+
+
+    public static final BooleanRule GLOWING_HOPPER_MINECART = register("glowingHopperMinecart", false);
+    public static final BooleanRule LOCK_ALL_HOPPER = register("lockAllHopper", false);
+    public static final BooleanRule KEEP_OPENING_VAULT = register("keepOpeningVault", false);
+    public static final BooleanRule LOCK_ALL_HOPPER_MINECART = register("lockAllHopperMinecart", false);
+    public static final BooleanRule TAME_HORSE = register("tameHorse", false);
+    public static final BooleanRule SAFE_MAGMA_BLOCK = register("safeMagmaBlock", false);
+    public static final BooleanRule TOUGH_TURTLE_EGG = register("toughTurtleEgg", false);
+    public static final BooleanRule REMOVE_ENDER_PEARL_DAMAGE = register("removeEnderPearlDamage", false);
+    public static final BooleanRule BETTER_LOG_COMMAND = register("betterLogCommand", false, true);
+    public static final BooleanRule SAFE_CREEPER = register("safeCreeper", false);
+    public static final BooleanRule ANVIL_CANNOT_DAMAGE = register("anvilCannotDamage", false);
+    public static final BooleanRule NO_SNOW_GOLEM_MELTING = register("noSnowGolemMelting", false);
+    public static final BooleanRule GRINDSTONE_DISENCHANTING = register("grindstoneDisenchanting", false);
+    public static final BooleanRule ENHANCE_GRINDSTONE = register("enhanceGrindstone", false);
+    public static final BooleanRule REMOVE_TOO_EXPENSIVE = register("removeTooExpensive", false);
+
+    private static BooleanRule register(String name, boolean defaultValue) {
+        return register(name, List.of(), defaultValue, false);
     }
+
+    private static BooleanRule register(String name, boolean defaultValue, boolean mustSetDefault) {
+        return register(name, List.of(), defaultValue, mustSetDefault);
+    }
+
+    private static BooleanRule register(String name, Collection<String> categories, boolean defaultValue, boolean isMustSetDefault) {
+        BooleanRule rule = new BooleanRule(name,  categories, defaultValue, isMustSetDefault);
+        RULES.add(rule);
+        return rule;
+    }
+
+
+
+    public static final CommandRule COMMAND_FOLLOW = register("commandFollow", CommandRuleValue.OPS);
+    public static final CommandRule COMMAND_MODS = register("commandMods", CommandRuleValue.TRUE);
+
+    private static CommandRule register(String name, CommandRuleValue defaultValue) {
+        CommandRule rule = new CommandRule(name, defaultValue);
+        RULES.add(rule);
+        return rule;
+    }
+
+
+
+    public static final Set<RecipeRule> RECIPE_RULES = new HashSet<>();
 
     static {
-        MUST_SET_DEFAULT_RULES = new HashSet<>();
-        for (Field field : CarpetAjiAdditionRules.class.getDeclaredFields()) {
-            if (field.isAnnotationPresent(MustSetDefault.class)){
-                MUST_SET_DEFAULT_RULES.add(field.getName());
-            }
-        }
+        register(
+                "dragonEggRecipe",
+                ShapedRecipe.builder("dragon_egg", DRAGON_EGG, 1)
+                        .pattern("&#&")
+                        .pattern("^*^")
+                        .pattern("$$$")
+                        .define('&', CRYING_OBSIDIAN).define('#', GLASS_BOTTLE).define('^', OBSIDIAN).define('*', EGG).define('$', END_CRYSTAL)
+                        .build()
+        );
+        register(
+                "dragonBreathRecipe",
+                ShapedRecipe.builder("dragon_breath", DRAGON_BREATH, 1)
+                        .pattern("#")
+                        .pattern("*")
+                        .define('#', DRAGON_EGG).define('*', GLASS_BOTTLE)
+                        .build()
+        );
+    }
 
-        RECIPE_RULES = new HashSet<>();
-        for (Field field : CarpetAjiAdditionRules.class.getDeclaredFields()) {
-            if (!field.isAnnotationPresent(Rule.class)){
-                continue;
-            }
-            if (Arrays.asList(field.getAnnotation(Rule.class).categories()).contains(RECIPE)){
-                RECIPE_RULES.add(field);
-            }
-        }
+    private static void register(String name, Recipe recipe) {
+        RecipeRule rule = new RecipeRule(name, recipe);
+        RECIPE_RULES.add(rule);
+    }
+
+
+
+    public static void register() {
+        RECIPE_RULES.forEach(rule -> CarpetServer.settingsManager.addCarpetRule(rule));
+        RULES.forEach(rule -> CarpetServer.settingsManager.addCarpetRule(rule));
     }
 }

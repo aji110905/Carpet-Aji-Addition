@@ -1,8 +1,6 @@
 package top.ajitech.carpetajiaddition;
 
-import top.ajitech.carpetajiaddition.recipe.RecipeRuleObserve;
 import carpet.CarpetExtension;
-import carpet.CarpetServer;
 import top.ajitech.carpetajiaddition.translate.TranslateManager;
 
 import java.util.Map;
@@ -12,8 +10,7 @@ public class CarpetAjiAdditionExtension implements CarpetExtension {
 
     @Override
     public void onGameStarted() {
-        CarpetServer.settingsManager.parseSettingsClass(CarpetAjiAdditionRules.class);
-        CarpetServer.settingsManager.registerRuleObserver(new RecipeRuleObserve());
+        CarpetAjiAdditionRules.register();
     }
 
     @Override

@@ -1,11 +1,11 @@
 package top.ajitech.carpetajiaddition.recipe;
 
-import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
 
 import java.util.List;
 import java.util.SortedMap;
@@ -20,13 +20,10 @@ public class RecipeManager {
     }
 
     public void registerRecipe(SortedMap<ResourceLocation, net.minecraft.world.item.crafting.Recipe<?>> map, HolderLookup.Provider provider) {
-        CustomRecipes.INSTANCE.getRecipes().forEach(recipe -> recipe.addToRecipeMap(map, provider));
+        CarpetAjiAdditionRules.RECIPE_RULES.forEach(rule -> rule.addToRecipeMap(map, provider));
     }
 
     public void onRecipeRuleValueChanged(){
-        if (!CarpetAjiAdditionRules.hasEnabledRecipeRule()) {
-            return;
-        }
         server.execute(() -> {
             server.reloadResources(server.getPackRepository().getSelectedIds());
             for (RecipeHolder<?> recipe : server.getRecipeManager().getRecipes()) {

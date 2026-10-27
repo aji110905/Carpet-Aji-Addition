@@ -20,7 +20,7 @@ import top.ajitech.carpetajiaddition.helper.GrindstoneDisenchantingHelper;
 public class GrindstoneMenu$4Mixin {
     @Inject(method = "onTake", at = @At("HEAD"), cancellable = true)
     private void onTake(Player player, ItemStack itemStack, CallbackInfo ci) {
-        if (!CarpetAjiAdditionRules.grindstoneDisenchanting) {
+        if (!CarpetAjiAdditionRules.GRINDSTONE_DISENCHANTING.value()) {
             return;
         }
         if (!(player.containerMenu instanceof GrindstoneMenu menu)) {

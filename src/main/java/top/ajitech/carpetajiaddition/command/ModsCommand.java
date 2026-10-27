@@ -3,7 +3,6 @@ package top.ajitech.carpetajiaddition.command;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
 import top.ajitech.carpetajiaddition.translate.TranslationsKey;
-import carpet.utils.CommandHelper;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
@@ -34,7 +33,7 @@ public class ModsCommand extends Command{
     @Override
     protected LiteralArgumentBuilder<CommandSourceStack> getCommand(CommandBuildContext buildContext) {
         return literal("mods")
-                .requires(commandSource -> CommandHelper.canUseCommand(commandSource, CarpetAjiAdditionRules.commandMods))
+                .requires(CarpetAjiAdditionRules.COMMAND_MODS::canUseCommand)
                 .then(literal("list")
                                 .executes(ModsCommand::list))
                 .then(argument("mods", StringArgumentType.greedyString())

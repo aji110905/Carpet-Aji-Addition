@@ -41,7 +41,7 @@ public class BetterLogCommandData implements Data{
         if (tag == null) {
             return;
         }
-        if (isFirstLoad && CarpetAjiAdditionRules.betterLogCommand) {
+        if (isFirstLoad && CarpetAjiAdditionRules.BETTER_LOG_COMMAND.value()) {
             CompoundTag tag1 = (CompoundTag) tag;
             for (String string : tag1.getAllKeys()) {
                 CompoundTag tag2 = (CompoundTag) tag1.get(string);

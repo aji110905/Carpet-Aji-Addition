@@ -26,7 +26,7 @@ public abstract class TurtleEggBlockMixin{
     //#else
     //$$ private void canDestroyEgg(ServerLevel level, BlockPos pos, Entity entity, CallbackInfoReturnable<Boolean> cir) {
     //#endif
-        if (CarpetAjiAdditionRules.toughTurtleEgg) {
+        if (CarpetAjiAdditionRules.TOUGH_TURTLE_EGG.value()) {
             cir.setReturnValue(false);
         }
     }

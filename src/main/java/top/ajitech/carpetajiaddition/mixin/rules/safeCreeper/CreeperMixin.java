@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class CreeperMixin {
     @Inject(method = "explodeCreeper", at = @At("HEAD"), cancellable = true)
     private void explodeCreeper(CallbackInfo ci) {
-        if (CarpetAjiAdditionRules.safeCreeper) {
+        if (CarpetAjiAdditionRules.SAFE_CREEPER.value()) {
             ci.cancel();
         }
     }

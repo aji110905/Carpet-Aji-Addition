@@ -1,11 +1,11 @@
 package top.ajitech.carpetajiaddition.recipe;
 
-import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
 import com.google.gson.JsonElement;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
 
 import java.util.*;
 
@@ -19,13 +19,10 @@ public class RecipeManager {
     }
 
     public void registerRecipe(Map<ResourceLocation, JsonElement> map) {
-        CustomRecipes.INSTANCE.getRecipes().forEach(recipe -> recipe.addToRecipeMap(map));
+        CarpetAjiAdditionRules.RECIPE_RULES.forEach(rule -> rule.addToRecipeMap(map));
     }
 
     public void onRecipeRuleValueChanged(){
-        if (!CarpetAjiAdditionRules.hasEnabledRecipeRule()) {
-            return;
-        }
         server.execute(() -> {
             server.reloadResources(server.getPackRepository().getSelectedIds());
             for (RecipeHolder<?> recipe : server.getRecipeManager().getRecipes()) {
@@ -42,9 +39,6 @@ public class RecipeManager {
     }
 
     public void onPlayerLoggedIn(ServerPlayer player){
-        if (!CarpetAjiAdditionRules.hasEnabledRecipeRule()){
-            return;
-        }
         for (RecipeHolder<?> recipe : server.getRecipeManager().getRecipes()) {
             if (recipe.id().getNamespace().equals(MOD_ID) && !player.getRecipeBook().contains(recipe.id())) {
                 player.awardRecipes(List.of(recipe));

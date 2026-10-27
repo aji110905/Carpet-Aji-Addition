@@ -21,6 +21,6 @@ public final class GrindstoneDisenchantingHelper {
     }
 
     public static boolean shouldSkipEnchantment(Holder<Enchantment> holder) {
-        return holder.is(EnchantmentTags.CURSE) && !CarpetAjiAdditionRules.enhanceGrindstone;
+        return holder.is(EnchantmentTags.CURSE) && !CarpetAjiAdditionRules.ENHANCE_GRINDSTONE.value();
     }
 }

@@ -88,12 +88,6 @@ carpetajiaddition:
       tameHorse:
         name: "听话的马"
         desc: "你可以100%驯服马。"
-      commandFollow:
-        name: "follow命令"
-        desc: "可以使用/follow命令。"
-      commandMods:
-        name: "mods命令"
-        desc: "可以使用/mods命令。"
       safeMagmaBlock:
         name: "不烫脚的岩浆块"
         desc: "当你站在岩浆块时不会再掉血。"
@@ -128,9 +122,12 @@ carpetajiaddition:
         name: "移除过于昂贵"
         desc: "移除铁砧附魔时的经验限制。"
 
-    #-----------------
-    #下方的规则为配方规则
-    #-----------------
+      commandFollow:
+        name: "follow命令"
+        desc: "可以使用/follow命令。"
+      commandMods:
+        name: "mods命令"
+        desc: "可以使用/mods命令。"
 
       dragonEggRecipe:
         name: "可合成龙蛋"

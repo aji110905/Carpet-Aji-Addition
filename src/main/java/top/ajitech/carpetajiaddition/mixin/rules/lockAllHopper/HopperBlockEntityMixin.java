@@ -16,6 +16,8 @@ import java.util.function.BooleanSupplier;
 public abstract class HopperBlockEntityMixin{
     @Inject(method = "tryMoveItems", at = @At("HEAD"), cancellable = true)
     private static void insertAndExtract(Level level, BlockPos blockPos, BlockState blockState, HopperBlockEntity hopperBlockEntity, BooleanSupplier booleanSupplier, CallbackInfoReturnable<Boolean> cir) {
-        if (CarpetAjiAdditionRules.lockAllHopper) cir.setReturnValue(false);
+        if (CarpetAjiAdditionRules.LOCK_ALL_HOPPER.value()) {
+            cir.setReturnValue(false);
+        }
     }
 }
