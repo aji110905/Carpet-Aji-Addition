@@ -25,6 +25,13 @@ public class CommandRule extends Rule<CommandRuleValue>{
     }
 
     @Override
+    protected void onValueChanged(CommandSourceStack source, CommandRuleValue value) {
+        if (source != null) {
+            CommandHelper.notifyPlayersCommandsChanged(source.getServer());
+        }
+    }
+
+    @Override
     public Collection<String> suggestions() {
         return Arrays.stream(CommandRuleValue.values())
                 .map(CommandRuleValue::toString)
