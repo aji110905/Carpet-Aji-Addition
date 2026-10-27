@@ -13,7 +13,7 @@ import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
 public abstract class GrindstoneMenu$3Mixin {
     @Inject(method = "mayPlace", at = @At("HEAD"), cancellable = true)
     private void mayPlace(ItemStack itemStack, CallbackInfoReturnable<Boolean> cir) {
-        if (!CarpetAjiAdditionRules.grindstoneDisenchanting) {
+        if (!CarpetAjiAdditionRules.GRINDSTONE_DISENCHANTING.value()) {
             return;
         }
         if (itemStack.isDamageableItem() || EnchantmentHelper.hasAnyEnchantments(itemStack)) {

@@ -2,6 +2,9 @@ package top.ajitech.carpetajiaddition.mixin.rules.noSnowGolemMelting;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+//#if MC >= 12102
+//$$ import net.minecraft.server.level.ServerLevel;
+//#endif
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.animal.SnowGolem;
 import org.spongepowered.asm.mixin.Mixin;
@@ -14,13 +17,24 @@ public abstract class SnowGolemMixin {
             method = "aiStep",
             at = @At(
                     value = "INVOKE",
+    //#if MC < 12102
                     target = "Lnet/minecraft/world/entity/animal/SnowGolem;hurt(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
             )
     )
     private boolean aiStep(SnowGolem instance, DamageSource source, float amount, Operation<Boolean> original) {
-        if (CarpetAjiAdditionRules.noSnowGolemMelting) {
+        if (CarpetAjiAdditionRules.NO_SNOW_GOLEM_MELTING.value()) {
             return false;
         }
         return original.call(instance, source, amount);
+    //#else
+    //$$     target = "Lnet/minecraft/world/entity/animal/SnowGolem;hurtServer(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/damagesource/DamageSource;F)Z"
+    //$$         )
+    //$$ )
+    //$$     private boolean aiStep(SnowGolem instance, ServerLevel serverLevel, DamageSource damageSource, float f, Operation<Boolean> original) {
+    //$$         if (CarpetAjiAdditionRules.NO_SNOW_GOLEM_MELTING.value()) {
+    //$$             return false;
+    //$$         }
+    //$$         return original.call(instance, serverLevel, damageSource, f);
+    //#endif
     }
 }

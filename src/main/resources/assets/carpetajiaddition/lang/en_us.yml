@@ -83,10 +83,6 @@ carpetajiaddition:
         desc: "All hopper minecarts will be locked, regardless of whether the rail beneath them is a powered activator rail."
       tameHorse:
         desc: "You can tame horses with 100% success."
-      commandFollow:
-        desc: "Can use the /follow command."
-      commandMods:
-        desc: "Can use the /mods command."
       safeMagmaBlock:
         desc: "You no longer take damage when standing on magma blocks."
       toughTurtleEgg:
@@ -108,9 +104,10 @@ carpetajiaddition:
       removeTooExpensive:
         desc: "Remove the experience limit when enchanting with an anvil."
 
-      #-----------------
-      #The rules below are recipe rules.
-      #-----------------
+      commandFollow:
+        desc: "Can use the /follow command."
+      commandMods:
+        desc: "Can use the /mods command."
 
       dragonEggRecipe:
         desc: "Added a proper recipe for the dragon egg."

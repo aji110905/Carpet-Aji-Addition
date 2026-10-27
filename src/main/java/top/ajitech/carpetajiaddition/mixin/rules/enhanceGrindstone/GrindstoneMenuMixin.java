@@ -19,7 +19,7 @@ import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
 public abstract class GrindstoneMenuMixin {
     @Inject(method = "removeNonCursesFrom", at = @At("RETURN"), cancellable = true)
     private void removeNonCursesFrom(ItemStack itemStack, CallbackInfoReturnable<ItemStack> cir) {
-        if (!CarpetAjiAdditionRules.enhanceGrindstone) {
+        if (!CarpetAjiAdditionRules.ENHANCE_GRINDSTONE.value()) {
             return;
         }
         ItemStack result = cir.getReturnValue();

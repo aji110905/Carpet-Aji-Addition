@@ -1,12 +1,12 @@
 package top.ajitech.carpetajiaddition.recipe;
 
-import top.ajitech.carpetajiaddition.CarpetAjiAdditionRecipes;
-import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
 import com.google.gson.JsonElement;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
+import top.ajitech.carpetajiaddition.setting.Rule;
 
 import java.util.*;
 
@@ -20,11 +20,11 @@ public class RecipeManager {
     }
 
     public void registerRecipe(Map<ResourceLocation, JsonElement> map) {
-        CarpetAjiAdditionRecipes.INSTANCE.getRecipes().forEach(recipe -> recipe.addToRecipeMap(map));
+        CarpetAjiAdditionRules.RECIPE_RULES.forEach(rule -> rule.addToRecipeMap(map));
     }
 
     public void onRecipeRuleValueChanged(){
-        if (!CarpetAjiAdditionRules.hasEnabledRecipeRule()) {
+        if (!hasEnabledRecipeRule()) {
             return;
         }
         server.execute(() -> {
@@ -43,7 +43,7 @@ public class RecipeManager {
     }
 
     public void onPlayerLoggedIn(ServerPlayer player){
-        if (!CarpetAjiAdditionRules.hasEnabledRecipeRule()){
+        if (!hasEnabledRecipeRule()) {
             return;
         }
         for (RecipeHolder<?> recipe : server.getRecipeManager().getRecipes()) {
@@ -51,5 +51,9 @@ public class RecipeManager {
                 player.awardRecipes(List.of(recipe));
             }
         }
+    }
+
+    private static boolean hasEnabledRecipeRule () {
+        return CarpetAjiAdditionRules.RECIPE_RULES.stream().anyMatch(Rule::value);
     }
 }

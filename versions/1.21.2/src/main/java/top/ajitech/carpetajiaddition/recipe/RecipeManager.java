@@ -1,12 +1,12 @@
 package top.ajitech.carpetajiaddition.recipe;
 
-import top.ajitech.carpetajiaddition.CarpetAjiAdditionRecipes;
-import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
+import top.ajitech.carpetajiaddition.setting.Rule;
 
 import java.util.List;
 import java.util.SortedMap;
@@ -21,11 +21,11 @@ public class RecipeManager {
     }
 
     public void registerRecipe(SortedMap<ResourceLocation, net.minecraft.world.item.crafting.Recipe<?>> map, HolderLookup.Provider provider) {
-        CarpetAjiAdditionRecipes.INSTANCE.getRecipes().forEach(recipe -> recipe.addToRecipeMap(map, provider));
+        CarpetAjiAdditionRules.RECIPE_RULES.forEach(rule -> rule.addToRecipeMap(map, provider));
     }
 
     public void onRecipeRuleValueChanged(){
-        if (!CarpetAjiAdditionRules.hasEnabledRecipeRule()) {
+        if (!hasEnabledRecipeRule()) {
             return;
         }
         server.execute(() -> {
@@ -44,10 +44,17 @@ public class RecipeManager {
     }
 
     public void onPlayerLoggedIn(ServerPlayer player){
+        if (!hasEnabledRecipeRule()) {
+            return;
+        }
         for (RecipeHolder<?> recipe : server.getRecipeManager().getRecipes()) {
             if (recipe.id().location().getNamespace().equals(MOD_ID) && !player.getRecipeBook().contains(recipe.id())) {
                 player.awardRecipes(List.of(recipe));
             }
         }
+    }
+
+    private static boolean hasEnabledRecipeRule () {
+        return CarpetAjiAdditionRules.RECIPE_RULES.stream().anyMatch(Rule::value);
     }
 }

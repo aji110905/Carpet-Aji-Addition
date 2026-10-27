@@ -31,7 +31,7 @@ public class ShapedRecipe implements Recipe {
     }
 
     @Override
-    public void addToRecipeMap(Map<ResourceLocation, net.minecraft.world.item.crafting.Recipe<?>> recipeMap, HolderLookup.Provider provider) {
+    public void addToRecipeMap(Map<ResourceLocation, net.minecraft.world.item.crafting.Recipe<?>> map, HolderLookup.Provider provider) {
         JsonObject json = new JsonObject();
         json.add("type", new JsonPrimitive(TYPE));
         JsonArray jsonPattern = new JsonArray();
@@ -52,7 +52,7 @@ public class ShapedRecipe implements Recipe {
         jsonResult.addProperty("id", resultItem);
         jsonResult.addProperty("count", resultCount);
         json.add("result", jsonResult);
-        recipeMap.put(
+        map.put(
                 recipeId,
                 net.minecraft.world.item.crafting.Recipe.CODEC.parse(provider.createSerializationContext(JsonOps.INSTANCE), json).getOrThrow(JsonParseException::new)
         );

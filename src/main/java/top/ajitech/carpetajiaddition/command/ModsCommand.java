@@ -1,9 +1,8 @@
 package top.ajitech.carpetajiaddition.command;
 
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
 import top.ajitech.carpetajiaddition.translate.TranslationsKey;
-import carpet.utils.CommandHelper;
-import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
@@ -30,26 +29,21 @@ import static top.ajitech.carpetajiaddition.util.TranslateUtil.trc;
 import static net.minecraft.commands.Commands.argument;
 import static net.minecraft.commands.Commands.literal;
 
-public class ModsCommand {
-    public static void register(CommandDispatcher<CommandSourceStack> dispatcher, final CommandBuildContext commandBuildContext) {
-        dispatcher.register(
-               literal("mods")
-                       .requires(commandSource -> CommandHelper.canUseCommand(commandSource, CarpetAjiAdditionRules.commandMods))
-                       .then(
-                               literal("list")
-                                    .executes(ModsCommand::list)
-                       )
-                       .then(
-                               argument("mods", StringArgumentType.greedyString())
-                                       .suggests((CommandContext<CommandSourceStack> context, SuggestionsBuilder builder) -> {
-                                           FabricLoader.getInstance().getAllMods().forEach(
-                                                   mod -> builder.suggest(mod.getMetadata().getName())
-                                           );
-                                           return builder.buildFuture();
-                                       })
-                                       .executes(ModsCommand::mods)
-                       )
-        );
+public class ModsCommand extends Command{
+    @Override
+    protected LiteralArgumentBuilder<CommandSourceStack> getCommand(CommandBuildContext buildContext) {
+        return literal("mods")
+                .requires(CarpetAjiAdditionRules.COMMAND_MODS::canUseCommand)
+                .then(literal("list")
+                                .executes(ModsCommand::list))
+                .then(argument("mods", StringArgumentType.greedyString())
+                                .suggests((CommandContext<CommandSourceStack> context, SuggestionsBuilder builder) -> {
+                                    FabricLoader.getInstance().getAllMods().forEach(
+                                            mod -> builder.suggest(mod.getMetadata().getName())
+                                    );
+                                    return builder.buildFuture();
+                                })
+                                .executes(ModsCommand::mods));
     }
 
     private static int list(CommandContext<CommandSourceStack> context) {

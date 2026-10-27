@@ -23,10 +23,9 @@ public abstract class ThrownEnderPearlMixin{
             //#endif
     )
     private float removeEnderPearlDamage(float damage) {
-        if (CarpetAjiAdditionRules.removeEnderPearlDamage) {
+        if (CarpetAjiAdditionRules.REMOVE_ENDER_PEARL_DAMAGE.value()) {
             return 0;
-        } else {
-            return damage;
         }
+        return damage;
     }
 }
