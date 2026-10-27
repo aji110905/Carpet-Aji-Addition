@@ -1,5 +1,6 @@
 package top.ajitech.carpetajiaddition.setting;
 
+import net.minecraft.commands.CommandSourceStack;
 import top.ajitech.carpetajiaddition.CarpetAjiAdditionServer;
 import top.ajitech.carpetajiaddition.recipe.Recipe;
 
@@ -15,7 +16,7 @@ public class RecipeRule extends BooleanRule{
     }
 
     @Override
-    protected void onValueChanged(Boolean value) {
+    protected void onValueChanged(CommandSourceStack source, Boolean value) {
         CarpetAjiAdditionServer.getInstance().getRecipeManager().onRecipeRuleValueChanged();
     }
 

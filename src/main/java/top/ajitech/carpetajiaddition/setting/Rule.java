@@ -89,10 +89,10 @@ public abstract class Rule<T> implements CarpetRule<T> {
         }
         this.value = value;
         settingsManager().notifyRuleChanged(source, this, userInput);
-        onValueChanged(value);
+        onValueChanged(source, value);
     }
 
-    protected void onValueChanged(T value) {
+    protected void onValueChanged(CommandSourceStack source, T value) {
     }
 
     @Override
