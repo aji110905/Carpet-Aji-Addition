@@ -10,8 +10,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import top.ajitech.carpetajiaddition.command.FollowCommand;
-import top.ajitech.carpetajiaddition.command.ModsCommand;
+import top.ajitech.carpetajiaddition.command.CommandRegister;
 
 @Mixin(Commands.class)
 public class CommandsMixin {
@@ -21,7 +20,6 @@ public class CommandsMixin {
 
     @Inject(method = "<init>", at = @At("RETURN"))
     private void onInit(Commands.CommandSelection commandSelection, CommandBuildContext commandBuildContext, CallbackInfo ci) {
-        FollowCommand.register(dispatcher, commandBuildContext);
-        ModsCommand.register(dispatcher, commandBuildContext);
+        CommandRegister.INSTANCE.register(dispatcher, commandBuildContext);
     }
 }

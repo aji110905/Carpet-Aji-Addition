@@ -1,11 +1,11 @@
 package top.ajitech.carpetajiaddition.command;
 
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
 import top.ajitech.carpetajiaddition.data.FollowCommandData;
 import top.ajitech.carpetajiaddition.util.ResourceLocationUtil;
 import top.ajitech.carpetajiaddition.translate.TranslationsKey;
 import carpet.utils.CommandHelper;
-import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
@@ -25,30 +25,29 @@ import static top.ajitech.carpetajiaddition.util.TranslateUtil.trc;
 import static net.minecraft.commands.Commands.argument;
 import static net.minecraft.commands.Commands.literal;
 
-public class FollowCommand {
-    public static void register(CommandDispatcher<CommandSourceStack> dispatcher, final CommandBuildContext commandBuildContext){
-        dispatcher.register(
-                literal("follow")
-                        .requires(commandSource -> CommandHelper.canUseCommand(commandSource, CarpetAjiAdditionRules.commandFollow))
-                        .then(literal("add")
-                                .then(argument("item", ItemArgument.item(commandBuildContext))
-                                        .executes(FollowCommand::add)))
-                        .then(literal("remove")
-                                .then(argument("followItem", StringArgumentType.greedyString())
-                                        .suggests((CommandContext<CommandSourceStack> context, SuggestionsBuilder builder) -> {
-                                            FollowCommandData.getInstance().getFollowItems().forEach(item -> builder.suggest(ResourceLocationUtil.getItemRegistryName(item)));
-                                            return builder.buildFuture();
-                                        })
-                                        .executes(FollowCommand::remove)))
-                        .then(literal("list")
-                                .executes(FollowCommand::list))
-                        .then(literal("color")
-                                .then(literal("set")
-                                        .then(argument("color", ColorArgument.color())
-                                                .executes(FollowCommand::setColor)))
-                                .then(literal("show")
-                                        .executes(FollowCommand::showColor)))
-        );
+public class FollowCommand extends Command{
+    @Override
+    protected LiteralArgumentBuilder<CommandSourceStack> getCommand(CommandBuildContext buildContext) {
+        return literal("follow")
+                .requires(commandSource -> CommandHelper.canUseCommand(commandSource, CarpetAjiAdditionRules.commandFollow))
+                .then(literal("add")
+                        .then(argument("item", ItemArgument.item(buildContext))
+                                .executes(FollowCommand::add)))
+                .then(literal("remove")
+                        .then(argument("followItem", StringArgumentType.greedyString())
+                                .suggests((CommandContext<CommandSourceStack> context, SuggestionsBuilder builder) -> {
+                                    FollowCommandData.getInstance().getFollowItems().forEach(item -> builder.suggest(ResourceLocationUtil.getItemRegistryName(item)));
+                                    return builder.buildFuture();
+                                })
+                                .executes(FollowCommand::remove)))
+                .then(literal("list")
+                        .executes(FollowCommand::list))
+                .then(literal("color")
+                        .then(literal("set")
+                                .then(argument("color", ColorArgument.color())
+                                        .executes(FollowCommand::setColor)))
+                        .then(literal("show")
+                                .executes(FollowCommand::showColor)));
     }
 
     private static int add(CommandContext<CommandSourceStack> context){
