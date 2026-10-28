@@ -3,7 +3,7 @@
   "minVersion": "0.8",
   "package": "top.ajitech.carpetajiaddition.mixin",
   "compatibilityLevel": "JAVA_21",
-  "plugin": "top.ajitech.carpetajiaddition.CarpetAjiAdditionMixinPlugin",
+  "plugin": "top.ajitech.carpetajiaddition.mixin.CarpetAjiAdditionMixinPlugin",
   "mixins": [
     "carpet.SettingsManagerMixin",
     "command.CommandsMixin",
