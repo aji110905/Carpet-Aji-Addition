@@ -135,3 +135,6 @@ carpetajiaddition:
       dragonBreathRecipe:
         name: "可合成龙息"
         desc: "为龙息添加了合理的配方。"
+      elytraRecipe:
+        name: "可合成鞘翅"
+        desc: "为鞘翅添加了合理的配方。"

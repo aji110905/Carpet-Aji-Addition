@@ -113,3 +113,5 @@ carpetajiaddition:
         desc: "Added a proper recipe for the dragon egg."
       dragonBreathRecipe:
         desc: "Added a proper recipe for dragon breath."
+      elytraRecipe:
+        desc: "Added a proper recipe for elytra."

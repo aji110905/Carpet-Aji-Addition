@@ -95,6 +95,15 @@ public final class CarpetAjiAdditionRules {
                         .define('#', DRAGON_EGG).define('*', GLASS_BOTTLE)
                         .build()
         );
+        register(
+                "elytraRecipe",
+                ShapedRecipe.builder("elytra", ELYTRA, 1)
+                        .pattern("###")
+                        .pattern("*&*")
+                        .pattern("*&*")
+                        .define('#', DRAGON_EGG).define('*', PHANTOM_MEMBRANE).define('&', END_ROD)
+                        .build()
+        );
     }
 
     private static void register(String name, Recipe recipe) {
