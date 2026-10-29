@@ -1,6 +1,7 @@
 package top.ajitech.carpetajiaddition.command;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import com.mojang.brigadier.suggestion.Suggestions;
 import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
 import top.ajitech.carpetajiaddition.translate.TranslationsKey;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -22,6 +23,7 @@ import net.minecraft.network.chat.*;
 //$$ import java.net.URISyntaxException;
 //#endif
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 import static top.ajitech.carpetajiaddition.util.TranslateUtil.tr;
@@ -36,20 +38,14 @@ public class ModsCommand extends Command{
                 .requires(CarpetAjiAdditionRules.COMMAND_MODS::canUseCommand)
                 .then(literal("list")
                                 .executes(ModsCommand::list))
-                .then(argument("mods", StringArgumentType.greedyString())
-                                .suggests((CommandContext<CommandSourceStack> context, SuggestionsBuilder builder) -> {
-                                    FabricLoader.getInstance().getAllMods().forEach(
-                                            mod -> builder.suggest(mod.getMetadata().getName())
-                                    );
-                                    return builder.buildFuture();
-                                })
-                                .executes(ModsCommand::mods));
+                .then(argument("mod", StringArgumentType.greedyString())
+                                .suggests(ModsCommand::mods)
+                                .executes(ModsCommand::mod));
     }
 
     private static int list(CommandContext<CommandSourceStack> context) {
-        Collection<ModContainer> mods = FabricLoader.getInstance().getAllMods();
         Set<Component> set = new HashSet<>();
-        for (ModContainer mod : mods) {
+        for (ModContainer mod : FabricLoader.getInstance().getAllMods()) {
             String name = mod.getMetadata().getName();
             MutableComponent component = Component.literal(name);
             component.setStyle(
@@ -75,9 +71,16 @@ public class ModsCommand extends Command{
         return 1;
     }
 
-    private static int mods(CommandContext<CommandSourceStack> context) {
+    private static CompletableFuture<Suggestions> mods(CommandContext<CommandSourceStack> context, SuggestionsBuilder builder) {
+        FabricLoader.getInstance().getAllMods().forEach(
+                mod -> builder.suggest(mod.getMetadata().getName())
+        );
+        return builder.buildFuture();
+    }
+
+    private static int mod(CommandContext<CommandSourceStack> context) {
         CommandSourceStack source = context.getSource();
-        String modName = StringArgumentType.getString(context, "mods");
+        String modName = StringArgumentType.getString(context, "mod");
         for (ModContainer mod : FabricLoader.getInstance().getAllMods()) {
             ModMetadata metadata = mod.getMetadata();
             if (metadata.getName().equals(modName)) {
