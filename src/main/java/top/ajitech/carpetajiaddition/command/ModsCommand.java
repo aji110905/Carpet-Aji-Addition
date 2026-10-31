@@ -39,7 +39,7 @@ public class ModsCommand extends Command{
                 .then(literal("list")
                                 .executes(ModsCommand::list))
                 .then(argument("mod", StringArgumentType.greedyString())
-                                .suggests(ModsCommand::mods)
+                                .suggests(ModsCommand::mod)
                                 .executes(ModsCommand::mod));
     }
 
@@ -71,7 +71,7 @@ public class ModsCommand extends Command{
         return 1;
     }
 
-    private static CompletableFuture<Suggestions> mods(CommandContext<CommandSourceStack> context, SuggestionsBuilder builder) {
+    private static CompletableFuture<Suggestions> mod(CommandContext<CommandSourceStack> context, SuggestionsBuilder builder) {
         FabricLoader.getInstance().getAllMods().forEach(
                 mod -> builder.suggest(mod.getMetadata().getName())
         );
