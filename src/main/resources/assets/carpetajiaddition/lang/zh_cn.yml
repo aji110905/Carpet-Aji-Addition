@@ -58,6 +58,12 @@ carpetajiaddition:
           error: "物品的发光颜色已经为{0}"
         show:
           feedback: "物品的发光颜色为{0}"
+    playerdata:
+      remove:
+        feedback: "已删除玩家{0}的数据文件"
+        error:
+          not_exist: "玩家{0}的数据文件不存在"
+          online: "无法删除在线玩家的数据"
     carpet:
       extensions:
         start: "当前服务器共启用了{0}个Carpet扩展:"
@@ -128,6 +134,9 @@ carpetajiaddition:
       commandMods:
         name: "mods命令"
         desc: "可以使用/mods命令。"
+      commandPlayerdata:
+        name: "playerdata命令"
+        desc: "可以使用/playerdata命令。"
 
       dragonEggRecipe:
         name: "可合成龙蛋"

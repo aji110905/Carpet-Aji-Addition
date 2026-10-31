@@ -58,6 +58,12 @@ carpetajiaddition:
           error: "The item's glow color is already {0}"
         show:
           feedback: "The glowing color of the item is {0}"
+    playerdata:
+      remove:
+        feedback: "Deleted the data file of player {0}"
+        error:
+          not_exist: "The data file of player {0} does not exist"
+          online: "Cannot delete the data of an online player"
     carpet:
       extensions:
         start: "The current server has enabled {0} Carpet extension(s):"
@@ -108,6 +114,8 @@ carpetajiaddition:
         desc: "Can use the /follow command."
       commandMods:
         desc: "Can use the /mods command."
+      commandPlayerdata:
+        desc: "Can use the /playerdata command."
 
       dragonEggRecipe:
         desc: "Added a proper recipe for the dragon egg."

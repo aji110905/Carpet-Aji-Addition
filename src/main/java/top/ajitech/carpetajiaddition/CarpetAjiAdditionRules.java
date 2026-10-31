@@ -66,6 +66,7 @@ public final class CarpetAjiAdditionRules {
 
     public static final CommandRule COMMAND_FOLLOW = register("commandFollow", CommandRuleValue.OPS);
     public static final CommandRule COMMAND_MODS = register("commandMods", CommandRuleValue.TRUE);
+    public static final CommandRule COMMAND_PLAYERDATA = register("commandPlayerdata", CommandRuleValue.OPS);
 
     private static CommandRule register(String name, CommandRuleValue defaultValue) {
         CommandRule rule = new CommandRule(name, defaultValue);
