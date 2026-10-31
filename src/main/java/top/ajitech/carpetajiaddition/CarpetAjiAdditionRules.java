@@ -66,6 +66,7 @@ public final class CarpetAjiAdditionRules {
 
     public static final CommandRule COMMAND_FOLLOW = register("commandFollow", CommandRuleValue.OPS);
     public static final CommandRule COMMAND_MODS = register("commandMods", CommandRuleValue.TRUE);
+    public static final CommandRule COMMAND_PLAYERDATA = register("commandPlayerdata", CommandRuleValue.OPS);
 
     private static CommandRule register(String name, CommandRuleValue defaultValue) {
         CommandRule rule = new CommandRule(name, defaultValue);
@@ -93,6 +94,15 @@ public final class CarpetAjiAdditionRules {
                         .pattern("#")
                         .pattern("*")
                         .define('#', DRAGON_EGG).define('*', GLASS_BOTTLE)
+                        .build()
+        );
+        register(
+                "elytraRecipe",
+                ShapedRecipe.builder("elytra", ELYTRA, 1)
+                        .pattern("###")
+                        .pattern("*&*")
+                        .pattern("*&*")
+                        .define('#', DRAGON_EGG).define('*', PHANTOM_MEMBRANE).define('&', END_ROD)
                         .build()
         );
     }

@@ -15,6 +15,7 @@ public class CommandRegister {
     private CommandRegister() {
         commands.add(new FollowCommand());
         commands.add(new ModsCommand());
+        commands.add(new PlayerdataCommand());
     }
 
     public void register(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext context) {

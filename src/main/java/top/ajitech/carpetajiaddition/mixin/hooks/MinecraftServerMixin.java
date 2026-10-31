@@ -25,4 +25,9 @@ public abstract class MinecraftServerMixin{
     private void saveEverything(boolean suppressLogs, boolean flush, boolean force, CallbackInfoReturnable<Boolean> cir) {
         CarpetAjiAdditionServer.getInstance().onSave();
     }
+
+    @Inject(method = "close", at = @At("RETURN"))
+    private void close(CallbackInfo ci) {
+        CarpetAjiAdditionServer.setInstance(null);
+    }
 }

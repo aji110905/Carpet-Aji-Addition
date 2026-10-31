@@ -1,4 +1,4 @@
-package top.ajitech.carpetajiaddition;
+package top.ajitech.carpetajiaddition.mixin;
 
 import me.fallenbreath.conditionalmixin.api.mixin.RestrictiveMixinConfigPlugin;
 

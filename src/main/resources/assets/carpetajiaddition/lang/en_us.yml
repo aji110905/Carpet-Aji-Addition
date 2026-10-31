@@ -23,45 +23,51 @@ carpetajiaddition:
         hover: "Click for details"
       mods:
         feedback:
-          type: "Type: {0}"
-          id: "ID: {0}"
-          version: "version: {0}"
+          type: "Type: {}"
+          id: "ID: {}"
+          version: "version: {}"
           environment:
             client: "Environment: Client"
             server: "Environment: Server"
             universal: "Environment: Client & Server"
             null: "Environment: Unknown"
-          author: "Author: {0}"
-          contributors: "Contributor: {0}"
+          author: "Author: {}"
+          contributors: "Contributor: {}"
           contact:
-            root: "Link: {0}"
+            root: "Link: {}"
             homepage: "Homepage"
             sources: "Sources"
             issues: "Issues"
             hover: "Click to open link"
-          license: "License: {0}"
+          license: "License: {}"
           unknown: "unknown"
-        error: "Unknown Mod: {0}"
+        error: "Unknown Mod: {}"
     follow:
       add:
-        feedback: "Added {0} to the follow list."
-        error: "{0} has been added to the follow list."
+        feedback: "Added {} to the follow list."
+        error: "{} has been added to the follow list."
       remove:
-        feedback: "Removed {0} from the follow list."
-        error: "{0} is not in the follow list."
+        feedback: "Removed {} from the follow list."
+        error: "{} is not in the follow list."
       list:
         error: "You haven't added any items to the follow list."
         feedback: "Items in the follow list:"
       color:
         set:
-          feedback: "Set glow color to {0}"
-          error: "The item's glow color is already {0}"
+          feedback: "Set glow color to {}"
+          error: "The item's glow color is already {}"
         show:
-          feedback: "物品的发光颜色为{0}"
+          feedback: "The glowing color of the item is {}"
+    playerdata:
+      remove:
+        feedback: "Deleted the data file of player {}"
+        error:
+          not_exist: "The data file of player {} does not exist"
+          online: "Cannot delete the data of an online player"
     carpet:
       extensions:
-        start: "The current server has enabled {0} Carpet extension(s):"
-        error: "Failed to read information for {0} Carpet extension(s)."
+        start: "The current server has enabled {} Carpet extension(s):"
+        error: "Failed to read information for {} Carpet extension(s)."
 
   # ---------------------------------
   # Translation sent to Fabric-Carpet
@@ -108,8 +114,12 @@ carpetajiaddition:
         desc: "Can use the /follow command."
       commandMods:
         desc: "Can use the /mods command."
+      commandPlayerdata:
+        desc: "Can use the /playerdata command."
 
       dragonEggRecipe:
         desc: "Added a proper recipe for the dragon egg."
       dragonBreathRecipe:
         desc: "Added a proper recipe for dragon breath."
+      elytraRecipe:
+        desc: "Added a proper recipe for elytra."

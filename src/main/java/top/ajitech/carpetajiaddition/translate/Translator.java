@@ -21,10 +21,8 @@ public class Translator {
 
     public String tr (String key, String... args) {
         String str = tr(key);
-        for (int i = 0; i < args.length; i++) {
-            String placeholder = "{" + i + "}";
-            String value = (args[i] == null) ? "null" : args[i];
-            str = str.replace(placeholder, value);
+        for (String arg : args) {
+            str = str.replace("{}", (arg == null) ? "null" : arg);
         }
         return str;
     }

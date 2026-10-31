@@ -23,45 +23,51 @@ carpetajiaddition:
         hover: "点击查看详情"
       mods:
         feedback:
-          type: "类型: {0}"
-          id: "ID: {0}"
-          version: "版本: {0}"
+          type: "类型: {}"
+          id: "ID: {}"
+          version: "版本: {}"
           environment:
             client: "运行环境: 客户端"
             server: "运行环境: 服务器"
             universal: "运行环境: 客户端和服务器"
             null: "运行环境: 未知"
-          author: "作者: {0}"
-          contributors: "贡献者: {0}"
+          author: "作者: {}"
+          contributors: "贡献者: {}"
           contact:
-            root: "链接: {0}"
+            root: "链接: {}"
             homepage: "主页"
             sources: "源码"
             issues: "问题提交"
             hover: "点击跳转至连接"
-          license: "授权: {0}"
+          license: "授权: {}"
           unknown: "未知"
-        error: "未知的模组: {0}"
+        error: "未知的模组: {}"
     follow:
       add:
-        feedback: "已把{0}添加到跟随列表中"
-        error: "{0}已添加到跟随列表中"
+        feedback: "已把{}添加到跟随列表中"
+        error: "{}已添加到跟随列表中"
       remove:
-        feedback: "已把{0}从跟随列表中移除"
-        error: "{0}未添加到跟随列表中"
+        feedback: "已把{}从跟随列表中移除"
+        error: "{}未添加到跟随列表中"
       list:
         error: "你还没有添加任何物品到跟随列表中"
         feedback: "跟随列表中的物品有:"
       color:
         set:
-          feedback: "已将发光颜色设置为{0}"
-          error: "物品的发光颜色已经为{0}"
+          feedback: "已将发光颜色设置为{}"
+          error: "物品的发光颜色已经为{}"
         show:
-          feedback: "物品的发光颜色为{0}"
+          feedback: "物品的发光颜色为{}"
+    playerdata:
+      remove:
+        feedback: "已删除玩家{}的数据文件"
+        error:
+          not_exist: "玩家{}的数据文件不存在"
+          online: "无法删除在线玩家的数据"
     carpet:
       extensions:
-        start: "当前服务器共启用了{0}个Carpet扩展:"
-        error: "{0}个Carpet扩展信息读取失败。"
+        start: "当前服务器共启用了{}个Carpet扩展:"
+        error: "{}个Carpet扩展信息读取失败。"
 
   # ---------------------------------
   # 传递给fabric-carpet的翻译
@@ -128,6 +134,9 @@ carpetajiaddition:
       commandMods:
         name: "mods命令"
         desc: "可以使用/mods命令。"
+      commandPlayerdata:
+        name: "playerdata命令"
+        desc: "可以使用/playerdata命令。"
 
       dragonEggRecipe:
         name: "可合成龙蛋"
@@ -135,3 +144,6 @@ carpetajiaddition:
       dragonBreathRecipe:
         name: "可合成龙息"
         desc: "为龙息添加了合理的配方。"
+      elytraRecipe:
+        name: "可合成鞘翅"
+        desc: "为鞘翅添加了合理的配方。"
