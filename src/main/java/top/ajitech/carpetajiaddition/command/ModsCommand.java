@@ -3,7 +3,6 @@ package top.ajitech.carpetajiaddition.command;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.suggestion.Suggestions;
 import top.ajitech.carpetajiaddition.CarpetAjiAdditionRules;
-import top.ajitech.carpetajiaddition.translate.TranslationsKey;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
@@ -26,6 +25,7 @@ import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
+import static top.ajitech.carpetajiaddition.translate.TranslationsKey.CMD_MODS;
 import static top.ajitech.carpetajiaddition.util.TranslateUtil.tr;
 import static top.ajitech.carpetajiaddition.util.TranslateUtil.trc;
 import static net.minecraft.commands.Commands.argument;
@@ -52,10 +52,10 @@ public class ModsCommand extends Command{
                     Style
                             .EMPTY
                             //#if MC < 12105
-                            .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, trc(TranslationsKey.CMD_MODS + "list.hover")))
+                            .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, trc(CMD_MODS + "list.hover")))
                             .withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/mods " + name))
                             //#else
-                            //$$ .withHoverEvent(new HoverEvent.ShowText(trc(TranslationsKey.CMD_MODS + "list.hover")))
+                            //$$ .withHoverEvent(new HoverEvent.ShowText(trc(CMD_MODS + "list.hover")))
                             //$$ .withClickEvent(new ClickEvent.RunCommand("/mods " + name))
                             //#endif
             );
@@ -89,28 +89,28 @@ public class ModsCommand extends Command{
                 list.add(Component.literal(metadata.getDescription()));
                 list.add(Component.literal("============================="));
 
-                String unknown = tr(TranslationsKey.CMD_MODS + "mods.feedback.unknown");
+                String unknown = tr(CMD_MODS + "mods.feedback.unknown");
 
                 String type = metadata.getType();
-                list.add(trc(TranslationsKey.CMD_MODS + "mods.feedback.type", type == null ? unknown : type));
+                list.add(trc(CMD_MODS + "mods.feedback.type", type == null ? unknown : type));
 
                 String id = metadata.getId();
-                list.add(trc(TranslationsKey.CMD_MODS + "mods.feedback.id", id == null ? unknown : id));
+                list.add(trc(CMD_MODS + "mods.feedback.id", id == null ? unknown : id));
 
                 Version version = metadata.getVersion();
-                list.add(trc(TranslationsKey.CMD_MODS + "mods.feedback.version", version == null ? unknown : version.getFriendlyString()));
+                list.add(trc(CMD_MODS + "mods.feedback.version", version == null ? unknown : version.getFriendlyString()));
 
                 list.add(
                         switch (metadata.getEnvironment()) {
-                            case CLIENT -> trc(TranslationsKey.CMD_MODS + "mods.feedback.environment.client");
-                            case SERVER -> trc(TranslationsKey.CMD_MODS + "mods.feedback.environment.server");
-                            case UNIVERSAL -> trc(TranslationsKey.CMD_MODS + "mods.feedback.environment.universal");
-                            case null -> trc(TranslationsKey.CMD_MODS + "mods.feedback.environment.null");
+                            case CLIENT -> trc(CMD_MODS + "mods.feedback.environment.client");
+                            case SERVER -> trc(CMD_MODS + "mods.feedback.environment.server");
+                            case UNIVERSAL -> trc(CMD_MODS + "mods.feedback.environment.universal");
+                            case null -> trc(CMD_MODS + "mods.feedback.environment.null");
                         }
                 );
 
                 list.add(trc(
-                        TranslationsKey.CMD_MODS + "mods.feedback.author",
+                        CMD_MODS + "mods.feedback.author",
                         metadata.getAuthors() != null && !metadata.getAuthors().isEmpty()
                                 ? metadata.getAuthors().stream()
                                 .map(Person::getName)
@@ -119,7 +119,7 @@ public class ModsCommand extends Command{
                 ));
 
                 list.add(trc(
-                        TranslationsKey.CMD_MODS + "mods.feedback.contributors",
+                        CMD_MODS + "mods.feedback.contributors",
                         metadata.getContributors() != null && !metadata.getContributors().isEmpty()
                                 ? metadata.getContributors().stream()
                                 .map(Person::getName)
@@ -129,7 +129,7 @@ public class ModsCommand extends Command{
 
                 ContactInformation contact = metadata.getContact();
                 if (contact == null || contact.asMap().isEmpty()){
-                    list.add(trc(TranslationsKey.CMD_MODS + "mods.feedback.contact.root", unknown));
+                    list.add(trc(CMD_MODS + "mods.feedback.contact.root", unknown));
                 } else {
                     Map<String, String> map = contact.asMap();
                     Set<Component> texts = new HashSet<>();
@@ -137,9 +137,9 @@ public class ModsCommand extends Command{
                         String key = entry.getKey();
                         MutableComponent text = Component.literal(
                                 switch (key) {
-                                    case "homepage" -> tr(TranslationsKey.CMD_MODS + "mods.feedback.contact.homepage");
-                                    case "sources" -> tr(TranslationsKey.CMD_MODS + "mods.feedback.contact.sources");
-                                    case "issues" -> tr(TranslationsKey.CMD_MODS + "mods.feedback.contact.issues");
+                                    case "homepage" -> tr(CMD_MODS + "mods.feedback.contact.homepage");
+                                    case "sources" -> tr(CMD_MODS + "mods.feedback.contact.sources");
+                                    case "issues" -> tr(CMD_MODS + "mods.feedback.contact.issues");
                                     default -> key;
                                 }
                         );
@@ -147,11 +147,11 @@ public class ModsCommand extends Command{
                         text.setStyle(
                                 Style
                                         .EMPTY
-                                        .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, trc(TranslationsKey.CMD_MODS + "mods.feedback.contact.hover")))
+                                        .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, trc(CMD_MODS + "mods.feedback.contact.hover")))
                                         .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, entry.getValue()))
                         );
                         //#else
-                        //$$ Style style = Style.EMPTY.withHoverEvent(new HoverEvent.ShowText(trc(TranslationsKey.CMD_MODS + "mods.feedback.contact.hover")));
+                        //$$ Style style = Style.EMPTY.withHoverEvent(new HoverEvent.ShowText(trc(CMD_MODS + "mods.feedback.contact.hover")));
                         //$$ URI uri;
                         //$$ try {
                         //$$     uri = new URI(entry.getValue());
@@ -167,7 +167,7 @@ public class ModsCommand extends Command{
                         texts.add(text);
                     }
                     list.add(trc(
-                            TranslationsKey.CMD_MODS + "mods.feedback.contact.root",
+                            CMD_MODS + "mods.feedback.contact.root",
                             texts
                             .stream()
                             .reduce((text1, text2) -> text1.copy().append(", ").append(text2))
@@ -176,7 +176,7 @@ public class ModsCommand extends Command{
                 }
 
                 list.add(trc(
-                        TranslationsKey.CMD_MODS + "mods.feedback.license",
+                        CMD_MODS + "mods.feedback.license",
                         metadata.getLicense() != null && !metadata.getLicense().isEmpty()
                                 ? String.join(", ", metadata.getLicense())
                                 : unknown
@@ -193,7 +193,7 @@ public class ModsCommand extends Command{
                 return 1;
             }
         }
-        source.sendFailure(trc(TranslationsKey.CMD_MODS + "mods.error", modName));
+        source.sendFailure(trc(CMD_MODS + "mods.error", modName));
         return 0;
     }
 }
