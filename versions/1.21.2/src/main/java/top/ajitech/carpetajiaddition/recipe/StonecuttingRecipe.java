@@ -7,11 +7,11 @@ import com.mojang.serialization.JsonOps;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import top.ajitech.carpetajiaddition.util.ResourceLocationUtil;
 
 import java.util.Map;
 
 import static top.ajitech.carpetajiaddition.util.ResourceLocationUtil.getItemRegistryName;
+import static top.ajitech.carpetajiaddition.util.ResourceLocationUtil.getResourceLocation;
 
 public class StonecuttingRecipe implements Recipe {
     private static final String TYPE = "minecraft:stonecutting";
@@ -43,12 +43,7 @@ public class StonecuttingRecipe implements Recipe {
         );
     }
 
-    public static StonecuttingRecipe create(Item ingredient, Item result, int count) {
-        return new StonecuttingRecipe(
-                ResourceLocationUtil.getResourceLocation(result + "_from_" + ingredient),
-                getItemRegistryName(ingredient),
-                getItemRegistryName(result),
-                count
-        );
+    public static StonecuttingRecipe create(String name, Item ingredient, Item result, int count) {
+        return new StonecuttingRecipe(getResourceLocation(name), getItemRegistryName(ingredient), getItemRegistryName(result), count);
     }
 }
