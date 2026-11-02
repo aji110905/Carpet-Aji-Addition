@@ -1,6 +1,5 @@
 package top.ajitech.carpetajiaddition.recipe;
 
-import top.ajitech.carpetajiaddition.util.ResourceLocationUtil;
 import com.google.gson.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -10,21 +9,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static top.ajitech.carpetajiaddition.util.ResourceLocationUtil.getItemRegistryName;
+import static top.ajitech.carpetajiaddition.util.ResourceLocationUtil.getResourceLocation;
+
 public class ShapedRecipe implements Recipe {
     private static final String TYPE = "minecraft:crafting_shaped";
 
-    private final ResourceLocation recipeId;
+    private final ResourceLocation id;
     private final String[][] pattern;
     private final Map<Character, String> ingredients;
-    private final String resultItem;
-    private final int resultCount;
+    private final String result;
+    private final int count;
 
-    private ShapedRecipe(ResourceLocation recipeId, String[][] pattern, Map<Character, String> ingredients, String resultItem, int resultCount) {
-        this.recipeId = recipeId;
+    private ShapedRecipe(ResourceLocation id, String[][] pattern, Map<Character, String> ingredients, String result, int count) {
+        this.id = id;
         this.pattern = pattern;
         this.ingredients = ingredients;
-        this.resultItem = resultItem;
-        this.resultCount = resultCount;
+        this.result = result;
+        this.count = count;
     }
 
     @Override
@@ -48,10 +50,10 @@ public class ShapedRecipe implements Recipe {
         }
         json.add("key", jsonKey);
         JsonObject jsonResult = new JsonObject();
-        jsonResult.addProperty("id", resultItem);
-        jsonResult.addProperty("count", resultCount);
+        jsonResult.addProperty("id", result);
+        jsonResult.addProperty("count", count);
         json.add("result", jsonResult);
-        map.put(recipeId, json);
+        map.put(id, json);
     }
 
     public static Builder builder(String recipeName, Item resultItem, int resultCount) {
@@ -59,16 +61,16 @@ public class ShapedRecipe implements Recipe {
     }
 
     public static class Builder{
-        private final String recipeName;
-        private final Item resultItem;
-        private final int resultCount;
+        private final String name;
+        private final Item result;
+        private final int count;
         private final List<String> patternRows = new ArrayList<>();
         private final Map<Character, Item> ingredients = new HashMap<>();
 
-        private Builder(String recipeName, Item resultItem, int resultCount) {
-            this.recipeName = recipeName;
-            this.resultItem = resultItem;
-            this.resultCount = resultCount;
+        private Builder(String name, Item result, int count) {
+            this.name = name;
+            this.result = result;
+            this.count = count;
         }
 
 
@@ -87,15 +89,9 @@ public class ShapedRecipe implements Recipe {
             for (int i = 0; i < patternRows.size(); i++) {
                 pattern[i] = patternRows.get(i).split("");
             }
-            Map<Character, String> ingredientMap = new HashMap<>();
-            ingredients.forEach((k, v) -> ingredientMap.put(k, ResourceLocationUtil.getItemRegistryName(v)));
-            return new ShapedRecipe(
-                    ResourceLocationUtil.getResourceLocation(recipeName),
-                    pattern,
-                    ingredientMap,
-                    ResourceLocationUtil.getItemRegistryName(resultItem),
-                    resultCount
-            );
+            Map<Character, String> map = new HashMap<>();
+            ingredients.forEach((k, v) -> map.put(k, getItemRegistryName(v)));
+            return new ShapedRecipe(getResourceLocation(name), pattern, map, getItemRegistryName(result), count);
         }
     }
 }
