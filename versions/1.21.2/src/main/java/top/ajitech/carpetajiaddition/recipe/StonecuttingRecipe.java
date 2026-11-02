@@ -37,10 +37,7 @@ public class StonecuttingRecipe implements Recipe {
         resultJson.add("id", new JsonPrimitive(result));
         resultJson.add("count", new JsonPrimitive(count));
         json.add("result", resultJson);
-        map.put(
-                id,
-                net.minecraft.world.item.crafting.Recipe.CODEC.parse(provider.createSerializationContext(JsonOps.INSTANCE), json).getOrThrow(JsonParseException::new)
-        );
+        map.put(id, net.minecraft.world.item.crafting.Recipe.CODEC.parse(provider.createSerializationContext(JsonOps.INSTANCE), json).getOrThrow(JsonParseException::new));
     }
 
     public static StonecuttingRecipe create(String name, Item ingredient, Item result, int count) {
