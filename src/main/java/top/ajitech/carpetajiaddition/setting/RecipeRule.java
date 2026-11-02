@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Map;
 
 public class RecipeRule extends BooleanRule{
-    private final Recipe recipe;
+    private final Recipe[] recipes;
 
-    public RecipeRule(String name, Recipe recipe) {
+    public RecipeRule(String name, Recipe... recipes) {
         super(name, List.of(RuleCategory.RECIPE), false, false);
-        this.recipe = recipe;
+        this.recipes = recipes;
     }
 
     @Override
@@ -28,13 +28,15 @@ public class RecipeRule extends BooleanRule{
     //$$ public void addToRecipeMap(net.minecraft.server.packs.PackResources packResources, Map<net.minecraft.resources.Identifier, net.minecraft.server.packs.resources.Resource> map, net.minecraft.resources.FileToIdConverter converter) {
     //#endif
         if (value()) {
-            //#if MC < 12102
-            recipe.addToRecipeMap(map);
-            //#elseif MC < 260300
-            //$$ recipe.addToRecipeMap(map, provider);
-            //#else
-            //$$ recipe.addToRecipeMap(packResources, map, converter);
-            //#endif
+            for (Recipe recipe : recipes) {
+                //#if MC < 12102
+                recipe.addToRecipeMap(map);
+                //#elseif MC < 260300
+                //$$ recipe.addToRecipeMap(map, provider);
+                //#else
+                //$$ recipe.addToRecipeMap(packResources, map, converter);
+                //#endif
+            }
         }
     }
 }
