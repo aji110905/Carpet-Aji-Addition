@@ -108,8 +108,7 @@ public final class CarpetAjiAdditionRules {
     }
 
     private static void register(String name, Recipe recipe) {
-        RecipeRule rule = new RecipeRule(name, recipe);
-        RECIPE_RULES.add(rule);
+        RECIPE_RULES.add(new RecipeRule(name, recipe));
     }
 
 
