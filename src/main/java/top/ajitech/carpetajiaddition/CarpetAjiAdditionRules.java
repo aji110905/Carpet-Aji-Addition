@@ -38,9 +38,8 @@ public final class CarpetAjiAdditionRules {
     public static final BooleanRule REMOVE_TOO_EXPENSIVE = register("removeTooExpensive", false);
     public static final BooleanRule WATER_IN_NETHER = register("waterInNether", false);
 
-
     private static BooleanRule register(String name, boolean defaultValue) {
-        return register(true, name, defaultValue);
+        return register(true, name, List.of(), defaultValue, false);
     }
 
     private static BooleanRule register(boolean shouldRegister, String name, boolean defaultValue) {
@@ -48,11 +47,7 @@ public final class CarpetAjiAdditionRules {
     }
 
     private static BooleanRule register(String name, boolean defaultValue, boolean mustSetDefault) {
-        return register(true, name, defaultValue, mustSetDefault);
-    }
-
-    private static BooleanRule register(boolean shouldRegister, String name, boolean defaultValue, boolean mustSetDefault) {
-        return register(shouldRegister, name, List.of(), defaultValue, mustSetDefault);
+        return register(true, name, List.of(), defaultValue, mustSetDefault);
     }
 
     private static BooleanRule register(boolean shouldRegister, String name, Collection<String> categories, boolean defaultValue, boolean isMustSetDefault) {
