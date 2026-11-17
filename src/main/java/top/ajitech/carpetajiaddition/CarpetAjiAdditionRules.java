@@ -50,8 +50,8 @@ public final class CarpetAjiAdditionRules {
         return register(true, name, List.of(), defaultValue, mustSetDefault);
     }
 
-    private static BooleanRule register(boolean shouldRegister, String name, Collection<String> categories, boolean defaultValue, boolean isMustSetDefault) {
-        BooleanRule rule = new BooleanRule(name,  categories, defaultValue, isMustSetDefault);
+    private static BooleanRule register(boolean shouldRegister, String name, Collection<String> categories, boolean defaultValue, boolean mustSetDefault) {
+        BooleanRule rule = new BooleanRule(name,  categories, defaultValue, mustSetDefault);
         if (shouldRegister) {
             RULES.add(rule);
         }
