@@ -44,15 +44,21 @@ public final class TranslateUtil {
 
     public static Component trc (String key, Component... args){
         String template = tr(key);
-        if (template.isEmpty()) return Component.empty();
-        Component result = Component.empty();
-        String[] parts = template.split("\\{\\d+}");
-        for (int i = 0; i < parts.length; i++) {
-            result = result.copy().append(parts[i]);
-            if (i < args.length) {
-                result = result.copy().append(args[i]);
-            }
+        if (template.isEmpty()) {
+            return Component.empty();
         }
+        MutableComponent result = Component.empty();
+        int cursor = 0;
+        for (Component arg : args) {
+            int index = template.indexOf("{}", cursor);
+            if (index < 0) {
+                break;
+            }
+            result.append(literal(template.substring(cursor, index)));
+            result.append(arg);
+            cursor = index + 2;
+        }
+        result.append(literal(template.substring(cursor)));
         return result;
     }
 

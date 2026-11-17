@@ -69,11 +69,6 @@ carpetajiaddition:
         start: "The current server has enabled {} Carpet extension(s):"
         error: "Failed to read information for {} Carpet extension(s)."
 
-  # ---------------------------------
-  # Translation sent to Fabric-Carpet
-  # Only the `category` and `rule` dictionaries should be present inside.
-  # ---------------------------------
-
   carpet:
     category:
       CAA: "CAA"

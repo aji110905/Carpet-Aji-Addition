@@ -67,11 +67,6 @@ public abstract class Rule<T> implements CarpetRule<T> {
     }
 
     @Override
-    public boolean strict() {
-        return true;
-    }
-
-    @Override
     public void set(CommandSourceStack source, String value) throws InvalidRuleValueException {
         set(source, parse(value), value);
     }

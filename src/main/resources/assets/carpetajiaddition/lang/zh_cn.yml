@@ -69,11 +69,6 @@ carpetajiaddition:
         start: "当前服务器共启用了{}个Carpet扩展:"
         error: "{}个Carpet扩展信息读取失败。"
 
-  # ---------------------------------
-  # 传递给fabric-carpet的翻译
-  # 里面应该只出现category和rule两个字典
-  # ---------------------------------
-
   carpet:
     category:
       CAA: "CAA"
