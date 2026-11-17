@@ -59,6 +59,18 @@ public final class CarpetAjiAdditionRules {
     }
 
 
+    private static IntegerRule register(String name, Integer defaultValue, boolean mustSetDefault, int miniValue, int maxValue, Collection<String> suggestions) {
+        return register(true, name, List.of(), defaultValue, mustSetDefault, miniValue, maxValue, suggestions);
+    }
+
+    private static IntegerRule register(boolean shouldRegister, String name, Collection<String> categories, Integer defaultValue, boolean mustSetDefault, int miniValue, int maxValue, Collection<String> suggestions) {
+        IntegerRule rule = new IntegerRule(name, categories, defaultValue, mustSetDefault, miniValue, maxValue, suggestions);
+        if (shouldRegister) {
+            RULES.add(rule);
+        }
+        return rule;
+    }
+
 
     public static final CommandRule COMMAND_FOLLOW = register("commandFollow", CommandRuleValue.OPS);
     public static final CommandRule COMMAND_MODS = register("commandMods", CommandRuleValue.TRUE);
