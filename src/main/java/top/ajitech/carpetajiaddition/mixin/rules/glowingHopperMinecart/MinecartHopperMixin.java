@@ -78,7 +78,9 @@ public abstract class MinecartHopperMixin extends AbstractMinecartContainer{
             //$$ locked.setColor(Optional.of(TeamColor.RED));
             //#endif
         }
-        if (isEnabled() == nextTickState) return;
+        if (isEnabled() == nextTickState) {
+            return;
+        }
         if (isEnabled()) {
             scoreboard.addPlayerToTeam(getUUID().toString(), enabled);
         } else {
