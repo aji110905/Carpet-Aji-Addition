@@ -31,7 +31,9 @@
     "rules.safeCreeper.CreeperMixin",
     "rules.safeMagmaBlock.MagmaBlockMixin",
     "rules.tameHorse.AbstractHorseMixin",
-    "rules.toughTurtleEgg.TurtleEggBlockMixin"
+    "rules.toughTurtleEgg.TurtleEggBlockMixin",
+    "rules.waterInNether.BucketItemMixin",
+    "rules.waterInNether.IceBlockMixin"
   ],
   "client": [
   ],

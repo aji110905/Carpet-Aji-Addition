@@ -36,6 +36,7 @@ public final class CarpetAjiAdditionRules {
     public static final BooleanRule GRINDSTONE_DISENCHANTING = register("grindstoneDisenchanting", false);
     public static final BooleanRule ENHANCE_GRINDSTONE = register("enhanceGrindstone", false);
     public static final BooleanRule REMOVE_TOO_EXPENSIVE = register("removeTooExpensive", false);
+    public static final BooleanRule WATER_IN_NETHER = register("waterInNether", false);
 
 
     private static BooleanRule register(String name, boolean defaultValue) {

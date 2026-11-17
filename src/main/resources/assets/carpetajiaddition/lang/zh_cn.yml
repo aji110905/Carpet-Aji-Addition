@@ -122,6 +122,9 @@ carpetajiaddition:
       removeTooExpensive:
         name: "移除过于昂贵"
         desc: "移除铁砧附魔时的经验限制。"
+      waterInNether:
+        name: "下界放水"
+        desc: "玩家可以在下界用水桶放水而不被蒸发，在下界把冰敲碎也会留下水。"
 
       commandFollow:
         name: "follow命令"
