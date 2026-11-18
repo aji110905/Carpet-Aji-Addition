@@ -125,6 +125,15 @@ carpetajiaddition:
       waterInNether:
         name: "下界放水"
         desc: "玩家可以在下界用水桶放水而不被蒸发，在下界把冰敲碎也会留下水。"
+      fullBeaconRange:
+        name: "满级信标范围"
+        desc: "控制满级（四级）信标的水平作用范围（单位：方块），原版为50。不影响垂直范围与效果时长。数值超过512（32区块视距上限）后会大幅增加MSPT。"
+      alwaysFullBeacon:
+        name: "常驻满级信标"
+        desc: "放置的信标无需搭建金字塔即为满级，可直接选择副效果。"
+      endlessBeaconHeight:
+        name: "无限信标高度"
+        desc: "信标效果的垂直覆盖范围改为世界最底层到世界最顶层。水平范围不受影响。"
 
       commandFollow:
         name: "follow命令"
