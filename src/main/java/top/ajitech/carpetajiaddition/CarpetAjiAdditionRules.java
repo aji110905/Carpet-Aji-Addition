@@ -36,10 +36,13 @@ public final class CarpetAjiAdditionRules {
     public static final BooleanRule GRINDSTONE_DISENCHANTING = register("grindstoneDisenchanting", false);
     public static final BooleanRule ENHANCE_GRINDSTONE = register("enhanceGrindstone", false);
     public static final BooleanRule REMOVE_TOO_EXPENSIVE = register("removeTooExpensive", false);
-
+    public static final BooleanRule WATER_IN_NETHER = register("waterInNether", false);
+    public static final IntegerRule FULL_BEACON_RANGE = register("fullBeaconRange", 50, false, 1, Integer.MAX_VALUE, List.of("50", "200", "400", "800"));
+    public static final BooleanRule ALWAYS_FULL_BEACON = register("alwaysFullBeacon", false);
+    public static final BooleanRule ENDLESS_BEACON_HEIGHT = register("endlessBeaconHeight", false);
 
     private static BooleanRule register(String name, boolean defaultValue) {
-        return register(true, name, defaultValue);
+        return register(true, name, List.of(), defaultValue, false);
     }
 
     private static BooleanRule register(boolean shouldRegister, String name, boolean defaultValue) {
@@ -47,21 +50,28 @@ public final class CarpetAjiAdditionRules {
     }
 
     private static BooleanRule register(String name, boolean defaultValue, boolean mustSetDefault) {
-        return register(true, name, defaultValue, mustSetDefault);
+        return register(true, name, List.of(), defaultValue, mustSetDefault);
     }
 
-    private static BooleanRule register(boolean shouldRegister, String name, boolean defaultValue, boolean mustSetDefault) {
-        return register(shouldRegister, name, List.of(), defaultValue, mustSetDefault);
-    }
-
-    private static BooleanRule register(boolean shouldRegister, String name, Collection<String> categories, boolean defaultValue, boolean isMustSetDefault) {
-        BooleanRule rule = new BooleanRule(name,  categories, defaultValue, isMustSetDefault);
+    private static BooleanRule register(boolean shouldRegister, String name, Collection<String> categories, boolean defaultValue, boolean mustSetDefault) {
+        BooleanRule rule = new BooleanRule(name,  categories, defaultValue, mustSetDefault);
         if (shouldRegister) {
             RULES.add(rule);
         }
         return rule;
     }
 
+    private static IntegerRule register(String name, Integer defaultValue, boolean mustSetDefault, int miniValue, int maxValue, Collection<String> suggestions) {
+        return register(true, name, List.of(), defaultValue, mustSetDefault, miniValue, maxValue, suggestions);
+    }
+
+    private static IntegerRule register(boolean shouldRegister, String name, Collection<String> categories, Integer defaultValue, boolean mustSetDefault, int miniValue, int maxValue, Collection<String> suggestions) {
+        IntegerRule rule = new IntegerRule(name, categories, defaultValue, mustSetDefault, miniValue, maxValue, suggestions);
+        if (shouldRegister) {
+            RULES.add(rule);
+        }
+        return rule;
+    }
 
 
     public static final CommandRule COMMAND_FOLLOW = register("commandFollow", CommandRuleValue.OPS);

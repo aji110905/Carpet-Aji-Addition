@@ -104,6 +104,14 @@ carpetajiaddition:
         desc: "The grindstone can remove curse enchantments. When enabled together with grindstoneDisenchanting, curse enchantments can be stripped into enchanted books as well."
       removeTooExpensive:
         desc: "Remove the experience limit when enchanting with an anvil."
+      waterInNether:
+        desc: "Players can place water in the Nether with buckets without it evaporating, and breaking ice in the Nether leaves water behind."
+      fullBeaconRange:
+        desc: "Controls the horizontal range (in blocks) of a fully powered (level 4) beacon. Vanilla value is 50. Vertical range and effect duration are unaffected. Values above 512 (the 32-chunk view distance cap) greatly increase MSPT."
+      alwaysFullBeacon:
+        desc: "Beacons act as fully powered (level 4) without any pyramid and can select the secondary effect directly."
+      endlessBeaconHeight:
+        desc: "The vertical range of beacon effects spans from the bottom to the top of the world. Horizontal range is unaffected."
 
       commandFollow:
         desc: "Can use the /follow command."

@@ -16,9 +16,12 @@
     "recipe.RecipeManagerAccessor",
     "recipe.RecipeManagerMixin",
     "rules.anvilCannotDamage.AnvilBlockMixin",
+    "rules.alwaysFullBeacon.BeaconBlockEntityMixin",
     "rules.betterLogCommand.LoggerRegistryAccessor",
+    "rules.endlessBeaconHeight.BeaconBlockEntityMixin",
     "rules.endlessVault.VaultServerDataMixin",
     "rules.enhanceGrindstone.GrindstoneMenuMixin",
+    "rules.fullBeaconRange.BeaconBlockEntityMixin",
     "rules.glowingHopperMinecart.MinecartHopperMixin",
     "rules.grindstoneDisenchanting.GrindstoneMenu$3Mixin",
     "rules.grindstoneDisenchanting.GrindstoneMenu$4Mixin",
@@ -31,7 +34,9 @@
     "rules.safeCreeper.CreeperMixin",
     "rules.safeMagmaBlock.MagmaBlockMixin",
     "rules.tameHorse.AbstractHorseMixin",
-    "rules.toughTurtleEgg.TurtleEggBlockMixin"
+    "rules.toughTurtleEgg.TurtleEggBlockMixin",
+    "rules.waterInNether.BucketItemMixin",
+    "rules.waterInNether.IceBlockMixin"
   ],
   "client": [
   ],
