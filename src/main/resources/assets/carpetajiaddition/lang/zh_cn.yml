@@ -71,7 +71,7 @@ carpetajiaddition:
 
   carpet:
     category:
-      CAA: "CAA"
+      CAA: "Aji"
       recipe: "配方"
     rule:
       glowingHopperMinecart:

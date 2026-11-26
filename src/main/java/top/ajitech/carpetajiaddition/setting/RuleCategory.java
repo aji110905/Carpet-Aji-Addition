@@ -5,6 +5,6 @@ public final class RuleCategory {
 
     }
 
-    public static final String CAA = "CAA";
+    public static final String AJI = "Aji";
     public static final String RECIPE = "recipe";
 }

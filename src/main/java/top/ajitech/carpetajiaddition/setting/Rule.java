@@ -21,7 +21,7 @@ public abstract class Rule<T> implements CarpetRule<T> {
     protected Rule(String name, Collection<String> categories, T defaultValue, boolean mustSetDefault) {
         this.name = name;
         this.categories = new ArrayList<>(categories);
-        this.categories.add(RuleCategory.CAA);
+        this.categories.add(RuleCategory.AJI);
         this.defaultValue = defaultValue;
         this.mustSetDefault = mustSetDefault;
         value = defaultValue;
